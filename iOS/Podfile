@@ -1,0 +1,14 @@
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
+    use_frameworks!
+    pod 'Alamofire'
+    pod 'SwiftyJSON'
+    pod 'RealmSwift'
+    pod 'JGProgressHUD'
+    pod 'Google/Analytics'
+   
+    pod 'SVProgressHUD'
+    pod 'MBProgressHUD'
+    pod 'PageMenu'
+    pod 'TTTAttributedLabel'
+
