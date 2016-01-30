@@ -1,12 +1,20 @@
 # kyutech
 
-## server
+### server
+    + Rails 4.2.3
+    + Ruby 2.2.2
+    + mysql2
 
-## iOS
+### iOS
+    - X-code 7.X
+    - Swift 2.0
 
-## Android
+### Android
 
-## Docker
+### Docker
+    - CoreOS
+    - Rancher 
+    - docker-compose 
 
-## Design
-
+### Design
+    - sketch
