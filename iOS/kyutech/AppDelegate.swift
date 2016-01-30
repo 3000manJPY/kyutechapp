@@ -9,7 +9,7 @@
 import UIKit
 import Fabric
 import Crashlytics
-import SHUtills
+import SHUtil
 
 
 @UIApplicationMain
@@ -62,12 +62,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         if url.scheme == "kyutechapp" {
             guard let host = url.host else { return false }
-            guard let query = url.query else { return false }
+//            guard let query = url.query else { return false }
             switch host {
             case "notice" :
                 let dict = url.parseGetArgments()
                 print(dict)
-                NSNotificationCenter.defaultCenter().postNotificationName(Config.OPEN_NOTICE, object: nil, userInfo: dict)
+//                NSNotificationCenter.defaultCenter().postNotificationName(Config.OPEN_NOTICE, object: nil, userInfo: dict)
                 break
             case "lectures" :
                 print(url)

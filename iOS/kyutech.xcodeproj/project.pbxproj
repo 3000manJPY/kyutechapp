@@ -21,6 +21,9 @@
 		2A9A95961C5CBE86007BDA52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A95561C5CBB84007BDA52 /* Main.storyboard */; };
 		2A9A959F1C5D2421007BDA52 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9A959E1C5D2421007BDA52 /* Config.swift */; };
 		2A9A95A01C5D2421007BDA52 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9A959E1C5D2421007BDA52 /* Config.swift */; };
+		2A9A96111C5D32B5007BDA52 /* SHUtil.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A9A960B1C5D322D007BDA52 /* SHUtil.framework */; };
+		2A9A96121C5D3A97007BDA52 /* SHUtil in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A96031C5D3218007BDA52 /* SHUtil */; };
+		2A9A96131C5D3A98007BDA52 /* SHUtil in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A96031C5D3218007BDA52 /* SHUtil */; };
 		610515DB7EC2F856B945A951 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B3BF9F82644C0C73EE47F4B /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +41,27 @@
 			proxyType = 1;
 			remoteGlobalIDString = 2A9A954E1C5CBB84007BDA52;
 			remoteInfo = kyutech;
+		};
+		2A9A960A1C5D322D007BDA52 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A9A96051C5D322D007BDA52 /* SHUtil.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2A9A95E51C5D28E3007BDA52;
+			remoteInfo = SHUtil;
+		};
+		2A9A960C1C5D322D007BDA52 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A9A96051C5D322D007BDA52 /* SHUtil.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2A9A95EF1C5D28E3007BDA52;
+			remoteInfo = SHUtilTests;
+		};
+		2A9A960F1C5D3280007BDA52 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A9A96051C5D322D007BDA52 /* SHUtil.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 2A9A95E41C5D28E3007BDA52;
+			remoteInfo = SHUtil;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -58,6 +82,8 @@
 		2A9A959A1C5CBE86007BDA52 /* dev-kyutech.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dev-kyutech.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A9A959C1C5D19D0007BDA52 /* kyutech.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = kyutech.entitlements; sourceTree = "<group>"; };
 		2A9A959E1C5D2421007BDA52 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		2A9A96031C5D3218007BDA52 /* SHUtil */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SHUtil; sourceTree = "<group>"; };
+		2A9A96051C5D322D007BDA52 /* SHUtil.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SHUtil.xcodeproj; path = SHUtil/SHUtil.xcodeproj; sourceTree = "<group>"; };
 		54F0A4613E3F6BCD606724CB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		9B3BF9F82644C0C73EE47F4B /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1F64317C9D0F1507FCB9A4E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -68,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A9A96111C5D32B5007BDA52 /* SHUtil.framework in Frameworks */,
 				610515DB7EC2F856B945A951 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,9 +284,20 @@
 			name = dev;
 			sourceTree = "<group>";
 		};
+		2A9A96061C5D322D007BDA52 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2A9A960B1C5D322D007BDA52 /* SHUtil.framework */,
+				2A9A960D1C5D322D007BDA52 /* SHUtilTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		EC4AE5376D2B36808E10A2DC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2A9A96051C5D322D007BDA52 /* SHUtil.xcodeproj */,
+				2A9A96031C5D3218007BDA52 /* SHUtil */,
 				9B3BF9F82644C0C73EE47F4B /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -283,6 +321,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				2A9A96101C5D3280007BDA52 /* PBXTargetDependency */,
 			);
 			name = kyutech;
 			productName = kyutech;
@@ -382,6 +421,12 @@
 			mainGroup = 2A9A95461C5CBB84007BDA52;
 			productRefGroup = 2A9A95501C5CBB84007BDA52 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 2A9A96061C5D322D007BDA52 /* Products */;
+					ProjectRef = 2A9A96051C5D322D007BDA52 /* SHUtil.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				2A9A954E1C5CBB84007BDA52 /* kyutech */,
@@ -392,11 +437,29 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		2A9A960B1C5D322D007BDA52 /* SHUtil.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SHUtil.framework;
+			remoteRef = 2A9A960A1C5D322D007BDA52 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2A9A960D1C5D322D007BDA52 /* SHUtilTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SHUtilTests.xctest;
+			remoteRef = 2A9A960C1C5D322D007BDA52 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		2A9A954D1C5CBB84007BDA52 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A9A96121C5D3A97007BDA52 /* SHUtil in Resources */,
 				2A9A955D1C5CBB84007BDA52 /* LaunchScreen.storyboard in Resources */,
 				2A9A955A1C5CBB84007BDA52 /* Assets.xcassets in Resources */,
 				2A9A958D1C5CBE3D007BDA52 /* dev.plist in Resources */,
@@ -422,6 +485,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A9A96131C5D3A98007BDA52 /* SHUtil in Resources */,
 				2A9A95931C5CBE86007BDA52 /* LaunchScreen.storyboard in Resources */,
 				2A9A95941C5CBE86007BDA52 /* Assets.xcassets in Resources */,
 				2A9A95951C5CBE86007BDA52 /* dev.plist in Resources */,
@@ -539,6 +603,11 @@
 			isa = PBXTargetDependency;
 			target = 2A9A954E1C5CBB84007BDA52 /* kyutech */;
 			targetProxy = 2A9A956F1C5CBB84007BDA52 /* PBXContainerItemProxy */;
+		};
+		2A9A96101C5D3280007BDA52 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SHUtil;
+			targetProxy = 2A9A960F1C5D3280007BDA52 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

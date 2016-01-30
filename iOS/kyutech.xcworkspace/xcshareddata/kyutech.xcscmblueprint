@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "A82279CC7E09E43DFF363B42E0B4DBE7323E3EE0",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "A82279CC7E09E43DFF363B42E0B4DBE7323E3EE0" : 0,
+    "22630ED16D18BDF307168192222A8E74C563B87F" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "FA5D6E83-C112-4EFD-B956-14C824E293B0",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "A82279CC7E09E43DFF363B42E0B4DBE7323E3EE0" : "kyutech\/",
+    "22630ED16D18BDF307168192222A8E74C563B87F" : "kyutech\/iOS\/SHUtil\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "kyutech",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "iOS\/kyutech.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/okamuroshogo\/SHUtil.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "22630ED16D18BDF307168192222A8E74C563B87F"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "http:\/\/gitlab.planningdev.com\/kyutech\/kyutech.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A82279CC7E09E43DFF363B42E0B4DBE7323E3EE0"
+    }
+  ]
+}
