@@ -8,12 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		2A9A95531C5CBB84007BDA52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9A95521C5CBB84007BDA52 /* AppDelegate.swift */; };
-		2A9A95551C5CBB84007BDA52 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9A95541C5CBB84007BDA52 /* ViewController.swift */; };
 		2A9A95581C5CBB84007BDA52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A95561C5CBB84007BDA52 /* Main.storyboard */; };
 		2A9A955A1C5CBB84007BDA52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A95591C5CBB84007BDA52 /* Assets.xcassets */; };
 		2A9A955D1C5CBB84007BDA52 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A955B1C5CBB84007BDA52 /* LaunchScreen.storyboard */; };
 		2A9A95681C5CBB84007BDA52 /* kyutechTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9A95671C5CBB84007BDA52 /* kyutechTests.swift */; };
 		2A9A95731C5CBB84007BDA52 /* kyutechUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9A95721C5CBB84007BDA52 /* kyutechUITests.swift */; };
+		2A9A958D1C5CBE3D007BDA52 /* dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A958C1C5CBE3D007BDA52 /* dev.plist */; };
+		2A9A95901C5CBE86007BDA52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9A95521C5CBB84007BDA52 /* AppDelegate.swift */; };
+		2A9A95931C5CBE86007BDA52 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A955B1C5CBB84007BDA52 /* LaunchScreen.storyboard */; };
+		2A9A95941C5CBE86007BDA52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A95591C5CBB84007BDA52 /* Assets.xcassets */; };
+		2A9A95951C5CBE86007BDA52 /* dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A958C1C5CBE3D007BDA52 /* dev.plist */; };
+		2A9A95961C5CBE86007BDA52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A95561C5CBB84007BDA52 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +41,6 @@
 /* Begin PBXFileReference section */
 		2A9A954F1C5CBB84007BDA52 /* kyutech.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kyutech.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A9A95521C5CBB84007BDA52 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2A9A95541C5CBB84007BDA52 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2A9A95571C5CBB84007BDA52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2A9A95591C5CBB84007BDA52 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A9A955C1C5CBB84007BDA52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +51,8 @@
 		2A9A956E1C5CBB84007BDA52 /* kyutechUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = kyutechUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A9A95721C5CBB84007BDA52 /* kyutechUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kyutechUITests.swift; sourceTree = "<group>"; };
 		2A9A95741C5CBB84007BDA52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2A9A958C1C5CBE3D007BDA52 /* dev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = dev.plist; sourceTree = "<group>"; };
+		2A9A959A1C5CBE86007BDA52 /* dev-kyutech.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dev-kyutech.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +71,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		2A9A956B1C5CBB84007BDA52 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A9A95911C5CBE86007BDA52 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -90,6 +103,7 @@
 				2A9A954F1C5CBB84007BDA52 /* kyutech.app */,
 				2A9A95631C5CBB84007BDA52 /* kyutechTests.xctest */,
 				2A9A956E1C5CBB84007BDA52 /* kyutechUITests.xctest */,
+				2A9A959A1C5CBE86007BDA52 /* dev-kyutech.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -97,12 +111,8 @@
 		2A9A95511C5CBB84007BDA52 /* kyutech */ = {
 			isa = PBXGroup;
 			children = (
-				2A9A95521C5CBB84007BDA52 /* AppDelegate.swift */,
-				2A9A95541C5CBB84007BDA52 /* ViewController.swift */,
-				2A9A95561C5CBB84007BDA52 /* Main.storyboard */,
-				2A9A95591C5CBB84007BDA52 /* Assets.xcassets */,
-				2A9A955B1C5CBB84007BDA52 /* LaunchScreen.storyboard */,
-				2A9A955E1C5CBB84007BDA52 /* Info.plist */,
+				2A9A95811C5CBB93007BDA52 /* Classes */,
+				2A9A95801C5CBB8E007BDA52 /* Resources */,
 			);
 			path = kyutech;
 			sourceTree = "<group>";
@@ -123,6 +133,106 @@
 				2A9A95741C5CBB84007BDA52 /* Info.plist */,
 			);
 			path = kyutechUITests;
+			sourceTree = "<group>";
+		};
+		2A9A95801C5CBB8E007BDA52 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2A9A95591C5CBB84007BDA52 /* Assets.xcassets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		2A9A95811C5CBB93007BDA52 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				2A9A95521C5CBB84007BDA52 /* AppDelegate.swift */,
+				2A9A95851C5CBCBA007BDA52 /* Controller */,
+				2A9A95831C5CBCA5007BDA52 /* View */,
+				2A9A95841C5CBCBA007BDA52 /* Model */,
+				2A9A95881C5CBCED007BDA52 /* Layout */,
+				2A9A95871C5CBCE7007BDA52 /* Utility */,
+				2A9A95821C5CBC8B007BDA52 /* Config */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		2A9A95821C5CBC8B007BDA52 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				2A9A95891C5CBD49007BDA52 /* plist */,
+			);
+			name = Config;
+			sourceTree = "<group>";
+		};
+		2A9A95831C5CBCA5007BDA52 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		2A9A95841C5CBCBA007BDA52 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		2A9A95851C5CBCBA007BDA52 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2A9A95861C5CBCBB007BDA52 /* New Group */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		2A9A95861C5CBCBB007BDA52 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "New Group";
+			sourceTree = "<group>";
+		};
+		2A9A95871C5CBCE7007BDA52 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
+		2A9A95881C5CBCED007BDA52 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				2A9A95561C5CBB84007BDA52 /* Main.storyboard */,
+				2A9A955B1C5CBB84007BDA52 /* LaunchScreen.storyboard */,
+			);
+			name = Layout;
+			sourceTree = "<group>";
+		};
+		2A9A95891C5CBD49007BDA52 /* plist */ = {
+			isa = PBXGroup;
+			children = (
+				2A9A958B1C5CBD56007BDA52 /* dev */,
+				2A9A958A1C5CBD55007BDA52 /* puroduction */,
+			);
+			name = plist;
+			sourceTree = "<group>";
+		};
+		2A9A958A1C5CBD55007BDA52 /* puroduction */ = {
+			isa = PBXGroup;
+			children = (
+				2A9A955E1C5CBB84007BDA52 /* Info.plist */,
+			);
+			name = puroduction;
+			sourceTree = "<group>";
+		};
+		2A9A958B1C5CBD56007BDA52 /* dev */ = {
+			isa = PBXGroup;
+			children = (
+				2A9A958C1C5CBE3D007BDA52 /* dev.plist */,
+			);
+			name = dev;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,6 +291,23 @@
 			productReference = 2A9A956E1C5CBB84007BDA52 /* kyutechUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		2A9A958E1C5CBE86007BDA52 /* dev-kyutech */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2A9A95971C5CBE86007BDA52 /* Build configuration list for PBXNativeTarget "dev-kyutech" */;
+			buildPhases = (
+				2A9A958F1C5CBE86007BDA52 /* Sources */,
+				2A9A95911C5CBE86007BDA52 /* Frameworks */,
+				2A9A95921C5CBE86007BDA52 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "dev-kyutech";
+			productName = kyutech;
+			productReference = 2A9A959A1C5CBE86007BDA52 /* dev-kyutech.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -218,6 +345,7 @@
 			projectRoot = "";
 			targets = (
 				2A9A954E1C5CBB84007BDA52 /* kyutech */,
+				2A9A958E1C5CBE86007BDA52 /* dev-kyutech */,
 				2A9A95621C5CBB84007BDA52 /* kyutechTests */,
 				2A9A956D1C5CBB84007BDA52 /* kyutechUITests */,
 			);
@@ -231,6 +359,7 @@
 			files = (
 				2A9A955D1C5CBB84007BDA52 /* LaunchScreen.storyboard in Resources */,
 				2A9A955A1C5CBB84007BDA52 /* Assets.xcassets in Resources */,
+				2A9A958D1C5CBE3D007BDA52 /* dev.plist in Resources */,
 				2A9A95581C5CBB84007BDA52 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -249,6 +378,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2A9A95921C5CBE86007BDA52 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A9A95931C5CBE86007BDA52 /* LaunchScreen.storyboard in Resources */,
+				2A9A95941C5CBE86007BDA52 /* Assets.xcassets in Resources */,
+				2A9A95951C5CBE86007BDA52 /* dev.plist in Resources */,
+				2A9A95961C5CBE86007BDA52 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -256,7 +396,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A9A95551C5CBB84007BDA52 /* ViewController.swift in Sources */,
 				2A9A95531C5CBB84007BDA52 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -274,6 +413,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A9A95731C5CBB84007BDA52 /* kyutechUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A9A958F1C5CBE86007BDA52 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A9A95901C5CBE86007BDA52 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,6 +612,28 @@
 			};
 			name = Release;
 		};
+		2A9A95981C5CBE86007BDA52 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = kyutech/dev.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.planningdev.kyutech;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2A9A95991C5CBE86007BDA52 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = kyutech/dev.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.planningdev.kyutech;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -500,6 +669,15 @@
 				2A9A957F1C5CBB84007BDA52 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+		};
+		2A9A95971C5CBE86007BDA52 /* Build configuration list for PBXNativeTarget "dev-kyutech" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A9A95981C5CBE86007BDA52 /* Debug */,
+				2A9A95991C5CBE86007BDA52 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
