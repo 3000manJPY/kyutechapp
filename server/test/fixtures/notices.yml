@@ -1,0 +1,57 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  details: MyText
+  category_id: 1
+  department_id: 1
+  campus_id: 1
+  date: 1
+  period_time: MyString
+  grade: MyString
+  place: MyString
+  subject: MyString
+  teacher: MyString
+  before_data: MyString
+  after_data: MyString
+  web_url: MyString
+  note: MyString
+  document1_name: MyString
+  document2_name: MyString
+  document3_name: MyString
+  document4_name: MyString
+  document5_name: MyString
+  document1_url: MyString
+  document2_url: MyString
+  document3_url: MyString
+  document4_url: MyString
+  document5_url: MyString
+  regist_time: 1
+
+two:
+  title: MyString
+  details: MyText
+  category_id: 1
+  department_id: 1
+  campus_id: 1
+  date: 1
+  period_time: MyString
+  grade: MyString
+  place: MyString
+  subject: MyString
+  teacher: MyString
+  before_data: MyString
+  after_data: MyString
+  web_url: MyString
+  note: MyString
+  document1_name: MyString
+  document2_name: MyString
+  document3_name: MyString
+  document4_name: MyString
+  document5_name: MyString
+  document1_url: MyString
+  document2_url: MyString
+  document3_url: MyString
+  document4_url: MyString
+  document5_url: MyString
+  regist_time: 1

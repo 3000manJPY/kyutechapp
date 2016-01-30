@@ -1,0 +1,91 @@
+<%= javascript_include_tag 'application' %>
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
+<meta name="apple-itunes-app" 
+      content="app-id=658354583, app-argument=https://kyutechapp.planningdev.com, affiliate-data=optionalAffiliateData">
+</head>
+</head>
+<body>
+<script>
+function iOSversion() {
+  if (/iP(hone|od|ad)/.test(navigator.platform)) {
+    // supports iOS 2.0 and later: <http://bit.ly/TJjs1V>
+    var v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
+console.log(v);
+    return [parseInt(v[1], 10), parseInt(v[2], 10), parseInt(v[3] || 0, 10)];
+  }
+}
+    
+window.MY_APP = window.MY_APP || {};
+
+MY_APP.UserAgent = (function() {
+    var ua = navigator.userAgent;
+    if ((ua.indexOf('Android') > 0 && ua.indexOf('Mobile') == -1)) {
+        return 0;
+    } else if ((ua.indexOf('Android') > 0 && ua.indexOf('Mobile') > 0)) {
+        return 0;
+    } else if (ua.indexOf('iPhone') > 0) {
+        return 1;
+    } else if (ua.indexOf('iPad') > 0) {
+        return 1;
+    } else if (ua.indexOf('iPod') > 0) {
+        return 1;
+    } else {
+        return -1;
+    }
+});
+
+    const NOTICE_URL = "<%= @notice.web_url %>".replace( /\s|amp;/g , '' );
+    const MY_WEB_PAGE_URL = "https://kyutechapp.planningdev.com";
+    const MY_APP_SCHEMA = "kyutechapp://notice?id=<%= @notice.id %>";
+    const USER_AGENT_NOT_SMART_PHONE = -1
+    const LAG_TIME = 400;
+    const TIMEOUT = 1000;
+
+
+</script>
+<script>
+  if (MY_APP.UserAgent() === USER_AGENT_NOT_SMART_PHONE) {
+           window.location = NOTICE_URL;
+  }else{
+  ver = iOSversion(); 
+  if (ver[0] >= 9) {
+        window.location = MY_APP_SCHEMA;
+        var checkedAt = (new Date()).getTime();
+        window.setTimeout(function() {
+            var lagtime = (new Date()).getTime() - checkedAt;
+            $("iframe").remove();
+            if (lagtime > LAG_TIME) {                                                                                                                                  
+                //window.location = useragent ? IOS_STORE_URL : ANDROID_STORE_URL;
+                window.location = NOTICE_URL
+                return;
+            }
+        }, 3000);
+ 
+ //   window.location = "https://kyutechapp.planningdev.com/api/v2/notices/web/9"
+  }else{
+        $(function() {
+        if (MY_APP.UserAgent() === USER_AGENT_NOT_SMART_PHONE) {
+            window.location = NOTICE_URL;
+            return false;
+        }
+
+        $("body").append("<iframe src='" + MY_APP_SCHEMA  + "' style='display:none'/>");
+        var checkedAt = (new Date()).getTime();
+        window.setTimeout(function() {
+            var lagtime = (new Date()).getTime() - checkedAt;
+            $("iframe").remove();
+            if (lagtime > LAG_TIME) {
+                window.location = NOTICE_URL
+                return;
+            }
+        }, TIMEOUT);
+    });
+
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+// #######################
+// 背景スライドショークラス
+// #######################
+$(function(){
+    
+    $('#intro-back').vegas({
+        slides: [
+            { src:'<%= image_path('info/bg01.jpg') %>'},
+            { src:'<%= image_path('info/bg02.jpg') %>'},
+            { src:'<%= image_path('info/bg03.jpg') %>'},
+            { src:'<%= image_path('info/bg04.jpg') %>'},
+            { src:'<%= image_path('info/bg05.jpg') %>'}
+        ],
+        delay: 20000,
+        overlay: true,
+        timer: false,
+        transition: 'fade2',
+        animation: 'kenburns',
+        transitionDuration: 16000
+    });
+    
+});

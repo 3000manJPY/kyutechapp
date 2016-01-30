@@ -1,0 +1,77 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Notices</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Details</th>
+      <th>Category</th>
+      <th>Department</th>
+      <th>Campus</th>
+      <th>Date</th>
+      <th>Period time</th>
+      <th>Grade</th>
+      <th>Place</th>
+      <th>Subject</th>
+      <th>Teacher</th>
+      <th>Before data</th>
+      <th>After data</th>
+      <th>Web url</th>
+      <th>Note</th>
+      <th>Document1 name</th>
+      <th>Document2 name</th>
+      <th>Document3 name</th>
+      <th>Document4 name</th>
+      <th>Document5 name</th>
+      <th>Document1 url</th>
+      <th>Document2 url</th>
+      <th>Document3 url</th>
+      <th>Document4 url</th>
+      <th>Document5 url</th>
+      <th>Regist time</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @notices.each do |notice| %>
+      <tr>
+        <td><%= notice.title %></td>
+        <td><%= notice.details %></td>
+        <td><%= notice.category_id %></td>
+        <td><%= notice.department_id %></td>
+        <td><%= notice.campus_id %></td>
+        <td><%= notice.date %></td>
+        <td><%= notice.period_time %></td>
+        <td><%= notice.grade %></td>
+        <td><%= notice.place %></td>
+        <td><%= notice.subject %></td>
+        <td><%= notice.teacher %></td>
+        <td><%= notice.before_data %></td>
+        <td><%= notice.after_data %></td>
+        <td><%= notice.web_url %></td>
+        <td><%= notice.note %></td>
+        <td><%= notice.document1_name %></td>
+        <td><%= notice.document2_name %></td>
+        <td><%= notice.document3_name %></td>
+        <td><%= notice.document4_name %></td>
+        <td><%= notice.document5_name %></td>
+        <td><%= notice.document1_url %></td>
+        <td><%= notice.document2_url %></td>
+        <td><%= notice.document3_url %></td>
+        <td><%= notice.document4_url %></td>
+        <td><%= notice.document5_url %></td>
+        <td><%= notice.regist_time %></td>
+        <td><%= link_to 'Show', notice %></td>
+        <td><%= link_to 'Edit', edit_notice_path(notice) %></td>
+        <td><%= link_to 'Destroy', notice, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Notice', new_notice_path %>

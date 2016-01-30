@@ -1,0 +1,56 @@
+FROM ruby:2.2.2
+
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
+
+RUN apt-get update -qq && apt-get install -y build-essential libpq-dev
+RUN gem update bundler
+
+RUN apt-get install -y vim
+#RUN apt-get install -y cron nano screen
+RUN apt-get -y install rsyslog
+RUN apt-get -y install cron
+#CMD getty tty -a root
+
+#CMD export EDITOR=vim
+#CMD screen
+#CMD cron -f
+
+RUN echo "Asia/Tokyo" | tee /etc/timezone
+RUN dpkg-reconfigure --frontend noninteractive tzdata
+
+#lib/task/morning.rb -> EDIT!!!!!!!!
+
+#RUN git clone https://okamuroshogo:Okasho1010@github.com/planningdev/kyutechapp.git
+RUN git clone -b feature_silbus https://okamuroshogo:Okasho1010@github.com/planningdev/kyutechapp.git
+WORKDIR /kyutechapp
+
+#RUN gem i railties
+RUN gem install bundler
+RUN bundle install --path vendor/bundle
+RUN bundle config --global path 'vendor/bundle'
+
+#ADD database.yml /kyutechapp/config/database.yml
+RUN touch .env
+RUN echo SECRET_KEY=`rake secret` > .env
+
+########                                                                                                                                                                               
+                                                                                                                                                                                       
+ADD ./cron/etc/cron.sh /root/cron.sh                                                                                                                                                   
+ADD ./cron/etc/morning.sh /root/morning.sh                                                                                                                                             
+RUN chmod 775 /root/cron.sh                                                                                                                                                            
+RUN chmod 775 /root/morning.sh                                                                                                                                                         
+RUN touch log/cron.log                                                                                                                                                                 
+RUN touch log/morning.log                                                                                                                                                              
+RUN bundle exec whenever --update-crontab                                                                                                                                              
+                                                                                                                                                                                       
+ADD ./cron/bin/start-cron.sh /usr/bin/start-cron.sh                                                                                                                                    
+RUN touch /var/log/cron.log                                                                                                                                                            
+RUN chmod 775 /usr/bin/start-cron.sh                                                                                                                                                   
+RUN sh /usr/bin/start-cron.sh                                                                                                                                                          
+#CMD /usr/bin/start-cron.sh                                                                                                                                                            
+#CMD ["/usr/bin/start-cron.sh"]                                                                                                                                                        
+                                                                                                                                                                                       
+RUN chmod 775 /root/env.sh                                                                                                                                                             
+ADD ./cron/etc/crontab /var/spool/cron/crontabs/root             

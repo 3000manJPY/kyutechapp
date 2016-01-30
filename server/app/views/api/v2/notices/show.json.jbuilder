@@ -1,0 +1,1 @@
+json.extract! @notice, :id, :title, :detail, :category_id, :department_id, :campus_id, :date, :period_time, :grade_id, :place, :subject, :teacher, :before, :after, :web_url, :note, :created_at, :updated_at

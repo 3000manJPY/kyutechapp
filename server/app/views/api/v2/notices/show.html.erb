@@ -1,0 +1,79 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @notice.title %>
+</p>
+
+<p>
+  <strong>Detail:</strong>
+  <%= @notice.detail %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @notice.category_id %>
+</p>
+
+<p>
+  <strong>Department:</strong>
+  <%= @notice.department_id %>
+</p>
+
+<p>
+  <strong>Campus:</strong>
+  <%= @notice.campus_id %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @notice.date %>
+</p>
+
+<p>
+  <strong>Period time:</strong>
+  <%= @notice.period_time %>
+</p>
+
+<p>
+  <strong>Grade:</strong>
+  <%= @notice.grade_id %>
+</p>
+
+<p>
+  <strong>Place:</strong>
+  <%= @notice.place %>
+</p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @notice.subject %>
+</p>
+
+<p>
+  <strong>Teacher:</strong>
+  <%= @notice.teacher %>
+</p>
+
+<p>
+  <strong>Before:</strong>
+  <%= @notice.before %>
+</p>
+
+<p>
+  <strong>After:</strong>
+  <%= @notice.after %>
+</p>
+
+<p>
+  <strong>Web url:</strong>
+  <%= @notice.web_url %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @notice.note %>
+</p>
+
+<%= link_to 'Edit', edit_notice_path(@notice) %> |
+<%= link_to 'Back', notices_path %>

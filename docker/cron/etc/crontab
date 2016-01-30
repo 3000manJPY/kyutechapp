@@ -1,0 +1,8 @@
+#* *   * * *   root    cd /kyutechapp && RAILS_ENV=production rake crone:kit_i --silent >> /kyutechapp/log/cron.log 6>&1
+*/5 * * * * sh ~/cron.sh
+
+#japan time -9
+#00 8 * * * sh ~/morning.sh
+00 23 * * * sh ~/morning.sh
+
+

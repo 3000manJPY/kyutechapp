@@ -1,0 +1,23 @@
+db:
+  image: mysql
+  environment:
+    - MYSQL_ROOT_PASSWORD=yzjDIbkqnzi3nd0
+    - MYSQL_ALLOW_EMPTY_PASSWORD=true
+    - MYSQL_DATABASE=db_production
+    - MYSQL_USER=user_production
+    - MYSQL_PASSWORD=yzjDIbkqnzi3nd0
+  volumes:
+    - /srv/db-kyutechapp:/var/lib/mysql
+    - /srv/mysql-conf.d:/etc/mysql/conf.d
+  stdin_open: true
+  volume_driver: glusterfs
+  ports:
+   - "13306:3306"
+web:
+  image: docker.planningdev.com/kyutechapp
+  command: bash -c "RAILS_ENV=production bundle exec rake assets:precompile && RAILS_ENV=production bundle exec rake db:migrate && RAILS_ENV=production bundle exec rails s -p 3000 -b '0.0.0.0'"
+  links:
+    - db:db
+
+
+

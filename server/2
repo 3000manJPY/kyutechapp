@@ -1,0 +1,553 @@
+require 'rake'
+
+namespace :crone do
+
+task :task_one => :environment do 
+# トップページから各掲示板へ移動
+# 各掲示板から詳細ページへ移動
+# 詳細ページからデータをゲット
+# record番号を元にかぶらないように分類する
+# ゲットした情報をデータベースに追加する
+
+require 'mechanize'
+require 'date'
+
+url = 'https://db.jimu.kyutech.ac.jp/cgi-bin/cbdb/db.cgi?page=DBView&did='    # 共通部分のURL
+notice_url = {"お知らせ" => "357",
+              "奨学金" => "367",
+              "補講通知" => "363",
+              "休講通知" => "361",
+              "授業調整" => "364",
+              "学生呼出" => "393",
+              "時間割変更" => "391",
+              "各種手続き" => "373",
+              "集中講義" => "379",
+              "留学支援" => "372",
+              "学部生情報" => "368",
+              "大学院生情報" => "370"}
+# divがあるかどうか
+notice_div = {"お知らせ"      => 1,
+              "奨学金"       => 0,
+              "補講通知"     => 0,
+              "休講通知"     => 0,
+              "授業調整"     => 1,
+              "学生呼出"     => 1,
+              "時間割変更"   => 1,
+              "各種手続き"   => 0,
+              "集中講義"     => 0,
+              "留学支援"     => 0,
+              "学部生情報"   => 0,
+              "大学院生情報" => 0}
+
+# CSSパスの値
+$css_record = "td.record-value-"  # グローバル変数
+# title_record = ["7", "116"]
+# detail_record = ["121","10","11","12","131","129"]
+# department_record = ["109","6"]
+# date_record = ["4"]
+# period_record = ["221","200","94"]
+# grade_record = ["111","109","119"]
+# place_record = ["6","113"]
+subject_record = ["203"]
+# teacher_record = ["204","8"]
+before_record = ["205"]
+after_record = ["206"]
+# note_record = ["6","201"]
+# document1_record = ["109","117","169"]
+# document2_record = ["110","114","120","170"]
+# document3_record = ["111","150","171","188"]
+# document4_record = ["112","151","172","189"]
+# document5_record = ["113","152","173","190"]
+
+# record番号選択メソッド
+def title_record(key)
+  if key == "時間割変更" then
+    return ["116"]
+  else
+    return ["7"]
+  end
+end
+
+def detail_record(key)
+  if key == "学生呼出" then
+    return ["121","11","12"]
+  elsif key == "各種手続き" then
+    return ["10","11"]
+  elsif key == "集中講義" then
+    return ["11","10"]
+  elsif key == "学部生情報" then
+    return ["11","131"]
+  elsif key == "大学院生情報" then
+    return ["11","129"]
+  else
+    return ["11"]
+  end
+end
+
+def department_record(key)
+  if key == "時間割変更" then
+    return ["6"]
+  else
+    return ["109"]
+  end
+end
+
+def period_record(key)
+  if key == "お知らせ" then
+    return ["221"]
+  elsif key == "時間割変更"
+    return ["200"]
+  else
+    return ["94"]
+  end
+end
+
+def grade_record(key)
+  if (key == "お知らせ") || (key == "授業調整") then
+    return ["111"]
+  elsif (key == "時間割変更") || (key == "休講通知") || (key == "補講通知") then
+    return ["109"]
+  else
+    return ["119"]
+  end
+end
+
+def place_record(key)
+  if (key == "お知らせ") || (key == "各種手続き") then
+    return ["6"]
+  elsif (key == "補講通知") || (key == "授業調整") || (key == "留学支援") then
+    return ["113"]
+  else
+    return ["9"]
+  end
+end
+
+def teacher_record(key)
+  if (key == "時間割変更") then
+    return ["204"]
+  else
+    return ["8"]
+  end
+end
+
+def note_record(key)
+  if (key == "奨学金") then
+    return ["6"]
+  else
+    return ["201"]
+  end
+end
+
+def document1_record(key)
+  if (key == "各種手続き") || (key == "奨学金") || (key == "集中講義") || (key == "留学支援") || (key == "学部生情報") || (key == "大学院生情報") then
+    return  ["109"]
+  elsif key == "お知らせ" then
+    return ["117"]
+  else
+    return ["169"]
+  end
+end
+
+def document2_record(key)
+  if key == "お知らせ" then
+    return ["120"]
+  elsif key =="授業調整" then
+    return ["170"]
+  elsif key == "奨学金" then
+    return ["114"]
+  else
+    return ["110"]
+  end
+end
+
+def document3_record(key)
+  if (key == "各種手続き") || (key == "留学支援") || (key == "学部生情報") || (key == "大学院生情報") then
+    return ["111"]
+  elsif key == "お知らせ" then
+    return ["188"]
+  elsif key == "授業調整" then
+    return ["171"]
+  else
+    return ["150"]
+  end
+end
+
+def document4_record(key)
+  if key == "お知らせ" then
+    return ["189"]
+  elsif key == "授業調整" then
+    return ["172"]
+  elsif key == "集中講義" then
+    return ["151"]
+  else
+    return ["112"]
+  end
+end
+
+def document5_record(key)
+  if (key == "学部生情報") || (key == "大学院生情報") then
+    return ["113"]
+  elsif key == "お知らせ"
+    return ["190"]
+  elsif key == "授業調整"
+    return ["173"]
+  else
+    return ["152"]
+  end
+end
+
+
+# 文字列取得メソッド
+def get_varchar(page,record)
+  text = ""
+  record.each do |rec|
+    doc = page.search($css_record + rec).inner_text
+    text << doc
+  end
+  return text
+end
+
+# 詳細取得メソッド
+def get_detail(page,record)
+  text = ""
+  record.each do |rec|
+    doc = page.search($css_record + rec).inner_text
+    if !doc.empty? then
+      if doc.length != 0 then
+        text << "\n"
+      end
+      text <<  doc
+    end
+  end
+  return text
+end
+
+# 学部ID取得メソッド
+def get_departmentID(page,record,key)
+  depID = Array.new
+  # 学部名配列
+  department_name = [ ["全て","全体"],
+                      ["学部","学部全体","学部学生"],
+                      ["大学院","大学院全体","大学院学生"],
+                      ["知能情報","知能","知能情報工学科"],
+                      ["電子情報","電子","電子情報工学科"],
+                      ["システム創成","システム","システム創成情報工学科","シス創成"],
+                      ["機械情報","機械","機械情報工学科"],
+                      ["生命情報","生命","生命情報工学科"]]
+
+  # 掲示板によって、学科IDを決定
+  if (key == "各種手続き") || (key == "奨学金") || (key == "集中講義") || (key == "留学支援") then
+    depID.push(0)
+  elsif key == "学部生情報" then
+    depID.push(1)
+  elsif key == "大学院生情報" then
+    depID.push(2)
+  else
+    # 文字列から対象学科を捜索。そこからIDを決定
+    # 対象学部の文字列を取得
+    text = ""
+    record.each do |rec|
+      doc = page.search($css_record + rec).inner_text
+      text << doc
+    end
+    # 対象学部の文字列を比較 IDを取得する
+    department_name.each_with_index do |dep,i|
+      dep.each do |name|
+        if text.include?(name) then
+          depID.push(i)
+          break
+        end
+      end
+    end
+    # 対象学部の文字列が無ければ、未分類
+    if depID.length <= 0 then
+      depID.push(99)
+    end
+  end
+  return depID
+end
+
+# 日付取得メソッド
+def get_date(page,key)
+  # 日付の文字列を取得
+  text = page.search($css_record + "4").inner_text
+
+  if key == "集中講義" then
+    text.sub('平成','H')
+    text.sub('昭和','S')
+    text.sub('年','.')
+    text.sub('月','.')
+    text.sub('日','')
+    date = Date.parse(text)
+  elsif (key == "学部生情報") || (key == "大学院生情報") then
+    # 日付がない
+    date = nil
+  else
+    date = Date.strptime(text,'%Y年%m月%d日')
+  end
+  return date
+end
+
+# 添付資料のURLを取得
+def get_href(page)
+  urls = Array.new
+  url = 'https://db.jimu.kyutech.ac.jp/cgi-bin/cbdb/'
+  page.search('/html/body/div[3]/table//tr/td[2]/a').each do |doc|
+    urls.push(url + doc["href"])
+  end
+  return urls
+end
+
+
+
+
+
+
+
+
+
+#
+## スクレイピングmain ##
+agent = Mechanize.new
+
+# 全ての基礎となるURL
+url = 'https://db.jimu.kyutech.ac.jp/cgi-bin/cbdb/db.cgi?page=DBView&did='
+
+# div付詳細ページへのXPATH
+detail_xpath_div = '/html/body/div[3]/table//tr/td/table[3]//tr[2]/td/table//tr/td[1]/table//tr/td/a'
+# div無詳細ページへのXPATH
+detail_xpath = '/html/body/table//tr/td/table[3]//tr[2]/td/table//tr/td[1]/table//tr/td/a'
+
+# データベースの準備
+#client = Mysql2::Client.new(:host => '127.0.0.1', :user => 'root', :password => '')
+
+# 各掲示板を回る
+notice_url.each_with_index do |(key, value), i|
+  page = agent.get(url + value)
+  puts key
+
+  # 詳細ページへのXPATHを選択
+  if notice_div[key] == 1 then
+    detail_href = detail_xpath_div
+  else
+    detail_href = detail_xpath
+  end
+
+  # 一覧から、詳細ページへのURLを探す
+  # tbodyがあると検索できないっぽいので外す
+  page.search(detail_href).each do |detail_url|
+    detail_page = page.link_with(:href => detail_url[:href]).click    # 詳細ページへのリンクをクリック。リンク先のpage情報ゲット
+    @notice = Notice.new
+
+    # 各情報をゲット
+    @notice.title = get_varchar(detail_page,title_record(key))
+    @notice.details = get_detail(detail_page,detail_record(key))
+    @notice.category_id = i
+    @notice.department_id = get_departmentID(detail_page,department_record(key),key)[0]
+    @notice.campus_id = 1
+    @notice.date = get_date(detail_page,key)
+    @notice.period_time = get_varchar(detail_page,period_record(key))
+    @notice.grade = get_varchar(detail_page,grade_record(key))
+    @notice.place = get_varchar(detail_page,place_record(key))
+    @notice.subject = get_varchar(detail_page,subject_record)
+    @notice.teacher = get_varchar(detail_page,teacher_record(key))
+    @notice.before_data = get_varchar(detail_page,before_record)
+    @notice.after_data = get_varchar(detail_page,after_record)
+    @notice.note = get_varchar(detail_page,note_record(key))
+    @notice.document1_name = get_varchar(detail_page,document1_record(key))
+    @notice.document2_name = get_varchar(detail_page,document2_record(key))
+    @notice.document3_name = get_varchar(detail_page,document3_record(key))
+    @notice.document4_name = get_varchar(detail_page,document4_record(key))
+    @notice.document5_name = get_varchar(detail_page,document5_record(key))
+
+
+    array = get_href(detail_page)
+    for i in 1..10
+
+      @notice.document1_url = array[i] 
+   end
+   
+   detail_url = detail_page.uri.to_s
+   @notice.web_url = detail_url.sub!(/(.*)&Head.*/){$1}
+
+   print "data saving..."
+begin
+rescue
+   @notice.save
+end
+
+
+#   @notice.save(validate: false)
+   #  print "success!"
+  # else
+  #   print "no save!"
+  # end
+
+
+=begin
+    department_id.each do |dep_id|
+      #クエリを作成
+      query_col = "INSERT IGNORE INTO db_development.notices (title, category_id, department_id, campus_id, web_url"
+#      query_col = "INSERT INTO db_development.notices (title, category_id, department_id, campus_id, web_url"
+      query_vol = "VALUES ('#{title}', #{category_id}, #{dep_id}, #{campus_id}, '#{web_url}'"
+
+      if !detail.empty? then
+        query_col << ", detail"
+        query_vol << ", '#{detail}'"
+      end
+      if date != nil then
+        query_col << ", date"
+        query_vol << ", #{date}"
+      end
+      if !period_time.empty? then
+        query_col << ", period_time"
+        query_vol << ", '#{period_time}'"
+      end
+      if !grade.empty? then
+        query_col << ", grade"
+        query_vol << ", '#{grade}'"
+      end
+      if !place.empty? then
+        query_col << ", place"
+        query_vol << ", '#{place}'"
+      end
+      if !subject.empty? then
+        query_col << ", subject"
+        query_vol << ", '#{subject}'"
+      end
+      if !teacher.empty? then
+        query_col << ", teacher"
+        query_vol << ", '#{teacher}'"
+      end
+      if !before.empty? then
+        query_col << ", before_data"
+        query_vol << ", '#{before}'"
+      end
+      if !after.empty? then
+        query_col << ", after"
+        query_vol << ", '#{after}'"
+      end
+      if !note.empty? then
+        query_col << ", note"
+        query_vol << ", '#{note}'"
+      end
+      if !document_name1.empty? then
+        query_col << ", document_name1, document_url1"
+        query_vol << ", '#{document_name1}', '#{document_url[0]}'"
+      end
+      if !document_name2.empty? then
+        query_col << ", document_name2, document_url2"
+        query_vol << ", '#{document_name2}', '#{document_url[1]}'"
+      end
+      if !document_name3.empty? then
+        query_col << ", document_name3, document_url3"
+        query_vol << ", '#{document_name3}', '#{document_url[2]}'"
+      end
+      if !document_name4.empty? then
+        query_col << ", document_name4, document_url4"
+        query_vol << ", '#{document_name4}', '#{document_url[3]}'"
+      end
+      if !document_name5.empty? then
+        query_col << ", document_name5, document_url5"
+        query_vol << ", '#{document_name5}', '#{document_url[4]}'"
+      end
+
+      query = query_col + ") " + query_vol + ");"
+#      puts query
+      client.query(query)
+    end
+=end
+#    puts "*タイトル"
+    puts @notice.title
+=begin
+    puts "*詳細"
+    puts detail
+    puts "*カテゴリID"
+    puts category_id
+    puts "*学部ID"
+    puts department_id
+    puts "*キャンパスID"
+    puts campus_id
+    if date != nil then
+      puts "*日付"
+      puts date
+    end
+    if !period_time.empty? then
+      puts "*時限"
+      puts period_time
+    end
+    if !grade.empty? then
+      puts "*対象学年"
+      puts grade
+    end
+    if !place.empty? then
+      puts "*場所"
+      puts place
+    end
+    if !subject.empty? then
+      puts "*科目"
+      puts subject
+    end
+    if !teacher.empty? then
+      puts "*教員名"
+      puts teacher
+    end
+    if !before.empty? then
+      puts "*変更前"
+      puts before
+    end
+    if !after.empty? then
+      puts "*変更後"
+      puts after
+    end
+    puts "*URL"
+    puts web_url
+    if !note.empty? then
+      puts "*種別"
+      puts note
+    end
+    if !document_name1.empty? then
+      puts "*添付資料1"
+      puts document_name1
+      puts "*URL1"
+      puts document_url[0]
+    end
+    if !document_name2.empty? then
+      puts "*添付資料2"
+      puts document_name2
+      puts "*URL2"
+      puts document_url[1]
+    end
+    if !document_name3.empty? then
+      puts "*添付資料3"
+      puts document_name3
+      puts "*URL3"
+      puts document_url[2]
+    end
+    if !document_name4.empty? then
+      puts "*添付資料4"
+      puts document_name4
+      puts "*URL4"
+      puts document_url[3]
+    end
+    if !document_name5.empty? then
+      puts "*添付資料5"
+      puts document_name5
+      puts "*URL5"
+      puts document_url[4]
+    end
+=end
+    puts "---"
+  end
+end
+
+print(".")
+
+print(".!\n")
+
+
+
+
+
+end
+end

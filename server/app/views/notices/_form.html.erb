@@ -1,0 +1,121 @@
+<%= form_for(@notice) do |f| %>
+  <% if @notice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@notice.errors.count, "error") %> prohibited this notice from being saved:</h2>
+
+      <ul>
+      <% @notice.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :details %><br>
+    <%= f.text_area :details %>
+  </div>
+  <div class="field">
+    <%= f.label :category_id %><br>
+    <%= f.number_field :category_id %>
+  </div>
+  <div class="field">
+    <%= f.label :department_id %><br>
+    <%= f.number_field :department_id %>
+  </div>
+  <div class="field">
+    <%= f.label :campus_id %><br>
+    <%= f.number_field :campus_id %>
+  </div>
+  <div class="field">
+    <%= f.label :date %><br>
+    <%= f.number_field :date %>
+  </div>
+  <div class="field">
+    <%= f.label :period_time %><br>
+    <%= f.text_field :period_time %>
+  </div>
+  <div class="field">
+    <%= f.label :grade %><br>
+    <%= f.text_field :grade %>
+  </div>
+  <div class="field">
+    <%= f.label :place %><br>
+    <%= f.text_field :place %>
+  </div>
+  <div class="field">
+    <%= f.label :subject %><br>
+    <%= f.text_field :subject %>
+  </div>
+  <div class="field">
+    <%= f.label :teacher %><br>
+    <%= f.text_field :teacher %>
+  </div>
+  <div class="field">
+    <%= f.label :before_data %><br>
+    <%= f.text_field :before_data %>
+  </div>
+  <div class="field">
+    <%= f.label :after_data %><br>
+    <%= f.text_field :after_data %>
+  </div>
+  <div class="field">
+    <%= f.label :web_url %><br>
+    <%= f.text_field :web_url %>
+  </div>
+  <div class="field">
+    <%= f.label :note %><br>
+    <%= f.text_field :note %>
+  </div>
+  <div class="field">
+    <%= f.label :document1_name %><br>
+    <%= f.text_field :document1_name %>
+  </div>
+  <div class="field">
+    <%= f.label :document2_name %><br>
+    <%= f.text_field :document2_name %>
+  </div>
+  <div class="field">
+    <%= f.label :document3_name %><br>
+    <%= f.text_field :document3_name %>
+  </div>
+  <div class="field">
+    <%= f.label :document4_name %><br>
+    <%= f.text_field :document4_name %>
+  </div>
+  <div class="field">
+    <%= f.label :document5_name %><br>
+    <%= f.text_field :document5_name %>
+  </div>
+  <div class="field">
+    <%= f.label :document1_url %><br>
+    <%= f.text_field :document1_url %>
+  </div>
+  <div class="field">
+    <%= f.label :document2_url %><br>
+    <%= f.text_field :document2_url %>
+  </div>
+  <div class="field">
+    <%= f.label :document3_url %><br>
+    <%= f.text_field :document3_url %>
+  </div>
+  <div class="field">
+    <%= f.label :document4_url %><br>
+    <%= f.text_field :document4_url %>
+  </div>
+  <div class="field">
+    <%= f.label :document5_url %><br>
+    <%= f.text_field :document5_url %>
+  </div>
+  <div class="field">
+    <%= f.label :regist_time %><br>
+    <%= f.number_field :regist_time %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
