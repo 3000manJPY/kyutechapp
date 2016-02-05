@@ -9,7 +9,6 @@
         <!--Splash View Controller-->
         <scene sceneID="Mup-NH-AAW">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Xum-cT-IES" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="JM6-hS-o75" customClass="SplashViewController" customModule="dev_kyutech" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2i7-Q1-d79"/>
@@ -63,6 +62,7 @@
                         <segue destination="KC8-4a-dat" kind="presentation" identifier="open" modalTransitionStyle="crossDissolve" id="SSg-2d-zbS"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xum-cT-IES" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="463" y="1801"/>
         </scene>

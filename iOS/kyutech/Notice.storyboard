@@ -5,21 +5,50 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Notice View Controller-->
         <scene sceneID="MOt-KV-g1k">
             <objects>
-                <viewController id="i1O-i3-XUX" sceneMemberID="viewController">
+                <viewController id="i1O-i3-XUX" customClass="NoticeViewController" customModule="dev_kyutech" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FDJ-YT-AXj"/>
                         <viewControllerLayoutGuide type="bottom" id="1iy-AC-ZHV"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="sEC-E5-2L9">
+                    <view key="view" contentMode="scaleToFill" id="sEC-E5-2L9" customClass="SHContentTableView" customModule="SHUtil">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="0.36078431370000003" blue="0.55294117649999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="D3b-Vi-0m5">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="HLA-MU-Kjr">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HLA-MU-Kjr" id="3r3-mr-YTp">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="i1O-i3-XUX" id="8zS-ys-seY"/>
+                                    <outlet property="delegate" destination="i1O-i3-XUX" id="2nv-uM-bHg"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="1iy-AC-ZHV" firstAttribute="top" secondItem="D3b-Vi-0m5" secondAttribute="bottom" id="E0q-uE-Odx"/>
+                            <constraint firstItem="D3b-Vi-0m5" firstAttribute="top" secondItem="FDJ-YT-AXj" secondAttribute="bottom" id="KKq-e7-bmt"/>
+                            <constraint firstItem="D3b-Vi-0m5" firstAttribute="leading" secondItem="sEC-E5-2L9" secondAttribute="leading" id="TKV-9S-kdA"/>
+                            <constraint firstAttribute="trailing" secondItem="D3b-Vi-0m5" secondAttribute="trailing" id="YKK-G8-Ody"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="v29-C2-Wvt"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="noticeTableView" destination="D3b-Vi-0m5" id="8iM-VR-DVw"/>
+                        <outlet property="shContentView" destination="sEC-E5-2L9" id="ZKA-Vc-Pio"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bqu-GQ-c6e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
