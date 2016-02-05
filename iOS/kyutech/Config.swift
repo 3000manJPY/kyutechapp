@@ -10,7 +10,7 @@ struct Config {
     static let maxConnections = 10
     
     struct notification {
-        static let secret = "12341234"
+        static let a = "12341234"
         static let key = "ABCD"
     }
     
@@ -20,3 +20,8 @@ struct Config {
     }
 }
 
+struct Notif {
+    struct notice { static let open = "NOTIFICATION_NOTICE_OPEN" }
+    struct access { static let open = "NOTIFICATION_ACCESS_OPEN" }
+    struct lecture { static let open = "NOTIFICATION_LECTURE_OPEN" }
+}
