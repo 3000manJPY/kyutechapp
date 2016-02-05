@@ -21,6 +21,8 @@
 		2A4A6BE81C64CEE200B4BD6F /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4A6BE61C64CEE200B4BD6F /* Setting.storyboard */; };
 		2A4A6BEA1C64D7FE00B4BD6F /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6BE91C64D7FE00B4BD6F /* RootTabBarController.swift */; };
 		2A4A6BEB1C64D7FE00B4BD6F /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6BE91C64D7FE00B4BD6F /* RootTabBarController.swift */; };
+		2A4A6BF41C64ED2600B4BD6F /* NoticeDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4A6BF31C64ED2600B4BD6F /* NoticeDetail.storyboard */; };
+		2A4A6BF51C64ED2600B4BD6F /* NoticeDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4A6BF31C64ED2600B4BD6F /* NoticeDetail.storyboard */; };
 		2A9A95531C5CBB84007BDA52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9A95521C5CBB84007BDA52 /* AppDelegate.swift */; };
 		2A9A95581C5CBB84007BDA52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A95561C5CBB84007BDA52 /* Main.storyboard */; };
 		2A9A955A1C5CBB84007BDA52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A95591C5CBB84007BDA52 /* Assets.xcassets */; };
@@ -86,6 +88,7 @@
 		2A4A6BE31C64CEDA00B4BD6F /* Access.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Access.storyboard; sourceTree = "<group>"; };
 		2A4A6BE61C64CEE200B4BD6F /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		2A4A6BE91C64D7FE00B4BD6F /* RootTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootTabBarController.swift; sourceTree = "<group>"; };
+		2A4A6BF31C64ED2600B4BD6F /* NoticeDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NoticeDetail.storyboard; sourceTree = "<group>"; };
 		2A9A954F1C5CBB84007BDA52 /* kyutech.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kyutech.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A9A95521C5CBB84007BDA52 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2A9A95571C5CBB84007BDA52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -148,6 +151,64 @@
 				C1F64317C9D0F1507FCB9A4E /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		2A4A6BEC1C64EC8300B4BD6F /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				2A9A955B1C5CBB84007BDA52 /* LaunchScreen.storyboard */,
+				2A4A6BD91C64C4F600B4BD6F /* Splash.storyboard */,
+			);
+			name = Splash;
+			sourceTree = "<group>";
+		};
+		2A4A6BED1C64EC9000B4BD6F /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				2A9A95561C5CBB84007BDA52 /* Main.storyboard */,
+			);
+			name = TabBar;
+			sourceTree = "<group>";
+		};
+		2A4A6BEE1C64ECA200B4BD6F /* Lecture */ = {
+			isa = PBXGroup;
+			children = (
+				2A4A6BDD1C64CEC600B4BD6F /* Lecture.storyboard */,
+			);
+			name = Lecture;
+			sourceTree = "<group>";
+		};
+		2A4A6BEF1C64ECA500B4BD6F /* Access */ = {
+			isa = PBXGroup;
+			children = (
+				2A4A6BE31C64CEDA00B4BD6F /* Access.storyboard */,
+			);
+			name = Access;
+			sourceTree = "<group>";
+		};
+		2A4A6BF01C64ECA700B4BD6F /* Notice */ = {
+			isa = PBXGroup;
+			children = (
+				2A4A6BE01C64CED200B4BD6F /* Notice.storyboard */,
+				2A4A6BF31C64ED2600B4BD6F /* NoticeDetail.storyboard */,
+			);
+			name = Notice;
+			sourceTree = "<group>";
+		};
+		2A4A6BF11C64ECA900B4BD6F /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				2A4A6BE61C64CEE200B4BD6F /* Setting.storyboard */,
+			);
+			name = Setting;
+			sourceTree = "<group>";
+		};
+		2A4A6BF21C64ECEA00B4BD6F /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				2A4A6BE91C64D7FE00B4BD6F /* RootTabBarController.swift */,
+			);
+			name = TabBar;
 			sourceTree = "<group>";
 		};
 		2A9A95461C5CBB84007BDA52 = {
@@ -249,18 +310,18 @@
 		2A9A95851C5CBCBA007BDA52 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				2A9A95861C5CBCBB007BDA52 /* SplashViewController */,
-				2A4A6BE91C64D7FE00B4BD6F /* RootTabBarController.swift */,
+				2A4A6BF21C64ECEA00B4BD6F /* TabBar */,
+				2A9A95861C5CBCBB007BDA52 /* Splash */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
 		};
-		2A9A95861C5CBCBB007BDA52 /* SplashViewController */ = {
+		2A9A95861C5CBCBB007BDA52 /* Splash */ = {
 			isa = PBXGroup;
 			children = (
 				2A2C332E1C62AF5F00676BA6 /* SplashViewController.swift */,
 			);
-			name = SplashViewController;
+			name = Splash;
 			sourceTree = "<group>";
 		};
 		2A9A95871C5CBCE7007BDA52 /* Utility */ = {
@@ -273,13 +334,12 @@
 		2A9A95881C5CBCED007BDA52 /* Layout */ = {
 			isa = PBXGroup;
 			children = (
-				2A9A955B1C5CBB84007BDA52 /* LaunchScreen.storyboard */,
-				2A4A6BD91C64C4F600B4BD6F /* Splash.storyboard */,
-				2A9A95561C5CBB84007BDA52 /* Main.storyboard */,
-				2A4A6BDD1C64CEC600B4BD6F /* Lecture.storyboard */,
-				2A4A6BE01C64CED200B4BD6F /* Notice.storyboard */,
-				2A4A6BE31C64CEDA00B4BD6F /* Access.storyboard */,
-				2A4A6BE61C64CEE200B4BD6F /* Setting.storyboard */,
+				2A4A6BF11C64ECA900B4BD6F /* Setting */,
+				2A4A6BF01C64ECA700B4BD6F /* Notice */,
+				2A4A6BEF1C64ECA500B4BD6F /* Access */,
+				2A4A6BEE1C64ECA200B4BD6F /* Lecture */,
+				2A4A6BED1C64EC9000B4BD6F /* TabBar */,
+				2A4A6BEC1C64EC8300B4BD6F /* Splash */,
 			);
 			name = Layout;
 			sourceTree = "<group>";
@@ -484,6 +544,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A4A6BE41C64CEDA00B4BD6F /* Access.storyboard in Resources */,
+				2A4A6BF41C64ED2600B4BD6F /* NoticeDetail.storyboard in Resources */,
 				2A9A96121C5D3A97007BDA52 /* SHUtil in Resources */,
 				2A9A955D1C5CBB84007BDA52 /* LaunchScreen.storyboard in Resources */,
 				2A4A6BE11C64CED200B4BD6F /* Notice.storyboard in Resources */,
@@ -515,6 +576,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A4A6BE51C64CEDA00B4BD6F /* Access.storyboard in Resources */,
+				2A4A6BF51C64ED2600B4BD6F /* NoticeDetail.storyboard in Resources */,
 				2A9A96131C5D3A98007BDA52 /* SHUtil in Resources */,
 				2A9A95931C5CBE86007BDA52 /* LaunchScreen.storyboard in Resources */,
 				2A4A6BE21C64CED200B4BD6F /* Notice.storyboard in Resources */,
