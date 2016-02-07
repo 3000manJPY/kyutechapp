@@ -8,6 +8,17 @@
 
 import UIKit
 
+enum CAMPUS: Int {
+    case iizuka = 1
+    case tobata = 0
+    case wakamatsu = 2
+    
+    func to_s() -> String {
+        return String(self.rawValue)
+    }
+    
+}
+
 class Kyutech: NSObject {
 
 }

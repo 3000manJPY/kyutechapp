@@ -9,51 +9,52 @@
 
 import UIKit
 import RealmSwift
-import Alamofire
+import Realm
+
+//import Alamofire
 import Foundation
 import SwiftyJSON
-//import Alamofire_SwiftyJSON
 
-class Notice: Object {
+class Notice: RLMObject {
     
-    dynamic var id = 0
-    dynamic var uid = 0
+    private dynamic var id: Int64 = 0
+    private dynamic var uid: Int64 = 0
     
-    dynamic var title = ""
-    dynamic var details = ""
-    dynamic var category_id = ""
-    dynamic var department_id = ""
-    dynamic var campus_id = ""
-    dynamic var date : Int64 = 0
-    dynamic var period_time = ""
-    dynamic var grade = ""
-    dynamic var place = ""
-    dynamic var subject = ""
-    dynamic var teacher = ""
-    dynamic var before_data = ""
-    dynamic var after_data = ""
-    dynamic var web_url = ""
-    dynamic var note = ""
-    
-    
-    dynamic var doc1_nane = ""
-    dynamic var doc2_nane = ""
-    dynamic var doc3_nane = ""
-    dynamic var doc4_nane = ""
-    dynamic var doc5_nane = ""
-    dynamic var doc1_url = ""
-    dynamic var doc2_url = ""
-    dynamic var doc3_url = ""
-    dynamic var doc4_url = ""
-    dynamic var doc5_url = ""
-    dynamic var registtime = 0
-    //    dynamic var time = ""
+    private dynamic var title: String = ""
+    private dynamic var details: String = ""
+    private dynamic var category_id: String = ""
+    private dynamic var department_id: String = ""
+    private dynamic var campus_id: String = ""
+    private dynamic var date: Int64 = 0
+    private dynamic var period_time: String = ""
+    private dynamic var grade: String = ""
+    private dynamic var place: String = ""
+    private dynamic var subject: String = ""
+    private dynamic var teacher: String = ""
+    private dynamic var before_data: String = ""
+    private dynamic var after_data: String = ""
+    private dynamic var web_url: String = ""
+    private dynamic var note: String = ""
     
     
-    func setData(json:SwiftyJSON.JSON){
+    private dynamic var doc1_nane: String = ""
+    private dynamic var doc2_nane: String = ""
+    private dynamic var doc3_nane: String = ""
+    private dynamic var doc4_nane: String = ""
+    private dynamic var doc5_nane: String = ""
+    private dynamic var doc1_url: String = ""
+    private dynamic var doc2_url: String = ""
+    private dynamic var doc3_url: String = ""
+    private dynamic var doc4_url: String = ""
+    private dynamic var doc5_url: String = ""
+    private dynamic var registtime: Int64 = 0
+    
+    
+    convenience init(json: JSON) {
+        self.init()//        super.init()
         //        print(json)
-        self.id = json["id"].intValue
-        self.uid = json["id"].intValue
+        self.id = json["id"].int64Value
+        self.uid = json["id"].int64Value
         
         self.title = json["title"].stringValue
         self.details = json["details"].stringValue
@@ -84,10 +85,26 @@ class Notice: Object {
         self.doc4_url = json["document4_url"].stringValue
         self.doc5_url = json["document5_url"].stringValue
         
-        self.registtime = json["regist_time"].intValue
-        //        self.time = json["time"].stringValue
-        
+        self.registtime = json["regist_time"].int64Value
+//        super.init()
     }
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+//    override class func ignoredProperties() -> [AnyObject]! {
+//        return ["bar"]
+//    }
+////    override init() {
+//        super.init()
+//    }
+
+   
+
+//    required init() {
+//    }
+
+    
     
 //    func propatyList() -> [[String:String]] {
 //        var array :[[String:String]] = [[:]]

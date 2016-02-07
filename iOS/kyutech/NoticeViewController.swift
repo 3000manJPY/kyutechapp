@@ -8,8 +8,6 @@
 
 
 import UIKit
-
-import Alamofire
 import RealmSwift
 import SHUtil
 
@@ -17,23 +15,8 @@ class NoticeViewController: UIViewController , UITableViewDataSource , UITableVi
     
     @IBOutlet var shContentView: SHContentTableView!
     @IBOutlet var noticeTableView: UITableView!
-    
-    
     var noticeArray : [Notice] = []
-    var searchArray : [Notice] = []
-    var originArry : [Notice] = []
-    
     var checkedArray : [Int] = []
-    
-    var is_load = false
-    
-    
-    
-//    var categoryArray : [Category] = []
-//    var departmentArray : [Department] = []
-    
-    //    var destinationVC : SHWebViewController!
-    var destinationVC : NoticeDetailViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +44,12 @@ class NoticeViewController: UIViewController , UITableViewDataSource , UITableVi
         //        self.navigationController?.navigationBarHidden = true
 //        self.navigationController?.slideMenuController()?.addLeftGestures()
         
+        NoticeModel.sharedInstance.addObserver(self, forKeyPath: "notices", options: [.New, .Old], context: nil)
+
+        self.noticeArray = NoticeModel.sharedInstance.notices
+
+
+        
     }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -68,6 +57,8 @@ class NoticeViewController: UIViewController , UITableViewDataSource , UITableVi
     }
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
+        NoticeModel.sharedInstance.removeObserver(self, forKeyPath: "notices")
+
         
     }
     
@@ -77,6 +68,10 @@ class NoticeViewController: UIViewController , UITableViewDataSource , UITableVi
         
     }
     
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+ 
+        SHprint(change)
+    }
     func setCategory(){
 //        self.categoryArray = Config_Category.setCategory()
         
@@ -105,6 +100,7 @@ class NoticeViewController: UIViewController , UITableViewDataSource , UITableVi
         self.shContentView.sub_search_btn.setTitleColor(UIColor.blackColor(), forState: .Normal)
         
         self.shContentView.top_image.image = UIImage(named: "top_image")
+        self.shContentView.navi_imageview.image = UIImage(named: "news_Ellipse")
         
     }
     
@@ -144,8 +140,8 @@ class NoticeViewController: UIViewController , UITableViewDataSource , UITableVi
 //            }
 //        }
         
-        let label = cell!.viewWithTag(11) as! UILabel
-        label.text = notice.title
+//        let label = cell!.viewWithTag(11) as! UILabel
+//        label.text = notice.title
         
         
         return cell!
@@ -173,7 +169,7 @@ class NoticeViewController: UIViewController , UITableViewDataSource , UITableVi
         
         */
         if let secondView : NoticeDetailViewController = (segue.destinationViewController as? NoticeDetailViewController ) {
-            self.destinationVC = secondView
+//            self.destinationVC = secondView
         }
         
         
@@ -223,6 +219,7 @@ class NoticeViewController: UIViewController , UITableViewDataSource , UITableVi
     }
     
     func tapRightItem(sender: AnyObject) {
+        NoticeModel.sharedInstance.updateDate()
 //        
 //        if self.is_load {
 //            
@@ -252,6 +249,7 @@ class NoticeViewController: UIViewController , UITableViewDataSource , UITableVi
     }
     
     func updateData(){
+//        NoticeModel.sharedInstance().notices.description
 //        NoticeInfo.siteInfo { (itobata,iizuka,wakamatsu, error) in
 //            self.timeSortWithArray(iizuka)
 //        }
@@ -271,4 +269,8 @@ class NoticeViewController: UIViewController , UITableViewDataSource , UITableVi
         self.shContentView.scrollViewDidScroll(scrollView)
         
     }
+    
+//    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+//    
+    
 }

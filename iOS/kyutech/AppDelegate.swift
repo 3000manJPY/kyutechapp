@@ -10,7 +10,7 @@ import UIKit
 import Fabric
 import Crashlytics
 import SHUtil
-
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,8 +24,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Crashlytics.self])
         // TODO: Move this to where you establish a user session
 //        self.logUser()
-
+        self.realmMigration()
         return true
+    }
+    
+    func realmMigration(){
+        let config = Realm.Configuration(
+            schemaVersion: 3,
+            migrationBlock: { migration, oldSchemaVersion in
+                if (oldSchemaVersion < 3) {}
+        })
+        Realm.Configuration.defaultConfiguration = config
     }
     
     func logUser() {

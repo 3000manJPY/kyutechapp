@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SHUtil
 
 class SplashViewController: UIViewController {
     
@@ -24,7 +25,7 @@ class SplashViewController: UIViewController {
         super.viewDidLoad()
         
         motionEffect()
-        
+
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "openNotice:", name: Notif.notice.open, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "openLecture:", name: Notif.lecture.open, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "openAccess:", name: Notif.access.open, object: nil)

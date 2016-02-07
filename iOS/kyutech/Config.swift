@@ -25,3 +25,5 @@ struct Notif {
     struct access { static let open = "NOTIFICATION_ACCESS_OPEN" }
     struct lecture { static let open = "NOTIFICATION_LECTURE_OPEN" }
 }
+
+
