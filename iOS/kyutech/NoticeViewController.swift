@@ -241,7 +241,9 @@ class NoticeViewController: UIViewController , UITableViewDataSource , UITableVi
     }
     
     func tapLeftItem(sender: AnyObject) {
-//        self.navigationController?.slideMenuController()?.openLeft()
+//        self.navigationController?.slideMenuController()?.openLeft()    [self.frostedViewController presentMenuViewController];
+        
+        self.frostedViewController.presentMenuViewController()
     }
     
     func tapViewTop() {

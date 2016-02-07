@@ -13,5 +13,4 @@ platform :ios, '8.0'
     pod 'PageMenu'
     pod 'TTTAttributedLabel'
     pod 'REFrostedViewController'
-end
 
