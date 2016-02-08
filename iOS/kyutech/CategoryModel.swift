@@ -45,7 +45,7 @@ class CategoryModel: NSObject {
             self.categorys.append(Category(id: 10, name: "学部生情報", imagePath: "gaku"))
             self.categorys.append(Category(id: 11, name: "大学院生情報", imagePath: "in"))
         }
-        self.categorys.append(Category(id: 12, name: "重要なお知らせ", imagePath: "重い"))
+        self.categorys.append(Category(id: 12, name: "重要なお知らせ", imagePath: "重"))
         self.categorys.append(Category(id: 13, name: "ニュース", imagePath: "ニ"))
         self.categorys.append(Category(id: 14, name: "イベント", imagePath: "イ"))
     

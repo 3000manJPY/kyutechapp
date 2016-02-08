@@ -28,7 +28,7 @@ class MenuTableViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var categories : [Category] = []
     var departments : [Department] = []
-    var sortings: [String] = ["新着順","日付が近い順"]
+    var sortings: [String] = []
     
     var selectedCells:[String:Bool]=[String:Bool]()
     
@@ -38,239 +38,168 @@ class MenuTableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.categories = CategoryModel.sharedInstance.categorys
-        self.departments = CategoryModel.sharedInstance.departments
-        let edgeInsets = UIEdgeInsetsMake(0, 0, 50, 0)
-        self.tableView.contentInset = edgeInsets
-        self.tableView.scrollIndicatorInsets = edgeInsets
-        
-        self.selectedCells["0-0"] = true
-        self.selectedCells["1-0"] = true
-        self.selectedCells["2-0"] = true
-
+        self.setCategories()
+        self.settingTableView()
+        self.defaultSelectCells()
     }
-
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.setRepo()
+    }
+    
+    //googleAnariticsを設定
+    func setRepo(){
 //        let tracker = GAI.sharedInstance().defaultTracker
 //        tracker.set(kGAIScreenName, value: NSStringFromClass(self.classForCoder))
 //        
 //        let builder = GAIDictionaryBuilder.createScreenView()
 //        tracker.send(builder.build() as [NSObject : AnyObject])
     }
-    func setImageForIndexpath(indexPath:NSIndexPath, tableViewCell cell:UITableViewCell, withKey key:String){
-        guard let backImageView = cell.viewWithTag(300) as? UIImageView else{ return }
-        if indexPath.section == SECTION.order.rawValue {
-            
-            
-        }else if indexPath.section == SECTION.category.rawValue {
-            if backImageView.image?.imageAsset == self.select_image?.imageAsset {
-                backImageView.image = setUnCheckImage(indexPath)
-                selectedCells.removeValueForKey(key)
-            }else{
-                backImageView.image = setCheckImage(indexPath)
-                selectedCells[key] = true
-            }
-        }else if indexPath.section == SECTION.department.rawValue {
-            if backImageView.image?.imageAsset == self.noselect_image?.imageAsset {
-                backImageView.image = setCheckImage(indexPath)
-                selectedCells[key] = true
-            }else{
-                selectedCells.removeValueForKey(key)
-                backImageView.image = setUnCheckImage(indexPath)
-            }
-        }
-        self.isSelectedCells(indexPath)
-        //        }
+    
+    //配列をセットする
+    func setCategories(){
+        self.categories = CategoryModel.sharedInstance.categorys
+        self.departments = CategoryModel.sharedInstance.departments
+        self.sortings = ["新着順","日付が近い順"]
     }
     
-    func isSelectedCells(indexPath: NSIndexPath) {
-        var pre = ""
-        if      indexPath.section == SECTION.order.rawValue { pre = SECTION.order.toS() }
-        else if indexPath.section == SECTION.category.rawValue { pre = SECTION.category.toS() }
-        else if indexPath.section == SECTION.department.rawValue { pre = SECTION.department.toS()
-        }else{ return }
-        
-        for (key,val) in self.selectedCells {
-            if key.hasPrefix(pre) {
-                if key == "\(indexPath.section)-0" { continue }
-                self.selectedCells["\(indexPath.section)-0"] = false
-                self.tableView.reloadData()
-                return
-            }
-        }
-        self.selectedCells["\(indexPath.section)-0"] = true
-        self.tableView.reloadData()
+    //TableViewの設定をする
+    func settingTableView(){
+        let edgeInsets = UIEdgeInsetsMake(0, 0, 50, 0)
+        self.tableView.contentInset = edgeInsets
+        self.tableView.scrollIndicatorInsets = edgeInsets
     }
+   
+    //初期でチェックするセルを設定
+    func defaultSelectCells(){
+        self.selectedCells["0-0"] = true
+        self.selectedCells["1-0"] = true
+        self.selectedCells["2-0"] = true
+    }
+   
+    //アンチェックする
     func setUnCheckImage(indexPath:NSIndexPath) -> UIImage{
-        var image : UIImage!
-        if indexPath.section == SECTION.order.rawValue {
-        
-        }else if indexPath.section == SECTION.category.rawValue {
-            image = self.nil_image
-            return image
-        }else if indexPath.section == SECTION.department.rawValue {
-            image = self.noselect_image
-            return image
-        }
+        let image = UIImage(named:"checking")!
+        if      indexPath.section == SECTION.order.rawValue      { return UIImage(named: "checking") ?? image }
+        else if indexPath.section == SECTION.category.rawValue   { return self.nil_image ?? image }
+        else if indexPath.section == SECTION.department.rawValue { return self.noselect_image ?? image }
         return image
     }
-    func setCheckImage(indexPath:NSIndexPath) -> UIImage{
-        var image : UIImage!
-        if indexPath.section == SECTION.order.rawValue {
-
-        
-        }else if indexPath.section == SECTION.category.rawValue {
-            image = self.select_image
-            return image
-            
-        }else if indexPath.section == SECTION.department.rawValue {
-            let dep = self.departments[indexPath.row]
-            image = UIImage(named: dep.imagePath)
-            return image
-        }
-        
-        return image
-    }
- 
     
+    //チェックする
+    func setCheckImage(indexPath:NSIndexPath) -> UIImage{
+        let image = UIImage(named: "checking")!
+        if      indexPath.section == SECTION.order.rawValue      { return UIImage(named: "checking") ?? image }
+        else if indexPath.section == SECTION.category.rawValue   { return self.select_image ?? image }
+        else if indexPath.section == SECTION.department.rawValue { return UIImage(named: self.departments[indexPath.row].imagePath) ?? image }
+        return image
+    }
+    
+    //セルがチェックされているかを返す。なければfalseで作る
+    func isSelected(indexPath: NSIndexPath) -> Bool {
+        if let chk = self.selectedCells["\(indexPath.section)-\(indexPath.row)"] {
+            return chk
+        }else{
+            self.selectedCells["\(indexPath.section)-\(indexPath.row)"] = false
+            return false
+        }
+    }
 }
 
+//tableViewのdelegate + datasource
 extension MenuTableViewController: UITableViewDelegate, UITableViewDataSource {
-    
+    //rowの数
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch (section){
-        case SECTION.category.rawValue:
-            return self.categories.count
-        case SECTION.department.rawValue:
-            return self.departments.count
-        case SECTION.order.rawValue:
-            return self.sortings.count
-        default:
-            return 0
+        case SECTION.category.rawValue:   return self.categories.count
+        case SECTION.department.rawValue: return self.departments.count
+        case SECTION.order.rawValue:      return self.sortings.count
+        default: return 0
         }
     }
+    //セクションの数
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int { return 3 }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
-    }
-    
+    //cellを作る
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
-        if let name = cell.viewWithTag(100) as? UILabel,
-            checkImageView = cell.viewWithTag(200) as? UIImageView,
-            backImageView = cell.viewWithTag(300) as? UIImageView {
-                cell.backgroundColor = UIColor.clearColor()
-                
-                
-                //タイトルと文字を入れる＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
-                if indexPath.section == SECTION.order.rawValue{
-                    let title = self.sortings[indexPath.row]
-                    name.text = title
- 
-                }else if indexPath.section == SECTION.category.rawValue {
-                    let category = self.categories[indexPath.row] as Category
-                    name.text = category.name
-                    checkImageView.image = UIImage(named: "\(category.imagePath)")
-                }else if indexPath.section == SECTION.department.rawValue {
-                    let department = self.departments[indexPath.row] as Department
-                    name.text = department.name
-                    checkImageView.image = self.noselect_image
-                }
-                //＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
-                //なぜわけているのかは不明w
-                
-                //チェックを付けたりけしたり＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
-                let key = "\(indexPath.section)-\(indexPath.row)"
-                
-                if indexPath.section == SECTION.order.rawValue{
-
-                
-                }else if indexPath.section == SECTION.category.rawValue {
-                    if let selected = selectedCells[key]{
-                        if selected == false {
-                            backImageView.image = setUnCheckImage(indexPath)
-                        }else{
-                            backImageView.image = setCheckImage(indexPath)
-                        }
-                    }else{
-                        backImageView.image = setUnCheckImage(indexPath)
-                    }
-                }else if indexPath.section == SECTION.department.rawValue {
-                    if let selected = selectedCells[key]{
-                        if selected == false {
-                            backImageView.image = setUnCheckImage(indexPath)
-                            
-                        }else{
-                            backImageView.image = setCheckImage(indexPath)
-                        }
-                    }else{
-                        backImageView.image = setUnCheckImage(indexPath)
-                        
-                    }
-                }
-                //＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+        guard let         name = cell.viewWithTag(100) as? UILabel,
+                frontImageView = cell.viewWithTag(200) as? UIImageView,
+                 backImageView = cell.viewWithTag(300) as? UIImageView else{ return UITableViewCell() }
+        cell.backgroundColor = UIColor.clearColor()
+        
+        let selected = self.isSelected(indexPath)
+        switch indexPath.section {
+            
+        case SECTION.order.rawValue:
+            let sort = self.sortings[indexPath.row]
+            name.text = sort
+            frontImageView.image = nil
+            if selected == false { backImageView.image = nil }
+            else                 { backImageView.image = setCheckImage(indexPath) }
+            break
+            
+        case SECTION.category.rawValue:
+            let category = self.categories[indexPath.row] as Category
+            name.text = category.name
+            frontImageView.image = UIImage(named: category.imagePath)
+            if selected == false { backImageView.image = setUnCheckImage(indexPath) }
+            else                 { backImageView.image = setCheckImage(indexPath)   }
+            break
+            
+        case SECTION.department.rawValue:
+            let department = self.departments[indexPath.row] as Department
+            name.text = department.name
+            frontImageView.image = self.noselect_image
+            if selected == false { backImageView.image = setUnCheckImage(indexPath) }
+            else                 { backImageView.image = setCheckImage(indexPath) }
+            break
+        default: break
         }
         return cell
     }
-    
+    //セクションをカスタムする
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel(frame: CGRect(x:0, y:0, width: tableView.bounds.width, height: 50))
-        
         // 背景色
         label.backgroundColor = UIColor.whiteColor()
-        
         // 文字色
         label.textColor =  UIColor(red: 0.0, green: 138.0 / 255.0, blue: 215.0 / 255.0, alpha: 1.0)
-        
-        
         var title = "no name"
         switch (section){
-        case SECTION.order.rawValue:
-            title = "　そーと"
-            break
-        case SECTION.category.rawValue:
-            title = "　カテゴリ"
-            break
-            
-        case SECTION.department.rawValue:
-            title = "　学部 / 大学院"
-            break
-        default:
-            title = "no name"
-            break
+        case SECTION.order.rawValue:        title = "　並び替え";        break
+        case SECTION.category.rawValue:     title = "　カテゴリ";        break
+        case SECTION.department.rawValue:   title = "　学部 / 大学院";   break
+        default: title = "no name";break
         }
-        
         label.text = title
         label.font = UIFont.italicSystemFontOfSize(20)
-        
         return label
     }
     
     //ヘッダーの高さを決定
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 60
-    }
-    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat { return 60 }
+    //セルが選択された時
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
-            if indexPath.row == 0 {
-                for (key,val) in self.selectedCells {
-                    let section : Int = Int(String(key[key.startIndex]))!
-                    let row = Int(key.substringFromIndex(key.startIndex.advancedBy(2)))
-                    if row != 0 && indexPath.section == section {
-                        self.selectedCells.removeValueForKey(key)
-                        let path = NSIndexPath(forRow: row!, inSection: section)
-                        isSelectedCells(path)
-                    }
+        //チェックを全て自分以外はずすとき
+        if indexPath.section == SECTION.order.rawValue || indexPath.row == 0 {
+            let chk = self.selectedCells["\(indexPath.section)-\(0)"]
+            if chk == false {
+                self.selectedCells["\(indexPath.section)-\(0)"] = true
+                switch indexPath.section {
+                case SECTION.order.rawValue:        for i in 1..<self.sortings.count   { self.selectedCells["\(SECTION.order.rawValue)-\(i)"] = false }; break
+                case SECTION.category.rawValue:     for i in 1..<self.categories.count { self.selectedCells["\(SECTION.category.rawValue)-\(i)"] = false }; break
+                case SECTION.department.rawValue:   for i in 1..<self.departments.count{ self.selectedCells["\(SECTION.department.rawValue)-\(i)"] = false }; break
+                default: break
                 }
-            }else{
-                
             }
-            let key = "\(indexPath.section)-\(indexPath.row)"
-            setImageForIndexpath(indexPath, tableViewCell: cell, withKey: key)
         }
+        self.selectedCells["\(indexPath.section)-\(0)"] = false
+        if let chk = self.selectedCells["\(indexPath.section)-\(indexPath.row)"] { self.selectedCells["\(indexPath.section)-\(indexPath.row)"] = !chk  }
+        else                                                                     { self.selectedCells["\(indexPath.section)-\(indexPath.row)"] = false }
+        self.tableView.reloadData()
+    }
 }
 
