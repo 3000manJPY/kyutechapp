@@ -21,6 +21,8 @@ class NoticeViewController: UIViewController {
     var categories: [Category] = []
     var departments: [Department] = []
     
+    var detailVC: NoticeDetailViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegate()
@@ -83,16 +85,9 @@ class NoticeViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        /*
-        !!old-webView!!
-        if let secondView : SHWebViewController = (segue.destinationViewController as? SHWebViewController) {
-        self.destinationVC = secondView
+        if let secondView : NoticeDetailViewController = (segue.destinationViewController as? NoticeDetailViewController ) {
+            self.detailVC = secondView
         }
-        
-        */
-//        if let secondView : NoticeDetailViewController = (segue.destinationViewController as? NoticeDetailViewController ) {
-////            self.destinationVC = secondView
-//        }
     }
     
     internal func openSlideView(sender: AnyObject) {
@@ -221,7 +216,8 @@ extension NoticeViewController: UITableViewDataSource, UITableViewDelegate {
         self.performSegueWithIdentifier("detail", sender: nil)
         
         let notice = self.noticeArray[indexPath.row]
-        //        self.destinationVC.notice = notice
+        
+        self.detailVC?.notice = notice
         
         
     }

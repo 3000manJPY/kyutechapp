@@ -24,14 +24,14 @@ class CategoryModel: NSObject {
     
     private override init() {
         super.init()
-        self.setCategories(CAMPUS.iizuka)
-        self.setDepartments(CAMPUS.iizuka)
+        self.setCategories(CAMPUS.iizuka.val)
+        self.setDepartments(CAMPUS.iizuka.val)
     }
     
-    private func setCategories(campus: CAMPUS){
+    private func setCategories(campus: Int){
         self.categorys.append(Category(id: 100, name: "全て", imagePath: "zen"))
         self.categorys.append(Category(id: 99, name: "未分類", imagePath: "mi"))
-        if campus == .iizuka {
+        if campus == CAMPUS.iizuka.val {
             self.categorys.append(Category(id: 0, name: "お知らせ", imagePath: "gaku"))
             self.categorys.append(Category(id: 1, name: "奨学金", imagePath: "shou"))
             self.categorys.append(Category(id: 2, name: "補講通知", imagePath: "ho"))
@@ -52,8 +52,15 @@ class CategoryModel: NSObject {
         
     }
     
-    private func setDepartments(campus: CAMPUS){
-        if campus == .iizuka {
+    static func getCategoryWithId(val: String) -> Category? {
+        for category in CategoryModel.sharedInstance.categorys {
+            if String(category.id) == val { return category }
+        }
+        return nil
+    }
+    
+    private func setDepartments(campus: Int){
+        if campus == CAMPUS.iizuka.val {
             self.departments.append(Department(id: 0, name: "全て", imagePath: "all"))
             self.departments.append(Department(id: 1, name: "学部", imagePath: "faculty"))
             self.departments.append(Department(id: 2, name: "大学院", imagePath: "postgraduate"))
@@ -64,5 +71,11 @@ class CategoryModel: NSObject {
             self.departments.append(Department(id: 7, name: "生命情報", imagePath: "seimei"))
                 
         }
+    }
+    static func getDepartmentWithId(val: String) -> Department? {
+        for department in CategoryModel.sharedInstance.departments {
+            if String(department.id) == val { return department }
+        }
+        return nil
     }
 }

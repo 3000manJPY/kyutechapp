@@ -17,7 +17,7 @@ enum RequestState :UInt {
 }
 
 enum Router: URLRequestConvertible {
-    static let baseURLString = "https://kyutechapp.planningdev.com/api/v2"
+    static let baseURLString = "https://dev-kyutechapp.planningdev.com/api/v2"
 //    static var OAuthToken: String?
     
     case CreateUser([String: AnyObject])
