@@ -8,11 +8,27 @@
 
 import UIKit
 
+enum SECTION: Int {
+    case order = 0
+    case category = 1
+    case department = 2
+    
+    func toS() -> String {
+        switch self{
+        case .order : return "\(SECTION.order.rawValue)"
+        case .category : return "\(SECTION.category.rawValue)"
+        case .department : return "\(SECTION.department.rawValue)"
+        }
+    }
+}
+
+
 class MenuTableViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     var categories : [Category] = []
     var departments : [Department] = []
+    var sortings: [String] = ["新着順","日付が近い順"]
     
     var selectedCells:[String:Bool]=[String:Bool]()
     
@@ -31,6 +47,7 @@ class MenuTableViewController: UIViewController {
         
         self.selectedCells["0-0"] = true
         self.selectedCells["1-0"] = true
+        self.selectedCells["2-0"] = true
 
     }
 
@@ -43,32 +60,36 @@ class MenuTableViewController: UIViewController {
 //        tracker.send(builder.build() as [NSObject : AnyObject])
     }
     func setImageForIndexpath(indexPath:NSIndexPath, tableViewCell cell:UITableViewCell, withKey key:String){
-        if let backImageView = cell.viewWithTag(300) as? UIImageView {
-            if indexPath.section == 0 {
-                if backImageView.image?.imageAsset == self.select_image?.imageAsset {
-                    backImageView.image = setUnCheckImage(indexPath)
-                    selectedCells.removeValueForKey(key)
-                }else{
-                    backImageView.image = setCheckImage(indexPath)
-                    selectedCells[key] = true
-                }
-            }else if indexPath.section == 1 {
-                if backImageView.image?.imageAsset == self.noselect_image?.imageAsset {
-                    backImageView.image = setCheckImage(indexPath)
-                    selectedCells[key] = true
-                }else{
-                    selectedCells.removeValueForKey(key)
-                    backImageView.image = setUnCheckImage(indexPath)
-                }
+        guard let backImageView = cell.viewWithTag(300) as? UIImageView else{ return }
+        if indexPath.section == SECTION.order.rawValue {
+            
+            
+        }else if indexPath.section == SECTION.category.rawValue {
+            if backImageView.image?.imageAsset == self.select_image?.imageAsset {
+                backImageView.image = setUnCheckImage(indexPath)
+                selectedCells.removeValueForKey(key)
+            }else{
+                backImageView.image = setCheckImage(indexPath)
+                selectedCells[key] = true
             }
-            self.isSelectedCells(indexPath)
+        }else if indexPath.section == SECTION.department.rawValue {
+            if backImageView.image?.imageAsset == self.noselect_image?.imageAsset {
+                backImageView.image = setCheckImage(indexPath)
+                selectedCells[key] = true
+            }else{
+                selectedCells.removeValueForKey(key)
+                backImageView.image = setUnCheckImage(indexPath)
+            }
         }
+        self.isSelectedCells(indexPath)
+        //        }
     }
     
     func isSelectedCells(indexPath: NSIndexPath) {
         var pre = ""
-        if      indexPath.section == 0 { pre = "0" }
-        else if indexPath.section == 1 { pre = "1"
+        if      indexPath.section == SECTION.order.rawValue { pre = SECTION.order.toS() }
+        else if indexPath.section == SECTION.category.rawValue { pre = SECTION.category.toS() }
+        else if indexPath.section == SECTION.department.rawValue { pre = SECTION.department.toS()
         }else{ return }
         
         for (key,val) in self.selectedCells {
@@ -84,10 +105,12 @@ class MenuTableViewController: UIViewController {
     }
     func setUnCheckImage(indexPath:NSIndexPath) -> UIImage{
         var image : UIImage!
-        if indexPath.section == 0 {
+        if indexPath.section == SECTION.order.rawValue {
+        
+        }else if indexPath.section == SECTION.category.rawValue {
             image = self.nil_image
             return image
-        }else if indexPath.section == 1 {
+        }else if indexPath.section == SECTION.department.rawValue {
             image = self.noselect_image
             return image
         }
@@ -95,11 +118,14 @@ class MenuTableViewController: UIViewController {
     }
     func setCheckImage(indexPath:NSIndexPath) -> UIImage{
         var image : UIImage!
-        if indexPath.section == 0 {
+        if indexPath.section == SECTION.order.rawValue {
+
+        
+        }else if indexPath.section == SECTION.category.rawValue {
             image = self.select_image
             return image
             
-        }else if indexPath.section == 1 {
+        }else if indexPath.section == SECTION.department.rawValue {
             let dep = self.departments[indexPath.row]
             image = UIImage(named: dep.imagePath)
             return image
@@ -115,17 +141,19 @@ extension MenuTableViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch (section){
-        case 0:
+        case SECTION.category.rawValue:
             return self.categories.count
-        case 1:
+        case SECTION.department.rawValue:
             return self.departments.count
+        case SECTION.order.rawValue:
+            return self.sortings.count
         default:
             return 0
         }
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -134,17 +162,32 @@ extension MenuTableViewController: UITableViewDelegate, UITableViewDataSource {
             checkImageView = cell.viewWithTag(200) as? UIImageView,
             backImageView = cell.viewWithTag(300) as? UIImageView {
                 cell.backgroundColor = UIColor.clearColor()
-                if indexPath.section == 0 {
+                
+                
+                //タイトルと文字を入れる＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+                if indexPath.section == SECTION.order.rawValue{
+                    let title = self.sortings[indexPath.row]
+                    name.text = title
+ 
+                }else if indexPath.section == SECTION.category.rawValue {
                     let category = self.categories[indexPath.row] as Category
                     name.text = category.name
                     checkImageView.image = UIImage(named: "\(category.imagePath)")
-                }else if indexPath.section == 1 {
+                }else if indexPath.section == SECTION.department.rawValue {
                     let department = self.departments[indexPath.row] as Department
                     name.text = department.name
                     checkImageView.image = self.noselect_image
                 }
+                //＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+                //なぜわけているのかは不明w
+                
+                //チェックを付けたりけしたり＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
                 let key = "\(indexPath.section)-\(indexPath.row)"
-                if indexPath.section == 0 {
+                
+                if indexPath.section == SECTION.order.rawValue{
+
+                
+                }else if indexPath.section == SECTION.category.rawValue {
                     if let selected = selectedCells[key]{
                         if selected == false {
                             backImageView.image = setUnCheckImage(indexPath)
@@ -154,7 +197,7 @@ extension MenuTableViewController: UITableViewDelegate, UITableViewDataSource {
                     }else{
                         backImageView.image = setUnCheckImage(indexPath)
                     }
-                }else if indexPath.section == 1 {
+                }else if indexPath.section == SECTION.department.rawValue {
                     if let selected = selectedCells[key]{
                         if selected == false {
                             backImageView.image = setUnCheckImage(indexPath)
@@ -167,6 +210,7 @@ extension MenuTableViewController: UITableViewDelegate, UITableViewDataSource {
                         
                     }
                 }
+                //＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
         }
         return cell
     }
@@ -183,11 +227,14 @@ extension MenuTableViewController: UITableViewDelegate, UITableViewDataSource {
         
         var title = "no name"
         switch (section){
-        case 0:
+        case SECTION.order.rawValue:
+            title = "　そーと"
+            break
+        case SECTION.category.rawValue:
             title = "　カテゴリ"
             break
             
-        case 1:
+        case SECTION.department.rawValue:
             title = "　学部 / 大学院"
             break
         default:
@@ -209,21 +256,21 @@ extension MenuTableViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        if indexPath.row == 0 {
-            for (key,val) in self.selectedCells {
-                let section : Int = Int(String(key[key.startIndex]))!
-                let row = Int(key.substringFromIndex(key.startIndex.advancedBy(2)))
-                if row != 0 && indexPath.section == section {
-                    self.selectedCells.removeValueForKey(key)
-                    let path = NSIndexPath(forRow: row!, inSection: section)
-                    isSelectedCells(path)
+            if indexPath.row == 0 {
+                for (key,val) in self.selectedCells {
+                    let section : Int = Int(String(key[key.startIndex]))!
+                    let row = Int(key.substringFromIndex(key.startIndex.advancedBy(2)))
+                    if row != 0 && indexPath.section == section {
+                        self.selectedCells.removeValueForKey(key)
+                        let path = NSIndexPath(forRow: row!, inSection: section)
+                        isSelectedCells(path)
+                    }
                 }
+            }else{
+                
             }
-        }else{
-            
+            let key = "\(indexPath.section)-\(indexPath.row)"
+            setImageForIndexpath(indexPath, tableViewCell: cell, withKey: key)
         }
-        let key = "\(indexPath.section)-\(indexPath.row)"
-        setImageForIndexpath(indexPath, tableViewCell: cell, withKey: key)
-    }
 }
 
