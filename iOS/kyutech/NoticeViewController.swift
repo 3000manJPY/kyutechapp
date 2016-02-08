@@ -11,12 +11,15 @@ import UIKit
 import RealmSwift
 import SHUtil
 
-class NoticeViewController: UIViewController , UITableViewDataSource , UITableViewDelegate, SHContentTableViewdelegate /*, slidedelegate*/{
+class NoticeViewController: UIViewController {
     
     @IBOutlet var shContentView: SHContentTableView!
     @IBOutlet var noticeTableView: UITableView!
-    var noticeArray : [Notice] = []
-    var checkedArray : [Int] = []
+    var noticeArray: [Notice] = []
+    var checkedArray: [Int] = []
+    
+    var categories: [Category] = []
+    var departments: [Department] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,13 +31,15 @@ class NoticeViewController: UIViewController , UITableViewDataSource , UITableVi
         setCategory()
         setDepartment()
         setContentItem()
-        updateData()
+        self.noticeArray = NoticeModel.sharedInstance.notices
+//        updateData()
         
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+        NoticeModel.sharedInstance.addObserver(self, forKeyPath: "notices", options: [.New, .Old], context: nil)
+
 //        let tracker = GAI.sharedInstance().defaultTracker
 //        tracker.set(kGAIScreenName, value: NSStringFromClass(self.classForCoder))
 //        
@@ -43,12 +48,6 @@ class NoticeViewController: UIViewController , UITableViewDataSource , UITableVi
         
         //        self.navigationController?.navigationBarHidden = true
 //        self.navigationController?.slideMenuController()?.addLeftGestures()
-        
-        NoticeModel.sharedInstance.addObserver(self, forKeyPath: "notices", options: [.New, .Old], context: nil)
-
-        self.noticeArray = NoticeModel.sharedInstance.notices
-
-
         
     }
     override func viewDidAppear(animated: Bool) {
@@ -59,7 +58,6 @@ class NoticeViewController: UIViewController , UITableViewDataSource , UITableVi
         super.viewWillDisappear(animated)
         NoticeModel.sharedInstance.removeObserver(self, forKeyPath: "notices")
 
-        
     }
     
     override func viewDidLayoutSubviews() {
@@ -69,95 +67,19 @@ class NoticeViewController: UIViewController , UITableViewDataSource , UITableVi
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
- 
-        SHprint(change)
-    }
-    func setCategory(){
-//        self.categoryArray = Config_Category.setCategory()
-        
-    }
-    
-    func setDepartment(){
-//        self.departmentArray = Config_Category.setDepartment()
-        
-    }
-    
-    func setDelegate(){
-//        self.navigationController?.slideMenuController()?.delegate = self
-        self.shContentView.delegate = self
-    }
-    
-    func setContentItem(){
-        //本番は画像の予定
-        self.shContentView.title_label.text = "掲示板"
-        self.shContentView.category_open.setImage(UIImage(named: "filter"), forState: .Normal)
-        self.shContentView.sub_category_open.setImage(UIImage(named: "filter-button"), forState: .Normal)
-        self.shContentView.category_open.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        //        self.contentView.search_btn.setTitle("○", forState: .Normal)
-        self.shContentView.search_btn.setImage(UIImage(named: "Refresh_white"), forState: .Normal)
-        self.shContentView.search_btn.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        self.shContentView.sub_search_btn.setImage(UIImage(named: "reload"), forState: .Normal)
-        self.shContentView.sub_search_btn.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        
-        self.shContentView.top_image.image = UIImage(named: "top_image")
-        self.shContentView.navi_imageview.image = UIImage(named: "news_Ellipse")
-        
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.noticeArray.count
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell?
-        
-        let notice = noticeArray[indexPath.row]
-        
-        if cell == nil {
-            cell = UITableViewCell(style: .Default, reuseIdentifier: "cell")
+//        SHprint(object)
+        if(keyPath == "notices"){
+            if let arr = change?["new"] as? [Notice] {
+            self.noticeArray = arr
+                self.noticeTableView.reloadData()
+            }
         }
-        //TODO cellviewを作成
-//        let imageView = cell!.viewWithTag(10) as! UIImageView
-//        let backView = cell!.viewWithTag(9) as! UIImageView
-//        for cate in self.categoryArray {
-//            //            if cate.id < 2 && cate.id > 11 {
-//            //                backView.image = UIImage(named: cate.image_path)
-//            //                break
-//            //
-//            //            }
-//            //            else
-//            if cate.id == Int(notice.category_id) {
-//                backView.image = UIImage(named: cate.image_path)
-//                break
-//            }
-//        }
-//        
-//        for depa in self.departmentArray {
-//            if depa.id  == Int(notice.department_id) {
-//                imageView.image = UIImage(named: depa.image_path)
-//                
-//                break
-//            }
-//        }
-        
-//        let label = cell!.viewWithTag(11) as! UILabel
-//        label.text = notice.title
-        
-        
-        return cell!
         
     }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.noticeTableView.deselectRowAtIndexPath(indexPath, animated: true)
-        //セルがタップされた時
-        //        self.performSegueWithIdentifier("webView", sender: nil)//
-        self.performSegueWithIdentifier("detail", sender: nil)
-        
-        let notice = self.noticeArray[indexPath.row]
-//        self.destinationVC.notice = notice
-        
-        
+    func setCategory(){ self.categories = CategoryModel.sharedInstance.categorys }
+    func setDepartment(){ self.departments = CategoryModel.sharedInstance.departments }
+    func setDelegate(){
+        self.shContentView.delegate = self
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -168,13 +90,9 @@ class NoticeViewController: UIViewController , UITableViewDataSource , UITableVi
         }
         
         */
-        if let secondView : NoticeDetailViewController = (segue.destinationViewController as? NoticeDetailViewController ) {
-//            self.destinationVC = secondView
-        }
-        
-        
-        
-        
+//        if let secondView : NoticeDetailViewController = (segue.destinationViewController as? NoticeDetailViewController ) {
+////            self.destinationVC = secondView
+//        }
     }
     
     internal func openSlideView(sender: AnyObject) {
@@ -218,37 +136,7 @@ class NoticeViewController: UIViewController , UITableViewDataSource , UITableVi
         
     }
     
-    func tapRightItem(sender: AnyObject) {
-        NoticeModel.sharedInstance.updateDate()
-//        
-//        if self.is_load {
-//            
-//        }else{
-//            //        println("search")
-//            dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-//                
-//                NoticeInfo.siteInfo { (tobata,iizuka,wakamatsu, error) in
-//                    let orderArray = NoticeInfo.finishTimeSortWithArray(iizuka)
-//                    
-//                    self.noticeArray = orderArray
-//                    self.originArry = orderArray
-//                    self.sort()
-//                    self.is_load = false
-//                }
-//            })
-//            self.is_load = true
-//        }
-    }
     
-    func tapLeftItem(sender: AnyObject) {
-//        self.navigationController?.slideMenuController()?.openLeft()    [self.frostedViewController presentMenuViewController];
-        
-        self.frostedViewController.presentMenuViewController()
-    }
-    
-    func tapViewTop() {
-        self.tapStatusBar(nil)
-    }
     
     func updateData(){
 //        NoticeModel.sharedInstance().notices.description
@@ -275,4 +163,125 @@ class NoticeViewController: UIViewController , UITableViewDataSource , UITableVi
 //    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
 //    
     
+}
+
+
+extension NoticeViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.noticeArray.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell?
+        
+        let notice = self.noticeArray[indexPath.row]
+        
+        if cell == nil {
+            cell = UITableViewCell(style: .Default, reuseIdentifier: "cell")
+        }
+        //TODO cellviewを作成
+        if let imageView = cell!.viewWithTag(200) as? UIImageView,
+            let backView = cell!.viewWithTag(300) as? UIImageView,
+            let label = cell!.viewWithTag(100) as? UILabel {
+                for cate in self.categories {
+                    
+                    //            if cate.id < 2 && cate.id > 11 {
+                    //                backView.image = UIImage(named: cate.image_path)
+                    //                break
+                    //
+                    //            }
+                    //            else
+                    
+                    if cate.id == Int(notice.categoryId) {
+                        backView.image = UIImage(named: cate.imagePath)
+                        break
+                    }
+                }
+                
+                for depa in self.departments {
+                    if depa.id  == Int(notice.departmentId) {
+                        imageView.image = UIImage(named: depa.imagePath)
+                        
+                        break
+                    }
+                }
+                
+                
+                label.text = notice.title
+                
+        }
+                return cell!
+                
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.noticeTableView.deselectRowAtIndexPath(indexPath, animated: true)
+        //セルがタップされた時
+        //        self.performSegueWithIdentifier("webView", sender: nil)//
+        self.performSegueWithIdentifier("detail", sender: nil)
+        
+        let notice = self.noticeArray[indexPath.row]
+        //        self.destinationVC.notice = notice
+        
+        
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 80
+    }
+
+
+}
+
+
+extension NoticeViewController: SHContentTableViewdelegate /*, slidedelegate*/{
+    func setContentItem(){
+        //本番は画像の予定
+        self.shContentView.title_label.text = "掲示板"
+        self.shContentView.category_open.setImage(UIImage(named: "filter"), forState: .Normal)
+        self.shContentView.sub_category_open.setImage(UIImage(named: "filter-button"), forState: .Normal)
+        self.shContentView.category_open.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        //        self.contentView.search_btn.setTitle("○", forState: .Normal)
+        self.shContentView.search_btn.setImage(UIImage(named: "Refresh_white"), forState: .Normal)
+        self.shContentView.search_btn.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        self.shContentView.sub_search_btn.setImage(UIImage(named: "reload"), forState: .Normal)
+        self.shContentView.sub_search_btn.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        
+        self.shContentView.top_image.image = UIImage(named: "top_image")
+        self.shContentView.navi_imageview.image = UIImage(named: "news_Ellipse")
+        
+    }
+    
+    func tapRightItem(sender: AnyObject) {
+        NoticeModel.sharedInstance.updateDate()
+        //
+        //        if self.is_load {
+        //
+        //        }else{
+        //            //        println("search")
+        //            dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+        //
+        //                NoticeInfo.siteInfo { (tobata,iizuka,wakamatsu, error) in
+        //                    let orderArray = NoticeInfo.finishTimeSortWithArray(iizuka)
+        //
+        //                    self.noticeArray = orderArray
+        //                    self.originArry = orderArray
+        //                    self.sort()
+        //                    self.is_load = false
+        //                }
+        //            })
+        //            self.is_load = true
+        //        }
+    }
+    
+    func tapLeftItem(sender: AnyObject) {
+        //        self.navigationController?.slideMenuController()?.openLeft()    [self.frostedViewController presentMenuViewController];
+        
+        self.frostedViewController.presentMenuViewController()
+    }
+    
+    func tapViewTop() {
+        self.tapStatusBar(nil)
+    }
+
 }

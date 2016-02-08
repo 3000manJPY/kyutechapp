@@ -19,6 +19,33 @@ enum CAMPUS: Int {
     
 }
 
+class Category: NSObject {
+    dynamic var id : Int = 0
+    dynamic var name = ""
+    dynamic var imagePath = ""
+    
+    init(id: Int, name: String, imagePath: String) {
+        self.id = id
+        self.name = name
+        self.imagePath = imagePath
+    }
+    
+}
+
+class Department: NSObject {
+    dynamic var id : Int = 0
+    dynamic var name = ""
+    dynamic var imagePath = ""
+    
+    init(id: Int, name: String, imagePath: String) {
+        self.id = id
+        self.name = name
+        self.imagePath = imagePath
+    }
+    
+    
+}
+
 class Kyutech: NSObject {
 
 }

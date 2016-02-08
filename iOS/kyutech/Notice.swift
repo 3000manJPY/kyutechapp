@@ -20,33 +20,33 @@ class Notice: RLMObject {
     private dynamic var id: Int64 = 0
     private dynamic var uid: Int64 = 0
     
-    private dynamic var title: String = ""
+    dynamic var title: String = ""
     private dynamic var details: String = ""
-    private dynamic var category_id: String = ""
-    private dynamic var department_id: String = ""
-    private dynamic var campus_id: String = ""
+    dynamic var categoryId: String = ""
+    dynamic var departmentId: String = ""
+    private dynamic var campusId: String = ""
     private dynamic var date: Int64 = 0
-    private dynamic var period_time: String = ""
+    private dynamic var periodTime: String = ""
     private dynamic var grade: String = ""
     private dynamic var place: String = ""
     private dynamic var subject: String = ""
     private dynamic var teacher: String = ""
-    private dynamic var before_data: String = ""
-    private dynamic var after_data: String = ""
-    private dynamic var web_url: String = ""
+    private dynamic var beforeData: String = ""
+    private dynamic var afterData: String = ""
+    private dynamic var webUrl: String = ""
     private dynamic var note: String = ""
     
     
-    private dynamic var doc1_nane: String = ""
-    private dynamic var doc2_nane: String = ""
-    private dynamic var doc3_nane: String = ""
-    private dynamic var doc4_nane: String = ""
-    private dynamic var doc5_nane: String = ""
-    private dynamic var doc1_url: String = ""
-    private dynamic var doc2_url: String = ""
-    private dynamic var doc3_url: String = ""
-    private dynamic var doc4_url: String = ""
-    private dynamic var doc5_url: String = ""
+    private dynamic var doc1Name: String = ""
+    private dynamic var doc2Name: String = ""
+    private dynamic var doc3Name: String = ""
+    private dynamic var doc4Name: String = ""
+    private dynamic var doc5Name: String = ""
+    private dynamic var doc1Url: String = ""
+    private dynamic var doc2Url: String = ""
+    private dynamic var doc3Url: String = ""
+    private dynamic var doc4Url: String = ""
+    private dynamic var doc5Url: String = ""
     private dynamic var registtime: Int64 = 0
     
     
@@ -58,32 +58,32 @@ class Notice: RLMObject {
         
         self.title = json["title"].stringValue
         self.details = json["details"].stringValue
-        self.category_id = json["category_id"].stringValue
-        self.department_id = (json["department_id"].stringValue == "99") ? "0" : json["department_id"].stringValue
-        self.campus_id = json["campus_id"].stringValue
+        self.categoryId = json["category_id"].stringValue
+        self.departmentId = (json["department_id"].stringValue == "99") ? "0" : json["department_id"].stringValue
+        self.campusId = json["campus_id"].stringValue
         self.date = json["date"].int64Value
-        self.period_time = json["period_time"].stringValue
+        self.periodTime = json["period_time"].stringValue
         
         self.grade = json["grade"].stringValue
         self.place = json["place"].stringValue
         self.subject = json["subject"].stringValue
         self.teacher = json["teacher"].stringValue
-        self.before_data = json["before_data"].stringValue
-        self.after_data = json["after_data"].stringValue
-        self.web_url = json["web_url"].stringValue
+        self.beforeData = json["before_data"].stringValue
+        self.afterData = json["after_data"].stringValue
+        self.webUrl = json["web_url"].stringValue
         self.note = json["note"].stringValue
         
-        self.doc1_nane = json["document1_name"].stringValue
-        self.doc2_nane = json["document2_name"].stringValue
-        self.doc3_nane = json["document3_name"].stringValue
-        self.doc4_nane = json["document4_name"].stringValue
-        self.doc5_nane = json["document5_name"].stringValue
+        self.doc1Name = json["document1_name"].stringValue
+        self.doc2Name = json["document2_name"].stringValue
+        self.doc3Name = json["document3_name"].stringValue
+        self.doc4Name = json["document4_name"].stringValue
+        self.doc5Name = json["document5_name"].stringValue
         
-        self.doc1_url = json["document1_url"].stringValue
-        self.doc2_url = json["document2_url"].stringValue
-        self.doc3_url = json["document3_url"].stringValue
-        self.doc4_url = json["document4_url"].stringValue
-        self.doc5_url = json["document5_url"].stringValue
+        self.doc1Url = json["document1_url"].stringValue
+        self.doc2Url = json["document2_url"].stringValue
+        self.doc3Url = json["document3_url"].stringValue
+        self.doc4Url = json["document4_url"].stringValue
+        self.doc5Url = json["document5_url"].stringValue
         
         self.registtime = json["regist_time"].int64Value
 //        super.init()

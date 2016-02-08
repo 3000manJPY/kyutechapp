@@ -23,8 +23,9 @@ enum Router: URLRequestConvertible {
     case CreateUser([String: AnyObject])
     case GetAllNotice()
     case GetNotice(campusId: String)
-    case GetAccess(String)
-    case GetCalendar(String)
+    case GetLecture(campusId: String)
+    case GetAccess(campusId: String)
+    case GetCalendar(campusId: String)
 
     
     var method: Alamofire.Method {
@@ -34,6 +35,8 @@ enum Router: URLRequestConvertible {
         case .GetAllNotice:
             return .GET
         case .GetNotice:
+            return .GET
+        case .GetLecture:
             return .GET
         case .GetAccess:
             return .GET
@@ -47,13 +50,15 @@ enum Router: URLRequestConvertible {
         case .CreateUser:
             return "/users"
         case .GetAllNotice():
-            return "/notices.json"
+            return "/notices"
         case .GetNotice(let campusId):
             return "/notices/\(campusId)"
+        case .GetLecture(let campusId):
+            return "/lectures/\(campusId)"
         case .GetAccess(let campusId):
-            return "/notices/\(campusId)"
+            return "/accesses/\(campusId)"
         case .GetCalendar(let campusId):
-            return "/notices/\(campusId)"
+            return "/accesses/calendar/\(campusId)"
         }
     }
     

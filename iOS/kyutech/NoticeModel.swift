@@ -40,7 +40,7 @@ class NoticeModel: NSObject {
     
     func updateDate(){
         self.reqestNotices(CAMPUS.iizuka) { (notices) -> () in
-            self.notices = []
+            self.notices = notices
         }
     }
 
