@@ -9,6 +9,7 @@
 import UIKit
 //Alamofire
 import Alamofire
+import SHUtil
 
 enum RequestState :UInt {
     case None = 0
@@ -17,9 +18,9 @@ enum RequestState :UInt {
 }
 
 enum Router: URLRequestConvertible {
-    static let baseURLString = "https://kyutechapp.planningdev.com/api/v2"
-//    static var OAuthToken: String?
-    
+    static let host = Config.plist("baseURL")
+    static let version = Config.plist("apiVersion")
+    static let apiBaseURL = "\(Router.host)/api/\(Router.version)"
     case CreateUser([String: AnyObject])
     case GetAllNotice()
     case GetNotice(campusId: String)
@@ -65,7 +66,8 @@ enum Router: URLRequestConvertible {
     // MARK: URLRequestConvertible
     
     var URLRequest: NSMutableURLRequest {
-        let URL = NSURL(string: Router.baseURLString)!
+        let URL = NSURL(string: Router.apiBaseURL)!
+        SHprint(Router.apiBaseURL)
         let mutableURLRequest = NSMutableURLRequest(URL: URL.URLByAppendingPathComponent(path))
         mutableURLRequest.HTTPMethod = method.rawValue
     

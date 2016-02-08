@@ -45,7 +45,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="no contents" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IVD-9b-Yb6">
                                                     <rect key="frame" x="86" y="8" width="484" height="64"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -80,15 +80,23 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="v29-C2-Wvt"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="noticeTableView" destination="D3b-Vi-0m5" id="8iM-VR-DVw"/>
                         <outlet property="shContentView" destination="sEC-E5-2L9" id="ZKA-Vc-Pio"/>
+                        <segue destination="8sX-pU-XFL" kind="show" identifier="detail" id="Ox4-Wm-aFZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bqu-GQ-c6e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1390" y="454"/>
+        </scene>
+        <!--NoticeDetail-->
+        <scene sceneID="SH8-12-ixf">
+            <objects>
+                <viewControllerPlaceholder storyboardName="NoticeDetail" id="8sX-pU-XFL" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dgf-Kc-3jD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1883.5" y="459"/>
         </scene>
         <!--Root Notice View Controller-->
         <scene sceneID="SV7-ut-Tmf">
@@ -99,10 +107,11 @@
                         <viewControllerLayoutGuide type="bottom" id="gz7-Yb-ASr"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Zny-BV-FAH">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <tabBarItem key="tabBarItem" title="" image="safari-button" id="A1t-09-hGs"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>

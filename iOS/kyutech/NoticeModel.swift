@@ -39,12 +39,12 @@ class NoticeModel: NSObject {
     }
     
     func updateDate(){
-        self.reqestNotices(CAMPUS.iizuka) { (notices) -> () in
+        self.reqestNotices(CAMPUS.iizuka.val) { (notices) -> () in
             self.notices = notices
         }
     }
 
-    private func reqestNotices(campus: CAMPUS, completion: ([Notice]) -> ()){
+    private func reqestNotices(campus: Int, completion: ([Notice]) -> ()){
         if self.requestState == .Requesting { return }
 
 //        Alamofire.request(Router.GetNotice(campusId: campus.to_s())).responseSwiftyJSON({(request,response,jsonData,error) in
