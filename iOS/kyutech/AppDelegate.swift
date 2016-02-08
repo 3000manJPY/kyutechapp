@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import Fabric
+import Crashlytics
+import SHUtil
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,7 +20,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        Fabric.with([Crashlytics.self])
+        // TODO: Move this to where you establish a user session
+//        self.logUser()
+        self.realmMigration()
         return true
+    }
+    
+    func realmMigration(){
+        let config = Realm.Configuration(
+            schemaVersion: 3,
+            migrationBlock: { migration, oldSchemaVersion in
+                if (oldSchemaVersion < 3) {}
+        })
+        Realm.Configuration.defaultConfiguration = config
+    }
+    
+    func logUser() {
+        // TODO: Use the current user's information
+        Crashlytics.sharedInstance().setUserEmail("user@fabric.io")
+        Crashlytics.sharedInstance().setUserIdentifier("12345")
+        Crashlytics.sharedInstance().setUserName("Test User")
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -42,5 +67,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        if url.scheme == "kyutechapp" {
+            guard let host = url.host else { return false }
+//            guard let query = url.query else { return false }
+            switch host {
+            case "notice" :
+                let dict = url.parseGetArgments()
+                print(dict)
+//                NSNotificationCenter.defaultCenter().postNotificationName(Config.OPEN_NOTICE, object: nil, userInfo: dict)
+                break
+            case "lectures" :
+                print(url)
+                break
+                
+            case "access" :
+                break
+                
+            case "etc" :
+                
+                break
+            default: break
+            }
+            
+            return true
+        }
+        return false
+    }
 }
 

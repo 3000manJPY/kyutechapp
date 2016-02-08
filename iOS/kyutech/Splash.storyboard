@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JM6-hS-o75">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Splash View Controller-->
+        <scene sceneID="Mup-NH-AAW">
+            <objects>
+                <viewController id="JM6-hS-o75" customClass="SplashViewController" customModule="dev_kyutech" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2i7-Q1-d79"/>
+                        <viewControllerLayoutGuide type="bottom" id="La4-Nl-GPA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tU5-mK-uSj">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="2015-08-23 14.48.33 copy" translatesAutoresizingMaskIntoConstraints="NO" id="wtT-gs-1bT">
+                                <rect key="frame" x="-16" y="-16" width="632" height="632"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rectangle 1a" translatesAutoresizingMaskIntoConstraints="NO" id="jTY-SH-bln">
+                                <rect key="frame" x="-16" y="-16" width="632" height="632"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchIcon" translatesAutoresizingMaskIntoConstraints="NO" id="p2b-Ul-5w4">
+                                <rect key="frame" x="227" y="227" width="147" height="147"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="147" id="mQf-eZ-wiE"/>
+                                    <constraint firstAttribute="width" constant="147" id="uY6-Pc-6C8"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="by Planning and Deve" translatesAutoresizingMaskIntoConstraints="NO" id="bN7-sM-eNe">
+                                <rect key="frame" x="184" y="421" width="231" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="NYG-1N-zcW"/>
+                                    <constraint firstAttribute="width" constant="231" id="unq-g1-w81"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.36078431370000003" blue="0.55294117649999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="wtT-gs-1bT" secondAttribute="trailing" constant="-36" id="6Ky-Ov-TU6"/>
+                            <constraint firstItem="wtT-gs-1bT" firstAttribute="top" secondItem="tU5-mK-uSj" secondAttribute="topMargin" constant="-16" id="BGY-MF-mbY"/>
+                            <constraint firstItem="jTY-SH-bln" firstAttribute="leading" secondItem="tU5-mK-uSj" secondAttribute="leadingMargin" constant="-36" id="Dlz-RB-ite"/>
+                            <constraint firstItem="bN7-sM-eNe" firstAttribute="top" secondItem="p2b-Ul-5w4" secondAttribute="bottom" constant="47" id="E7L-wl-RtA"/>
+                            <constraint firstItem="jTY-SH-bln" firstAttribute="top" secondItem="tU5-mK-uSj" secondAttribute="topMargin" constant="-16" id="Iif-Sh-nLr"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="jTY-SH-bln" secondAttribute="bottom" constant="-16" id="LqB-D8-fiE"/>
+                            <constraint firstItem="p2b-Ul-5w4" firstAttribute="centerY" secondItem="tU5-mK-uSj" secondAttribute="centerY" id="NyE-Rh-T7R"/>
+                            <constraint firstItem="wtT-gs-1bT" firstAttribute="leading" secondItem="tU5-mK-uSj" secondAttribute="leadingMargin" constant="-36" id="T61-cb-FtC"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="wtT-gs-1bT" secondAttribute="bottom" constant="-16" id="XvM-Yl-1oW"/>
+                            <constraint firstItem="p2b-Ul-5w4" firstAttribute="centerX" secondItem="tU5-mK-uSj" secondAttribute="centerX" id="biB-kw-iku"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="jTY-SH-bln" secondAttribute="trailing" constant="-36" id="bpP-AW-l9W"/>
+                            <constraint firstItem="bN7-sM-eNe" firstAttribute="centerX" secondItem="tU5-mK-uSj" secondAttribute="centerX" id="tHS-F4-e7B"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backImageView" destination="wtT-gs-1bT" id="DE8-fX-NAd"/>
+                        <outlet property="logoStringImageView" destination="bN7-sM-eNe" id="5U2-ej-4jq"/>
+                        <outlet property="mainLogoImageView" destination="p2b-Ul-5w4" id="Qkj-qu-Pxo"/>
+                        <segue destination="KC8-4a-dat" kind="presentation" identifier="open" modalTransitionStyle="crossDissolve" id="SSg-2d-zbS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xum-cT-IES" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="463" y="1801"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="gp6-sY-AqH">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="KC8-4a-dat" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7od-X3-XCf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1032.5" y="1801"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="2015-08-23 14.48.33 copy" width="1576" height="2088"/>
+        <image name="Rectangle 1a" width="1576" height="2088"/>
+        <image name="by Planning and Deve" width="876" height="64"/>
+        <image name="launchIcon" width="259" height="259"/>
+    </resources>
+</document>
