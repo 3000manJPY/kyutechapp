@@ -6,7 +6,17 @@
 //  Copyright © 2016 shogo okamuro. All rights reserved.
 //
 
+import UIKit
+
 struct Config {
+    
+    
+    #if DEVELOP
+    static let plistPath = "dev-api"
+    #else
+    static  let plistPath = "api"
+    #endif
+    
     static let maxConnections = 10
     
     struct notification {
@@ -17,6 +27,17 @@ struct Config {
     struct twitter {
         static let secret = "9887"
         static let key = "9723"
+    }
+    
+    
+    static func plist(property:String)->String{
+        let path = NSBundle.mainBundle().pathForResource(plistPath, ofType: "plist")
+        let dict = NSDictionary(contentsOfFile: path!)
+        if let string = dict?.valueForKey(property) as? String{
+            return string
+        }
+        
+        return ""
     }
 }
 

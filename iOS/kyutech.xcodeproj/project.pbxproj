@@ -47,6 +47,8 @@
 		2A4A6C101C66557600B4BD6F /* Kyutech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C0E1C66557600B4BD6F /* Kyutech.swift */; };
 		2A4A6C121C66570700B4BD6F /* Alamofire+SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C111C66570700B4BD6F /* Alamofire+SwiftyJSON.swift */; };
 		2A4A6C131C66570700B4BD6F /* Alamofire+SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C111C66570700B4BD6F /* Alamofire+SwiftyJSON.swift */; };
+		2A7A7C441C69360D00BEE966 /* dev-api.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A7A7C431C69360D00BEE966 /* dev-api.plist */; };
+		2A7A7C461C69361A00BEE966 /* api.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A7A7C451C69361A00BEE966 /* api.plist */; };
 		2A9A95531C5CBB84007BDA52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9A95521C5CBB84007BDA52 /* AppDelegate.swift */; };
 		2A9A95581C5CBB84007BDA52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A95561C5CBB84007BDA52 /* Main.storyboard */; };
 		2A9A955A1C5CBB84007BDA52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A95591C5CBB84007BDA52 /* Assets.xcassets */; };
@@ -118,6 +120,8 @@
 		2A4A6C0B1C663F4C00B4BD6F /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		2A4A6C0E1C66557600B4BD6F /* Kyutech.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Kyutech.swift; sourceTree = "<group>"; };
 		2A4A6C111C66570700B4BD6F /* Alamofire+SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Alamofire+SwiftyJSON.swift"; sourceTree = "<group>"; };
+		2A7A7C431C69360D00BEE966 /* dev-api.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "dev-api.plist"; sourceTree = "<group>"; };
+		2A7A7C451C69361A00BEE966 /* api.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = api.plist; sourceTree = "<group>"; };
 		2A9A954F1C5CBB84007BDA52 /* kyutech.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kyutech.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A9A95521C5CBB84007BDA52 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2A9A95571C5CBB84007BDA52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -423,6 +427,7 @@
 			isa = PBXGroup;
 			children = (
 				2A9A955E1C5CBB84007BDA52 /* Info.plist */,
+				2A7A7C451C69361A00BEE966 /* api.plist */,
 			);
 			name = puroduction;
 			sourceTree = "<group>";
@@ -431,6 +436,7 @@
 			isa = PBXGroup;
 			children = (
 				2A9A958C1C5CBE3D007BDA52 /* dev.plist */,
+				2A7A7C431C69360D00BEE966 /* dev-api.plist */,
 			);
 			name = dev;
 			sourceTree = "<group>";
@@ -580,6 +586,7 @@
 			files = (
 				2A4A6BE41C64CEDA00B4BD6F /* Access.storyboard in Resources */,
 				2A4A6BF41C64ED2600B4BD6F /* NoticeDetail.storyboard in Resources */,
+				2A7A7C461C69361A00BEE966 /* api.plist in Resources */,
 				2A9A955D1C5CBB84007BDA52 /* LaunchScreen.storyboard in Resources */,
 				2A4A6BE11C64CED200B4BD6F /* Notice.storyboard in Resources */,
 				2A9A955A1C5CBB84007BDA52 /* Assets.xcassets in Resources */,
@@ -615,6 +622,7 @@
 				2A4A6BE21C64CED200B4BD6F /* Notice.storyboard in Resources */,
 				2A9A95941C5CBE86007BDA52 /* Assets.xcassets in Resources */,
 				2A9A95951C5CBE86007BDA52 /* dev.plist in Resources */,
+				2A7A7C441C69360D00BEE966 /* dev-api.plist in Resources */,
 				2A9A95961C5CBE86007BDA52 /* Main.storyboard in Resources */,
 				2A4A6BE81C64CEE200B4BD6F /* Setting.storyboard in Resources */,
 				2A4A6BDF1C64CEC600B4BD6F /* Lecture.storyboard in Resources */,
@@ -964,6 +972,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = kyutech/dev.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-DDEVELOP\" \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.planningdev.kyutech;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "kyutech/dev-kyutech-Bridging-Header.h";

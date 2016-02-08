@@ -112,14 +112,6 @@ class NoticeDetailViewController: UIViewController, UITableViewDataSource, UITab
         }
     }
     
-    //    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    //            let widthOfScreen = UIScreen.mainScreen().bounds.width
-    //            return widthOfScreen / 3
-    //    }
-    //    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    //        return 50
-    //    }
-    
     // セクションヘッダのビュー取得
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView(frame: CGRectMake(0, 0, self.view.bounds.size.width , 22))

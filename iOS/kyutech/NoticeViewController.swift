@@ -161,6 +161,7 @@ class NoticeViewController: UIViewController {
 }
 
 
+
 extension NoticeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.noticeArray.count
