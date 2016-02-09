@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2A9A958E1C5CBE86007BDA52"
-               BuildableName = "dev-kyutech.app"
-               BlueprintName = "dev-kyutech"
+               BlueprintIdentifier = "2ADA7D601C6975730054A771"
+               BuildableName = "kyutech-dev.app"
+               BlueprintName = "kyutech-dev"
                ReferencedContainer = "container:kyutech.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2A9A958E1C5CBE86007BDA52"
-            BuildableName = "dev-kyutech.app"
-            BlueprintName = "dev-kyutech"
+            BlueprintIdentifier = "2ADA7D601C6975730054A771"
+            BuildableName = "kyutech-dev.app"
+            BlueprintName = "kyutech-dev"
             ReferencedContainer = "container:kyutech.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -55,9 +55,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2A9A958E1C5CBE86007BDA52"
-            BuildableName = "dev-kyutech.app"
-            BlueprintName = "dev-kyutech"
+            BlueprintIdentifier = "2ADA7D601C6975730054A771"
+            BuildableName = "kyutech-dev.app"
+            BlueprintName = "kyutech-dev"
             ReferencedContainer = "container:kyutech.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -74,9 +74,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2A9A958E1C5CBE86007BDA52"
-            BuildableName = "dev-kyutech.app"
-            BlueprintName = "dev-kyutech"
+            BlueprintIdentifier = "2ADA7D601C6975730054A771"
+            BuildableName = "kyutech-dev.app"
+            BlueprintName = "kyutech-dev"
             ReferencedContainer = "container:kyutech.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

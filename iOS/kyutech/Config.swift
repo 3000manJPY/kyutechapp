@@ -31,7 +31,7 @@ struct Config {
     
     
     static func plist(property:String)->String{
-        let path = NSBundle.mainBundle().pathForResource(plistPath, ofType: "plist")
+        let path = NSBundle.mainBundle().pathForResource(Config.plistPath, ofType: "plist")
         let dict = NSDictionary(contentsOfFile: path!)
         if let string = dict?.valueForKey(property) as? String{
             return string

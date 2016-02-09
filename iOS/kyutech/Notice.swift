@@ -82,8 +82,8 @@ class Notice: RLMObject {
         var array :[[String:String]] = [[:]]
         if self.title       != "" { array.append(["お知らせ":self.title])}
         if self.details     != "" { array.append(["詳細": self.details ])}
-        if let category     = CategoryModel.getCategoryWithId(self.categoryId){ array.append(["カテゴリー": category.name ])}
-        if let dep          = CategoryModel.getDepartmentWithId(self.departmentId){ array.append(["学部・大学院": dep.name ])}
+        if let category     = MenuModel.getCategoryWithId(self.categoryId){ array.append(["カテゴリー": category.name ])}
+        if let dep          = MenuModel.getDepartmentWithId(self.departmentId){ array.append(["学部・大学院": dep.name ])}
         array.append(["キャンパス": CAMPUS.geyNameById(self.campusId) ?? "共通"])
         if self.date > 0 { array.append(["日付": UNIXTime.convertStringForInt64(self.date, format: "yyyy年MM月dd日") ])}
         if self.periodTime  != "" { array.append(["時間": self.periodTime ])}

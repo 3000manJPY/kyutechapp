@@ -22,32 +22,27 @@ class NoticeDetailViewController: UIViewController {
     @IBOutlet weak var tableConstY      : NSLayoutConstraint!
     @IBOutlet weak var customNaviBar    : UIView!
     var notice: Notice?
-    @IBOutlet weak var detailTableView  : UITableView!
+    @IBOutlet weak var detailTableView: NoticeDetailView!
+    
     var propatyList = [String:String]()
     var headerTitle                     : [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setNavibar()
-        self.settingTableView()
         self.setPropatyList()
+        self.title = self.propatyList["カテゴリー"]
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.detailTableView.reloadData()
     }
     
     func setNavibar(){
         if let _ = self.navigationController {
             self.customNaviBar.hidden = true
-            self.tableConstY.constant = -self.customNaviBar.bounds.height
+//            self.tableConstY.constant = -self.customNaviBar.bounds.height
         }else{
             self.customNaviBar.hidden = false
         }
-    }
-    
-    func settingTableView(){
-        self.detailTableView.estimatedRowHeight = 90
-        self.detailTableView.rowHeight = UITableViewAutomaticDimension
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
-        self.title = self.propatyList["カテゴリー"]
-        self.detailTableView.reloadData()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -72,7 +67,7 @@ class NoticeDetailViewController: UIViewController {
 
 extension NoticeDetailViewController: UITableViewDataSource, UITableViewDelegate, TTTAttributedLabelDelegate {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) //as? UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
         let key = String(self.headerTitle[indexPath.section])
         let label = cell.viewWithTag(100) as? TTTAttributedLabel
         label?.enabledTextCheckingTypes = NSTextCheckingType.Link.rawValue
@@ -95,13 +90,7 @@ extension NoticeDetailViewController: UITableViewDataSource, UITableViewDelegate
     
     // セクションヘッダのビュー取得
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView(frame: CGRectMake(0, 0, self.view.bounds.size.width , 22))
-        headerView.backgroundColor = section % 2 == 0 ? UIColor(colorLiteralRed: 0, green: 138.0 / 255.0 , blue: 215.0 / 255.0 , alpha: 1.0) : UIColor(colorLiteralRed: 107.0 / 255.0 , green: 179.0 / 255.0 , blue: 220.0 / 255.0 , alpha: 1.0)
-        let header = UILabel(frame: CGRectMake(5, 0, self.view.bounds.size.width, 27))
-        header.backgroundColor = UIColor.whiteColor()
-        header.text = String(self.headerTitle[section])
-        headerView.addSubview(header)
-        return headerView
+        return self.detailTableView.createHeadView(section, title: String(self.headerTitle[section]))
     }
     
     // urlリンクをタップされたとき
