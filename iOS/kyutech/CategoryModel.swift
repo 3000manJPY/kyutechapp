@@ -12,8 +12,10 @@ import SHUtil
 
 class CategoryModel: NSObject {
     class var sharedInstance: CategoryModel { struct Singleton { static let instance: CategoryModel = CategoryModel()}; return Singleton.instance }
-    dynamic var categorys: [Category] = []
-    dynamic var departments: [Department] = []
+    dynamic var categorys   : [Category]    = []
+    dynamic var departments : [Department]  = []
+    dynamic var sortings    : [String]      = []
+    
     private override init() {
         super.init()
         self.setCategories(CAMPUS.iizuka.val)

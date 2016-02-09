@@ -10,20 +10,20 @@ import UIKit
 import SHUtil
 
 class SplashViewController: UIViewController {
-    @IBOutlet weak var backImageView: UIImageView!
-    @IBOutlet weak var mainLogoImageView: UIImageView!
-    @IBOutlet weak var logoStringImageView: UIImageView!
-    var noticeOpen = false
+    @IBOutlet weak var backImageView        : UIImageView!
+    @IBOutlet weak var mainLogoImageView    : UIImageView!
+    @IBOutlet weak var logoStringImageView  : UIImageView!
+    var noticeOpen  = false
     var lectureOpen = false
-    var accessOpen = false
+    var accessOpen  = false
     var notif: [NSObject:AnyObject] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         motionEffect()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "openNotice:", name: Notif.notice.open, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "openNotice:",  name: Notif.notice.open, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "openLecture:", name: Notif.lecture.open, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "openAccess:", name: Notif.access.open, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "openAccess:",  name: Notif.access.open, object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -37,9 +37,9 @@ class SplashViewController: UIViewController {
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        self.backImageView = nil
-        self.mainLogoImageView = nil
-        self.logoStringImageView = nil
+        self.backImageView          = nil
+        self.mainLogoImageView      = nil
+        self.logoStringImageView    = nil
         self.sendNotif()
     }
     
@@ -58,12 +58,12 @@ class SplashViewController: UIViewController {
             delay: 1.3,
             options: UIViewAnimationOptions.CurveEaseOut,
             animations: { () in
-                self.mainLogoImageView.transform = CGAffineTransformMakeScale(2.0, 2.0)
-                self.mainLogoImageView.alpha = 0
-                self.logoStringImageView.alpha = 0
+                self.mainLogoImageView.transform    = CGAffineTransformMakeScale(2.0, 2.0)
+                self.mainLogoImageView.alpha        = 0
+                self.logoStringImageView.alpha      = 0
             }, completion: { (Bool) in
-                self.mainLogoImageView.hidden = true
-                self.logoStringImageView.hidden = true
+                self.mainLogoImageView.hidden       = true
+                self.logoStringImageView.hidden     = true
         })
     }
     func motionEffect(){
@@ -84,20 +84,20 @@ class SplashViewController: UIViewController {
     func openNotice(notification: NSNotification) {
         if let info = notification.userInfo {
             self.noticeOpen = true
-            self.notif = info
+            self.notif      = info
         }
     }
     
     func openLecture(notification: NSNotification) {
         if let info = notification.userInfo {
-            self.lectureOpen = true
-            self.notif = info
+            self.lectureOpen    = true
+            self.notif          = info
         }
     }
     func openAccess(notification: NSNotification) {
         if let info = notification.userInfo {
             self.accessOpen = true
-            self.notif = info
+            self.notif      = info
         }
     }
     func sendNotif() {
@@ -108,7 +108,7 @@ class SplashViewController: UIViewController {
             
             self.lectureOpen = false
         }else if self.accessOpen {
-            
+
             self.accessOpen = false
         }
         self.notif = [:]

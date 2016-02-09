@@ -13,7 +13,7 @@ import SHUtil
 
 class NoticeModel: NSObject {
     class var sharedInstance: NoticeModel { struct Singleton { static let instance: NoticeModel = NoticeModel() }; return Singleton.instance }
-    dynamic var notices: [Notice] = []
+    dynamic var notices     : [Notice] = []
     private var requestState :RequestState = .None {
         willSet {
             switch  newValue {

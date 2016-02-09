@@ -9,15 +9,15 @@
 import UIKit
 
 enum SECTION: Int {
-    case order = 0
-    case category = 1
+    case order      = 0
+    case category   = 1
     case department = 2
     
     func toS() -> String {
         switch self{
-        case .order : return "\(SECTION.order.rawValue)"
-        case .category : return "\(SECTION.category.rawValue)"
-        case .department : return "\(SECTION.department.rawValue)"
+        case .order         : return "\(SECTION.order.rawValue)"
+        case .category      : return "\(SECTION.category.rawValue)"
+        case .department    : return "\(SECTION.department.rawValue)"
         }
     }
 }
@@ -29,15 +29,15 @@ protocol CategoryDelegate{
 class MenuTableViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    var categories : [Category] = []
-    var departments : [Department] = []
-    var sortings: [String] = []
+    var categories  : [Category]    = []
+    var departments : [Department]  = []
+    var sortings    : [String]      = []
     
     var selectedCells:[String:Bool]=[String:Bool]()
     
-    var select_image = UIImage(named: "category")
-    var noselect_image = UIImage(named: "no_select")
-    var nil_image = UIImage(named: "nil_image")
+    var select_image    = UIImage(named: "category")
+    var noselect_image  = UIImage(named: "no_select")
+    var nil_image       = UIImage(named: "nil_image")
     
     var delegate: CategoryDelegate?
     
@@ -64,16 +64,16 @@ class MenuTableViewController: UIViewController {
     
     //配列をセットする
     func setCategories(){
-        self.categories = CategoryModel.sharedInstance.categorys
-        self.departments = CategoryModel.sharedInstance.departments
-        self.sortings = ["新着順","日付が近い順"]
+        self.categories     = CategoryModel.sharedInstance.categorys
+        self.departments    = CategoryModel.sharedInstance.departments
+        self.sortings       = ["新着順","日付が近い順"]
     }
     
     //TableViewの設定をする
     func settingTableView(){
         let edgeInsets = UIEdgeInsetsMake(0, 0, 50, 0)
-        self.tableView.contentInset = edgeInsets
-        self.tableView.scrollIndicatorInsets = edgeInsets
+        self.tableView.contentInset             = edgeInsets
+        self.tableView.scrollIndicatorInsets    = edgeInsets
     }
    
     //初期でチェックするセルを設定

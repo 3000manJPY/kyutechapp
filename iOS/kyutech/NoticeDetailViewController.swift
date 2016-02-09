@@ -19,12 +19,12 @@ import TTTAttributedLabel
 
 class NoticeDetailViewController: UIViewController {
     
-    @IBOutlet weak var tableConstY: NSLayoutConstraint!
-    @IBOutlet weak var customNaviBar: UIView!
+    @IBOutlet weak var tableConstY      : NSLayoutConstraint!
+    @IBOutlet weak var customNaviBar    : UIView!
     var notice: Notice?
-    @IBOutlet weak var detailTableView: UITableView!
+    @IBOutlet weak var detailTableView  : UITableView!
     var propatyList = [String:String]()
-    var headerTitle: [String] = []
+    var headerTitle                     : [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()

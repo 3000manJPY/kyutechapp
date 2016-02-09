@@ -15,11 +15,10 @@ class NoticeViewController: UIViewController {
     
     @IBOutlet var shContentView: SHContentTableView!
     @IBOutlet var noticeTableView: UITableView!
-    var noticeArray: [Notice] = []
-    var checkedArray: [Int] = []
-    
-    var categories: [Category] = []
-    var departments: [Department] = []
+    var noticeArray : [Notice]      = []
+    var checkedArray: [Int]         = []
+    var categories  : [Category]    = []
+    var departments : [Department]  = []
     
     var detailVC: NoticeDetailViewController?
     
