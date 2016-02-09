@@ -11,7 +11,7 @@ import REFrostedViewController
 
 class RootNoticeViewController: REFrostedViewController {
     override func awakeFromNib() {
-        self.contentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("NoticeNavigationController")
-        self.menuViewController = self.storyboard?.instantiateViewControllerWithIdentifier("MenuTableViewController")
+        self.contentViewController  = self.storyboard?.instantiateViewControllerWithIdentifier("NoticeNavigationController")
+        self.menuViewController     = self.storyboard?.instantiateViewControllerWithIdentifier("MenuTableViewController")
     }
 }

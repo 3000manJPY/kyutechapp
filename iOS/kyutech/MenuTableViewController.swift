@@ -22,6 +22,9 @@ enum SECTION: Int {
     }
 }
 
+protocol CategoryDelegate{
+    func checked(dict: [String:Bool])
+}
 
 class MenuTableViewController: UIViewController {
     
@@ -35,6 +38,8 @@ class MenuTableViewController: UIViewController {
     var select_image = UIImage(named: "category")
     var noselect_image = UIImage(named: "no_select")
     var nil_image = UIImage(named: "nil_image")
+    
+    var delegate: CategoryDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -199,6 +204,8 @@ extension MenuTableViewController: UITableViewDelegate, UITableViewDataSource {
         self.selectedCells["\(indexPath.section)-\(0)"] = false
         if let chk = self.selectedCells["\(indexPath.section)-\(indexPath.row)"] { self.selectedCells["\(indexPath.section)-\(indexPath.row)"] = !chk  }
         else                                                                     { self.selectedCells["\(indexPath.section)-\(indexPath.row)"] = false }
+        
+        self.delegate?.checked(self.selectedCells)
         self.tableView.reloadData()
     }
 }

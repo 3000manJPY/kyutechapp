@@ -12,14 +12,7 @@ import SHUtil
 
 
 class NoticeModel: NSObject {
-    class var sharedInstance: NoticeModel {
-        struct Singleton {
-            static let instance: NoticeModel = NoticeModel()
-        }
-        return Singleton.instance
-    }
-
-    
+    class var sharedInstance: NoticeModel { struct Singleton { static let instance: NoticeModel = NoticeModel() }; return Singleton.instance }
     dynamic var notices: [Notice] = []
     private var requestState :RequestState = .None {
         willSet {
@@ -35,7 +28,6 @@ class NoticeModel: NSObject {
     private override init() {
         super.init()
         self.updateDate()
-//        self.hoge = "asdf"
     }
     
     func updateDate(){
@@ -46,17 +38,12 @@ class NoticeModel: NSObject {
 
     private func reqestNotices(campus: Int, completion: ([Notice]) -> ()){
         if self.requestState == .Requesting { return }
-
-//        Alamofire.request(Router.GetNotice(campusId: campus.to_s())).responseSwiftyJSON({(request,response,jsonData,error) in
         Alamofire.request(Router.GetAllNotice()).responseSwiftyJSON({(request,response,jsonData,error) in
-//            SHprint(request)
-//            SHprint(jsonData)
             guard let res = response else {
                 SHprint("error! no response")
                 self.requestState = .Error
                 return
             }
-            
             if res.statusCode < 200 && res.statusCode >= 300 {
                 SHprint("error!! status => \(res.statusCode)")
                 self.requestState = .Error
@@ -71,8 +58,5 @@ class NoticeModel: NSObject {
             self.requestState = .None
             completion(arr)
         })
-        
-    
     }
-    
 }

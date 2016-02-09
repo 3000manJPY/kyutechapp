@@ -7,7 +7,6 @@
 //
 
 import UIKit
-//Alamofire
 import Alamofire
 import SHUtil
 

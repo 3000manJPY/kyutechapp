@@ -26,14 +26,6 @@ struct CAMPUS {
         static let val = 2
     }
     
-//    case iizuka = 1
-//    case tobata = 0
-//    case wakamatsu = 2
-//    
-//    func name() -> String {
-//        return String(self.rawValue)
-//    }
-//   
     static func geyNameById(val: String) -> String? {
         switch val {
         case "1": return CAMPUS.iizuka.name

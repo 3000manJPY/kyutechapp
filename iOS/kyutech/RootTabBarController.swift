@@ -11,25 +11,20 @@ import UIKit
 class RootTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.appearance()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-//        self.iconInsets()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
         self.iconInsets()
     }
     
     func appearance(){
         UITabBar.appearance().barTintColor = UIColor.blackColor()
-
-        
     }
     
     func iconInsets(){
