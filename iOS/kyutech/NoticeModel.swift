@@ -14,7 +14,8 @@ import SHUtil
 class NoticeModel: NSObject {
     class var sharedInstance: NoticeModel { struct Singleton { static let instance: NoticeModel = NoticeModel() }; return Singleton.instance }
     dynamic var notices     : [Notice] = []
-    var sort: Sort?
+    var tmpArray : [Notice] = []
+    var original : [Notice] = []
     private var requestState :RequestState = .None {
         willSet {
             switch  newValue {
@@ -33,13 +34,14 @@ class NoticeModel: NSObject {
     
     func updateDate(){
         self.reqestNotices(CAMPUS.iizuka.val) { (notices) -> () in
-//            self.tmpArray = notices
-            self.sortData(notices, sort: self.sort)
+            self.notices  = notices
+            self.original = notices
+            MenuModel.sharedInstance.setMenuArray(MenuModel.sharedInstance.menus)
         }
     }
 
-    func sortData(notices: [Notice]?, sort: Sort?){
-        let arr = notices ?? self.notices
+    func sortData(sort: Sort?){
+        let arr = self.tmpArray
         let num = sort?.id ?? 0
         switch num {
         case 0: //新着順
@@ -55,6 +57,27 @@ class NoticeModel: NSObject {
         default: break
             
         }
+    }
+    
+    func filterCategory(sort: [Sort]){
+        for cate in sort {
+            if cate.check == true {
+                if cate.id == 100 {
+                    self.tmpArray = self.original; return }
+                self.tmpArray += self.original.filter{ $0.categoryId == String(cate.id)}
+            }
+        }
+    }
+    
+    func filterDetartment(sort: [Sort]){
+        var arr: [Notice] = []
+        for depa in sort {
+            if depa.check == true {
+                if depa.id == 0 { return }
+                arr += self.tmpArray.filter{ $0.departmentId == String(depa.id) }
+            }
+        }
+        self.tmpArray = arr
     }
     
     private func reqestNotices(campus: Int, completion: ([Notice]) -> ()){

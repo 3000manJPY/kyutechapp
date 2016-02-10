@@ -17,7 +17,6 @@ class MenuTableView: UITableView {
     var categories  : [Sort] = []
     var departments : [Sort] = []
     var orders      : [Sort] = []
-   
     
     override convenience init(frame: CGRect, style: UITableViewStyle) {
         self.init()
