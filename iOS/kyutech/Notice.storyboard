@@ -8,16 +8,16 @@
         <!--Notice View Controller-->
         <scene sceneID="MOt-KV-g1k">
             <objects>
-                <viewController id="i1O-i3-XUX" customClass="NoticeViewController" customModule="dev_kyutech" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="i1O-i3-XUX" customClass="NoticeViewController" customModule="kyutech" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FDJ-YT-AXj"/>
                         <viewControllerLayoutGuide type="bottom" id="1iy-AC-ZHV"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="sEC-E5-2L9" customClass="SHContentTableView" customModule="SHUtil">
+                    <view key="view" contentMode="scaleToFill" id="sEC-E5-2L9" customClass="NoticeView" customModule="kyutech" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="D3b-Vi-0m5">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="D3b-Vi-0m5" customClass="NoticeTableView" customModule="kyutech" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -44,7 +44,7 @@
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="no contents" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IVD-9b-Yb6">
                                                     <rect key="frame" x="86" y="8" width="484" height="64"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -67,8 +67,8 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="i1O-i3-XUX" id="8zS-ys-seY"/>
-                                    <outlet property="delegate" destination="i1O-i3-XUX" id="2nv-uM-bHg"/>
+                                    <outlet property="dataSource" destination="i1O-i3-XUX" id="zYu-OD-arD"/>
+                                    <outlet property="delegate" destination="i1O-i3-XUX" id="Y4y-Jv-3IE"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -81,8 +81,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="v29-C2-Wvt"/>
                     <connections>
-                        <outlet property="noticeTableView" destination="D3b-Vi-0m5" id="8iM-VR-DVw"/>
-                        <outlet property="shContentView" destination="sEC-E5-2L9" id="ZKA-Vc-Pio"/>
+                        <outlet property="noticeTableView" destination="D3b-Vi-0m5" id="1ct-80-8jQ"/>
+                        <outlet property="shContentView" destination="sEC-E5-2L9" id="9YI-jB-N4k"/>
                         <segue destination="8sX-pU-XFL" kind="show" identifier="detail" id="Ox4-Wm-aFZ"/>
                     </connections>
                 </viewController>
@@ -101,7 +101,7 @@
         <!--Root Notice View Controller-->
         <scene sceneID="SV7-ut-Tmf">
             <objects>
-                <viewController id="TDf-Gm-DgK" customClass="RootNoticeViewController" customModule="dev_kyutech" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="TDf-Gm-DgK" customClass="RootNoticeViewController" customModule="kyutech" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="F6W-kZ-TsE"/>
                         <viewControllerLayoutGuide type="bottom" id="gz7-Yb-ASr"/>
@@ -119,10 +119,10 @@
             </objects>
             <point key="canvasLocation" x="11" y="454"/>
         </scene>
-        <!--Notice Navigation Controller-->
+        <!--Navigation Controller-->
         <scene sceneID="cMd-3R-KcX">
             <objects>
-                <navigationController storyboardIdentifier="NoticeNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FZq-uT-Hy7" customClass="NoticeNavigationController" customModule="dev_kyutech" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NoticeNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FZq-uT-Hy7" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="huy-0k-iua">
@@ -141,7 +141,7 @@
         <!--Menu Table View Controller-->
         <scene sceneID="cTX-ip-7YE">
             <objects>
-                <viewController storyboardIdentifier="MenuTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Jc9-tg-qJr" customClass="MenuTableViewController" customModule="dev_kyutech" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MenuTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Jc9-tg-qJr" customClass="MenuTableViewController" customModule="kyutech" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mPi-5A-sgZ"/>
                         <viewControllerLayoutGuide type="bottom" id="8uz-IQ-uZy"/>
@@ -150,9 +150,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PjD-im-ebO">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PjD-im-ebO" customClass="MenuTableView" customModule="kyutech" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.79045024671052633" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="S0k-4W-Eux">
                                         <rect key="frame" x="0.0" y="28" width="600" height="44"/>
@@ -213,7 +213,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="tableView" destination="PjD-im-ebO" id="UUO-PV-MfY"/>
+                        <outlet property="menuTableView" destination="PjD-im-ebO" id="pkw-RX-L4l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8EK-6C-2ZR" userLabel="First Responder" sceneMemberID="firstResponder"/>

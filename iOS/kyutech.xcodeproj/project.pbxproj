@@ -8,46 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		2A2C332F1C62AF5F00676BA6 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2C332E1C62AF5F00676BA6 /* SplashViewController.swift */; };
-		2A2C33301C62AF5F00676BA6 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2C332E1C62AF5F00676BA6 /* SplashViewController.swift */; };
 		2A45404A1C67669300B33393 /* SHUtil.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A4540491C67669300B33393 /* SHUtil.framework */; };
 		2A45404C1C6766C900B33393 /* SHUtil.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2A4540491C67669300B33393 /* SHUtil.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2A4540541C67957000B33393 /* NoticeNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4540531C67957000B33393 /* NoticeNavigationController.swift */; };
-		2A4540551C67957000B33393 /* NoticeNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4540531C67957000B33393 /* NoticeNavigationController.swift */; };
 		2A4540571C6797A600B33393 /* RootNoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4540561C6797A600B33393 /* RootNoticeViewController.swift */; };
-		2A4540581C6797A600B33393 /* RootNoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4540561C6797A600B33393 /* RootNoticeViewController.swift */; };
 		2A45405A1C679C2800B33393 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4540591C679C2800B33393 /* MenuTableViewController.swift */; };
-		2A45405B1C679C2800B33393 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4540591C679C2800B33393 /* MenuTableViewController.swift */; };
 		2A45405D1C67A47C00B33393 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A45405C1C67A47C00B33393 /* CategoryModel.swift */; };
-		2A45405E1C67A47C00B33393 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A45405C1C67A47C00B33393 /* CategoryModel.swift */; };
 		2A4A6BDA1C64C4F600B4BD6F /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4A6BD91C64C4F600B4BD6F /* Splash.storyboard */; };
-		2A4A6BDB1C64C4F600B4BD6F /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4A6BD91C64C4F600B4BD6F /* Splash.storyboard */; };
 		2A4A6BDE1C64CEC600B4BD6F /* Lecture.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4A6BDD1C64CEC600B4BD6F /* Lecture.storyboard */; };
-		2A4A6BDF1C64CEC600B4BD6F /* Lecture.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4A6BDD1C64CEC600B4BD6F /* Lecture.storyboard */; };
 		2A4A6BE11C64CED200B4BD6F /* Notice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4A6BE01C64CED200B4BD6F /* Notice.storyboard */; };
-		2A4A6BE21C64CED200B4BD6F /* Notice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4A6BE01C64CED200B4BD6F /* Notice.storyboard */; };
 		2A4A6BE41C64CEDA00B4BD6F /* Access.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4A6BE31C64CEDA00B4BD6F /* Access.storyboard */; };
-		2A4A6BE51C64CEDA00B4BD6F /* Access.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4A6BE31C64CEDA00B4BD6F /* Access.storyboard */; };
 		2A4A6BE71C64CEE200B4BD6F /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4A6BE61C64CEE200B4BD6F /* Setting.storyboard */; };
-		2A4A6BE81C64CEE200B4BD6F /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4A6BE61C64CEE200B4BD6F /* Setting.storyboard */; };
 		2A4A6BEA1C64D7FE00B4BD6F /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6BE91C64D7FE00B4BD6F /* RootTabBarController.swift */; };
-		2A4A6BEB1C64D7FE00B4BD6F /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6BE91C64D7FE00B4BD6F /* RootTabBarController.swift */; };
 		2A4A6BF41C64ED2600B4BD6F /* NoticeDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4A6BF31C64ED2600B4BD6F /* NoticeDetail.storyboard */; };
-		2A4A6BF51C64ED2600B4BD6F /* NoticeDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4A6BF31C64ED2600B4BD6F /* NoticeDetail.storyboard */; };
 		2A4A6BFE1C64F49E00B4BD6F /* NoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6BFD1C64F49E00B4BD6F /* NoticeViewController.swift */; };
-		2A4A6BFF1C64F4A100B4BD6F /* NoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6BFD1C64F49E00B4BD6F /* NoticeViewController.swift */; };
 		2A4A6C021C64F73100B4BD6F /* Notice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C011C64F73100B4BD6F /* Notice.swift */; };
-		2A4A6C031C64F73100B4BD6F /* Notice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C011C64F73100B4BD6F /* Notice.swift */; };
 		2A4A6C051C64F7BF00B4BD6F /* NoticeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C041C64F7BF00B4BD6F /* NoticeDetailViewController.swift */; };
-		2A4A6C061C64F7BF00B4BD6F /* NoticeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C041C64F7BF00B4BD6F /* NoticeDetailViewController.swift */; };
 		2A4A6C091C6623D800B4BD6F /* NoticeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C081C6623D800B4BD6F /* NoticeModel.swift */; };
-		2A4A6C0A1C6623D800B4BD6F /* NoticeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C081C6623D800B4BD6F /* NoticeModel.swift */; };
 		2A4A6C0C1C663F4C00B4BD6F /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C0B1C663F4C00B4BD6F /* APIService.swift */; };
-		2A4A6C0D1C663F4C00B4BD6F /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C0B1C663F4C00B4BD6F /* APIService.swift */; };
 		2A4A6C0F1C66557600B4BD6F /* Kyutech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C0E1C66557600B4BD6F /* Kyutech.swift */; };
-		2A4A6C101C66557600B4BD6F /* Kyutech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C0E1C66557600B4BD6F /* Kyutech.swift */; };
 		2A4A6C121C66570700B4BD6F /* Alamofire+SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C111C66570700B4BD6F /* Alamofire+SwiftyJSON.swift */; };
-		2A4A6C131C66570700B4BD6F /* Alamofire+SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C111C66570700B4BD6F /* Alamofire+SwiftyJSON.swift */; };
-		2A7A7C441C69360D00BEE966 /* dev-api.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A7A7C431C69360D00BEE966 /* dev-api.plist */; };
+		2A5D96A01C6A7D7100E1DF80 /* NoticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D969F1C6A7D7100E1DF80 /* NoticeView.swift */; };
+		2A5D96A11C6A7D7100E1DF80 /* NoticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D969F1C6A7D7100E1DF80 /* NoticeView.swift */; };
+		2A5D96A31C6A8D5900E1DF80 /* NoticeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D96A21C6A8D5900E1DF80 /* NoticeTableView.swift */; };
+		2A5D96A41C6A8D5900E1DF80 /* NoticeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D96A21C6A8D5900E1DF80 /* NoticeTableView.swift */; };
+		2A5D96A61C6A967800E1DF80 /* NoticeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D96A51C6A967800E1DF80 /* NoticeDetailView.swift */; };
+		2A5D96A71C6A967800E1DF80 /* NoticeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D96A51C6A967800E1DF80 /* NoticeDetailView.swift */; };
 		2A7A7C461C69361A00BEE966 /* api.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A7A7C451C69361A00BEE966 /* api.plist */; };
 		2A9A95531C5CBB84007BDA52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9A95521C5CBB84007BDA52 /* AppDelegate.swift */; };
 		2A9A95581C5CBB84007BDA52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A95561C5CBB84007BDA52 /* Main.storyboard */; };
@@ -55,14 +41,39 @@
 		2A9A955D1C5CBB84007BDA52 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A955B1C5CBB84007BDA52 /* LaunchScreen.storyboard */; };
 		2A9A95681C5CBB84007BDA52 /* kyutechTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9A95671C5CBB84007BDA52 /* kyutechTests.swift */; };
 		2A9A95731C5CBB84007BDA52 /* kyutechUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9A95721C5CBB84007BDA52 /* kyutechUITests.swift */; };
-		2A9A958D1C5CBE3D007BDA52 /* dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A958C1C5CBE3D007BDA52 /* dev.plist */; };
-		2A9A95901C5CBE86007BDA52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9A95521C5CBB84007BDA52 /* AppDelegate.swift */; };
-		2A9A95931C5CBE86007BDA52 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A955B1C5CBB84007BDA52 /* LaunchScreen.storyboard */; };
-		2A9A95941C5CBE86007BDA52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A95591C5CBB84007BDA52 /* Assets.xcassets */; };
-		2A9A95951C5CBE86007BDA52 /* dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A958C1C5CBE3D007BDA52 /* dev.plist */; };
-		2A9A95961C5CBE86007BDA52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A95561C5CBB84007BDA52 /* Main.storyboard */; };
 		2A9A959F1C5D2421007BDA52 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9A959E1C5D2421007BDA52 /* Config.swift */; };
-		2A9A95A01C5D2421007BDA52 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9A959E1C5D2421007BDA52 /* Config.swift */; };
+		2ADA7D631C6975730054A771 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2C332E1C62AF5F00676BA6 /* SplashViewController.swift */; };
+		2ADA7D641C6975730054A771 /* Kyutech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C0E1C66557600B4BD6F /* Kyutech.swift */; };
+		2ADA7D651C6975730054A771 /* NoticeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C041C64F7BF00B4BD6F /* NoticeDetailViewController.swift */; };
+		2ADA7D661C6975730054A771 /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6BE91C64D7FE00B4BD6F /* RootTabBarController.swift */; };
+		2ADA7D671C6975730054A771 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9A95521C5CBB84007BDA52 /* AppDelegate.swift */; };
+		2ADA7D681C6975730054A771 /* Notice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C011C64F73100B4BD6F /* Notice.swift */; };
+		2ADA7D691C6975730054A771 /* NoticeNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4540531C67957000B33393 /* NoticeNavigationController.swift */; };
+		2ADA7D6A1C6975730054A771 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9A959E1C5D2421007BDA52 /* Config.swift */; };
+		2ADA7D6B1C6975730054A771 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4540591C679C2800B33393 /* MenuTableViewController.swift */; };
+		2ADA7D6C1C6975730054A771 /* NoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6BFD1C64F49E00B4BD6F /* NoticeViewController.swift */; };
+		2ADA7D6D1C6975730054A771 /* Alamofire+SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C111C66570700B4BD6F /* Alamofire+SwiftyJSON.swift */; };
+		2ADA7D6E1C6975730054A771 /* RootNoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4540561C6797A600B33393 /* RootNoticeViewController.swift */; };
+		2ADA7D6F1C6975730054A771 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C0B1C663F4C00B4BD6F /* APIService.swift */; };
+		2ADA7D701C6975730054A771 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A45405C1C67A47C00B33393 /* CategoryModel.swift */; };
+		2ADA7D711C6975730054A771 /* NoticeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C081C6623D800B4BD6F /* NoticeModel.swift */; };
+		2ADA7D731C6975730054A771 /* SHUtil.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A4540491C67669300B33393 /* SHUtil.framework */; };
+		2ADA7D741C6975730054A771 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ECE5AD4EA2C759CE1152BFC /* Pods.framework */; };
+		2ADA7D761C6975730054A771 /* Access.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4A6BE31C64CEDA00B4BD6F /* Access.storyboard */; };
+		2ADA7D771C6975730054A771 /* NoticeDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4A6BF31C64ED2600B4BD6F /* NoticeDetail.storyboard */; };
+		2ADA7D781C6975730054A771 /* api.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A7A7C451C69361A00BEE966 /* api.plist */; };
+		2ADA7D791C6975730054A771 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A955B1C5CBB84007BDA52 /* LaunchScreen.storyboard */; };
+		2ADA7D7A1C6975730054A771 /* Notice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4A6BE01C64CED200B4BD6F /* Notice.storyboard */; };
+		2ADA7D7B1C6975730054A771 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A95591C5CBB84007BDA52 /* Assets.xcassets */; };
+		2ADA7D7D1C6975730054A771 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A95561C5CBB84007BDA52 /* Main.storyboard */; };
+		2ADA7D7E1C6975730054A771 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4A6BE61C64CEE200B4BD6F /* Setting.storyboard */; };
+		2ADA7D7F1C6975730054A771 /* Lecture.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4A6BDD1C64CEC600B4BD6F /* Lecture.storyboard */; };
+		2ADA7D801C6975730054A771 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4A6BD91C64C4F600B4BD6F /* Splash.storyboard */; };
+		2ADA7D851C6975730054A771 /* SHUtil.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2A4540491C67669300B33393 /* SHUtil.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2ADA7D8C1C6977160054A771 /* kyutech-dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2ADA7D8B1C6977160054A771 /* kyutech-dev.plist */; };
+		2ADA7D8D1C697AF10054A771 /* dev-api.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A7A7C431C69360D00BEE966 /* dev-api.plist */; };
+		2ADA7D8F1C6A6BEE0054A771 /* MenuTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA7D8E1C6A6BEE0054A771 /* MenuTableView.swift */; };
+		2ADA7D901C6A6BEE0054A771 /* MenuTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA7D8E1C6A6BEE0054A771 /* MenuTableView.swift */; };
 		CFB0B282FB4A0C06B2B3695F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5ECE5AD4EA2C759CE1152BFC /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +105,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2ADA7D841C6975730054A771 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2ADA7D851C6975730054A771 /* SHUtil.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -120,6 +141,9 @@
 		2A4A6C0B1C663F4C00B4BD6F /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		2A4A6C0E1C66557600B4BD6F /* Kyutech.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Kyutech.swift; sourceTree = "<group>"; };
 		2A4A6C111C66570700B4BD6F /* Alamofire+SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Alamofire+SwiftyJSON.swift"; sourceTree = "<group>"; };
+		2A5D969F1C6A7D7100E1DF80 /* NoticeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticeView.swift; sourceTree = "<group>"; };
+		2A5D96A21C6A8D5900E1DF80 /* NoticeTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticeTableView.swift; sourceTree = "<group>"; };
+		2A5D96A51C6A967800E1DF80 /* NoticeDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticeDetailView.swift; sourceTree = "<group>"; };
 		2A7A7C431C69360D00BEE966 /* dev-api.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "dev-api.plist"; sourceTree = "<group>"; };
 		2A7A7C451C69361A00BEE966 /* api.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = api.plist; sourceTree = "<group>"; };
 		2A9A954F1C5CBB84007BDA52 /* kyutech.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kyutech.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,10 +158,11 @@
 		2A9A956E1C5CBB84007BDA52 /* kyutechUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = kyutechUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A9A95721C5CBB84007BDA52 /* kyutechUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kyutechUITests.swift; sourceTree = "<group>"; };
 		2A9A95741C5CBB84007BDA52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2A9A958C1C5CBE3D007BDA52 /* dev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = dev.plist; sourceTree = "<group>"; };
-		2A9A959A1C5CBE86007BDA52 /* dev-kyutech.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dev-kyutech.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A9A959C1C5D19D0007BDA52 /* kyutech.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = kyutech.entitlements; sourceTree = "<group>"; };
 		2A9A959E1C5D2421007BDA52 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		2ADA7D891C6975730054A771 /* kyutech-dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kyutech-dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2ADA7D8B1C6977160054A771 /* kyutech-dev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "kyutech-dev.plist"; sourceTree = "<group>"; };
+		2ADA7D8E1C6A6BEE0054A771 /* MenuTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableView.swift; sourceTree = "<group>"; };
 		54F0A4613E3F6BCD606724CB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		5ECE5AD4EA2C759CE1152BFC /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1F64317C9D0F1507FCB9A4E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -167,10 +192,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2A9A95911C5CBE86007BDA52 /* Frameworks */ = {
+		2ADA7D721C6975730054A771 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2ADA7D731C6975730054A771 /* SHUtil.framework in Frameworks */,
+				2ADA7D741C6975730054A771 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,7 +318,7 @@
 				2A9A954F1C5CBB84007BDA52 /* kyutech.app */,
 				2A9A95631C5CBB84007BDA52 /* kyutechTests.xctest */,
 				2A9A956E1C5CBB84007BDA52 /* kyutechUITests.xctest */,
-				2A9A959A1C5CBE86007BDA52 /* dev-kyutech.app */,
+				2ADA7D891C6975730054A771 /* kyutech-dev.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -361,6 +388,10 @@
 		2A9A95831C5CBCA5007BDA52 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2ADA7D8E1C6A6BEE0054A771 /* MenuTableView.swift */,
+				2A5D969F1C6A7D7100E1DF80 /* NoticeView.swift */,
+				2A5D96A21C6A8D5900E1DF80 /* NoticeTableView.swift */,
+				2A5D96A51C6A967800E1DF80 /* NoticeDetailView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -435,7 +466,7 @@
 		2A9A958B1C5CBD56007BDA52 /* dev */ = {
 			isa = PBXGroup;
 			children = (
-				2A9A958C1C5CBE3D007BDA52 /* dev.plist */,
+				2ADA7D8B1C6977160054A771 /* kyutech-dev.plist */,
 				2A7A7C431C69360D00BEE966 /* dev-api.plist */,
 			);
 			name = dev;
@@ -512,21 +543,26 @@
 			productReference = 2A9A956E1C5CBB84007BDA52 /* kyutechUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		2A9A958E1C5CBE86007BDA52 /* dev-kyutech */ = {
+		2ADA7D601C6975730054A771 /* kyutech-dev */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2A9A95971C5CBE86007BDA52 /* Build configuration list for PBXNativeTarget "dev-kyutech" */;
+			buildConfigurationList = 2ADA7D861C6975730054A771 /* Build configuration list for PBXNativeTarget "kyutech-dev" */;
 			buildPhases = (
-				2A9A958F1C5CBE86007BDA52 /* Sources */,
-				2A9A95911C5CBE86007BDA52 /* Frameworks */,
-				2A9A95921C5CBE86007BDA52 /* Resources */,
+				2ADA7D611C6975730054A771 /* Check Pods Manifest.lock */,
+				2ADA7D621C6975730054A771 /* Sources */,
+				2ADA7D721C6975730054A771 /* Frameworks */,
+				2ADA7D751C6975730054A771 /* Resources */,
+				2ADA7D811C6975730054A771 /* Embed Pods Frameworks */,
+				2ADA7D821C6975730054A771 /* Copy Pods Resources */,
+				2ADA7D831C6975730054A771 /* ShellScript */,
+				2ADA7D841C6975730054A771 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "dev-kyutech";
+			name = "kyutech-dev";
 			productName = kyutech;
-			productReference = 2A9A959A1C5CBE86007BDA52 /* dev-kyutech.app */;
+			productReference = 2ADA7D891C6975730054A771 /* kyutech-dev.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -556,6 +592,9 @@
 						CreatedOnToolsVersion = 7.2;
 						TestTargetID = 2A9A954E1C5CBB84007BDA52;
 					};
+					2ADA7D601C6975730054A771 = {
+						DevelopmentTeam = 2E5E462W28;
+					};
 				};
 			};
 			buildConfigurationList = 2A9A954A1C5CBB84007BDA52 /* Build configuration list for PBXProject "kyutech" */;
@@ -572,7 +611,7 @@
 			projectRoot = "";
 			targets = (
 				2A9A954E1C5CBB84007BDA52 /* kyutech */,
-				2A9A958E1C5CBE86007BDA52 /* dev-kyutech */,
+				2ADA7D601C6975730054A771 /* kyutech-dev */,
 				2A9A95621C5CBB84007BDA52 /* kyutechTests */,
 				2A9A956D1C5CBB84007BDA52 /* kyutechUITests */,
 			);
@@ -590,7 +629,6 @@
 				2A9A955D1C5CBB84007BDA52 /* LaunchScreen.storyboard in Resources */,
 				2A4A6BE11C64CED200B4BD6F /* Notice.storyboard in Resources */,
 				2A9A955A1C5CBB84007BDA52 /* Assets.xcassets in Resources */,
-				2A9A958D1C5CBE3D007BDA52 /* dev.plist in Resources */,
 				2A9A95581C5CBB84007BDA52 /* Main.storyboard in Resources */,
 				2A4A6BE71C64CEE200B4BD6F /* Setting.storyboard in Resources */,
 				2A4A6BDE1C64CEC600B4BD6F /* Lecture.storyboard in Resources */,
@@ -612,21 +650,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2A9A95921C5CBE86007BDA52 /* Resources */ = {
+		2ADA7D751C6975730054A771 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A4A6BE51C64CEDA00B4BD6F /* Access.storyboard in Resources */,
-				2A4A6BF51C64ED2600B4BD6F /* NoticeDetail.storyboard in Resources */,
-				2A9A95931C5CBE86007BDA52 /* LaunchScreen.storyboard in Resources */,
-				2A4A6BE21C64CED200B4BD6F /* Notice.storyboard in Resources */,
-				2A9A95941C5CBE86007BDA52 /* Assets.xcassets in Resources */,
-				2A9A95951C5CBE86007BDA52 /* dev.plist in Resources */,
-				2A7A7C441C69360D00BEE966 /* dev-api.plist in Resources */,
-				2A9A95961C5CBE86007BDA52 /* Main.storyboard in Resources */,
-				2A4A6BE81C64CEE200B4BD6F /* Setting.storyboard in Resources */,
-				2A4A6BDF1C64CEC600B4BD6F /* Lecture.storyboard in Resources */,
-				2A4A6BDB1C64C4F600B4BD6F /* Splash.storyboard in Resources */,
+				2ADA7D761C6975730054A771 /* Access.storyboard in Resources */,
+				2ADA7D771C6975730054A771 /* NoticeDetail.storyboard in Resources */,
+				2ADA7D781C6975730054A771 /* api.plist in Resources */,
+				2ADA7D8C1C6977160054A771 /* kyutech-dev.plist in Resources */,
+				2ADA7D791C6975730054A771 /* LaunchScreen.storyboard in Resources */,
+				2ADA7D7A1C6975730054A771 /* Notice.storyboard in Resources */,
+				2ADA7D7B1C6975730054A771 /* Assets.xcassets in Resources */,
+				2ADA7D7D1C6975730054A771 /* Main.storyboard in Resources */,
+				2ADA7D7E1C6975730054A771 /* Setting.storyboard in Resources */,
+				2ADA7D8D1C697AF10054A771 /* dev-api.plist in Resources */,
+				2ADA7D7F1C6975730054A771 /* Lecture.storyboard in Resources */,
+				2ADA7D801C6975730054A771 /* Splash.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -634,6 +673,64 @@
 
 /* Begin PBXShellScriptBuildPhase section */
 		2A9A959D1C5D2253007BDA52 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 04fddab44a5f9a163666dd7b683ad1c17139eafc 9d63ee9d2510047a553347a14d0f6d157d3e15b78adebd0084e85700c1f065c4";
+		};
+		2ADA7D611C6975730054A771 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		2ADA7D811C6975730054A771 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2ADA7D821C6975730054A771 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2ADA7D831C6975730054A771 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -699,11 +796,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A2C332F1C62AF5F00676BA6 /* SplashViewController.swift in Sources */,
+				2A5D96A61C6A967800E1DF80 /* NoticeDetailView.swift in Sources */,
 				2A4A6C0F1C66557600B4BD6F /* Kyutech.swift in Sources */,
 				2A4A6C051C64F7BF00B4BD6F /* NoticeDetailViewController.swift in Sources */,
+				2A5D96A01C6A7D7100E1DF80 /* NoticeView.swift in Sources */,
 				2A4A6BEA1C64D7FE00B4BD6F /* RootTabBarController.swift in Sources */,
 				2A9A95531C5CBB84007BDA52 /* AppDelegate.swift in Sources */,
 				2A4A6C021C64F73100B4BD6F /* Notice.swift in Sources */,
+				2ADA7D8F1C6A6BEE0054A771 /* MenuTableView.swift in Sources */,
 				2A4540541C67957000B33393 /* NoticeNavigationController.swift in Sources */,
 				2A9A959F1C5D2421007BDA52 /* Config.swift in Sources */,
 				2A45405A1C679C2800B33393 /* MenuTableViewController.swift in Sources */,
@@ -711,6 +811,7 @@
 				2A4A6C121C66570700B4BD6F /* Alamofire+SwiftyJSON.swift in Sources */,
 				2A4540571C6797A600B33393 /* RootNoticeViewController.swift in Sources */,
 				2A4A6C0C1C663F4C00B4BD6F /* APIService.swift in Sources */,
+				2A5D96A31C6A8D5900E1DF80 /* NoticeTableView.swift in Sources */,
 				2A45405D1C67A47C00B33393 /* CategoryModel.swift in Sources */,
 				2A4A6C091C6623D800B4BD6F /* NoticeModel.swift in Sources */,
 			);
@@ -732,25 +833,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2A9A958F1C5CBE86007BDA52 /* Sources */ = {
+		2ADA7D621C6975730054A771 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A2C33301C62AF5F00676BA6 /* SplashViewController.swift in Sources */,
-				2A4A6C101C66557600B4BD6F /* Kyutech.swift in Sources */,
-				2A4A6C061C64F7BF00B4BD6F /* NoticeDetailViewController.swift in Sources */,
-				2A4A6BEB1C64D7FE00B4BD6F /* RootTabBarController.swift in Sources */,
-				2A9A95901C5CBE86007BDA52 /* AppDelegate.swift in Sources */,
-				2A4A6C031C64F73100B4BD6F /* Notice.swift in Sources */,
-				2A4540551C67957000B33393 /* NoticeNavigationController.swift in Sources */,
-				2A9A95A01C5D2421007BDA52 /* Config.swift in Sources */,
-				2A45405B1C679C2800B33393 /* MenuTableViewController.swift in Sources */,
-				2A4A6BFF1C64F4A100B4BD6F /* NoticeViewController.swift in Sources */,
-				2A4A6C131C66570700B4BD6F /* Alamofire+SwiftyJSON.swift in Sources */,
-				2A4540581C6797A600B33393 /* RootNoticeViewController.swift in Sources */,
-				2A4A6C0D1C663F4C00B4BD6F /* APIService.swift in Sources */,
-				2A45405E1C67A47C00B33393 /* CategoryModel.swift in Sources */,
-				2A4A6C0A1C6623D800B4BD6F /* NoticeModel.swift in Sources */,
+				2ADA7D631C6975730054A771 /* SplashViewController.swift in Sources */,
+				2A5D96A71C6A967800E1DF80 /* NoticeDetailView.swift in Sources */,
+				2ADA7D641C6975730054A771 /* Kyutech.swift in Sources */,
+				2ADA7D651C6975730054A771 /* NoticeDetailViewController.swift in Sources */,
+				2A5D96A11C6A7D7100E1DF80 /* NoticeView.swift in Sources */,
+				2ADA7D661C6975730054A771 /* RootTabBarController.swift in Sources */,
+				2ADA7D671C6975730054A771 /* AppDelegate.swift in Sources */,
+				2ADA7D681C6975730054A771 /* Notice.swift in Sources */,
+				2ADA7D901C6A6BEE0054A771 /* MenuTableView.swift in Sources */,
+				2ADA7D691C6975730054A771 /* NoticeNavigationController.swift in Sources */,
+				2ADA7D6A1C6975730054A771 /* Config.swift in Sources */,
+				2ADA7D6B1C6975730054A771 /* MenuTableViewController.swift in Sources */,
+				2ADA7D6C1C6975730054A771 /* NoticeViewController.swift in Sources */,
+				2ADA7D6D1C6975730054A771 /* Alamofire+SwiftyJSON.swift in Sources */,
+				2ADA7D6E1C6975730054A771 /* RootNoticeViewController.swift in Sources */,
+				2ADA7D6F1C6975730054A771 /* APIService.swift in Sources */,
+				2A5D96A41C6A8D5900E1DF80 /* NoticeTableView.swift in Sources */,
+				2ADA7D701C6975730054A771 /* CategoryModel.swift in Sources */,
+				2ADA7D711C6975730054A771 /* NoticeModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -964,33 +1069,53 @@
 			};
 			name = Release;
 		};
-		2A9A95981C5CBE86007BDA52 /* Debug */ = {
+		2ADA7D871C6975730054A771 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 54F0A4613E3F6BCD606724CB /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = kyutech/kyutech.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = kyutech/dev.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-DDEVELOP\" \"-D\" \"COCOAPODS\"";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SHUtil/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/Build/Products/Debug-iphoneos",
+				);
+				INFOPLIST_FILE = "kyutech/kyutech-dev.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/../Frameworks/ ";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-DDEVELOP\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.planningdev.kyutech;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "kyutech/dev-kyutech-Bridging-Header.h";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "kyutech/kyutech-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		2A9A95991C5CBE86007BDA52 /* Release */ = {
+		2ADA7D881C6975730054A771 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C1F64317C9D0F1507FCB9A4E /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = kyutech/kyutech.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = kyutech/dev.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SHUtil/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/Build/Products/Debug-iphoneos",
+				);
+				INFOPLIST_FILE = "kyutech/kyutech-dev.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/../Frameworks/ ";
 				PRODUCT_BUNDLE_IDENTIFIER = com.planningdev.kyutech;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "kyutech/dev-kyutech-Bridging-Header.h";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "kyutech/kyutech-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -1033,11 +1158,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2A9A95971C5CBE86007BDA52 /* Build configuration list for PBXNativeTarget "dev-kyutech" */ = {
+		2ADA7D861C6975730054A771 /* Build configuration list for PBXNativeTarget "kyutech-dev" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2A9A95981C5CBE86007BDA52 /* Debug */,
-				2A9A95991C5CBE86007BDA52 /* Release */,
+				2ADA7D871C6975730054A771 /* Debug */,
+				2ADA7D881C6975730054A771 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

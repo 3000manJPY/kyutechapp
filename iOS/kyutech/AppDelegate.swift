@@ -74,22 +74,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             switch host {
             case "notice" :
                 let dict = url.parseGetArgments()
-                print(dict)
 //                NSNotificationCenter.defaultCenter().postNotificationName(Config.OPEN_NOTICE, object: nil, userInfo: dict)
                 break
-            case "lectures" :
-                print(url)
-                break
-                
-            case "access" :
-                break
-                
-            case "etc" :
-                
-                break
+            case "lectures" :break
+            case "access"   :break
+            case "etc"      :break
             default: break
             }
-            
             return true
         }
         return false

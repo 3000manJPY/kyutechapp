@@ -26,14 +26,6 @@ struct CAMPUS {
         static let val = 2
     }
     
-//    case iizuka = 1
-//    case tobata = 0
-//    case wakamatsu = 2
-//    
-//    func name() -> String {
-//        return String(self.rawValue)
-//    }
-//   
     static func geyNameById(val: String) -> String? {
         switch val {
         case "1": return CAMPUS.iizuka.name
@@ -44,33 +36,26 @@ struct CAMPUS {
     }
 }
 
-class Category: NSObject {
+enum Menu: Int {
+    case order = 0
+    case category = 1
+    case department = 2
+    
+}
+
+class Sort: NSObject {
     dynamic var id : Int = 0
     dynamic var name = ""
     dynamic var imagePath = ""
+            let menu : Menu
+    dynamic var check = false
     
-    init(id: Int, name: String, imagePath: String) {
+    init(id: Int, name: String, imagePath: String, menu: Menu) {
         self.id = id
         self.name = name
         self.imagePath = imagePath
+        self.menu = menu
     }
-   
 }
 
-class Department: NSObject {
-    dynamic var id : Int = 0
-    dynamic var name = ""
-    dynamic var imagePath = ""
-    
-    init(id: Int, name: String, imagePath: String) {
-        self.id = id
-        self.name = name
-        self.imagePath = imagePath
-    }
-    
-    
-}
 
-class Kyutech: NSObject {
-
-}
