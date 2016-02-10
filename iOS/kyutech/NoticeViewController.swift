@@ -68,11 +68,20 @@ class NoticeViewController: UIViewController {
             self.noticeArray = arr
             self.noticeTableView.reloadData()
         }else if keyPath == "menus" {
+            var cate: [Sort] = [], depa: [Sort] = [], order: Sort? = nil
             guard let arr = change?["new"] as? [Sort] else{ return }
+            NoticeModel.sharedInstance.tmpArray = []
             for menu in arr {
-                //そーとが更新されたらそーとする
-                if menu.menu == .order && menu.check == true { NoticeModel.sharedInstance.sortData(nil, sort: menu) }
+                if menu.menu == .category { cate.append(menu) }
+                if menu.menu == .department { depa.append(menu) }
+                if menu.menu == .order && menu.check == true { order = menu }
             }
+                //カテゴリーフィルターする
+                NoticeModel.sharedInstance.filterCategory(cate)
+                //ジャンルフィルターする
+                NoticeModel.sharedInstance.filterDetartment(depa)
+                 NoticeModel.sharedInstance.sortData(order)
+            
         }
     }
     func setDelegate(){ self.shContentView.delegate = self }
