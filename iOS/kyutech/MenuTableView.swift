@@ -81,16 +81,12 @@ class MenuTableView: UITableView {
     }
 
     func setParameters(cell: UITableViewCell, indexPath: NSIndexPath) -> UITableViewCell {
-        guard let         name = cell.viewWithTag(100) as? UILabel,
-            frontImageView = cell.viewWithTag(200) as? UIImageView,
-            backImageView = cell.viewWithTag(300) as? UIImageView else{ return UITableViewCell() }
-        cell.backgroundColor = UIColor.clearColor()
-        
-        let selected = self.isSelected(indexPath)
-        let menu = self.arrayForSection(indexPath.section)[indexPath.row]
-        name.text = menu.name
-        frontImageView.image = self.setFrontImage(indexPath)
-        if selected == false { backImageView.image = self.setBackImageUnCheck(indexPath) }
+        guard let name = cell.viewWithTag(100)  as? UILabel,
+        frontImageView = cell.viewWithTag(200)  as? UIImageView,
+         backImageView = cell.viewWithTag(300)  as? UIImageView else{ return UITableViewCell() }
+        name.text               = self.arrayForSection(indexPath.section)[indexPath.row].name
+        frontImageView.image    = self.setFrontImage(indexPath)
+        if self.isSelected(indexPath) == false { backImageView.image = self.setBackImageUnCheck(indexPath) }
         else                 { backImageView.image = self.setBackImageCheck(indexPath) }
         
         return cell
@@ -106,23 +102,28 @@ class MenuTableView: UITableView {
         default:                            return []
         }
     }
+    
+    func setArrayForSection(array: [Sort], section: Int){
+        switch section {
+        case SECTION.category.rawValue:     self.categories     = array; break
+        case SECTION.department.rawValue:   self.departments    = array; break
+        case SECTION.order.rawValue:        self.orders         = array; break
+        default:                            return
+        }
+        MenuModel.sharedInstance.setMenuArray(self.categories + self.departments + self.orders)
+    }
 
     func createSectionView(section: Int) -> UILabel {
         let label = UILabel(frame: CGRect(x:0, y:0, width: self.bounds.width, height: 50))
-        // 背景色
         label.backgroundColor = UIColor.whiteColor()
-        // 文字色
         label.textColor =  UIColor(red: 0.0, green: 138.0 / 255.0, blue: 215.0 / 255.0, alpha: 1.0)
-        var title = "no name"
         switch (section){
-        case SECTION.order.rawValue:        title = "　並び替え";        break
-        case SECTION.category.rawValue:     title = "　カテゴリ";        break
-        case SECTION.department.rawValue:   title = "　学部 / 大学院";   break
-        default: title = "no name";break
+        case SECTION.order.rawValue:        label.text = "　並び替え";        break
+        case SECTION.category.rawValue:     label.text = "　カテゴリ";        break
+        case SECTION.department.rawValue:   label.text = "　学部 / 大学院";   break
+        default: label.text = "no name";break
         }
-        label.text = title
         label.font = UIFont.italicSystemFontOfSize(20)
-        
         return label
     }
 }

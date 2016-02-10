@@ -23,7 +23,7 @@ class Notice: RLMObject {
             dynamic var categoryId: String = ""
             dynamic var departmentId: String = ""
     private dynamic var campusId: String = ""
-    private dynamic var date: Int64 = 0
+            dynamic var date: Int64 = 0
     private dynamic var periodTime: String = ""
     private dynamic var grade: String = ""
     private dynamic var place: String = ""
@@ -43,7 +43,7 @@ class Notice: RLMObject {
     private dynamic var doc3Url: String = ""
     private dynamic var doc4Url: String = ""
     private dynamic var doc5Url: String = ""
-    private dynamic var registtime: Int64 = 0
+            dynamic var registtime: Int64 = 0
     
     convenience init(json: SwiftyJSON.JSON) {
         self.init()//        super.init()

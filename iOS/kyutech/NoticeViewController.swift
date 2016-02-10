@@ -36,9 +36,10 @@ class NoticeViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         NoticeModel.sharedInstance.addObserver(self, forKeyPath: "notices", options: [.New, .Old], context: nil)
+        MenuModel.sharedInstance.addObserver(self, forKeyPath: "menus", options: [.New, .Old], context: nil)
         self.setRepo()
     }
-    
+    //googleAnariticsを設定
     func setRepo(){
 //        let tracker = GAI.sharedInstance().defaultTracker
 //        tracker.set(kGAIScreenName, value: NSStringFromClass(self.classForCoder))
@@ -53,7 +54,7 @@ class NoticeViewController: UIViewController {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         NoticeModel.sharedInstance.removeObserver(self, forKeyPath: "notices")
-
+        MenuModel.sharedInstance.removeObserver(self, forKeyPath: "menus")
     }
     
     override func viewDidLayoutSubviews() {
@@ -62,14 +63,18 @@ class NoticeViewController: UIViewController {
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if(keyPath == "notices"){
-            if let arr = change?["new"] as? [Notice] {
+        if keyPath == "notices" {
+            guard let arr = change?["new"] as? [Notice] else{ return }
             self.noticeArray = arr
-                self.noticeTableView.reloadData()
+            self.noticeTableView.reloadData()
+        }else if keyPath == "menus" {
+            guard let arr = change?["new"] as? [Sort] else{ return }
+            for menu in arr {
+                //そーとが更新されたらそーとする
+                if menu.menu == .order && menu.check == true { NoticeModel.sharedInstance.sortData(nil, sort: menu) }
             }
         }
     }
-    
     func setDelegate(){ self.shContentView.delegate = self }
     //segueの決定
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -84,11 +89,9 @@ extension NoticeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
         let notice = self.noticeArray[indexPath.row]
-        //TODO cellviewを作成
         cell = self.noticeTableView.createCell(cell, notice: notice)
         return cell
     }
-    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.noticeTableView.deselectRowAtIndexPath(indexPath, animated: true)
         //セルがタップされた時
@@ -96,16 +99,12 @@ extension NoticeViewController: UITableViewDataSource, UITableViewDelegate {
         let notice = self.noticeArray[indexPath.row]
         self.detailVC?.notice = notice
     }
-    
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat { return 80 }
 }
 
 extension NoticeViewController: SHContentTableViewdelegate /*, slidedelegate*/{
-    
     func tapRightItem(sender: AnyObject) { NoticeModel.sharedInstance.updateDate() }
-    
     func tapLeftItem(sender: AnyObject) { self.frostedViewController.presentMenuViewController() }
-    
     func tapViewTop() { self.tapStatusBar(nil) }
 }
 

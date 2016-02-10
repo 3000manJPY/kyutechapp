@@ -21,12 +21,10 @@ class NoticeTableView: UITableView{
     }
    
     func createCell(cell: UITableViewCell, notice: Notice) -> UITableViewCell {
-        
         if let imageView = cell.viewWithTag(200) as? UIImageView,
             let backView = cell.viewWithTag(300) as? UIImageView,
             let label    = cell.viewWithTag(100) as? UILabel {
                 for cate in self.categories {
-                    
                     if cate.id == Int(notice.categoryId) {
                         backView.image = UIImage(named: cate.imagePath)
                         break

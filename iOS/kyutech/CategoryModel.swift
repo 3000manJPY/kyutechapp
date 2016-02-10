@@ -89,5 +89,6 @@ class MenuModel: NSObject {
     private func setOrders(){
         self.menus.append(Sort(id: 0, name: "新着順", imagePath: "", menu: .order))
         self.menus.append(Sort(id: 1, name: "日付が近い順", imagePath: "", menu: .order))
+        self.menus.append(Sort(id: 2, name: "日付順", imagePath: "", menu: .order))
     }
 }

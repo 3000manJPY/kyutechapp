@@ -5,15 +5,6 @@
 //  Created by shogo okamuro on 2/6/16.
 //  Copyright © 2016 shogo okamuro. All rights reserved.
 //
-
-//
-//  NoticeDetailViewController.swift
-//  kyutechapp
-//
-//  Created by 岡室 庄悟 on 7/3/15.
-//  Copyright (c) 2015 岡室 庄悟. All rights reserved.
-//
-
 import UIKit
 import TTTAttributedLabel
 
@@ -35,7 +26,6 @@ class NoticeDetailViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.detailTableView.reloadData()
     }
-    
     func setNavibar(){
         if let _ = self.navigationController {
             self.customNaviBar.hidden = true
@@ -44,22 +34,18 @@ class NoticeDetailViewController: UIViewController {
             self.customNaviBar.hidden = false
         }
     }
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.hidden = false
     }
-    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.navigationController?.navigationBar.hidden = false
     }
-    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.navigationBar.hidden = true
     }
-   
     @IBAction func close(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -89,12 +75,7 @@ extension NoticeDetailViewController: UITableViewDataSource, UITableViewDelegate
     }
     
     // セクションヘッダのビュー取得
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return self.detailTableView.createHeadView(section, title: String(self.headerTitle[section]))
-    }
-    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? { return self.detailTableView.createHeadView(section, title: String(self.headerTitle[section])) }
     // urlリンクをタップされたとき
-    func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!){
-        if UIApplication.sharedApplication().canOpenURL(url!){ UIApplication.sharedApplication().openURL(url!) }
-    }
+    func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: NSURL!){ if UIApplication.sharedApplication().canOpenURL(url!){ UIApplication.sharedApplication().openURL(url!) } }
 }
