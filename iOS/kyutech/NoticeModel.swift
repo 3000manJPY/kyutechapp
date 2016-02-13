@@ -82,25 +82,11 @@ class NoticeModel: NSObject {
     
     private func reqestNotices(campus: Int, completion: ([Notice]) -> ()){
         if self.requestState == .Requesting { return }
-        Alamofire.request(Router.GetAllNotice()).responseSwiftyJSON({(request,response,jsonData,error) in
-            guard let res = response else {
-                SHprint("error! no response")
-                self.requestState = .Error
-                return
-            }
-            if res.statusCode < 200 && res.statusCode >= 300 {
-                SHprint("error!! status => \(res.statusCode)")
-                self.requestState = .Error
-                return
-            }
-            
-            var arr: [Notice] = []
-            for (_,json) in jsonData {
-                arr.append(Notice(json: json))
-            }
-            
+        APIService.reqestNotices(campus, completionHandler: { (notices) -> () in
             self.requestState = .None
-            completion(arr)
-        })
+            completion(notices)
+            }) { (type, code) -> () in
+                self.requestState = .Error
+        }
     }
 }

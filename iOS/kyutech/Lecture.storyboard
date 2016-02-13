@@ -1,24 +1,111 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="QCF-DE-cC7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="QCF-DE-cC7">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Lecture Collection View Controller-->
         <scene sceneID="Bxa-p9-Cou">
             <objects>
-                <viewController id="07u-yl-WEJ" sceneMemberID="viewController">
+                <viewController id="07u-yl-WEJ" customClass="LectureCollectionViewController" customModule="kyutech" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="v45-HQ-dge"/>
                         <viewControllerLayoutGuide type="bottom" id="dH2-ou-NA4"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="gpS-vS-BEZ">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JW7-lm-L70" customClass="LectureCollectionView" customModule="kyutech" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cEe-gU-Kj6">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="leftTop" id="C9n-ey-B4O">
+                                        <rect key="frame" x="0.0" y="14" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="period" id="jDp-8Q-HVm">
+                                        <rect key="frame" x="60" y="0.0" width="50" height="78"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="78"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" red="0.83137254901960778" green="0.83137254901960778" blue="0.83137254901960778" alpha="1" colorSpace="calibratedRGB"/>
+                                        <size key="customSize" width="50" height="78"/>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="week" id="6id-NA-HCw">
+                                        <rect key="frame" x="120" y="14" width="64" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="64" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <size key="customSize" width="64" height="50"/>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="07u-yl-WEJ" id="abz-dk-dkp"/>
+                                    <outlet property="delegate" destination="07u-yl-WEJ" id="yNp-N8-i3v"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="JW7-lm-L70" secondAttribute="trailing" id="BfI-ha-agF"/>
+                            <constraint firstItem="dH2-ou-NA4" firstAttribute="top" secondItem="JW7-lm-L70" secondAttribute="bottom" id="qUX-Gn-x77"/>
+                            <constraint firstItem="JW7-lm-L70" firstAttribute="top" secondItem="v45-HQ-dge" secondAttribute="bottom" id="rFw-bq-Mc0"/>
+                            <constraint firstItem="JW7-lm-L70" firstAttribute="leading" secondItem="gpS-vS-BEZ" secondAttribute="leading" id="vSS-x3-KMF"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="sZF-KG-iOa"/>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" id="sZF-KG-iOa">
+                        <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="yoR-jh-LRx">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="X6X-aF-h1F">
+                                <rect key="frame" x="20" y="11" width="29" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="filter"/>
+                            </button>
+                        </barButtonItem>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="yUW-SU-fws">
+                            <rect key="frame" x="232.5" y="11" width="135" height="22"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="第1クォーター" image="drop_down-button">
+                                <color key="titleColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                        </button>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="2jN-4k-J8T">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6ZA-1B-W52">
+                                <rect key="frame" x="545" y="6" width="35" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="edit"/>
+                                <connections>
+                                    <action selector="editModePushed:" destination="07u-yl-WEJ" eventType="touchUpInside" id="9nK-St-iUp"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="allSelectBtn" destination="X6X-aF-h1F" id="i9z-A3-T4b"/>
+                        <outlet property="centerBtn" destination="yUW-SU-fws" id="ogp-AY-ZOE"/>
+                        <outlet property="editBtn" destination="6ZA-1B-W52" id="PYG-Oe-UZA"/>
+                        <outlet property="lecCollectionView" destination="JW7-lm-L70" id="ODS-3r-T4D"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mjS-zd-Wnv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -46,6 +133,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="drop_down-button" width="19" height="15"/>
+        <image name="edit" width="35" height="31"/>
+        <image name="filter" width="29" height="22"/>
         <image name="timetable" width="30" height="30"/>
     </resources>
 </document>
