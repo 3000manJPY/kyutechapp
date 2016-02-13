@@ -23,9 +23,8 @@ struct Config {
         static let a = "12341234"
         static let key = "ABCD"
     }
-    struct twitter {
-        static let secret = "9887"
-        static let key = "9723"
+    struct userDefault {
+        static let term = "com.planningdev.kyutechapp.term"
     }
     
     static func plist(property:String)->String{

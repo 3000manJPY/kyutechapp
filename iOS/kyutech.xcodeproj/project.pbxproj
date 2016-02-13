@@ -37,6 +37,8 @@
 		2A6A08671C6EBFF0004B1EC2 /* RealmData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6A08661C6EBFEF004B1EC2 /* RealmData.swift */; };
 		2A6A08681C6EBFF0004B1EC2 /* RealmData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6A08661C6EBFEF004B1EC2 /* RealmData.swift */; };
 		2A7A7C461C69361A00BEE966 /* api.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A7A7C451C69361A00BEE966 /* api.plist */; };
+		2A8228301C6F959B00F3AB7B /* TermTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A82282F1C6F959B00F3AB7B /* TermTableViewController.swift */; };
+		2A8228311C6F959B00F3AB7B /* TermTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A82282F1C6F959B00F3AB7B /* TermTableViewController.swift */; };
 		2A9A95531C5CBB84007BDA52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9A95521C5CBB84007BDA52 /* AppDelegate.swift */; };
 		2A9A95581C5CBB84007BDA52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A95561C5CBB84007BDA52 /* Main.storyboard */; };
 		2A9A955A1C5CBB84007BDA52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A95591C5CBB84007BDA52 /* Assets.xcassets */; };
@@ -161,6 +163,7 @@
 		2A6A08661C6EBFEF004B1EC2 /* RealmData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmData.swift; sourceTree = "<group>"; };
 		2A7A7C431C69360D00BEE966 /* dev-api.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "dev-api.plist"; sourceTree = "<group>"; };
 		2A7A7C451C69361A00BEE966 /* api.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = api.plist; sourceTree = "<group>"; };
+		2A82282F1C6F959B00F3AB7B /* TermTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermTableViewController.swift; sourceTree = "<group>"; };
 		2A9A954F1C5CBB84007BDA52 /* kyutech.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kyutech.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A9A95521C5CBB84007BDA52 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2A9A95571C5CBB84007BDA52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -320,6 +323,14 @@
 				2AEF742D1C6BA5B700C10205 /* Lecture.swift */,
 			);
 			name = Entity;
+			sourceTree = "<group>";
+		};
+		2A82282E1C6F956E00F3AB7B /* Term */ = {
+			isa = PBXGroup;
+			children = (
+				2A82282F1C6F959B00F3AB7B /* TermTableViewController.swift */,
+			);
+			name = Term;
 			sourceTree = "<group>";
 		};
 		2A9A95461C5CBB84007BDA52 = {
@@ -499,6 +510,7 @@
 			isa = PBXGroup;
 			children = (
 				2AEF74221C6AD53200C10205 /* LectureCollectionViewController.swift */,
+				2A82282E1C6F956E00F3AB7B /* Term */,
 			);
 			name = Lecture;
 			sourceTree = "<group>";
@@ -872,6 +884,7 @@
 				2A4A6C0C1C663F4C00B4BD6F /* APIService.swift in Sources */,
 				2A5D96A31C6A8D5900E1DF80 /* NoticeTableView.swift in Sources */,
 				2AEF74381C6BBD7400C10205 /* LectureCollectionViewCell.swift in Sources */,
+				2A8228301C6F959B00F3AB7B /* TermTableViewController.swift in Sources */,
 				2A45405D1C67A47C00B33393 /* CategoryModel.swift in Sources */,
 				2A4A6C091C6623D800B4BD6F /* NoticeModel.swift in Sources */,
 			);
@@ -920,6 +933,7 @@
 				2ADA7D6F1C6975730054A771 /* APIService.swift in Sources */,
 				2A5D96A41C6A8D5900E1DF80 /* NoticeTableView.swift in Sources */,
 				2AEF74391C6BBD7400C10205 /* LectureCollectionViewCell.swift in Sources */,
+				2A8228311C6F959B00F3AB7B /* TermTableViewController.swift in Sources */,
 				2ADA7D701C6975730054A771 /* CategoryModel.swift in Sources */,
 				2ADA7D711C6975730054A771 /* NoticeModel.swift in Sources */,
 			);
