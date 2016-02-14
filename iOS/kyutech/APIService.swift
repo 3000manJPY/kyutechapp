@@ -42,7 +42,8 @@ enum Router: URLRequestConvertible {
         case .CreateUser:               return "/users"
         case .GetAllNotice():           return "/notices"
         case .GetNotice(let campusId):  return "/notices/\(campusId)"
-        case .GetLecture(let campusId): return "/lectures/\(campusId)"
+//        case .GetLecture(let campusId): return "/lectures/\(campusId)"
+        case .GetLecture(let campusId): return "/lectures.json"
         case .GetAccess(let campusId):  return "/accesses/\(campusId)"
         case .GetCalendar(let campusId):return "/accesses/calendar/\(campusId)"
         }

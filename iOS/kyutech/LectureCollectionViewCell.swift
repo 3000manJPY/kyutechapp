@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SHUtil
 
 class LectureCollectionViewCell: UICollectionViewCell {
 
@@ -100,11 +101,11 @@ extension UICollectionViewCell {
     
     func WeekValueWithIndexPath(indexPath: NSIndexPath) -> String {
         switch indexPath.row {
-        case 1: return "月"
-        case 2: return "火"
-        case 3: return "水"
-        case 4: return "木"
-        case 5: return "金"
+        case 1: return WEEKS.Monday.name()
+        case 2: return WEEKS.Tuesday.name()
+        case 3: return WEEKS.Wednesday.name()
+        case 4: return WEEKS.Thursday.name()
+        case 5: return WEEKS.Friday.name()
         default: return ""
         }
     }

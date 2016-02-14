@@ -44,11 +44,12 @@ class LectureCollectionViewController: UIViewController {
         self.lecCollectionView.registerNib(UINib(nibName: "LectureCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "LectureCollectionViewCell")
        
         self.myLectureArray = LectueModel.sharedInstance.myLectures
-        LectueModel.sharedInstance.addObserver(self, forKeyPath: "myLectures", options: [.New, .Old], context: nil)
+
         
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        LectueModel.sharedInstance.addObserver(self, forKeyPath: "myLectures", options: [.New, .Old], context: nil)
 //        let tracker = GAI.sharedInstance().defaultTracker
 //        tracker.set(kGAIScreenName, value: NSStringFromClass(self.classForCoder))
 //        
@@ -56,12 +57,17 @@ class LectureCollectionViewController: UIViewController {
 //        tracker.send(builder.build() as [NSObject : AnyObject])
     }
     
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        LectueModel.sharedInstance.removeObserver(self, forKeyPath: "myLectures")
+    }
+    
     @IBAction func editModePushed(sender: AnyObject) {
         self.mode.togle()
         self.lecCollectionView.reloadData()
     }
     @IBAction func allSelectList(sender: AnyObject) {
-        showTimeSlectPopOverViewWithId(nil)
+//        showTimeSlectPopOverViewWithId(nil)
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
@@ -76,36 +82,20 @@ class LectureCollectionViewController: UIViewController {
         }
     }
     
-    func showTimeSlectPopOverViewWithId(sender: Int?){
-//        popoverContent = self.storyboard?.instantiateViewControllerWithIdentifier("PopoverSubjectViewController") as! PopoverSubjectViewController
-//        popoverContent.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
-//        popoverContent.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext // 背景の透過の設定
-//        if sender != nil {
-//            popoverContent.tap_index = sender!
-//            popoverContent.term = self.term
-//        }
+    func showTimeSlectPopOverViewWithId(index: Int){
+        guard let popoverContent = self.storyboard?.instantiateViewControllerWithIdentifier("SubjectTableViewController") as? SubjectTableViewController else { return }
+        popoverContent.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+        popoverContent.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext // 背景の透過の設定
 //        popoverContent.delegate = self
-//        popoverContent.dataArrangement()
-//        self.presentViewController(popoverContent, animated: false, completion: nil)
+        popoverContent.tapIndex = index
+        popoverContent.dataArrangement()
+        self.presentViewController(popoverContent, animated: false, completion: nil)
     }
     
     func selected(term: Int) {
 //        self.term = term
 //        getTimeTableData(term)
     }
-    
-    func completeMylecture(notification: NSNotification){
-//        self.hub.dismiss()
-    }
-    
-   
-    
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle{
-        return UIModalPresentationStyle.None
-    }
-    
-    
-    
 }
 
 extension LectureCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -134,12 +124,11 @@ extension LectureCollectionViewController: UICollectionViewDataSource, UICollect
     }
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         return self.lecCollectionView.createCollectionViewCell(self.myLectureArray[indexPath.row], mode: self.mode, indexPath:indexPath)
-        
     }
-    
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.row < LectueModel.HOL_NUM || indexPath.row % (LectueModel.HOL_NUM + 1) == 0 { return }
         if self.mode == .Edit {
-            showTimeSlectPopOverViewWithId(indexPath.row)
+            self.showTimeSlectPopOverViewWithId(indexPath.row)
         }else{
             let mylec = self.myLectureArray[indexPath.row]
             if !mylec.myLecture {
@@ -163,6 +152,7 @@ extension LectureCollectionViewController :UIPopoverPresentationControllerDelega
 //                self.destinationviewcontroller = vc
 //                
 //            }
+            
         }else{
             let popView = segue.destinationViewController
             guard let popup = popView.popoverPresentationController,
@@ -177,7 +167,7 @@ extension LectureCollectionViewController :UIPopoverPresentationControllerDelega
     }
     func termSelectedWithIndexPath(term: Int) {
         //        getTimeTableData(term)
-                setTermTitle(term)
+                self.setTermTitle(term)
         //
         //        let ud = NSUserDefaults.standardUserDefaults()
         //        ud.setObject(String(self.term), forKey: "term")
