@@ -144,7 +144,8 @@ extension SubjectTableViewController: UITableViewDelegate,UITableViewDataSource 
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-               
+        
+        
     }
 
 }
