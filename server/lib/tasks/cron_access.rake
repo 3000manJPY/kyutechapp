@@ -1,4 +1,3 @@
-
 require 'slack'
 
 Slack.configure do |config|
@@ -36,19 +35,17 @@ namespace :cron_access do
     end
 
     def checkUpdate(cache,name)
-        defaultName = Rails.cache.read cache 
+        defaultName = Rails.cache.read cache
         if defaultName != nil
-            p "1"
-            if name != defaultName 
-                p "2"
+            if name != defaultName
                 Rails.cache.write cache, name
                 text = "スクールバスがこうしんされたっぽい、やべぇ"
                 slackNotif(text)
             end
         else
-            p "3"
-            Rails.cache.write cache, name 
+            Rails.cache.write cache, name
         end
     end
+
 
 end
