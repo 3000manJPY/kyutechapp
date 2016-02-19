@@ -1,7 +1,5 @@
 Rails.application.configure do
 
-config.cache_store = :dalli_store, ENV['CACHE_STORE']
-
 
   # Settings specified here will take precedence over those in config/application.rb.
 
