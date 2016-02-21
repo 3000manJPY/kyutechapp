@@ -15,6 +15,7 @@ Rails.application.routes.draw do
    get    '/api/v1/notices/new'                      => 'api/v1/notices#new'
    get	  'api/v2/notices/redirect/:id'		=> 'api/v2/notices#redirect'
    get	  'api/v2/notices/web/:id'		=> 'api/v2/notices#webPage'
+   get	  'api/v2/accesses'		=> 'api/v2/access#show'
    #   resources :lectures
    #   resources :lectures
   #root :to => "static#index"

@@ -10,22 +10,21 @@ import UIKit
 
 struct CAMPUS {
     static let count = 3
-    
     struct iizuka {
+        static let rawValue = "1"
         static let name = "飯塚キャンパス"
-        static let val = 1
+        static let val  = 1
     }
-    
     struct tobata {
+        static let rawValue = "0"
         static let name = "戸畑キャンパス"
-        static let val = 0
+        static let val  = 0
     }
-    
     struct wakamatsu {
+        static let rawValue = "2"
         static let name = "若松キャンパス"
-        static let val = 2
+        static let val  = 2
     }
-    
     static func geyNameById(val: String) -> String? {
         switch val {
         case "1": return CAMPUS.iizuka.name
@@ -58,4 +57,14 @@ class Sort: NSObject {
     }
 }
 
-
+class Term {
+    subscript(index: Int) -> String {
+        switch index {
+        case 0: return "第1クォーター"
+        case 1: return "第2クォーター"
+        case 2: return "第3クォーター"
+        case 3: return "第4クォーター"
+        default: return ""
+        }
+    }
+}

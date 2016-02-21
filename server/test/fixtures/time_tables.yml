@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  direction_id: 
+  pattern_name: MyString
+  time: MyString
+
+two:
+  direction_id: 
+  pattern_name: MyString
+  time: MyString

@@ -15,7 +15,7 @@ import Foundation
 import SwiftyJSON
 import SHUtil
 
-class Notice: RLMObject {
+class Notice: Object {
     private dynamic var id: Int64 = 0
     private dynamic var uid: Int64 = 0
             dynamic var title: String = ""

@@ -1,3 +1,3 @@
-[submodule "iOS/SHUtil"]
-	path = iOS/SHUtil
+[submodule "/Users/okasho/iOSProject/kyutech/iOS/SHUtil"]
+	path = /Users/okasho/iOSProject/kyutech/iOS/SHUtil
 	url = https://github.com/okamuroshogo/SHUtil.git

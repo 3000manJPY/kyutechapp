@@ -31,7 +31,8 @@ class NoticeViewController: UIViewController {
         (self.categories, self.departments, self.orders) = MenuModel.sharedInstance.getMenuArrays()
         self.shContentView.setContentItem()
         self.noticeArray = NoticeModel.sharedInstance.notices
-    }
+        
+        }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
