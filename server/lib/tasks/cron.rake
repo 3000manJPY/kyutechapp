@@ -63,7 +63,7 @@ namespace :cron do
                   "学部生情報"   => "368",
                   "大学院生情報" => "370"}
     # divがあるかどうか
-    notice_div = {"お知らせ"     => 1,
+    notice_div = {"お知らせ"     => 0,
                   "奨学金"       => 0,
                   "補講通知"     => 0,
                   "休講通知"     => 0,
@@ -310,11 +310,10 @@ namespace :cron do
       text = page.search($css_record + "4").inner_text
 
       if key == "集中講義" then
-        text.sub('平成','H')
-        text.sub('昭和','S')
-        text.sub('年','.')
-        text.sub('月','.')
-        text.sub('日','')
+        text = text.gsub(/平成/,'H')
+        text = text.gsub(/昭和/,'S')
+        text = text.gsub(/年|月/,'.')
+        text = text.gsub(/日/,'')
         date = Date.parse(text)
       elsif (key == "学部生情報") || (key == "大学院生情報") then
       # 日付がない
@@ -331,10 +330,18 @@ namespace :cron do
     end
 
     # 添付資料のURLを取得
-    def get_href(page)
-      urls = Array.new
+    def get_href(page,div)
+      urls = [""]
       url = 'https://db.jimu.kyutech.ac.jp/cgi-bin/cbdb/'
-      page.search('/html/body/div[3]/table//tr/td[2]/a').each do |doc|
+      href_xpath = '/html/body/table//tr/td[2]/a'
+      href_xpath_div = '/html/body/div[3]/table//tr/td[2]/a'
+      if div == 1 then
+        url_xpath = href_xpath_div
+      else
+        url_xpath = href_xpath
+      end
+     
+      page.search(url_xpath).each do |doc|
         urls.push(url + doc["href"])
       end
       return urls
@@ -389,11 +396,13 @@ namespace :cron do
         @notice.document5_name = get_varchar(detail_page,document5_record(key))
         @notice.regist_time = Time.now.to_i
 
-        array = get_href(detail_page)
-        for i in 1..10
-            @notice.document1_url = array[i]
-        end
-
+        document_url = get_href(detail_page, notice_div[key])
+        @notice.document1_url = document_url[1]
+        @notice.document2_url = document_url[2]
+        @notice.document3_url = document_url[3]
+        @notice.document4_url = document_url[4]
+        @notice.document5_url = document_url[5]
+       
         detail_url = detail_page.uri.to_s
         @notice.web_url = detail_url.sub!(/(.*)&Head.*/){$1}
 
@@ -685,12 +694,16 @@ department.key(@notice.department_id), @notice.campus_id, @notice.web_url)
 
   desc "本日の予定をツイートする"
   task :morning_tweet => :environment do
-    today = Date::today + 1
+    today = Date::today
     puts today
     unixtime = Time.parse(today.to_s).to_i
     puts unixtime
     Notice.where(date: unixtime).each do |recode|
-      @tweet_url = @tweet_base_url + recode.id
+      if recode.campus_id == 1
+         @tweet_url = @tweet_base_url + recode.id.to_s
+      else
+         @tweet_url = recode.web_url
+      end
       Kyutech_bot.tweet_morning(recode.title, category.key(recode.category_id),department.key(recode.department_id), recode.campus_id, @tweet_url)
     end
   
