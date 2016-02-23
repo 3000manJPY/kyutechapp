@@ -9,7 +9,7 @@ Rails.application.routes.draw do
    get    '/api/v2/lectures'                      => 'api/v2/lectures#index'
 
    get    '/api/v1/notices'                      => 'api/v1/notices#index'
-   get    '/api/v2/notices'                      => 'api/v2/notices#index'
+   get    '/api/v2/notices'                      => 'api/v2/notices#notices'
    get    '/api/v2/notices/:id'                      => 'api/v2/notices#twitter'
 
    get    '/api/v1/notices/new'                      => 'api/v1/notices#new'

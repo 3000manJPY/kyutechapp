@@ -3,8 +3,10 @@ class Api::V2::NoticesController < ApplicationController
 
   # GET /notices
   # GET /notices.json
-  def index
-    @notices = Notice.all
+  def notices
+    @notices = Notice.where("date >= ?", (Time.now - 3.day).to_i)
+    render json: @notices
+
   end
 
   # GET /notices/1
