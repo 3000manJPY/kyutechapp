@@ -43,8 +43,9 @@ enum Router: URLRequestConvertible {
         case .GetAllNotice():           return "/notices"
         case .GetNotice(let campusId):  return "/notices/\(campusId)"
 //        case .GetLecture(let campusId): return "/lectures/\(campusId)"
-        case .GetLecture(let campusId): return "/lectures.json"
-        case .GetAccess(let campusId):  return "/accesses/\(campusId)"
+        case .GetLecture(let campusId): return "/lectures/\(campusId)"
+        case .GetAccess(let campusId):  return "/accesses"
+//        case .GetAccess(let campusId):  return "/accesses/\(campusId)"
         case .GetCalendar(let campusId):return "/accesses/calendar/\(campusId)"
         }
     }
@@ -106,5 +107,24 @@ struct APIService {
             completionHandler(arr)
         })
     }
+    
+    static func reqestAccesses(campus: Int,completionHandler: ([Access]) -> (), errorHandler: (ErrorType?,Int) -> ()) -> () {
+        Alamofire.request(Router.GetAccess(campusId: String(campus))).responseSwiftyJSON({(request,response,jsonData,error) in
+            guard let res = response else {
+                SHprint("error! no response")
+                return
+            }
+            if res.statusCode < 200 && res.statusCode >= 300 {
+                SHprint("error!! status => \(res.statusCode)")
+                return
+            }
+            var arr: [Access] = []
+            for (_,json) in jsonData {
+                arr.append(Access(json: json))
+            }
+            completionHandler(arr)
+        })
+    }
+    
 }
 

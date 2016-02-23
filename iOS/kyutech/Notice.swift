@@ -9,8 +9,6 @@
 
 import UIKit
 import RealmSwift
-import Realm
-
 import Foundation
 import SwiftyJSON
 import SHUtil
