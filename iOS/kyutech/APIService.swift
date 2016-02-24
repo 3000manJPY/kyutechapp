@@ -22,31 +22,44 @@ enum Router: URLRequestConvertible {
     static let version      = Config.plist("apiVersion")
     static let apiBaseURL   = "\(Router.host)/api/\(Router.version)"
     case CreateUser([String: AnyObject])
-    case GetAllNotice()
-    case GetNotice(campusId: String)
-    case GetLecture(campusId: String)
-    case GetAccess(campusId: String)
+    case GetAllNotices()
+    case GetNoticeWithCampusId(campusId: String)
+    case GetNoticeWithNoticeId(noticeId: String)
+    case GetAllLectures()
+    case GetLectureWithCampusId(campusId: String)
+    case GetLectureWithLectureId(lectureId: String)
+    case GetAllAccesses()
+    case GetAccessWithCampusId(campusId: String)
+    case GetAccessWithAccessId(accessId: String)
     case GetCalendar(campusId: String)
     var method: Alamofire.Method {
         switch self {
-        case .CreateUser:   return .POST
-        case .GetAllNotice: return .GET
-        case .GetNotice:    return .GET
-        case .GetLecture:   return .GET
-        case .GetAccess:    return .GET
-        case .GetCalendar:  return .GET
+        case .CreateUser:               return .POST
+        case .GetAllNotices:            return .GET
+        case .GetNoticeWithCampusId:    return .GET
+        case .GetNoticeWithNoticeId:    return .GET
+        case GetAllLectures:            return .GET
+        case GetLectureWithCampusId:    return .GET
+        case GetLectureWithLectureId:   return .GET
+        case GetAllAccesses:            return .GET
+        case GetAccessWithCampusId:     return .GET
+        case GetAccessWithAccessId:     return .GET
+        case GetCalendar:               return .GET
         }
     }
     var path: String {
         switch self {
-        case .CreateUser:               return "/users"
-        case .GetAllNotice():           return "/notices"
-        case .GetNotice(let campusId):  return "/notices/\(campusId)"
-//        case .GetLecture(let campusId): return "/lectures/\(campusId)"
-        case .GetLecture(let campusId): return "/lectures/\(campusId)"
-        case .GetAccess(let campusId):  return "/accesses"
-//        case .GetAccess(let campusId):  return "/accesses/\(campusId)"
-        case .GetCalendar(let campusId):return "/accesses/calendar/\(campusId)"
+        case CreateUser:                                return "/users"
+        case GetAllNotices():                           return "/notices"
+        case GetNoticeWithCampusId(let campusId):       return "/notices?campus_id=\(campusId)"
+        case GetNoticeWithNoticeId(let noticeId):       return "/notice/\(noticeId)"
+        case GetAllLectures():                          return "/lectures"
+        case GetLectureWithCampusId(let campusId):      return "/lectures?campus_id=\(campusId)"
+        case GetLectureWithLectureId(let lectureId):    return "/lecture/\(lectureId)"
+        case GetAllAccesses():                          return "/accesses"
+        case GetAccessWithCampusId(let campusId):       return "/accesses?campus_id=\(campusId)"
+        case GetAccessWithAccessId(let accessId):       return "/access/\(accessId)"
+        case GetCalendar:                               return "/calender/"
         }
     }
     // MARK: URLRequestConvertible
@@ -74,7 +87,7 @@ enum Router: URLRequestConvertible {
 
 struct APIService {
     static func reqestNotices(campus: Int,completionHandler: ([Notice]) -> (), errorHandler: (ErrorType?,Int) -> ()) -> () {
-        Alamofire.request(Router.GetAllNotice()).responseSwiftyJSON({(request,response,jsonData,error) in
+        Alamofire.request(Router.GetNoticeWithCampusId(campusId: String(campus))).responseSwiftyJSON({(request,response,jsonData,error) in
             guard let res = response else {
                 SHprint("error! no response")
                 return
@@ -91,7 +104,7 @@ struct APIService {
         })
     }
     static func reqestLectures(campus: Int,completionHandler: ([Lecture]) -> (), errorHandler: (ErrorType?,Int) -> ()) -> () {
-        Alamofire.request(Router.GetLecture(campusId: String(campus))).responseSwiftyJSON({(request,response,jsonData,error) in
+        Alamofire.request(Router.GetLectureWithCampusId(campusId: String(campus))).responseSwiftyJSON({(request,response,jsonData,error) in
             guard let res = response else {
                 SHprint("error! no response")
                 return
@@ -109,7 +122,7 @@ struct APIService {
     }
     
     static func reqestAccesses(campus: Int,completionHandler: ([Access]) -> (), errorHandler: (ErrorType?,Int) -> ()) -> () {
-        Alamofire.request(Router.GetAccess(campusId: String(campus))).responseSwiftyJSON({(request,response,jsonData,error) in
+        Alamofire.request(Router.GetAccessWithCampusId(campusId: String(campus))).responseSwiftyJSON({(request,response,jsonData,error) in
             guard let res = response else {
                 SHprint("error! no response")
                 return
