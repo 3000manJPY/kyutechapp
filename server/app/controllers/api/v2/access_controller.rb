@@ -4,7 +4,7 @@ class Api::V2::AccessController < ApplicationController
         if @campus_id == nil 
             @accesses = Access.all.to_json(:include => {:directions => {:include => :time_tables}})
         else
-            @accesses = Access.find_by(:campus_id => @campus_id).to_json(:include => {:directions => {:include => :time_tables}})
+            @accesses = Access.where("campus_id = ?", @campus_id).to_json(:include => {:directions => {:include => :time_tables}})
         end
         render json: @accesses
     end
