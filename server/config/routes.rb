@@ -6,16 +6,17 @@ Rails.application.routes.draw do
   #  namespace :v1 do
  
 #  get 'api/v1/lectures' => 'api/v1/lectures#index'
-   get    '/api/v2/lectures'                      => 'api/v2/lectures#index'
+   get    '/api/v2/lectures'                      => 'api/v2/lectures#allLectures'
+   get    '/api/v2/lecture/:id'                      => 'api/v2/lectures#lecture'
 
    get    '/api/v1/notices'                      => 'api/v1/notices#index'
-   get    '/api/v2/notices'                      => 'api/v2/notices#notices'
-   get    '/api/v2/notices/:id'                      => 'api/v2/notices#twitter'
-
-   get    '/api/v1/notices/new'                      => 'api/v1/notices#new'
+   get    '/api/v2/notices'                      => 'api/v2/notices#allNotices'
+   get    '/api/v2/notice/:id'                      => 'api/v2/notices#notice'
    get	  'api/v2/notices/redirect/:id'		=> 'api/v2/notices#redirect'
    get	  'api/v2/notices/web/:id'		=> 'api/v2/notices#webPage'
-   get	  'api/v2/accesses'		=> 'api/v2/access#show'
+
+   get	  'api/v2/accesses'		=> 'api/v2/access#allAccesses'
+   get	  'api/v2/access/:id'		=> 'api/v2/access#access'
    #   resources :lectures
    #   resources :lectures
   #root :to => "static#index"
