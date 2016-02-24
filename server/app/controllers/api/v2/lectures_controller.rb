@@ -6,7 +6,7 @@ class Api::V2::LecturesController < ApplicationController
     if @campus_id == nil
       @lectures = Lecture.all
     else
-      @lectures = Lecture.find_by(:campus_id => @campus_id)
+      @lectures = Lecture.where("campus_id = ?", @campus_id)
     end
     render json: @lectures
   end
