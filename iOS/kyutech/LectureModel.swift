@@ -10,8 +10,8 @@ import UIKit
 import Alamofire
 import SHUtil
 
-class LectueModel: NSObject {
-    class var sharedInstance: LectueModel { struct Singleton { static let instance: LectueModel = LectueModel() }; return Singleton.instance }
+class LectureModel: NSObject {
+    class var sharedInstance: LectureModel { struct Singleton { static let instance: LectureModel = LectureModel() }; return Singleton.instance }
     static let HOL_NUM = 5
     static let VAR_NUM = 6
     dynamic var myLectures   : [Lecture] = []
@@ -30,7 +30,7 @@ class LectueModel: NSObject {
     private override init() {
         super.init()
         self.updateDate()
-        self.setMylectureData()
+        self.setFirstNilData()
     }
     
     func updateDate(){
@@ -38,7 +38,7 @@ class LectueModel: NSObject {
             self.syllabusList = lectures
         }
     }
-    
+   
     private func reqestLectures(campus: Int, completion: ([Lecture]) -> ()){
         if self.requestState == .Requesting { return }
         APIService.reqestLectures(campus, completionHandler: { (lectures) -> () in
@@ -51,7 +51,15 @@ class LectueModel: NSObject {
     
     private func setMylectureData(){
         var arr: [Lecture] = []
-        for _ in 0..<(LectueModel.HOL_NUM + 1 ) * (LectueModel.VAR_NUM + 1) {
+        for index in 0..<(LectureModel.HOL_NUM + 1 ) * (LectureModel.VAR_NUM + 1) {
+            
+        }
+        self.myLectures = arr
+    }
+    
+    private func setFirstNilData(){
+        var arr: [Lecture] = []
+        for _ in 0..<(LectureModel.HOL_NUM + 1 ) * (LectureModel.VAR_NUM + 1) {
             arr.append(Lecture())
         }
        self.myLectures = arr

@@ -95,7 +95,7 @@ extension UICollectionViewCell {
     
     func createperiodCell(indexPath: NSIndexPath) -> UICollectionViewCell {
         guard let period = self.viewWithTag(200) as? UILabel else{ return self }
-        period.text = String(indexPath.row / (LectueModel.HOL_NUM + 1))
+        period.text = String(indexPath.row / (LectureModel.HOL_NUM + 1))
         return self
     }
     

@@ -12,10 +12,10 @@ import SHUtil
 class SubjectTableView: UITableView {
     func setTitle(index: Int) -> String {
         var str = ""
-        if index < LectueModel.HOL_NUM { return "" }
+        if index < LectureModel.HOL_NUM { return "" }
         
-        let hol = index % (LectueModel.HOL_NUM + 1)
-        let val = index / (LectueModel.HOL_NUM + 1)
+        let hol = index % (LectureModel.HOL_NUM + 1)
+        let val = index / (LectureModel.HOL_NUM + 1)
         switch hol {
         case 1: str = WEEKS.Monday.name()
         case 2: str = WEEKS.Tuesday.name()

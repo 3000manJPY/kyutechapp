@@ -20,7 +20,7 @@ enum LECTUREMODE: Int {
 class LectureCollectionViewController: UIViewController {
     
     var myLectureArray : [Lecture] = []
-    var syllabusArray  : [Lecture] = []
+//    var syllabusArray  : [Lecture] = []
     
     var mode = LECTUREMODE.Normal
     
@@ -43,13 +43,13 @@ class LectureCollectionViewController: UIViewController {
         
         self.lecCollectionView.registerNib(UINib(nibName: "LectureCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "LectureCollectionViewCell")
        
-        self.myLectureArray = LectueModel.sharedInstance.myLectures
+        self.myLectureArray = LectureModel.sharedInstance.myLectures
 
         
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        LectueModel.sharedInstance.addObserver(self, forKeyPath: "myLectures", options: [.New, .Old], context: nil)
+        LectureModel.sharedInstance.addObserver(self, forKeyPath: "myLectures", options: [.New, .Old], context: nil)
 //        let tracker = GAI.sharedInstance().defaultTracker
 //        tracker.set(kGAIScreenName, value: NSStringFromClass(self.classForCoder))
 //        
@@ -59,7 +59,7 @@ class LectureCollectionViewController: UIViewController {
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        LectueModel.sharedInstance.removeObserver(self, forKeyPath: "myLectures")
+        LectureModel.sharedInstance.removeObserver(self, forKeyPath: "myLectures")
     }
     
     @IBAction func editModePushed(sender: AnyObject) {
@@ -76,9 +76,6 @@ class LectureCollectionViewController: UIViewController {
             self.myLectureArray = arr
             
             self.lecCollectionView.reloadData()
-        }else if keyPath == "syllabusList" {
-            guard let arr = change?["new"] as? [Lecture] else{ return }
-            self.syllabusArray  = arr
         }
     }
     
@@ -126,7 +123,7 @@ extension LectureCollectionViewController: UICollectionViewDataSource, UICollect
         return self.lecCollectionView.createCollectionViewCell(self.myLectureArray[indexPath.row], mode: self.mode, indexPath:indexPath)
     }
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row < LectueModel.HOL_NUM || indexPath.row % (LectueModel.HOL_NUM + 1) == 0 { return }
+        if indexPath.row < LectureModel.HOL_NUM || indexPath.row % (LectureModel.HOL_NUM + 1) == 0 { return }
         if self.mode == .Edit {
             self.showTimeSlectPopOverViewWithId(indexPath.row)
         }else{

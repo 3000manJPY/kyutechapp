@@ -51,13 +51,13 @@ enum Router: URLRequestConvertible {
         switch self {
         case CreateUser:                                return "/users"
         case GetAllNotices():                           return "/notices"
-        case GetNoticeWithCampusId(let campusId):       return "/notices?campus_id=\(campusId)"
+        case GetNoticeWithCampusId(_):                  return "/notices"
         case GetNoticeWithNoticeId(let noticeId):       return "/notice/\(noticeId)"
         case GetAllLectures():                          return "/lectures"
-        case GetLectureWithCampusId(let campusId):      return "/lectures?campus_id=\(campusId)"
+        case GetLectureWithCampusId(_):      return "/lectures"
         case GetLectureWithLectureId(let lectureId):    return "/lecture/\(lectureId)"
         case GetAllAccesses():                          return "/accesses"
-        case GetAccessWithCampusId(let campusId):       return "/accesses?campus_id=\(campusId)"
+        case GetAccessWithCampusId(_):       return "/accesses"
         case GetAccessWithAccessId(let accessId):       return "/access/\(accessId)"
         case GetCalendar:                               return "/calender/"
         }
@@ -73,10 +73,14 @@ enum Router: URLRequestConvertible {
 //        }
         
         switch self {
-        case .CreateUser(let parameters):
-            return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: parameters).0
-//        case .UpdateUser(_, let parameters):
-//            return Alamofire.ParameterEncoding.URL.encode(mutableURLRequest, parameters: parameters).0
+//        case .CreateUser(let parameters):
+//            return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: parameters).0
+        case .GetNoticeWithCampusId(let campusId):
+            return Alamofire.ParameterEncoding.URL.encode(mutableURLRequest, parameters: ["campus_id":campusId]).0
+        case .GetLectureWithCampusId(let campusId):
+            return Alamofire.ParameterEncoding.URL.encode(mutableURLRequest, parameters: ["campus_id":campusId]).0
+        case .GetAccessWithCampusId(let campusId):
+            return Alamofire.ParameterEncoding.URL.encode(mutableURLRequest, parameters: ["campus_id":campusId]).0
         default:
             return mutableURLRequest
         }
