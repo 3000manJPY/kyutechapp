@@ -25,6 +25,7 @@ struct Config {
     }
     struct userDefault {
         static let term = "com.planningdev.kyutechapp.term"
+        static let isUpdateLecture = "com.planningdev.kyutechapp.lecture.update"
     }
     
     static func plist(property:String)->String{

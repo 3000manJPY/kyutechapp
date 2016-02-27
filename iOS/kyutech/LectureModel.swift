@@ -11,11 +11,11 @@ import Alamofire
 import SHUtil
 
 class LectureModel: NSObject {
-    class var sharedInstance: LectureModel { struct Singleton { static let instance: LectureModel = LectureModel() }; return Singleton.instance }
-    static let HOL_NUM = 5
-    static let VAR_NUM = 6
-    dynamic var myLectures   : [Lecture] = []
-    dynamic var syllabusList : [Lecture] = []
+    class   var sharedInstance: LectureModel { struct Singleton { static let instance: LectureModel = LectureModel() }; return Singleton.instance }
+    static  let HOL_NUM = 5
+    static  let VAR_NUM = 6
+    dynamic var myLectures   :[Lecture] = []
+    dynamic var syllabusList :[Lecture] = []
     private var requestState :RequestState = .None {
         willSet {
             switch  newValue {
@@ -30,12 +30,14 @@ class LectureModel: NSObject {
     private override init() {
         super.init()
         self.updateDate()
-        self.setFirstNilData()
+        self.setMylectureData()
+        self.setsyllabusData()
     }
     
     func updateDate(){
         self.reqestLectures(CAMPUS.iizuka.val) { (lectures) -> () in
             self.syllabusList = lectures
+            RealmData.sharedInstance.save(lectures)
         }
     }
    
@@ -49,25 +51,28 @@ class LectureModel: NSObject {
         }
     }
     
-    private func setMylectureData(){
-        var arr: [Lecture] = []
-        for index in 0..<(LectureModel.HOL_NUM + 1 ) * (LectureModel.VAR_NUM + 1) {
-            
-        }
-        self.myLectures = arr
+    private func setsyllabusData(){
+       guard let arr = RealmData.sharedInstance.getMyLectureData() else{ return }
+       self.syllabusList = arr
+        
     }
     
-    private func setFirstNilData(){
-        var arr: [Lecture] = []
-        for _ in 0..<(LectureModel.HOL_NUM + 1 ) * (LectureModel.VAR_NUM + 1) {
-            arr.append(Lecture())
+    private func setMylectureData(){
+        guard let arr = RealmData.sharedInstance.getMyLectureData() else{ return }
+        var res: [Lecture] = []
+        for index in 0..<( LectureModel.HOL_NUM + 1 ) * ( LectureModel.VAR_NUM + 1 ) {
+            let week = index / ( LectureModel.VAR_NUM + 1 )
+            let time = index % ( LectureModel.HOL_NUM + 1 )
+            if index == 0 || week == 0 || time == 0 { res.append(Lecture()); continue }
+            let weekTime = String( week * 10 + time )
+            for lec in arr {
+                if lec.myLecture == true && lec.weekTime == weekTime {
+                    res.append(lec)
+                    continue
+                }
+            }
+           res.append(Lecture())
         }
-       self.myLectures = arr
+        self.myLectures = res
     }
-//        guard let data = RealmData.sharedInstance.getMyLectureData() else{ return }
-//        for _ in 0..<LectueModel.HOL_NUM * LectueModel.VAR_NUM {
-//            for lec in data {
-//                if lec.week_time ==
-//            }
-//        }
 }

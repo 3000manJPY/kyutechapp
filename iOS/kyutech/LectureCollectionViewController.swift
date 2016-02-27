@@ -31,7 +31,6 @@ class LectureCollectionViewController: UIViewController {
     @IBOutlet weak var allSelectBtn: UIButton!
     @IBOutlet weak var lecCollectionView: LectureCollectionView!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.allSelectBtn.enabled = false
@@ -42,10 +41,7 @@ class LectureCollectionViewController: UIViewController {
         self.centerBtn.imageEdgeInsets = UIEdgeInsetsMake(0, titleWidth,  0, -titleWidth)
         
         self.lecCollectionView.registerNib(UINib(nibName: "LectureCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "LectureCollectionViewCell")
-       
         self.myLectureArray = LectureModel.sharedInstance.myLectures
-
-        
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -74,7 +70,6 @@ class LectureCollectionViewController: UIViewController {
         if keyPath == "myLectures" {
             guard let arr = change?["new"] as? [Lecture] else{ return }
             self.myLectureArray = arr
-            
             self.lecCollectionView.reloadData()
         }
     }
@@ -96,29 +91,19 @@ class LectureCollectionViewController: UIViewController {
 }
 
 extension LectureCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-    
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return myLectureArray.count
-    }
+    //
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int { return 1 }
+    //
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { return myLectureArray.count }
     //セルの大きさ
-    func collectionView(collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout,sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{
-        return self.lecCollectionView.collectionViewSize(indexPath)
-    }
+    func collectionView(collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout,sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{ return self.lecCollectionView.collectionViewSize(indexPath) }
     //セルごとの余白
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake( 0, 0, 0, 0 ) // margin between cells
-    }
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets { return UIEdgeInsetsMake( 0, 0, 0, 0 ) }
     //左右の等間隔
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 2
-    }
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat { return 2 }
     //上下の等間隔
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 2
-    }
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat { return 2 }
+    //最小間隔
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         return self.lecCollectionView.createCollectionViewCell(self.myLectureArray[indexPath.row], mode: self.mode, indexPath:indexPath)
     }

@@ -44,18 +44,6 @@ class SubjectTableViewController: UIViewController{
         super.viewDidDisappear(animated)
         LectureModel.sharedInstance.removeObserver(self, forKeyPath: "syllabusList")
     }
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        //========        //===============================================
-
-//        let version = NSString(string: UIDevice.currentDevice().systemVersion).doubleValue
-//        UITableView.appearance().separatorInset = UIEdgeInsetsZero
-//        UITableViewCell.appearance().separatorInset = UIEdgeInsetsZero
-//        if version >= 8 {
-            
-//        }
-        //Viewに移植できる
-    }
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if keyPath == "syllabusList" {
             guard let arr = change?["new"] as? [Lecture] else{ return }
@@ -63,9 +51,7 @@ class SubjectTableViewController: UIViewController{
             self.dataArrangement()
         }
     }
-    @IBAction func dismissButton(sender: UIButton) {
-        self.dismissViewControllerAnimated(false, completion: nil)
-    }
+    @IBAction func dismissButton(sender: UIButton) { self.dismissViewControllerAnimated(false, completion: nil) }
     
     @IBAction func deletePushed(sender: UIButton) {
     
@@ -124,37 +110,33 @@ extension SubjectTableViewController: UITableViewDelegate,UITableViewDataSource 
         return cell
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int { return 1 }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.subjectArray.count
-    }
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return self.subjectArray.count }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //===============================================
-        let index = self.subjectArray[indexPath.row].0
-        let tapObj = self.syllabusArray[index]
-        let flag = !tapObj.myLecture
+        let index   = self.subjectArray[indexPath.row].0
+        let tapObj  = self.syllabusArray[index]
+        let flag    = !tapObj.myLecture
         for item in self.subjectArray {
             self.syllabusArray[item.0].myLecture = false
         }
         self.syllabusArray[index].myLecture = flag
         LectureModel.sharedInstance.syllabusList = self.syllabusArray
+       
         
-        if flag == true {
-            LectureModel.sharedInstance.myLectures.append(tapObj)
-        }else{
-            var arr: [Lecture] = []
-            for mylec in LectureModel.sharedInstance.syllabusList {
-                if mylec.myLecture && mylec.weekTime == "3"{
-                    arr.append(mylec)
-                }
-                
-            }
-            LectureModel.sharedInstance.myLectures = arr
-        }
+//        if flag == true {
+//            LectureModel.sharedInstance.myLectures.append(tapObj)
+//        }else{
+//            var arr: [Lecture] = []
+//            for mylec in LectureModel.sharedInstance.syllabusList {
+//                if mylec.myLecture && mylec.weekTime == "3"{
+//                    arr.append(mylec)
+//                }
+//            }
+//            LectureModel.sharedInstance.myLectures = arr
+//        }
     }
     //===============================================移植可能
     
