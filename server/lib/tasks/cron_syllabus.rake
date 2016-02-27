@@ -8,6 +8,7 @@ require "selenium-webdriver"
 require 'nokogiri'
 
 namespace :cron_syllabus do
+@SYLLABUS_UPDATE_TIME = "com.planningdev.kyutech.lecture.update"
 @rebootCount = 0
 @MAX_REBOOT = 20
 
@@ -23,12 +24,18 @@ namespace :cron_syllabus do
   desc "cron sillabus"
   task :syllabus => :environment do
 
+    setServerTime()
     first = 1
     if !(ENV['START_NUM'].nil?)
       first = ENV['START_NUM'].to_i
     end
 
     cronBoot(first)
+
+  end
+
+  def setServerTime()
+      Rails.cache.write @SYLLABUS_UPDATE_TIME, Time.now.to_i
 
   end
 
