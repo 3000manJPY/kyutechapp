@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 #  get 'api/v1/lectures' => 'api/v1/lectures#index'
    get    '/api/v2/lectures'                      => 'api/v2/lectures#allLectures'
    get    '/api/v2/lecture/:id'                      => 'api/v2/lectures#lecture'
+   get    'api/v2/lecture/server_time'          => 'api/v2/lectures#getServerTime'
 
    get    '/api/v1/notices'                      => 'api/v1/notices#index'
    get    '/api/v2/notices'                      => 'api/v2/notices#allNotices'
