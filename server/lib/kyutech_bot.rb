@@ -64,24 +64,24 @@ class Kyutech_bot
         case campus_id
         when @campus["飯塚"] then
           client = Twitter::REST::Client.new do |config|
-           config.consumer_key        = "Q6KCtMS2co7OEmKAPPdB1nvQV"
-            config.consumer_secret     = "QbLCPTwA5bxmcnbIV4LhR8amNWvwXn1nIakRKWn6nYlJHVOlAU"
-            config.access_token        = "3230971351-O9qWFFZHDlygzEhx9K8V0zYBKroLnKOMXj2mrDP"
-           config.access_token_secret = "WUegPowRcn3SVeGKmG7C6wnaM5GGNQFukVrRoPU23wTTw" 
+           #config.consumer_key        = "Q6KCtMS2co7OEmKAPPdB1nvQV"
+           # config.consumer_secret     = "QbLCPTwA5bxmcnbIV4LhR8amNWvwXn1nIakRKWn6nYlJHVOlAU"
+           # config.access_token        = "3230971351-O9qWFFZHDlygzEhx9K8V0zYBKroLnKOMXj2mrDP"
+           #config.access_token_secret = "WUegPowRcn3SVeGKmG7C6wnaM5GGNQFukVrRoPU23wTTw" 
           end
         when @campus["戸畑"] then
           client = Twitter::REST::Client.new do |config|
-            config.consumer_key        = "wVVxaX65WGbDwLJxRF6vlvN8b"
-            config.consumer_secret     = "Z4ezFzud8CkukKRFUep6ZmySqLnn5aI5i5KbFrov73PxzRKqP5"
-            config.access_token        = "4477221013-eRKSpd7R6VgRI4UxvVKavcxNpBcDRVJcacC59iq"
-            config.access_token_secret = "gErzSCxRf1X9OLkiogSQRClsQs1DhAR31AWl08zyvvPEM"
+           # config.consumer_key        = "wVVxaX65WGbDwLJxRF6vlvN8b"
+           # config.consumer_secret     = "Z4ezFzud8CkukKRFUep6ZmySqLnn5aI5i5KbFrov73PxzRKqP5"
+           # config.access_token        = "4477221013-eRKSpd7R6VgRI4UxvVKavcxNpBcDRVJcacC59iq"
+           # config.access_token_secret = "gErzSCxRf1X9OLkiogSQRClsQs1DhAR31AWl08zyvvPEM"
          end
         when @campus["若松"] then
           client = Twitter::REST::Client.new do |config|
-            config.consumer_key        = "g6HJOAAIG0L1AaWGpWDCLlUN5"
-            config.consumer_secret     = "UXNC0lHZEvFSvgf7KMC7L4zBf1GaiFIjm699Ys79gZcGPqVWp7"
-            config.access_token        = "4483296253-BsahnjuRX8CrQmnv2pWHEQkiwPSbkpLpj4lOx13"
-            config.access_token_secret = "dsN9dsMa0ecJ1EfOaCThBEgqdfMW3IJ9jGnhtBrtRsIXl"
+           # config.consumer_key        = "g6HJOAAIG0L1AaWGpWDCLlUN5"
+           # config.consumer_secret     = "UXNC0lHZEvFSvgf7KMC7L4zBf1GaiFIjm699Ys79gZcGPqVWp7"
+           # config.access_token        = "4483296253-BsahnjuRX8CrQmnv2pWHEQkiwPSbkpLpj4lOx13"
+           # config.access_token_secret = "dsN9dsMa0ecJ1EfOaCThBEgqdfMW3IJ9jGnhtBrtRsIXl"
           end
         end
     end
