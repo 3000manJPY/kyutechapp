@@ -4,13 +4,19 @@ class Api::V2::LecturesController < ApplicationController
   @LECTURE_UPDATE_TIME = "com.planningdev.kyutech.update"
   def allLectures
     @campus_id = params[:campus_id]
+    @server_time = params[:server_time]
     if @campus_id == nil
       @lectures = Lecture.all
     else
       @lectures = Lecture.where("campus_id = ?", @campus_id)
     end
     @SYLLABUS_UPDATE_TIME = "com.planningdev.kyutech.lecture.update"
-    render json: { "data" => @lectures, "server_time" => (Rails.cache.read @SYLLABUS_UPDATE_TIME)}
+    @cache_time = (Rails.cache.read @SYLLABUS_UPDATE_TIME)
+    if @server_time.to_i == @cache_time.to_i
+      render json: { "data" => nil, "server_time" => @cache_time}
+    else
+      render json: { "data" => @lectures, "server_time" => @cache_time}
+    end
   end
 
   def lecture
