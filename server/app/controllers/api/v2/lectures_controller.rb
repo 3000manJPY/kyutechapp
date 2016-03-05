@@ -12,21 +12,20 @@ class Api::V2::LecturesController < ApplicationController
     end
     @SYLLABUS_UPDATE_TIME = "com.planningdev.kyutech.lecture.update"
     @cache_time = (Rails.cache.read @SYLLABUS_UPDATE_TIME)
-    if @server_time.to_i == @cache_time.to_i
-      render json: { "data" => nil, "server_time" => @cache_time}
+    if @server_time == nil || @cache_time == nil
+        render json: { "data" => @lectures, "server_time" => @cache_time}
     else
-      render json: { "data" => @lectures, "server_time" => @cache_time}
+      if @server_time.to_i == @cache_time.to_i
+        render json: { "data" => nil, "server_time" => @cache_time}
+      else
+        render json: { "data" => @lectures, "server_time" => @cache_time}
+      end
     end
   end
 
   def lecture
     @id = params[:id]
     render json: Lecture.find_by(:id => @id) 
-  end
-
-  def getServerTime
-      render_to_string :lecture_update_time => Rails.cache.read @LECTURE_UPDATE_TIME
-
   end
 
 end
