@@ -20,7 +20,7 @@ enum LECTUREMODE: Int {
 class LectureCollectionViewController: UIViewController {
     
     var myLectureArray : [Lecture] = []
-    var syllabusArray  : [Lecture] = []
+//    var syllabusArray  : [Lecture] = []
     
     var mode = LECTUREMODE.Normal
     
@@ -30,7 +30,6 @@ class LectureCollectionViewController: UIViewController {
     @IBOutlet weak var editBtn: UIButton!
     @IBOutlet weak var allSelectBtn: UIButton!
     @IBOutlet weak var lecCollectionView: LectureCollectionView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,14 +41,11 @@ class LectureCollectionViewController: UIViewController {
         self.centerBtn.imageEdgeInsets = UIEdgeInsetsMake(0, titleWidth,  0, -titleWidth)
         
         self.lecCollectionView.registerNib(UINib(nibName: "LectureCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "LectureCollectionViewCell")
-       
-        self.myLectureArray = LectueModel.sharedInstance.myLectures
-
-        
+        self.myLectureArray = LectureModel.sharedInstance.myLectures
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        LectueModel.sharedInstance.addObserver(self, forKeyPath: "myLectures", options: [.New, .Old], context: nil)
+        LectureModel.sharedInstance.addObserver(self, forKeyPath: "myLectures", options: [.New, .Old], context: nil)
 //        let tracker = GAI.sharedInstance().defaultTracker
 //        tracker.set(kGAIScreenName, value: NSStringFromClass(self.classForCoder))
 //        
@@ -59,7 +55,7 @@ class LectureCollectionViewController: UIViewController {
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        LectueModel.sharedInstance.removeObserver(self, forKeyPath: "myLectures")
+        LectureModel.sharedInstance.removeObserver(self, forKeyPath: "myLectures")
     }
     
     @IBAction func editModePushed(sender: AnyObject) {
@@ -74,11 +70,7 @@ class LectureCollectionViewController: UIViewController {
         if keyPath == "myLectures" {
             guard let arr = change?["new"] as? [Lecture] else{ return }
             self.myLectureArray = arr
-            
             self.lecCollectionView.reloadData()
-        }else if keyPath == "syllabusList" {
-            guard let arr = change?["new"] as? [Lecture] else{ return }
-            self.syllabusArray  = arr
         }
     }
     
@@ -99,34 +91,24 @@ class LectureCollectionViewController: UIViewController {
 }
 
 extension LectureCollectionViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-    
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return myLectureArray.count
-    }
+    //
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int { return 1 }
+    //
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { return myLectureArray.count }
     //セルの大きさ
-    func collectionView(collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout,sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{
-        return self.lecCollectionView.collectionViewSize(indexPath)
-    }
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{ return self.lecCollectionView.collectionViewSize(indexPath) }
     //セルごとの余白
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake( 0, 0, 0, 0 ) // margin between cells
-    }
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets { return UIEdgeInsetsMake( 0, 0, 0, 0 ) }
     //左右の等間隔
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 2
-    }
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat { return 2 }
     //上下の等間隔
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 2
-    }
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat { return 2 }
+    //最小間隔
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         return self.lecCollectionView.createCollectionViewCell(self.myLectureArray[indexPath.row], mode: self.mode, indexPath:indexPath)
     }
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row < LectueModel.HOL_NUM || indexPath.row % (LectueModel.HOL_NUM + 1) == 0 { return }
+        if indexPath.row < LectureModel.HOL_NUM || indexPath.row % (LectureModel.HOL_NUM + 1) == 0 { return }
         if self.mode == .Edit {
             self.showTimeSlectPopOverViewWithId(indexPath.row)
         }else{

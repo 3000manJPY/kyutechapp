@@ -25,6 +25,14 @@ struct Config {
     }
     struct userDefault {
         static let term = "com.planningdev.kyutechapp.term"
+        static let updateLecture = "com.planningdev.kyutechapp.lecture.update"
+        static func isUpdateLectureTime() -> String {
+            if let val = NSUserDefaults.standardUserDefaults().objectForKey(Config.userDefault.updateLecture) {
+                return String(val)
+            }
+            return ""
+        }
+    
     }
     
     static func plist(property:String)->String{

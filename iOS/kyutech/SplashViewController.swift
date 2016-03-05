@@ -24,6 +24,8 @@ class SplashViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "openNotice:",  name: Notif.notice.open, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "openLecture:", name: Notif.lecture.open, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "openAccess:",  name: Notif.access.open, object: nil)
+        
+//        LectureModel.sharedInstance.updateDate()
     }
     
     override func viewWillAppear(animated: Bool) {

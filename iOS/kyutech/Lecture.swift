@@ -23,7 +23,7 @@ class Lecture: Object {
     private dynamic var term = ""
     private dynamic var registtime = 0
     private dynamic var uid = 0
-            dynamic var week_time = ""
+            dynamic var weekTime = ""
             dynamic var room = ""
             dynamic var myLecture = false
     private dynamic var preparation = ""
@@ -52,7 +52,7 @@ class Lecture: Object {
         self.registtime = json["created_at"].intValue
         self.term       = json["term"].stringValue
         self.teacher    = json["teacher"].stringValue
-        self.week_time  = json["week_time"].stringValue
+        self.weekTime  = json["week_time"].stringValue
         self.uid        = json["uid"].intValue
         self.room       = json["room"].stringValue
         self.preparation = json["pre[aration"].stringValue

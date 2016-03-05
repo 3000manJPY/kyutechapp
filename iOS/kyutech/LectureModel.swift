@@ -10,12 +10,12 @@ import UIKit
 import Alamofire
 import SHUtil
 
-class LectueModel: NSObject {
-    class var sharedInstance: LectueModel { struct Singleton { static let instance: LectueModel = LectueModel() }; return Singleton.instance }
-    static let HOL_NUM = 5
-    static let VAR_NUM = 6
-    dynamic var myLectures   : [Lecture] = []
-    dynamic var syllabusList : [Lecture] = []
+class LectureModel: NSObject {
+    class   var sharedInstance: LectureModel { struct Singleton { static let instance: LectureModel = LectureModel() }; return Singleton.instance }
+    static  let HOL_NUM = 5
+    static  let VAR_NUM = 6
+    dynamic var myLectures   :[Lecture] = []
+    dynamic var syllabusList :[Lecture] = []
     private var requestState :RequestState = .None {
         willSet {
             switch  newValue {
@@ -29,16 +29,21 @@ class LectueModel: NSObject {
     
     private override init() {
         super.init()
-        self.updateDate()
-        self.setMylectureData()
+        self.settingDate()
+        self.setMylectureDataWithRealm()
+        self.setSyllabusDataWithRealm()
     }
     
-    func updateDate(){
+    func settingDate(){
         self.reqestLectures(CAMPUS.iizuka.val) { (lectures) -> () in
-            self.syllabusList = lectures
+            if lectures.count <= 0 { return }
+            RealmData.sharedInstance.save(lectures)
+            self.setsyllabusData(lectures)
+            self.setMylectureData(lectures)
+            
         }
     }
-    
+   
     private func reqestLectures(campus: Int, completion: ([Lecture]) -> ()){
         if self.requestState == .Requesting { return }
         APIService.reqestLectures(campus, completionHandler: { (lectures) -> () in
@@ -49,17 +54,56 @@ class LectueModel: NSObject {
         }
     }
     
-    private func setMylectureData(){
-        var arr: [Lecture] = []
-        for _ in 0..<(LectueModel.HOL_NUM + 1 ) * (LectueModel.VAR_NUM + 1) {
-            arr.append(Lecture())
-        }
-       self.myLectures = arr
+    private func setSyllabusDataWithRealm(){
+       guard let arr = RealmData.sharedInstance.getMyLectureData() else{ return }
+        self.setsyllabusData(arr)
     }
-//        guard let data = RealmData.sharedInstance.getMyLectureData() else{ return }
-//        for _ in 0..<LectueModel.HOL_NUM * LectueModel.VAR_NUM {
-//            for lec in data {
-//                if lec.week_time ==
-//            }
-//        }
+    
+    func updateSyllabusDataWithRealm(){
+        guard let arr = RealmData.sharedInstance.getMyLectureData() else{ return }
+        LectureModel.sharedInstance.syllabusList = arr
+    }
+    
+    private func setsyllabusData(arr: [Lecture]){
+        self.syllabusList = arr
+ 
+    }
+    
+    private func setMylectureDataWithRealm(){
+        guard let arr = RealmData.sharedInstance.getMyLectureData() else{ return }
+        self.setMylectureData(arr)
+    }
+    
+    private func setMylectureData(arr: [Lecture]){
+        self.myLectures = self.mylectureAnal(arr)
+ 
+    }
+    
+    func updateMylectureDataWithRealm(){
+        guard let arr = RealmData.sharedInstance.getMyLectureData() else{ return }
+        LectureModel.sharedInstance.myLectures = self.mylectureAnal(arr)
+    }
+    
+    private func mylectureAnal(arr: [Lecture]) -> [Lecture]{
+        var res: [Lecture] = []
+        for_i: for index in 0..<( LectureModel.HOL_NUM + 1 ) * ( LectureModel.VAR_NUM + 1 ) {
+            let week = index / ( LectureModel.HOL_NUM + 1 )
+            let time = index % ( LectureModel.HOL_NUM + 1 )
+            if index == 0 || week == 0 || time == 0 { res.append(Lecture()); continue }
+            let weekTime = String( week * 10 + time )
+            for lec in arr {
+                if lec.myLecture == true {//&& lec.weekTime == weekTime {
+                    for val in lec.weekTime.componentsSeparatedByString(",") {
+                        if val == weekTime {
+                            res.append(lec)
+                            continue for_i
+                        }
+                    }
+                }
+            }
+           res.append(Lecture())
+        }
+        return res
+    }
 }
+

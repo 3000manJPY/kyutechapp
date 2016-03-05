@@ -29,8 +29,7 @@ class LectureCollectionViewCell: UICollectionViewCell {
         //変種モード
         if mode == .Edit {
             self.backgroundColor = UIColor.whiteColor()
-            //            if mylec.title != "" {
-            if !mylec.myLecture {
+            if mylec.myLecture {
                 self.setEditCellImage()
             }else{
                 self.setNonEditCellImage()
@@ -38,8 +37,7 @@ class LectureCollectionViewCell: UICollectionViewCell {
         }else if mode == .Normal {
             self.backgroundColor = UIColor.whiteColor()
             self.layer.shadowOpacity = 0 /* 透明度 */
-            //            if mylec.title != "" {
-            if true {
+            if mylec.myLecture {
                 self.room.text = mylec.room
                 self.setCellImage()
             }else{
@@ -95,7 +93,7 @@ extension UICollectionViewCell {
     
     func createperiodCell(indexPath: NSIndexPath) -> UICollectionViewCell {
         guard let period = self.viewWithTag(200) as? UILabel else{ return self }
-        period.text = String(indexPath.row / (LectueModel.HOL_NUM + 1))
+        period.text = String(indexPath.row / (LectureModel.HOL_NUM + 1))
         return self
     }
     

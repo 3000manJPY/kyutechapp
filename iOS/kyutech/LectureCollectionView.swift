@@ -32,10 +32,10 @@ class LectureCollectionView: UICollectionView {
         
         if indexPath.row == 0 {
             return self.dequeueReusableCellWithReuseIdentifier("leftTop", forIndexPath: indexPath)
-        }else if indexPath.row > 0 && indexPath.row < LectueModel.HOL_NUM + 1 {
+        }else if indexPath.row > 0 && indexPath.row < LectureModel.HOL_NUM + 1 {
             let cell = self.dequeueReusableCellWithReuseIdentifier("week", forIndexPath: indexPath)
             return cell.createLeftWeekCell(indexPath)
-        }else if indexPath.row % ( LectueModel.HOL_NUM + 1 ) == 0 {
+        }else if indexPath.row % ( LectureModel.HOL_NUM + 1 ) == 0 {
             let cell = self.dequeueReusableCellWithReuseIdentifier("period", forIndexPath: indexPath)
             return cell.createperiodCell(indexPath)
         }else{
@@ -48,17 +48,17 @@ class LectureCollectionView: UICollectionView {
     func collectionViewSize(indexPath: NSIndexPath) -> CGSize {
         if indexPath.row == 0 {
             return CGSizeMake(self.weekCellWidth,self.periodCellHeight)
-        }else if indexPath.row > 0 && indexPath.row < LectueModel.HOL_NUM + 1 {
-            let w = (CGFloat(self.bounds.width - self.weekCellWidth ) / CGFloat( LectueModel.HOL_NUM) - self.insetBorad * 2 )
+        }else if indexPath.row > 0 && indexPath.row < LectureModel.HOL_NUM + 1 {
+            let w = (CGFloat(self.bounds.width - self.weekCellWidth ) / CGFloat( LectureModel.HOL_NUM) - self.insetBorad * 2 )
             let h = self.periodCellHeight
             return CGSizeMake(w, h)
-        }else if indexPath.row % ( LectueModel.HOL_NUM + 1 ) == 0 {
+        }else if indexPath.row % ( LectureModel.HOL_NUM + 1 ) == 0 {
             let w = self.weekCellWidth
-            let h =  (CGFloat(self.bounds.height - self.periodCellHeight ) / CGFloat( LectueModel.VAR_NUM) - self.insetBorad * 2 )
+            let h =  (CGFloat(self.bounds.height - self.periodCellHeight ) / CGFloat( LectureModel.VAR_NUM) - self.insetBorad * 2 )
             return CGSizeMake(w, h)
         }else{
-            let w = (CGFloat(self.bounds.width - self.weekCellWidth ) / CGFloat( LectueModel.HOL_NUM) - self.insetBorad * 2 )
-            let h =  (CGFloat(self.bounds.height - self.periodCellHeight ) / CGFloat( LectueModel.VAR_NUM) - self.insetBorad * 2 )
+            let w = (CGFloat(self.bounds.width - self.weekCellWidth ) / CGFloat( LectureModel.HOL_NUM) - self.insetBorad * 2 )
+            let h =  (CGFloat(self.bounds.height - self.periodCellHeight ) / CGFloat( LectureModel.VAR_NUM) - self.insetBorad * 2 )
             return CGSizeMake(w, h)
         }
     }

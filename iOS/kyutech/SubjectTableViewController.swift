@@ -23,7 +23,7 @@ class SubjectTableViewController: UIViewController{
     var tapIndex = 0
 //    var term = Term.First.rawValue
     var syllabusArray : [Lecture] = []
-    var subjectArray  : [Lecture] = []
+    var subjectArray  : [(Int,Lecture)] = []
    
     override var preferredContentSize: CGSize {
         get { return CGSize(width: 300, height: 275) }
@@ -32,27 +32,17 @@ class SubjectTableViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.syllabusArray = LectueModel.sharedInstance.syllabusList
+        self.syllabusArray = LectureModel.sharedInstance.syllabusList
         tableView.registerNib(UINib(nibName: "SubjectTableViewCell", bundle: nil), forCellReuseIdentifier: "SubjectTableViewCell")
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.name.text = self.tableView.setTitle(self.tapIndex)
-        LectueModel.sharedInstance.addObserver(self, forKeyPath: "syllabusList", options: [.New, .Old], context: nil)
+        LectureModel.sharedInstance.addObserver(self, forKeyPath: "syllabusList", options: [.New, .Old], context: nil)
     }
     override func viewWillDisappear(animated: Bool) {
-        super.viewWillAppear(animated)
-        LectueModel.sharedInstance.removeObserver(self, forKeyPath: "syllabusList")
-    }
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        let version = NSString(string: UIDevice.currentDevice().systemVersion).doubleValue
-        UITableView.appearance().separatorInset = UIEdgeInsetsZero
-        UITableViewCell.appearance().separatorInset = UIEdgeInsetsZero
-        if version >= 8 {
-            UITableView.appearance().layoutMargins = UIEdgeInsetsZero
-            UITableViewCell.appearance().layoutMargins = UIEdgeInsetsZero
-        }
+        super.viewWillDisappear(animated)
+        LectureModel.sharedInstance.removeObserver(self, forKeyPath: "syllabusList")
     }
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if keyPath == "syllabusList" {
@@ -61,19 +51,17 @@ class SubjectTableViewController: UIViewController{
             self.dataArrangement()
         }
     }
-    @IBAction func dismissButton(sender: UIButton) {
-        self.dismissViewControllerAnimated(false, completion: nil)
-    }
+    @IBAction func dismissButton(sender: UIButton) { self.dismissViewControllerAnimated(false, completion: nil) }
     
     @IBAction func deletePushed(sender: UIButton) {
     
     }
     func dataArrangement(){
         self.subjectArray = []
-        for item in self.syllabusArray {
-            for subject in item.week_time.componentsSeparatedByString(",") {
+        for (index,item) in self.syllabusArray.enumerate() {
+            for subject in item.weekTime.componentsSeparatedByString(",") {
                 if subject == self.weekTimeWithTapIndex(self.tapIndex) {
-                    self.subjectArray.append(item)
+                    self.subjectArray.append((index,item))
                 }
             }
         }
@@ -82,25 +70,25 @@ class SubjectTableViewController: UIViewController{
     }
     
     func weekTimeWithTapIndex(tapIndex: Int) -> String {
-        let week = tapIndex % (LectueModel.HOL_NUM + 1)
-        let period = tapIndex / (LectueModel.HOL_NUM + 1)
+        let week = tapIndex / (LectureModel.HOL_NUM + 1)
+        let period = tapIndex % (LectureModel.HOL_NUM + 1)
         return "\(week)\(period)"
     }
     
     @IBAction func nextTap(sender: UIButton) {
-        if self.tapIndex + (LectueModel.HOL_NUM + 1) < (LectueModel.VAR_NUM + 1 ) * (LectueModel.HOL_NUM + 1 ) {
-            self.tapIndex += (LectueModel.HOL_NUM + 1 )
-        }else if self.tapIndex % (LectueModel.HOL_NUM + 1) < LectueModel.HOL_NUM{
-            self.tapIndex = (self.tapIndex % (LectueModel.HOL_NUM + 1)) + LectueModel.HOL_NUM + 2
+        if self.tapIndex + (LectureModel.HOL_NUM + 1) < (LectureModel.VAR_NUM + 1 ) * (LectureModel.HOL_NUM + 1 ) {
+            self.tapIndex += (LectureModel.HOL_NUM + 1 )
+        }else if self.tapIndex % (LectureModel.HOL_NUM + 1) < LectureModel.HOL_NUM{
+            self.tapIndex = (self.tapIndex % (LectureModel.HOL_NUM + 1)) + LectureModel.HOL_NUM + 2
         }
         self.name.text = self.tableView.setTitle(self.tapIndex)
         self.dataArrangement()
     }
     @IBAction func backTap(sender: UIButton) {
-        if self.tapIndex - (LectueModel.HOL_NUM + 1) >= (LectueModel.HOL_NUM + 1) {
-            self.tapIndex -= (LectueModel.HOL_NUM + 1 )
-        }else if self.tapIndex % (LectueModel.HOL_NUM + 1) > 1 {
-            self.tapIndex = (self.tapIndex % (LectueModel.HOL_NUM + 1)) + LectueModel.HOL_NUM + (LectueModel.HOL_NUM + 1) * ( LectueModel.VAR_NUM - 1 )
+        if self.tapIndex - (LectureModel.HOL_NUM + 1) >= (LectureModel.HOL_NUM + 1) {
+            self.tapIndex -= (LectureModel.HOL_NUM + 1 )
+        }else if self.tapIndex % (LectureModel.HOL_NUM + 1) > 1 {
+            self.tapIndex = (self.tapIndex % (LectureModel.HOL_NUM + 1)) + LectureModel.HOL_NUM + (LectureModel.HOL_NUM + 1) * ( LectureModel.VAR_NUM - 1 )
         }
         self.name.text = self.tableView.setTitle(self.tapIndex)
         self.dataArrangement()
@@ -109,43 +97,47 @@ class SubjectTableViewController: UIViewController{
 
 extension SubjectTableViewController: UITableViewDelegate,UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        //        var cell : popoverViewSubjectTableViewCell!
-        //
         guard let cell = tableView.dequeueReusableCellWithIdentifier("SubjectTableViewCell", forIndexPath: indexPath) as? SubjectTableViewCell else { return UITableViewCell() }
-        //
-        //            cell = val_cell
         cell.backgroundColor = UIColor.clearColor()
-        //
-        let mylec = self.subjectArray[indexPath.row]
-        //
+        let mylec = self.subjectArray[indexPath.row].1
         cell.title.text = mylec.title
         cell.teacher.text = mylec.teacher
-        
         if mylec.myLecture == true {
-            //                cell.title.textColor = Config_UIColor.themeColor()
-            //                cell.teacher.textColor = Config_UIColor.themeColor()
             cell.checkImageView.hidden = false
         }else{
-            //                cell.title.textColor = Config_UIColor.grayTextColor()
-            //                cell.teacher.textColor = Config_UIColor.grayTextColor()
             cell.checkImageView.hidden = true
         }
-        
-        //
         return cell
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int { return 1 }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.subjectArray.count
-    }
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return self.subjectArray.count }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        //===============================================
+        let index   = self.subjectArray[indexPath.row].0
+        let tapObj  = self.syllabusArray[index]
+        let flag    = !tapObj.myLecture
         
+        //べつのweektimeにある科目があれば検索してそいつのフラグを消す
+        for val in tapObj.weekTime.componentsSeparatedByString(",") {
+            if let arr = RealmData.sharedInstance.getMylectureWithWeekTime(val) {
+                for item in arr {
+                    RealmData.sharedInstance.changeMylecture(item, flag: false)
+                }
+                
+            }
+        }
+        //選択された科目のフラグを変える
+        RealmData.sharedInstance.changeMylecture(self.syllabusArray[index],flag: flag)
+        LectureModel.sharedInstance.syllabusList = self.syllabusArray
         
+        LectureModel.sharedInstance.updateMylectureDataWithRealm()
+        LectureModel.sharedInstance.updateSyllabusDataWithRealm()
+
     }
+    //===============================================移植可能
+    
 
 }
