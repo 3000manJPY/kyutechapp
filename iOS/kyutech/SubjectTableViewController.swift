@@ -41,7 +41,7 @@ class SubjectTableViewController: UIViewController{
         LectureModel.sharedInstance.addObserver(self, forKeyPath: "syllabusList", options: [.New, .Old], context: nil)
     }
     override func viewWillDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
+        super.viewWillDisappear(animated)
         LectureModel.sharedInstance.removeObserver(self, forKeyPath: "syllabusList")
     }
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
@@ -70,8 +70,8 @@ class SubjectTableViewController: UIViewController{
     }
     
     func weekTimeWithTapIndex(tapIndex: Int) -> String {
-        let week = tapIndex % (LectureModel.HOL_NUM + 1)
-        let period = tapIndex / (LectureModel.HOL_NUM + 1)
+        let week = tapIndex / (LectureModel.HOL_NUM + 1)
+        let period = tapIndex % (LectureModel.HOL_NUM + 1)
         return "\(week)\(period)"
     }
     
@@ -119,24 +119,23 @@ extension SubjectTableViewController: UITableViewDelegate,UITableViewDataSource 
         let index   = self.subjectArray[indexPath.row].0
         let tapObj  = self.syllabusArray[index]
         let flag    = !tapObj.myLecture
-        for item in self.subjectArray {
-            self.syllabusArray[item.0].myLecture = false
-        }
-        self.syllabusArray[index].myLecture = flag
-        LectureModel.sharedInstance.syllabusList = self.syllabusArray
-       
         
-//        if flag == true {
-//            LectureModel.sharedInstance.myLectures.append(tapObj)
-//        }else{
-//            var arr: [Lecture] = []
-//            for mylec in LectureModel.sharedInstance.syllabusList {
-//                if mylec.myLecture && mylec.weekTime == "3"{
-//                    arr.append(mylec)
-//                }
-//            }
-//            LectureModel.sharedInstance.myLectures = arr
-//        }
+        //べつのweektimeにある科目があれば検索してそいつのフラグを消す
+        for val in tapObj.weekTime.componentsSeparatedByString(",") {
+            if let arr = RealmData.sharedInstance.getMylectureWithWeekTime(val) {
+                for item in arr {
+                    RealmData.sharedInstance.changeMylecture(item, flag: false)
+                }
+                
+            }
+        }
+        //選択された科目のフラグを変える
+        RealmData.sharedInstance.changeMylecture(self.syllabusArray[index],flag: flag)
+        LectureModel.sharedInstance.syllabusList = self.syllabusArray
+        
+        LectureModel.sharedInstance.updateMylectureDataWithRealm()
+        LectureModel.sharedInstance.updateSyllabusDataWithRealm()
+
     }
     //===============================================移植可能
     

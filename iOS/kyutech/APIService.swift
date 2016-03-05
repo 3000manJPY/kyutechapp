@@ -78,7 +78,7 @@ enum Router: URLRequestConvertible {
         case .GetNoticeWithCampusId(let campusId):
             return Alamofire.ParameterEncoding.URL.encode(mutableURLRequest, parameters: ["campus_id":campusId]).0
         case .GetLectureWithCampusId(let campusId):
-            return Alamofire.ParameterEncoding.URL.encode(mutableURLRequest, parameters: ["campus_id":campusId]).0
+            return Alamofire.ParameterEncoding.URL.encode(mutableURLRequest, parameters: ["campus_id":campusId,"server_time":Config.userDefault.isUpdateLectureTime()]).0
         case .GetAccessWithCampusId(let campusId):
             return Alamofire.ParameterEncoding.URL.encode(mutableURLRequest, parameters: ["campus_id":campusId]).0
         default:
@@ -118,9 +118,11 @@ struct APIService {
                 return
             }
             var arr: [Lecture] = []
-            for (_,json) in jsonData {
+//            SHprint(jsonData)
+            for (_,json) in jsonData["data"] {
                 arr.append(Lecture(json: json))
             }
+            NSUserDefaults.standardUserDefaults().setObject(String(jsonData["server_time"]), forKey: Config.userDefault.updateLecture)
             completionHandler(arr)
         })
     }

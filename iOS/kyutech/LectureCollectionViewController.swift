@@ -96,7 +96,7 @@ extension LectureCollectionViewController: UICollectionViewDataSource, UICollect
     //
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { return myLectureArray.count }
     //セルの大きさ
-    func collectionView(collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout,sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{ return self.lecCollectionView.collectionViewSize(indexPath) }
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{ return self.lecCollectionView.collectionViewSize(indexPath) }
     //セルごとの余白
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets { return UIEdgeInsetsMake( 0, 0, 0, 0 ) }
     //左右の等間隔
