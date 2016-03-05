@@ -72,5 +72,45 @@ class Lecture: Object {
     
     // primaryKeyの指定.
     override class func primaryKey() -> String { return "id" }
-    
+   
+    func propatyList() -> [[String:String]] {
+        var array :[[String:String]] = [[:]]
+        if self.title       != "" { array.append(["科目名":self.title])}
+        if self.teacher     != "" { array.append(["担当教諭":self.teacher])}
+        if self.year        != "" { array.append(["学年":self.year])}
+        if self.class_num   != "" { array.append(["クラス":self.class_num])}
+        if self.room        != "" { array.append(["教室":self.room])}
+        if self.term        != "" { array.append(["ターム":self.term])}
+        if self.weekTime    != "" {
+            var str = ""
+            for val in self.weekTime.componentsSeparatedByString(",") {
+                if let weekTimeNum = Int(val) {
+                    let weekNum = weekTimeNum / 10
+                    let periodNum = weekTimeNum % 10
+                    str += WEEKS.getWeekWithNum(weekNum).name() + "\(periodNum)　"
+                }
+            }
+            array.append(["曜日・時限":str])
+        }
+        array.append(["単位区分":REQUIRED.getRequiredWithNum(self.required).name()])
+        if self.credit      > 0   { array.append(["単位数":self.credit.description])}
+        if self.overview    != "" { array.append(["概要":self.overview])}
+        if self.purpose     != "" { array.append(["目的":self.purpose])}
+        if self.plan        != "" { array.append(["授業計画":self.plan])}
+        if self.preparation != "" { array.append(["予習・復習":self.preparation])}
+        if self.book        != "" { array.append(["参考書・教科書":self.book])}
+        if self.evaluation  != "" { array.append(["評価":self.evaluation])}
+        if self.keyword     != "" { array.append(["キーワード":self.keyword])}
+
+
+        if self.title_en    != "" { array.append(["科目名(英語)":self.title_en])}
+        return array
+    }
 }
+
+
+
+
+
+
+

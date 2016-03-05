@@ -23,7 +23,8 @@ class LectureCollectionViewController: UIViewController {
 //    var syllabusArray  : [Lecture] = []
     
     var mode = LECTUREMODE.Normal
-    
+   
+    var destinationviewcontroller: LectureDetailTableViewController?
 //    var popoverContent:PopoverSubjectViewController!
     
     @IBOutlet weak var centerBtn: UIButton!
@@ -113,9 +114,9 @@ extension LectureCollectionViewController: UICollectionViewDataSource, UICollect
             self.showTimeSlectPopOverViewWithId(indexPath.row)
         }else{
             let mylec = self.myLectureArray[indexPath.row]
-            if !mylec.myLecture {
-//                self.performSegueWithIdentifier("detail", sender: self)
-//                self.destinationviewcontroller?.lecture = mylec
+            if mylec.myLecture {
+                self.performSegueWithIdentifier("detail", sender: self)
+                self.destinationviewcontroller?.lecture = mylec
             }
         }
     }
@@ -130,10 +131,10 @@ extension LectureCollectionViewController :UIPopoverPresentationControllerDelega
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "detail" {
-//            if let vc = segue.destinationViewController as? TimeTableDetailViewController {
-//                self.destinationviewcontroller = vc
-//                
-//            }
+            if let vc = segue.destinationViewController as? LectureDetailTableViewController {
+                self.destinationviewcontroller = vc
+                
+            }
             
         }else{
             let popView = segue.destinationViewController

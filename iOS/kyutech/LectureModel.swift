@@ -87,10 +87,10 @@ class LectureModel: NSObject {
     private func mylectureAnal(arr: [Lecture]) -> [Lecture]{
         var res: [Lecture] = []
         for_i: for index in 0..<( LectureModel.HOL_NUM + 1 ) * ( LectureModel.VAR_NUM + 1 ) {
-            let week = index / ( LectureModel.HOL_NUM + 1 )
-            let time = index % ( LectureModel.HOL_NUM + 1 )
+            let week = weekWithTapIndex(index)
+            let time = periodWithTapIndex(index)
             if index == 0 || week == 0 || time == 0 { res.append(Lecture()); continue }
-            let weekTime = String( week * 10 + time )
+            let weekTime = weekTimeWithTapIndex(index)
             for lec in arr {
                 if lec.myLecture == true {//&& lec.weekTime == weekTime {
                     for val in lec.weekTime.componentsSeparatedByString(",") {
@@ -104,6 +104,20 @@ class LectureModel: NSObject {
            res.append(Lecture())
         }
         return res
+    }
+    
+    func weekTimeWithTapIndex(tapIndex: Int) -> String {
+        let week = weekWithTapIndex(tapIndex)
+        let period = periodWithTapIndex(tapIndex)
+        return "\(week)\(period)"
+    }
+    
+    func weekWithTapIndex(tapIndex: Int) -> Int {
+        return tapIndex % ( LectureModel.HOL_NUM + 1 )
+    }
+    
+    func periodWithTapIndex(tapIndex: Int) -> Int {
+        return tapIndex / ( LectureModel.HOL_NUM + 1 )
     }
 }
 
