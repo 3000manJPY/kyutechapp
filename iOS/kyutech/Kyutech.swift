@@ -35,6 +35,33 @@ struct CAMPUS {
     }
 }
 
+enum REQUIRED: Int {
+    case sentakuHisshu = 1
+    case hisshu = 0
+    case sentaku = 2
+    case etc = 3
+    
+    func name() -> String {
+        switch self{
+        case .sentakuHisshu: return "選択・必修"
+        case .hisshu: return "必修"
+        case .sentaku: return "選択"
+        case .etc: return "不明"
+        }
+    }
+    
+    static func getRequiredWithNum(num: Int) -> REQUIRED {
+        switch num {
+        case REQUIRED.sentakuHisshu.rawValue: return .sentakuHisshu
+        case REQUIRED.hisshu.rawValue: return .hisshu
+        case REQUIRED.sentaku.rawValue: return .sentaku
+        case REQUIRED.etc.rawValue: return .etc
+        default: return .etc
+        }
+    }
+    
+}
+
 enum Menu: Int {
     case order = 0
     case category = 1

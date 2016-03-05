@@ -140,11 +140,73 @@
                         <outlet property="centerBtn" destination="yUW-SU-fws" id="ogp-AY-ZOE"/>
                         <outlet property="editBtn" destination="6ZA-1B-W52" id="PYG-Oe-UZA"/>
                         <outlet property="lecCollectionView" destination="JW7-lm-L70" id="ODS-3r-T4D"/>
+                        <segue destination="jiU-yF-L0b" kind="show" identifier="detail" id="bWK-rF-mvz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mjS-zd-Wnv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1295" y="338"/>
+        </scene>
+        <!--Lecture Detail Table View Controller-->
+        <scene sceneID="qWy-Zy-fvy">
+            <objects>
+                <viewController id="jiU-yF-L0b" customClass="LectureDetailTableViewController" customModule="kyutech" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fjX-Ri-4Xd"/>
+                        <viewControllerLayoutGuide type="bottom" id="h9b-nl-M4V"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="up9-w1-LP8">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1xV-fs-JNa" customClass="LectureDetailView" customModule="kyutech" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="Fde-aD-bKx">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fde-aD-bKx" id="ggM-15-EBW">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kjB-IL-2FO" customClass="TTTAttributedLabel">
+                                                    <rect key="frame" x="42" y="0.0" width="558" height="44"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="kjB-IL-2FO" firstAttribute="top" secondItem="ggM-15-EBW" secondAttribute="top" id="K8l-tI-rfk"/>
+                                                <constraint firstItem="kjB-IL-2FO" firstAttribute="leading" secondItem="ggM-15-EBW" secondAttribute="leading" constant="42" id="Kax-CL-qmB"/>
+                                                <constraint firstAttribute="bottom" secondItem="kjB-IL-2FO" secondAttribute="bottom" id="YCw-4L-YDC"/>
+                                                <constraint firstAttribute="trailing" secondItem="kjB-IL-2FO" secondAttribute="trailing" id="zur-o8-aRu"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="jiU-yF-L0b" id="uUB-ZZ-bOr"/>
+                                    <outlet property="delegate" destination="jiU-yF-L0b" id="7nD-mZ-6U3"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="h9b-nl-M4V" firstAttribute="top" secondItem="1xV-fs-JNa" secondAttribute="bottom" id="CWV-Be-H8b"/>
+                            <constraint firstAttribute="trailing" secondItem="1xV-fs-JNa" secondAttribute="trailing" id="Oyj-28-ML6"/>
+                            <constraint firstItem="1xV-fs-JNa" firstAttribute="leading" secondItem="up9-w1-LP8" secondAttribute="leading" id="mJD-L2-bVY"/>
+                            <constraint firstItem="1xV-fs-JNa" firstAttribute="top" secondItem="fjX-Ri-4Xd" secondAttribute="bottom" constant="-64" id="nOF-UC-xwY"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="detailTableView" destination="1xV-fs-JNa" id="mad-mg-Gno"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZxJ-Y2-Tcc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1985" y="-298"/>
         </scene>
         <!--Term Table View Controller-->
         <scene sceneID="eul-PP-Dal">
