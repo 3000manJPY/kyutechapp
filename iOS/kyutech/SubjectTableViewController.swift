@@ -60,20 +60,16 @@ class SubjectTableViewController: UIViewController{
         self.subjectArray = []
         for (index,item) in self.syllabusArray.enumerate() {
             for subject in item.weekTime.componentsSeparatedByString(",") {
-                if subject == self.weekTimeWithTapIndex(self.tapIndex) {
+                if subject == LectureModel.sharedInstance.weekTimeWithTapIndex(self.tapIndex) {
                     self.subjectArray.append((index,item))
                 }
             }
         }
         self.tableView.reloadData()
-        self.tableView.setContentOffset(CGPointZero, animated: false)
+
     }
     
-    func weekTimeWithTapIndex(tapIndex: Int) -> String {
-        let week = tapIndex / (LectureModel.HOL_NUM + 1)
-        let period = tapIndex % (LectureModel.HOL_NUM + 1)
-        return "\(week)\(period)"
-    }
+    
     
     @IBAction func nextTap(sender: UIButton) {
         if self.tapIndex + (LectureModel.HOL_NUM + 1) < (LectureModel.VAR_NUM + 1 ) * (LectureModel.HOL_NUM + 1 ) {
@@ -83,6 +79,7 @@ class SubjectTableViewController: UIViewController{
         }
         self.name.text = self.tableView.setTitle(self.tapIndex)
         self.dataArrangement()
+        self.tableView.setContentOffset(CGPointZero, animated: false)
     }
     @IBAction func backTap(sender: UIButton) {
         if self.tapIndex - (LectureModel.HOL_NUM + 1) >= (LectureModel.HOL_NUM + 1) {
@@ -92,6 +89,7 @@ class SubjectTableViewController: UIViewController{
         }
         self.name.text = self.tableView.setTitle(self.tapIndex)
         self.dataArrangement()
+        self.tableView.setContentOffset(CGPointZero, animated: false)
     }
 }
 
@@ -119,8 +117,18 @@ extension SubjectTableViewController: UITableViewDelegate,UITableViewDataSource 
         let index   = self.subjectArray[indexPath.row].0
         let tapObj  = self.syllabusArray[index]
         let flag    = !tapObj.myLecture
-        
-        //べつのweektimeにある科目があれば検索してそいつのフラグを消す
+        self.deleteFlag(tapObj)
+        //選択された科目のフラグを変える
+        RealmData.sharedInstance.changeMylecture(self.syllabusArray[index],flag: flag)
+        LectureModel.sharedInstance.syllabusList = self.syllabusArray
+        LectureModel.sharedInstance.updateMylectureDataWithRealm()
+        LectureModel.sharedInstance.updateSyllabusDataWithRealm()
+
+    }
+    //===============================================移植可能
+    
+    func deleteFlag(tapObj: Lecture){
+        //選択したOJBのweektimeにある科目のフラグを消す
         for val in tapObj.weekTime.componentsSeparatedByString(",") {
             if let arr = RealmData.sharedInstance.getMylectureWithWeekTime(val) {
                 for item in arr {
@@ -129,15 +137,7 @@ extension SubjectTableViewController: UITableViewDelegate,UITableViewDataSource 
                 
             }
         }
-        //選択された科目のフラグを変える
-        RealmData.sharedInstance.changeMylecture(self.syllabusArray[index],flag: flag)
-        LectureModel.sharedInstance.syllabusList = self.syllabusArray
-        
-        LectureModel.sharedInstance.updateMylectureDataWithRealm()
-        LectureModel.sharedInstance.updateSyllabusDataWithRealm()
-
     }
     //===============================================移植可能
-    
 
 }
