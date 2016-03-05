@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2A2C332F1C62AF5F00676BA6 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2C332E1C62AF5F00676BA6 /* SplashViewController.swift */; };
+		2A38A2E11C8B59E40050B18B /* LectureDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A38A2E01C8B59E40050B18B /* LectureDetailTableViewController.swift */; };
+		2A38A2E21C8B59E40050B18B /* LectureDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A38A2E01C8B59E40050B18B /* LectureDetailTableViewController.swift */; };
+		2A38A2E41C8B62990050B18B /* LectureDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A38A2E31C8B62990050B18B /* LectureDetailView.swift */; };
+		2A38A2E51C8B62990050B18B /* LectureDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A38A2E31C8B62990050B18B /* LectureDetailView.swift */; };
 		2A45404A1C67669300B33393 /* SHUtil.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A4540491C67669300B33393 /* SHUtil.framework */; };
 		2A45404C1C6766C900B33393 /* SHUtil.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2A4540491C67669300B33393 /* SHUtil.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2A4540541C67957000B33393 /* NoticeNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4540531C67957000B33393 /* NoticeNavigationController.swift */; };
@@ -155,6 +159,8 @@
 
 /* Begin PBXFileReference section */
 		2A2C332E1C62AF5F00676BA6 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		2A38A2E01C8B59E40050B18B /* LectureDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LectureDetailTableViewController.swift; sourceTree = "<group>"; };
+		2A38A2E31C8B62990050B18B /* LectureDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LectureDetailView.swift; sourceTree = "<group>"; };
 		2A4540441C674F5700B33393 /* SHUtil.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SHUtil.framework; path = "SHUtil/build/Debug-iphoneos/SHUtil.framework"; sourceTree = "<group>"; };
 		2A4540491C67669300B33393 /* SHUtil.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SHUtil.framework; path = "Build/Products/Debug-iphoneos/SHUtil.framework"; sourceTree = "<group>"; };
 		2A45404D1C67943300B33393 /* kyutech-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "kyutech-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -570,6 +576,7 @@
 			isa = PBXGroup;
 			children = (
 				2AEF74221C6AD53200C10205 /* LectureCollectionViewController.swift */,
+				2A38A2E01C8B59E40050B18B /* LectureDetailTableViewController.swift */,
 				2A642D561C6FBB5A00098E99 /* Subject */,
 				2A82282E1C6F956E00F3AB7B /* Term */,
 			);
@@ -592,6 +599,7 @@
 			children = (
 				2AFFAFA01C6FCCFE00ACD168 /* subject */,
 				2AEF742A1C6BA49800C10205 /* LectureCollectionView.swift */,
+				2A38A2E31C8B62990050B18B /* LectureDetailView.swift */,
 				2AEF74361C6BBD7400C10205 /* LectureCollectionViewCell.swift */,
 				2AEF74371C6BBD7400C10205 /* LectureCollectionViewCell.xib */,
 			);
@@ -962,10 +970,12 @@
 				2A4A6C121C66570700B4BD6F /* Alamofire+SwiftyJSON.swift in Sources */,
 				2A4540571C6797A600B33393 /* RootNoticeViewController.swift in Sources */,
 				2A4A6C0C1C663F4C00B4BD6F /* APIService.swift in Sources */,
+				2A38A2E41C8B62990050B18B /* LectureDetailView.swift in Sources */,
 				2A5D96A31C6A8D5900E1DF80 /* NoticeTableView.swift in Sources */,
 				2AEF74381C6BBD7400C10205 /* LectureCollectionViewCell.swift in Sources */,
 				2A5BB49A1C7C15AA00F64A2D /* AccessModel.swift in Sources */,
 				2AFFAFA31C6FCD7A00ACD168 /* SubjectTableViewCell.swift in Sources */,
+				2A38A2E11C8B59E40050B18B /* LectureDetailTableViewController.swift in Sources */,
 				2A8228301C6F959B00F3AB7B /* TermTableViewController.swift in Sources */,
 				2A45405D1C67A47C00B33393 /* CategoryModel.swift in Sources */,
 				2ABF85951C7C361B00B4998E /* AccessViewController.swift in Sources */,
@@ -1020,10 +1030,12 @@
 				2ADA7D6D1C6975730054A771 /* Alamofire+SwiftyJSON.swift in Sources */,
 				2ADA7D6E1C6975730054A771 /* RootNoticeViewController.swift in Sources */,
 				2ADA7D6F1C6975730054A771 /* APIService.swift in Sources */,
+				2A38A2E51C8B62990050B18B /* LectureDetailView.swift in Sources */,
 				2A5D96A41C6A8D5900E1DF80 /* NoticeTableView.swift in Sources */,
 				2AEF74391C6BBD7400C10205 /* LectureCollectionViewCell.swift in Sources */,
 				2A5BB49B1C7C15AA00F64A2D /* AccessModel.swift in Sources */,
 				2AFFAFA41C6FCD7A00ACD168 /* SubjectTableViewCell.swift in Sources */,
+				2A38A2E21C8B59E40050B18B /* LectureDetailTableViewController.swift in Sources */,
 				2A8228311C6F959B00F3AB7B /* TermTableViewController.swift in Sources */,
 				2ADA7D701C6975730054A771 /* CategoryModel.swift in Sources */,
 				2ABF85961C7C361B00B4998E /* AccessViewController.swift in Sources */,
