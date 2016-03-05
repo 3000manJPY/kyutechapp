@@ -123,7 +123,7 @@ namespace :cron_syllabus do
         @lecture.year = node.xpath('tr[3]/td[2]').text.gsub(/([\t| |\n|　]+)/,"")
         @lecture.class_num = node.xpath('tr[3]/td[4]').text.gsub(/([\t| |\n|　]+)/,"").gsub(/[[:space:]]/, '')
         @lecture.room = node.xpath('tr[4]/td[2]').text.gsub(/([\t| |\n|　]+)/,"").gsub(/(講義室|\(情\)|（情）)/,"")
-        @lecture.term = node.xpath('tr[4]/td[4]').text.gsub(/([\t| |\n|　]+)/,"")
+        @lecture.term = getTermVal(node.xpath('tr[4]/td[4]').text.gsub(/([\t| |\n|　]+)/,""))
         @lecture.week_time = week_time
         @lecture.required = getRequired(node.xpath('tr[5]/td[4]').text.gsub(/([\t| |\n|　]+)/,""))
         @lecture.campus_id = getCampusId(node.xpath('tr[6]/td[2]').text.gsub(/([\t| |\n|　]+)/,"") { [$1].pack('H*').unpack('n*').pack('U') })
@@ -187,6 +187,22 @@ namespace :cron_syllabus do
   #     1      |   2   | seimei
   #     2      |   3(4)| jouhoukougakubu(hu)
   ########################################### 
+  
+  def getTermVal(str)
+    str = str.gsub(/([\t| |\n|　]+)/,"").gsub(/[[:space:]]/, '')
+    if str == "前期"
+      return "1,2"
+    elsif str == "後期"
+      return "3,4"
+    elsif str == "通年"
+      return "1,2,3,4"
+    elsif str == "集中"
+      return "99"
+    else
+      return "0" 
+    end
+  end
+
   def getCampusId(str)
     str = str.gsub(/([\t| |\n|　]+)/,"").gsub(/[[:space:]]/, '')
 #p str
