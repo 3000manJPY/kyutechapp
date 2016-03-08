@@ -16,7 +16,7 @@ class Api::V2::LecturesController < ApplicationController
         render json: { "data" => @lectures, "server_time" => @cache_time}
     else
       if @server_time.to_i == @cache_time.to_i
-        render json: { "data" => nil, "server_time" => @cache_time}
+        render json: { "data" => Array.new, "server_time" => @cache_time}
       else
         render json: { "data" => @lectures, "server_time" => @cache_time}
       end
