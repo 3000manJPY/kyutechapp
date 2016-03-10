@@ -43,6 +43,9 @@ class LectureCollectionViewController: UIViewController {
         
         self.lecCollectionView.registerNib(UINib(nibName: "LectureCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "LectureCollectionViewCell")
         self.myLectureArray = LectureModel.sharedInstance.myLectures
+       
+        let term = NSUserDefaults.standardUserDefaults().integerForKey(Config.userDefault.term)
+        self.setTermTitle(term)
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -149,28 +152,15 @@ extension LectureCollectionViewController :UIPopoverPresentationControllerDelega
         }
     }
     func termSelectedWithIndexPath(term: Int) {
-        //        getTimeTableData(term)
-                self.setTermTitle(term)
-        //
-        //        let ud = NSUserDefaults.standardUserDefaults()
-        //        ud.setObject(String(self.term), forKey: "term")
-        //        ud.synchronize()
+        self.setTermTitle(term)
+        LectureModel.sharedInstance.updateMylectureDataWithRealm()
+       
     }
     
     func setTermTitle(term : Int) {
         self.centerBtn.setTitle(Term()[term], forState: .Normal)
     }
     
-    func getTimeTableData(term : Int) {
-        //        dispatch_async(dispatch_queue_create(Config.LECTURE_ACYNC_SERIAL, DISPATCH_QUEUE_SERIAL), {
-        //            self.term = term
-        //            let mylecArray = MyLectureInfo.getTimeTableData(term)
-        //            dispatch_async(dispatch_get_main_queue(), {
-        //                self.myLectureArray = MyLectureInfo.orderlinessArray(mylecArray)
-        //                self.collectionView.reloadData()
-        //            })
-        //        })
-    }
 }
 
 

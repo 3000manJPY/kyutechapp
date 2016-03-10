@@ -26,8 +26,11 @@ class TermTableViewController: UIViewController , UITableViewDataSource , UITabl
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        delegate?.termSelectedWithIndexPath(indexPath.row)
-        NSUserDefaults.standardUserDefaults().setInteger(indexPath.row, forKey: Config.userDefault.term)
+        let term = indexPath.row + 1
+        NSUserDefaults.standardUserDefaults().setInteger(term, forKey: Config.userDefault.term)
+        NSUserDefaults.standardUserDefaults().synchronize()
+        delegate?.termSelectedWithIndexPath(term)
+        
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -36,8 +39,10 @@ class TermTableViewController: UIViewController , UITableViewDataSource , UITabl
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let term = indexPath.row + 1
+
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
-        cell.textLabel?.text = Term()[indexPath.row]
+        cell.textLabel?.text = Term()[term]
         cell.textLabel?.textAlignment = .Center
         return cell
     }

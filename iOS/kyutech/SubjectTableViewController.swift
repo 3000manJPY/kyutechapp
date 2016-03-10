@@ -57,11 +57,16 @@ class SubjectTableViewController: UIViewController{
     
     }
     func dataArrangement(){
+        let termNum = NSUserDefaults.standardUserDefaults().integerForKey(Config.userDefault.term)
         self.subjectArray = []
         for (index,item) in self.syllabusArray.enumerate() {
-            for subject in item.weekTime.componentsSeparatedByString(",") {
-                if subject == LectureModel.sharedInstance.weekTimeWithTapIndex(self.tapIndex) {
-                    self.subjectArray.append((index,item))
+            for term in item.term.componentsSeparatedByString(",") {
+                if term == String(termNum) {
+                    for subject in item.weekTime.componentsSeparatedByString(",") {
+                        if subject == LectureModel.sharedInstance.weekTimeWithTapIndex(self.tapIndex) {
+                            self.subjectArray.append((index,item))
+                        }
+                    }
                 }
             }
         }
@@ -129,6 +134,8 @@ extension SubjectTableViewController: UITableViewDelegate,UITableViewDataSource 
     
     func deleteFlag(tapObj: Lecture){
         //選択したOJBのweektimeにある科目のフラグを消す
+        
+        //TODO: Termを考慮していない
         for val in tapObj.weekTime.componentsSeparatedByString(",") {
             if let arr = RealmData.sharedInstance.getMylectureWithWeekTime(val) {
                 for item in arr {

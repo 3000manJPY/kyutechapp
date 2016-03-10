@@ -20,7 +20,7 @@ class Lecture: Object {
     private dynamic var campus_id = 0
     private dynamic var date = 0
             dynamic var teacher = ""
-    private dynamic var term = ""
+            dynamic var term = ""
     private dynamic var registtime = 0
     private dynamic var uid = 0
             dynamic var weekTime = ""

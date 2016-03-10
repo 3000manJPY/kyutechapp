@@ -89,6 +89,7 @@ class RealmData {
         catch { return nil }
     }
     
+    
     func changeMylecture(lec: Lecture, flag: Bool) -> Bool{
         do{
             let realm = try self.realm ?? Realm()
