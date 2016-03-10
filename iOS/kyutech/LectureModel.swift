@@ -29,14 +29,15 @@ class LectureModel: NSObject {
     
     private override init() {
         super.init()
-        self.settingDate()
+        self.settingData()
         self.setMylectureDataWithRealm()
         self.setSyllabusDataWithRealm()
     }
     
-    func settingDate(){
+    func settingData(){
         self.reqestLectures(CAMPUS.iizuka.val) { (lectures) -> () in
             if lectures.count <= 0 { return }
+            //TODO: 全削除してから登録しなおさんといかんクネ？=========================================
             RealmData.sharedInstance.save(lectures)
             self.setsyllabusData(lectures)
             self.setMylectureData(lectures)
@@ -85,6 +86,7 @@ class LectureModel: NSObject {
     }
     
     private func mylectureAnal(arr: [Lecture]) -> [Lecture]{
+        let term = NSUserDefaults.standardUserDefaults().integerForKey(Config.userDefault.term)
         var res: [Lecture] = []
         for_i: for index in 0..<( LectureModel.HOL_NUM + 1 ) * ( LectureModel.VAR_NUM + 1 ) {
             let week = weekWithTapIndex(index)
@@ -92,11 +94,15 @@ class LectureModel: NSObject {
             if index == 0 || week == 0 || time == 0 { res.append(Lecture()); continue }
             let weekTime = weekTimeWithTapIndex(index)
             for lec in arr {
-                if lec.myLecture == true {//&& lec.weekTime == weekTime {
-                    for val in lec.weekTime.componentsSeparatedByString(",") {
-                        if val == weekTime {
-                            res.append(lec)
-                            continue for_i
+                for lecTerm in lec.term.componentsSeparatedByString(",") {
+                    if String(term) == lecTerm {
+                        if lec.myLecture == true {//&& lec.weekTime == weekTime {
+                            for val in lec.weekTime.componentsSeparatedByString(",") {
+                                if val == weekTime {
+                                    res.append(lec)
+                                    continue for_i
+                                }
+                            }
                         }
                     }
                 }

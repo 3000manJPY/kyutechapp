@@ -87,10 +87,10 @@ class Sort: NSObject {
 class Term {
     subscript(index: Int) -> String {
         switch index {
-        case 0: return "第1クォーター"
-        case 1: return "第2クォーター"
-        case 2: return "第3クォーター"
-        case 3: return "第4クォーター"
+        case 1: return "第1クォーター"
+        case 2: return "第2クォーター"
+        case 3: return "第3クォーター"
+        case 4: return "第4クォーター"
         default: return ""
         }
     }
