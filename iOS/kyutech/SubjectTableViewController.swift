@@ -16,12 +16,12 @@ protocol popoverViewSubjectDelegate{
 
 class SubjectTableViewController: UIViewController{
     
+    @IBOutlet weak var nextBtn: UIButton!
+    @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var name: UILabel!
-//    weak var delegate : TimeTableCollectionViewController?
     @IBOutlet weak var delete_btn: UIButton!
     @IBOutlet weak var tableView: SubjectTableView!
     var tapIndex = 0
-//    var term = Term.First.rawValue
     var syllabusArray : [Lecture] = []
     var subjectArray  : [(Int,Lecture)] = []
    
@@ -32,11 +32,17 @@ class SubjectTableViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.syllabusArray = LectureModel.sharedInstance.syllabusList
         tableView.registerNib(UINib(nibName: "SubjectTableViewCell", bundle: nil), forCellReuseIdentifier: "SubjectTableViewCell")
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        if self.tapIndex == 0 {
+            self.backBtn.hidden = true
+            self.nextBtn.hidden = true
+            self.delete_btn.setImage(UIImage(named: "AllDelete-button"), forState: .Normal)
+        }
         self.name.text = self.tableView.setTitle(self.tapIndex)
         LectureModel.sharedInstance.addObserver(self, forKeyPath: "syllabusList", options: [.New, .Old], context: nil)
     }
@@ -54,19 +60,34 @@ class SubjectTableViewController: UIViewController{
     @IBAction func dismissButton(sender: UIButton) { self.dismissViewControllerAnimated(false, completion: nil) }
     
     @IBAction func deletePushed(sender: UIButton) {
+        let weekTime = LectureModel.sharedInstance.weekTimeWithTapIndex(self.tapIndex)
+        let term = String(NSUserDefaults.standardUserDefaults().integerForKey(Config.userDefault.term))
+        if self.tapIndex == 0 {
+            self.changeMyLectureWithTerm(term)
+        }else{
+            self.changeMyLectureWithWeekTimeTerm(weekTime, term: term)
+        }
+        self.updateLectureData()
+
     
     }
     func dataArrangement(){
         let termNum = NSUserDefaults.standardUserDefaults().integerForKey(Config.userDefault.term)
         self.subjectArray = []
-        for (index,item) in self.syllabusArray.enumerate() {
+        for_i: for (index,item) in self.syllabusArray.enumerate() {
             for term in item.term.componentsSeparatedByString(",") {
-                if term == String(termNum) {
+                if term == String(termNum) && item.weekTime != "" && item.weekTime != "0" && item.weekTime != "99" {
+                    if self.tapIndex == 0 {
+                        self.subjectArray.append((index,item))
+                        continue for_i
+                    }
+
                     for subject in item.weekTime.componentsSeparatedByString(",") {
                         if subject == LectureModel.sharedInstance.weekTimeWithTapIndex(self.tapIndex) {
                             self.subjectArray.append((index,item))
                         }
                     }
+                    
                 }
             }
         }
@@ -75,8 +96,9 @@ class SubjectTableViewController: UIViewController{
     }
     
     
-    
+//TODO: 何してるかわからんから、もっと簡潔に
     @IBAction func nextTap(sender: UIButton) {
+        if self.tapIndex == 0 { return }
         if self.tapIndex + (LectureModel.HOL_NUM + 1) < (LectureModel.VAR_NUM + 1 ) * (LectureModel.HOL_NUM + 1 ) {
             self.tapIndex += (LectureModel.HOL_NUM + 1 )
         }else if self.tapIndex % (LectureModel.HOL_NUM + 1) < LectureModel.HOL_NUM{
@@ -87,6 +109,7 @@ class SubjectTableViewController: UIViewController{
         self.tableView.setContentOffset(CGPointZero, animated: false)
     }
     @IBAction func backTap(sender: UIButton) {
+        if self.tapIndex == 0 { return }
         if self.tapIndex - (LectureModel.HOL_NUM + 1) >= (LectureModel.HOL_NUM + 1) {
             self.tapIndex -= (LectureModel.HOL_NUM + 1 )
         }else if self.tapIndex % (LectureModel.HOL_NUM + 1) > 1 {
@@ -103,7 +126,7 @@ extension SubjectTableViewController: UITableViewDelegate,UITableViewDataSource 
         guard let cell = tableView.dequeueReusableCellWithIdentifier("SubjectTableViewCell", forIndexPath: indexPath) as? SubjectTableViewCell else { return UITableViewCell() }
         cell.backgroundColor = UIColor.clearColor()
         let mylec = self.subjectArray[indexPath.row].1
-        cell.title.text = mylec.title
+        cell.title.text = "\(mylec.title)(\(mylec.class_num))"
         cell.teacher.text = mylec.teacher
         if mylec.myLecture == true {
             cell.checkImageView.hidden = false
@@ -126,24 +149,40 @@ extension SubjectTableViewController: UITableViewDelegate,UITableViewDataSource 
         //選択された科目のフラグを変える
         RealmData.sharedInstance.changeMylecture(self.syllabusArray[index],flag: flag)
         LectureModel.sharedInstance.syllabusList = self.syllabusArray
-        LectureModel.sharedInstance.updateMylectureDataWithRealm()
-        LectureModel.sharedInstance.updateSyllabusDataWithRealm()
+        self.updateLectureData()
 
     }
     //===============================================移植可能
     
     func deleteFlag(tapObj: Lecture){
         //選択したOJBのweektimeにある科目のフラグを消す
-        
-        //TODO: Termを考慮していない
-        for val in tapObj.weekTime.componentsSeparatedByString(",") {
-            if let arr = RealmData.sharedInstance.getMylectureWithWeekTime(val) {
-                for item in arr {
-                    RealmData.sharedInstance.changeMylecture(item, flag: false)
-                }
-                
+        for weekTime in tapObj.weekTime.componentsSeparatedByString(",") {
+            for term in tapObj.term.componentsSeparatedByString(","){
+               self.changeMyLectureWithWeekTimeTerm(weekTime, term: term)
             }
         }
+    }
+    //===============================================移植可能
+    
+    func changeMyLectureWithTerm(term: String){
+        guard let arr = RealmData.sharedInstance.getMylectureWithTerm(term) else{ return }
+        for item in arr {
+            RealmData.sharedInstance.changeMylecture(item, flag: false)
+        }
+    }
+    //===============================================移植可能
+
+    func changeMyLectureWithWeekTimeTerm(weekTime: String, term: String){
+        guard let arr = RealmData.sharedInstance.getMylectureWithWeekTimeTerm(weekTime, term: term) else{ return }
+        for item in arr {
+            RealmData.sharedInstance.changeMylecture(item, flag: false)
+        }
+    }
+    //===============================================移植可能
+ 
+    func updateLectureData(){
+        LectureModel.sharedInstance.updateMylectureDataWithRealm()
+        LectureModel.sharedInstance.updateSyllabusDataWithRealm()
     }
     //===============================================移植可能
 

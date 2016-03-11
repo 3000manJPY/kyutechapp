@@ -110,10 +110,13 @@
                                 <rect key="frame" x="20" y="11" width="29" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="filter"/>
+                                <connections>
+                                    <action selector="allSelectList:" destination="07u-yl-WEJ" eventType="touchUpInside" id="Rth-I1-zhV"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="yUW-SU-fws">
-                            <rect key="frame" x="233" y="11" width="135" height="22"/>
+                            <rect key="frame" x="232.5" y="11" width="135" height="22"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="第1クォーター" image="drop_down-button">
                                 <color key="titleColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -173,7 +176,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kjB-IL-2FO" customClass="TTTAttributedLabel">
                                                     <rect key="frame" x="42" y="0.0" width="558" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -228,7 +231,7 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="deH-3z-qTC" id="QId-RH-La0">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -310,7 +313,7 @@
                                             <constraint firstAttribute="height" constant="50" id="yUY-U9-JRi"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Pq-CN-xlo">
@@ -389,8 +392,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backBtn" destination="Dtq-Km-dTV" id="jno-0z-ekd"/>
                         <outlet property="delete_btn" destination="oML-eO-5we" id="545-Ab-KpJ"/>
                         <outlet property="name" destination="rBJ-eq-Pdu" id="vRd-LT-xTC"/>
+                        <outlet property="nextBtn" destination="cm2-79-Qfy" id="rBU-2X-dfn"/>
                         <outlet property="tableView" destination="tgY-1s-ydJ" id="bja-xG-GZA"/>
                     </connections>
                 </viewController>
