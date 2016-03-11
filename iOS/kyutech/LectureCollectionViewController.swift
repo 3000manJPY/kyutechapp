@@ -18,14 +18,9 @@ enum LECTUREMODE: Int {
 }
 
 class LectureCollectionViewController: UIViewController {
-    
     var myLectureArray : [Lecture] = []
-//    var syllabusArray  : [Lecture] = []
-    
     var mode = LECTUREMODE.Normal
-   
     var destinationviewcontroller: LectureDetailTableViewController?
-//    var popoverContent:PopoverSubjectViewController!
     
     @IBOutlet weak var centerBtn: UIButton!
     @IBOutlet weak var editBtn: UIButton!
@@ -35,12 +30,7 @@ class LectureCollectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.allSelectBtn.enabled = false
-        
-        guard let titleWidth = self.centerBtn.titleLabel?.bounds.size.width,
-              let imageWidth = self.centerBtn.imageView?.bounds.size.width else { return }
-        self.centerBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -imageWidth, 0, imageWidth)
-        self.centerBtn.imageEdgeInsets = UIEdgeInsetsMake(0, titleWidth,  0, -titleWidth)
-        
+        self.setCenterBtn()
         self.lecCollectionView.registerNib(UINib(nibName: "LectureCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "LectureCollectionViewCell")
         self.myLectureArray = LectureModel.sharedInstance.myLectures
        
@@ -62,12 +52,25 @@ class LectureCollectionViewController: UIViewController {
         LectureModel.sharedInstance.removeObserver(self, forKeyPath: "myLectures")
     }
     
+    func setCenterBtn() {
+        guard let titleWidth = self.centerBtn.titleLabel?.bounds.size.width,
+              let imageWidth = self.centerBtn.imageView?.bounds.size.width else { return }
+        self.centerBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -imageWidth, 0, imageWidth)
+        self.centerBtn.imageEdgeInsets = UIEdgeInsetsMake(0, titleWidth,  0, -titleWidth)
+    }
+    
     @IBAction func editModePushed(sender: AnyObject) {
         self.mode.togle()
+        if self.mode == .Normal {
+            self.allSelectBtn.enabled = false
+        }else if self.mode == .Edit {
+            self.allSelectBtn.enabled = true
+        }
         self.lecCollectionView.reloadData()
     }
     @IBAction func allSelectList(sender: AnyObject) {
 //        showTimeSlectPopOverViewWithId(nil)
+        self.showTimeSlectPopOverViewWithId(0)
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
@@ -84,6 +87,7 @@ class LectureCollectionViewController: UIViewController {
         popoverContent.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext // 背景の透過の設定
 //        popoverContent.delegate = self
         popoverContent.tapIndex = index
+        
         popoverContent.dataArrangement()
         self.presentViewController(popoverContent, animated: false, completion: nil)
     }
@@ -134,23 +138,29 @@ extension LectureCollectionViewController :UIPopoverPresentationControllerDelega
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "detail" {
-            if let vc = segue.destinationViewController as? LectureDetailTableViewController {
-                self.destinationviewcontroller = vc
-                
-            }
-            
+            self.goToLectureDetailTableViewController(segue)
         }else{
-            let popView = segue.destinationViewController
-            guard let popup = popView.popoverPresentationController,
-                let popSender = sender else{ return }
-            popup.sourceView = popSender as? UIView
-            popup.sourceRect = popSender.bounds
-            popup.delegate = self
-            if let popOrverView:TermTableViewController = segue.destinationViewController as? TermTableViewController {
-                popOrverView.delegate = self
-            }
+            self.goToTermTableViewController(segue, sender: sender)
         }
     }
+    
+    func goToLectureDetailTableViewController(segue: UIStoryboardSegue){
+        guard let vc = segue.destinationViewController as? LectureDetailTableViewController else{ return }
+        self.destinationviewcontroller = vc
+    }
+    
+    func goToTermTableViewController(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let popView = segue.destinationViewController
+        guard let popup = popView.popoverPresentationController,
+            let popSender = sender else{ return }
+        popup.sourceView = popSender as? UIView
+        popup.sourceRect = popSender.bounds
+        popup.delegate = self
+        guard let popOrverView:TermTableViewController = segue.destinationViewController as? TermTableViewController else{ return }
+        popOrverView.delegate = self
+        
+    }
+
     func termSelectedWithIndexPath(term: Int) {
         self.setTermTitle(term)
         LectureModel.sharedInstance.updateMylectureDataWithRealm()

@@ -73,12 +73,32 @@ class RealmData {
         catch { return nil }
     }
     
-    func getMylectureWithWeekTime(weekTime: String) -> [Lecture]?{
+    func getMylectureWithWeekTimeTerm(weekTime: String, term: String) -> [Lecture]?{
         do {
             let realm = try self.realm ?? Realm()
             let lecture = realm.objects(Lecture).filter{
                 for val in $0.weekTime.componentsSeparatedByString(",") {
                     if val == weekTime {
+                        for item in $0.term.componentsSeparatedByString(",") {
+                            if item == term {
+                                return true
+                            }
+                        }
+                    }
+                }
+                return false
+            }
+            return lecture
+        }
+        catch { return nil }
+    }
+   
+    func getMylectureWithTerm(term: String) -> [Lecture]?{
+        do {
+            let realm = try self.realm ?? Realm()
+            let lecture = realm.objects(Lecture).filter{
+                for item in $0.term.componentsSeparatedByString(",") {
+                    if item == term {
                         return true
                     }
                 }
@@ -88,7 +108,6 @@ class RealmData {
         }
         catch { return nil }
     }
-    
     
     func changeMylecture(lec: Lecture, flag: Bool) -> Bool{
         do{

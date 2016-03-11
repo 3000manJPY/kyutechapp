@@ -35,7 +35,7 @@ class Lecture: Object {
     private dynamic var purpose = ""
     private dynamic var credit = 0
     private dynamic var required = 0
-    private dynamic var class_num = ""
+            dynamic var class_num = ""
     private dynamic var title_en = ""
     private dynamic var updatetime = 0
     private dynamic var year = ""

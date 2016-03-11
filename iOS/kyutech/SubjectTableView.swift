@@ -11,6 +11,7 @@ import SHUtil
 
 class SubjectTableView: UITableView {
     func setTitle(index: Int) -> String {
+        if index == 0 { return Term()[NSUserDefaults.standardUserDefaults().integerForKey(Config.userDefault.term)] }
         var str = ""
         if index < LectureModel.HOL_NUM { return "" }
         
