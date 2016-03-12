@@ -11,7 +11,7 @@ import UIKit
 class RootTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.appearance()
+        self.customAppearance()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -23,9 +23,8 @@ class RootTabBarController: UITabBarController {
         self.iconInsets()
     }
     
-    func appearance(){
-        UITabBar.appearance().barTintColor = UIColor.blackColor()
-    }
+    
+    
     
     func iconInsets(){
         if let items = self.tabBar.items {
@@ -34,6 +33,14 @@ class RootTabBarController: UITabBarController {
             }
         }
     }
+}
+
+
+extension UITabBarController {
+    public func customAppearance(){
+        self.tabBar.barTintColor = Config.getThemeColor()
+    }
+
 }
 
 

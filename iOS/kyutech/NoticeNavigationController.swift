@@ -9,7 +9,7 @@
 import UIKit
 import SHUtil
 
-class NoticeNavigationController: UINavigationController {
+class NoticeNavigationController: BaseNavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -24,10 +24,10 @@
             </objects>
             <point key="canvasLocation" x="1357" y="411"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Base Navigation Controller-->
         <scene sceneID="ld5-JT-CC1">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="chD-DF-Oly" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="chD-DF-Oly" customClass="BaseNavigationController" customModule="kyutech" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="bus" id="e6Y-Zb-5iF">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>

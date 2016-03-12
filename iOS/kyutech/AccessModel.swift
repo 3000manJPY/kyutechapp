@@ -33,8 +33,8 @@ class AccessModel: NSObject {
     }
     
     func updateDate(){
-        
-        self.reqestAccesses(CAMPUS.iizuka.val) { (accesses) -> () in
+        let campus = Config.getCampusId()
+        self.reqestAccesses(campus) { (accesses) -> () in
             AccessModel.sharedInstance.accesses = accesses
         }
     }

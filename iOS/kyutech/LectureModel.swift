@@ -35,7 +35,8 @@ class LectureModel: NSObject {
     }
     
     func settingData(){
-        self.reqestLectures(CAMPUS.iizuka.val) { (lectures) -> () in
+        let campus = Config.getCampusId()
+        self.reqestLectures(campus) { (lectures) -> () in
             if lectures.count <= 0 { return }
             //TODO: 全削除してから登録しなおさんといかんクネ？=========================================
             RealmData.sharedInstance.save(lectures)

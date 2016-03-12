@@ -31,6 +31,11 @@ class MenuTableViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.setRepo()
+        
+        //TODO:ここでりろーどしてもよいのか、ばぐってないか
+//        self.menuTableView.reloadData()
+        //テーマカラー更新のために
+        
         MenuModel.sharedInstance.addObserver(self, forKeyPath: "menus", options: [.New, .Old], context: nil)
     }
     override func viewWillDisappear(animated: Bool) {

@@ -24,7 +24,7 @@ class NoticeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setDelegate()
+        self.setDelegate()
         self.shContentView.shcontentTableViewInit(self.noticeTableView)
         self.navigationController?.navigationBarHidden = true
         
@@ -32,13 +32,20 @@ class NoticeViewController: UIViewController {
         self.shContentView.setContentItem()
         self.noticeArray = NoticeModel.sharedInstance.notices
         
+        
         }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         NoticeModel.sharedInstance.addObserver(self, forKeyPath: "notices", options: [.New, .Old], context: nil)
         MenuModel.sharedInstance.addObserver(self, forKeyPath: "menus", options: [.New, .Old], context: nil)
+        
+        //これは、キャンパスが変わった時だけ呼ばれればいいのでNotifとかがいいかも
+        self.shContentView.setContentItem()
+        
+        
         self.setRepo()
+        
     }
     //googleAnariticsを設定
     func setRepo(){
@@ -77,11 +84,11 @@ class NoticeViewController: UIViewController {
                 if menu.menu == .department { depa.append(menu) }
                 if menu.menu == .order && menu.check == true { order = menu }
             }
-                //カテゴリーフィルターする
-                NoticeModel.sharedInstance.filterCategory(cate)
-                //ジャンルフィルターする
-                NoticeModel.sharedInstance.filterDetartment(depa)
-                 NoticeModel.sharedInstance.sortData(order)
+            //カテゴリーフィルターする
+            NoticeModel.sharedInstance.filterCategory(cate)
+            //ジャンルフィルターする
+            NoticeModel.sharedInstance.filterDetartment(depa)
+            NoticeModel.sharedInstance.sortData(order)
             
         }
     }

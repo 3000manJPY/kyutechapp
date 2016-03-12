@@ -9,6 +9,9 @@
 import UIKit
 
 struct Config {
+    static let padHP = "https://www.planningdev.com"
+    static let about = ""
+    static let notice = ""
     
     
     #if DEVELOP
@@ -20,11 +23,11 @@ struct Config {
     static let maxConnections = 10
     
     struct notification {
-        static let a = "12341234"
-        static let key = "ABCD"
+        
     }
     struct userDefault {
         static let term = "com.planningdev.kyutechapp.term"
+        static let campus = "com.planningdev.kyutechapp.campus"
         static let updateLecture = "com.planningdev.kyutechapp.lecture.update"
         static func isUpdateLectureTime() -> String {
             if let val = NSUserDefaults.standardUserDefaults().objectForKey(Config.userDefault.updateLecture) {
@@ -33,6 +36,20 @@ struct Config {
             return ""
         }
     
+    }
+    
+    static func getCampusId() -> Int {
+        return NSUserDefaults.standardUserDefaults().integerForKey(Config.userDefault.campus)
+    }
+    
+    static func getThemeColor() -> UIColor {
+        let campus = Config.getCampusId()
+        switch campus {
+        case CAMPUS.tobata.val: return CAMPUS.tobata.themeColor
+        case CAMPUS.iizuka.val: return CAMPUS.iizuka.themeColor
+        case CAMPUS.wakamatsu.val: return CAMPUS.wakamatsu.themeColor
+        default: return UIColor.blackColor()
+        }
     }
     
     static func plist(property:String)->String{

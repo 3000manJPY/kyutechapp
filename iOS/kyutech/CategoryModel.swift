@@ -16,8 +16,10 @@ class MenuModel: NSObject {
     
     private override init() {
         super.init()
-        self.setCategories(CAMPUS.iizuka.val)
-        self.setDepartments(CAMPUS.iizuka.val)
+        let campus = Config.getCampusId()
+ 
+        self.setCategories(campus)
+        self.setDepartments(campus)
         self.setOrders()
     }
     
@@ -67,8 +69,8 @@ class MenuModel: NSObject {
     }
     
     private func setDepartments(campus: Int){
+        self.menus.append(Sort(id: 0, name: "全て", imagePath: "all", menu: .department))
         if campus == CAMPUS.iizuka.val {
-            self.menus.append(Sort(id: 0, name: "全て", imagePath: "all", menu: .department))
             self.menus.append(Sort(id: 1, name: "学部", imagePath: "faculty", menu: .department))
             self.menus.append(Sort(id: 2, name: "大学院", imagePath: "postgraduate", menu: .department))
             self.menus.append(Sort(id: 3, name: "知能情報", imagePath: "chinou", menu: .department))

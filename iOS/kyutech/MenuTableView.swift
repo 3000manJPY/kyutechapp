@@ -114,8 +114,9 @@ class MenuTableView: UITableView {
 
     func createSectionView(section: Int) -> UILabel {
         let label = UILabel(frame: CGRect(x:0, y:0, width: self.bounds.width, height: 50))
-        label.backgroundColor = UIColor.whiteColor()
-        label.textColor =  UIColor(red: 0.0, green: 138.0 / 255.0, blue: 215.0 / 255.0, alpha: 1.0)
+        label.backgroundColor = Config.getThemeColor()
+        
+        label.textColor =  UIColor.whiteColor()
         switch (section){
         case SECTION.order.rawValue:        label.text = "　並び替え";        break
         case SECTION.category.rawValue:     label.text = "　カテゴリ";        break
