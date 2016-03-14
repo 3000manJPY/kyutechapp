@@ -38,7 +38,7 @@ class NoticeModel: NSObject {
         self.reqestNotices(campus) { (notices) -> () in
             self.notices  = notices
             self.original = notices
-            MenuModel.sharedInstance.setMenuArray(MenuModel.sharedInstance.menus)
+//            MenuModel.sharedInstance.setMenuArray(MenuModel.sharedInstance.menus)
         }
     }
 

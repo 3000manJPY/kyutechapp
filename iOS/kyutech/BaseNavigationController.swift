@@ -9,6 +9,12 @@
 import UIKit
 
 class BaseNavigationController: UINavigationController {
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+
+
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

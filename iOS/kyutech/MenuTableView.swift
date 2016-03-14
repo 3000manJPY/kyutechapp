@@ -24,6 +24,9 @@ class MenuTableView: UITableView {
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
+        self.updateMenu()
+    }
+    func updateMenu(){
         self.setMenues()
         self.settingTableView()
         self.defaultSelectCells()

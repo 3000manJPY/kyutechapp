@@ -23,7 +23,7 @@ struct Config {
     static let maxConnections = 10
     
     struct notification {
-        
+        static let changeCampus = "com.planningdev.kyutechapp.change.campus"
     }
     struct userDefault {
         static let term = "com.planningdev.kyutechapp.term"

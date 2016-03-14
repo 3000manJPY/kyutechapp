@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol KyutechDelagate {
+    func changeCampus(notification: NSNotification?)
+    func setReceiveObserver()
+}
+
 struct CAMPUS {
     static let count = 3
     static let parentHP = "http://www.kyutech.ac.jp/"

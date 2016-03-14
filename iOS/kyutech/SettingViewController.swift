@@ -27,9 +27,9 @@ class SettingViewController: UIViewController {
     func setHPName(cell: UITableViewCell) -> UITableViewCell {
         let campus = Config.getCampusId()
         switch campus {
-        case CAMPUS.iizuka.val: cell.textLabel?.text = "\(CAMPUS.iizuka.name)ホームページ";     break
-        case CAMPUS.tobata.val: cell.textLabel?.text = "\(CAMPUS.tobata.name)ホームページ";     break
-        case CAMPUS.wakamatsu.val: cell.textLabel?.text = "\(CAMPUS.wakamatsu.name)ホームページ";  break
+        case CAMPUS.iizuka.val:     cell.textLabel?.text = "\(CAMPUS.iizuka.name)ホームページ";     break
+        case CAMPUS.tobata.val:     cell.textLabel?.text = "\(CAMPUS.tobata.name)ホームページ";     break
+        case CAMPUS.wakamatsu.val:  cell.textLabel?.text = "\(CAMPUS.wakamatsu.name)ホームページ";  break
         default: break
         }
         return cell
@@ -90,11 +90,13 @@ class SettingViewController: UIViewController {
         NSUserDefaults.standardUserDefaults().setInteger(campus, forKey: Config.userDefault.campus)
         self.tableView.reloadData()
        
-        NoticeModel.sharedInstance.updateDate()
-        
+//        NoticeModel.sharedInstance.updateDate()
+//        MenuModel.sharedInstance.updateMenuArray()
         self.tabBarController?.customAppearance()
         self.navigationController?.customAppearance()
         
+        NSNotificationCenter.defaultCenter().postNotificationName(Config.notification.changeCampus, object: nil)
+ 
     }
 }
 

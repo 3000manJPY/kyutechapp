@@ -141,6 +141,7 @@ extension SubjectTableViewController: UITableViewDelegate,UITableViewDataSource 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return self.subjectArray.count }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+
         //===============================================
         let index   = self.subjectArray[indexPath.row].0
         let tapObj  = self.syllabusArray[index]

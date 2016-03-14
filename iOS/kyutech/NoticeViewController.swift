@@ -22,6 +22,7 @@ class NoticeViewController: UIViewController {
     
     var detailVC: NoticeDetailViewController?
     
+    var isCahngeCampus = false
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setDelegate()
@@ -31,7 +32,7 @@ class NoticeViewController: UIViewController {
         (self.categories, self.departments, self.orders) = MenuModel.sharedInstance.getMenuArrays()
         self.shContentView.setContentItem()
         self.noticeArray = NoticeModel.sharedInstance.notices
-        
+        self.setReceiveObserver()
         
         }
     
@@ -45,6 +46,10 @@ class NoticeViewController: UIViewController {
         
         
         self.setRepo()
+        
+        if self.isCahngeCampus {
+           NoticeModel.sharedInstance.updateDate()
+        }
         
     }
     //googleAnariticsを設定
@@ -123,5 +128,17 @@ extension NoticeViewController: SHContentTableViewdelegate /*, slidedelegate*/{
     func tapRightItem(sender: AnyObject) { NoticeModel.sharedInstance.updateDate() }
     func tapLeftItem(sender: AnyObject) { self.frostedViewController.presentMenuViewController() }
     func tapViewTop() { self.tapStatusBar(nil) }
+}
+
+
+extension NoticeViewController: KyutechDelagate {
+    func setReceiveObserver() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeCampus:", name: Config.notification.changeCampus, object: nil)
+        
+    }
+    
+    func changeCampus(notification: NSNotification?) {
+        self.isCahngeCampus = true
+    }
 }
 
