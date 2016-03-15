@@ -122,7 +122,7 @@ struct APIService {
             for (_,json) in jsonData["data"] {
                 arr.append(Lecture(json: json))
             }
-            NSUserDefaults.standardUserDefaults().setObject(String(jsonData["server_time"]), forKey: Config.userDefault.updateLecture)
+            NSUserDefaults.standardUserDefaults().setObject(String(jsonData["server_time"]), forKey: Config.userDefault.getLectureKey())
             completionHandler(arr)
         })
     }

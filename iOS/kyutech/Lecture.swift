@@ -17,7 +17,7 @@ import SHUtil
 class Lecture: Object {
             dynamic var id = ""
             dynamic var title = ""
-    private dynamic var campus_id = 0
+            dynamic var campus_id = 0
     private dynamic var date = 0
             dynamic var teacher = ""
             dynamic var term = ""

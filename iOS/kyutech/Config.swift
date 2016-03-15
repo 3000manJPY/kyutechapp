@@ -28,12 +28,28 @@ struct Config {
     struct userDefault {
         static let term = "com.planningdev.kyutechapp.term"
         static let campus = "com.planningdev.kyutechapp.campus"
-        static let updateLecture = "com.planningdev.kyutechapp.lecture.update"
+        struct lecture {
+            static let iizuka =     "com.planningdev.kyutechapp.lecture.iizuka"
+            static let wakamatsu =  "com.planningdev.kyutechapp.lecture.wakamatsu"
+            static let tobata =     "com.planningdev.kyutechapp.lecture.tobata"
+        }
         static func isUpdateLectureTime() -> String {
-            if let val = NSUserDefaults.standardUserDefaults().objectForKey(Config.userDefault.updateLecture) {
+            let key = Config.userDefault.getLectureKey()
+            if let val = NSUserDefaults.standardUserDefaults().objectForKey(key) {
                 return String(val)
             }
             return ""
+        }
+        
+        static func getLectureKey() -> String {
+            let campus = Config.getCampusId()
+            switch campus {
+            case CAMPUS.tobata.val:    return Config.userDefault.lecture.tobata
+            case CAMPUS.wakamatsu.val: return Config.userDefault.lecture.wakamatsu
+            case CAMPUS.iizuka.val:    return Config.userDefault.lecture.iizuka
+            default: return ""
+            }
+            
         }
     
     }

@@ -109,7 +109,7 @@
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="X6X-aF-h1F">
                                 <rect key="frame" x="20" y="11" width="29" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="filter"/>
+                                <state key="normal" image="filter-button"/>
                                 <connections>
                                     <action selector="allSelectList:" destination="07u-yl-WEJ" eventType="touchUpInside" id="Rth-I1-zhV"/>
                                 </connections>
@@ -118,8 +118,8 @@
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="yUW-SU-fws">
                             <rect key="frame" x="232.5" y="11" width="135" height="22"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="第1クォーター" image="drop_down-button">
-                                <color key="titleColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" title="第1クォーター" image="Triangle-white">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
                                 <segue destination="mQe-oA-CLy" kind="popoverPresentation" popoverAnchorView="yUW-SU-fws" id="rzk-aq-AxQ">
@@ -131,7 +131,7 @@
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6ZA-1B-W52">
                                 <rect key="frame" x="545" y="6" width="35" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="edit"/>
+                                <state key="normal" image="edit-white"/>
                                 <connections>
                                     <action selector="editModePushed:" destination="07u-yl-WEJ" eventType="touchUpInside" id="9nK-St-iUp"/>
                                 </connections>
@@ -427,9 +427,9 @@
     <resources>
         <image name="Delete-button" width="151" height="34"/>
         <image name="OK-button" width="151" height="34"/>
-        <image name="drop_down-button" width="19" height="15"/>
-        <image name="edit" width="35" height="31"/>
-        <image name="filter" width="29" height="22"/>
+        <image name="Triangle-white" width="19" height="15"/>
+        <image name="edit-white" width="35" height="31"/>
+        <image name="filter-button" width="27" height="18"/>
         <image name="timetable" width="30" height="30"/>
         <image name="view_back-button" width="15" height="20"/>
         <image name="view_next-button" width="14" height="20"/>

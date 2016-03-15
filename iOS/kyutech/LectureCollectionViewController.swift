@@ -21,6 +21,7 @@ class LectureCollectionViewController: UIViewController {
     var myLectureArray : [Lecture] = []
     var mode = LECTUREMODE.Normal
     var destinationviewcontroller: LectureDetailTableViewController?
+    var isCahngeCampus = false
     
     @IBOutlet weak var centerBtn: UIButton!
     @IBOutlet weak var editBtn: UIButton!
@@ -36,6 +37,7 @@ class LectureCollectionViewController: UIViewController {
        
         let term = NSUserDefaults.standardUserDefaults().integerForKey(Config.userDefault.term)
         self.setTermTitle(term)
+        self.setReceiveObserver()
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -45,6 +47,14 @@ class LectureCollectionViewController: UIViewController {
 //        
 //        let builder = GAIDictionaryBuilder.createScreenView()
 //        tracker.send(builder.build() as [NSObject : AnyObject])
+        
+        
+        if self.isCahngeCampus {
+            LectureModel.sharedInstance.settingData()
+            LectureModel.sharedInstance.updateMylectureDataWithRealm()
+ 
+            self.isCahngeCampus = false
+        }
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -171,6 +181,17 @@ extension LectureCollectionViewController :UIPopoverPresentationControllerDelega
         self.centerBtn.setTitle(Term()[term], forState: .Normal)
     }
     
+}
+
+extension LectureCollectionViewController: KyutechDelagate {
+    func setReceiveObserver() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeCampus:", name: Config.notification.changeCampus, object: nil)
+        
+    }
+    
+    func changeCampus(notification: NSNotification?) {
+        self.isCahngeCampus = true
+    }
 }
 
 

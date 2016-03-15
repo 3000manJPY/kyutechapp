@@ -35,6 +35,17 @@ class SettingViewController: UIViewController {
         return cell
     }
     
+    func setSyrabusName(cell: UITableViewCell) -> UITableViewCell {
+        let campus = Config.getCampusId()
+        switch campus {
+        case CAMPUS.iizuka.val:     cell.textLabel?.text = "\(CAMPUS.iizuka.name)シラバス";     break
+        case CAMPUS.tobata.val:     cell.textLabel?.text = "\(CAMPUS.tobata.name)シラバス";     break
+        case CAMPUS.wakamatsu.val:  cell.textLabel?.text = "\(CAMPUS.wakamatsu.name)シラバス";  break
+        default: break
+        }
+        return cell
+    }
+    
     func openHP(){
         let campus = Config.getCampusId()
         switch campus {
@@ -115,14 +126,15 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        var cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
         switch indexPath.row {
         case 0: cell.textLabel?.text = "キャンパスの切り替え";    break
         case 1: cell.textLabel?.text = "お知らせ";              break
         case 2: cell.textLabel?.text = "このアプリについて";     break
         case 3: cell.textLabel?.text = "P&Dについて";           break
         case 4: cell.textLabel?.text = "九工大ホームページ";     break
-        case 5: self.setHPName(cell);                         break
+        case 5: cell = self.setHPName(cell);                  break
+        case 6: cell = self.setSyrabusName(cell);             break
         default:
             break
         }
@@ -130,7 +142,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 7
     }
     
 }

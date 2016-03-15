@@ -37,7 +37,7 @@ class RealmData {
     let realm :Realm?
     
     
-     //データの保存
+    //データの保存
     
     func save<T :Object>(data: T) -> Bool {
         do {
@@ -73,10 +73,12 @@ class RealmData {
         catch { return nil }
     }
     
-    func getMylectureWithWeekTimeTerm(weekTime: String, term: String) -> [Lecture]?{
+    func getMylectureWithWeekTimeTermCampus(weekTime: String, term: String) -> [Lecture]?{
         do {
+            let campus = Config.getCampusId()
             let realm = try self.realm ?? Realm()
             let lecture = realm.objects(Lecture).filter{
+                if campus != $0.campus_id { return false }
                 for val in $0.weekTime.componentsSeparatedByString(",") {
                     if val == weekTime {
                         for item in $0.term.componentsSeparatedByString(",") {
@@ -92,11 +94,13 @@ class RealmData {
         }
         catch { return nil }
     }
-   
-    func getMylectureWithTerm(term: String) -> [Lecture]?{
+    
+    func getMylectureWithTermCampus(term: String) -> [Lecture]?{
         do {
+            let campus = Config.getCampusId()
             let realm = try self.realm ?? Realm()
             let lecture = realm.objects(Lecture).filter{
+                if campus != $0.campus_id { return false }
                 for item in $0.term.componentsSeparatedByString(",") {
                     if item == term {
                         return true
@@ -109,19 +113,71 @@ class RealmData {
         catch { return nil }
     }
     
+    func getMylectureWithCampusMylec() -> [Lecture]?{
+        do {
+            let campus = Config.getCampusId()
+            let realm = try self.realm ?? Realm()
+            let lecture = realm.objects(Lecture).filter{
+                if $0.myLecture == true && campus == $0.campus_id {
+                    return true
+                }
+                return false
+            }
+            return lecture
+        }
+        catch { return nil }
+    }
+    
+    func reFlag(arr: [String]) -> Bool {
+        do{
+            let campus = Config.getCampusId()
+            let realm = try self.realm ?? Realm()
+            for lecture in realm.objects(Lecture){
+                for lec in arr {
+                    if campus == lecture.campus_id && lec == lecture.id {
+                        try realm.write {
+                            lecture.myLecture = true
+                        }
+                    }
+                }
+            }
+            return true
+        }
+        catch { return false }
+
+    }
+    
     func changeMylecture(lec: Lecture, flag: Bool) -> Bool{
         do{
             let realm = try self.realm ?? Realm()
-                try realm.write {
-                    lec.myLecture = flag
-                }
+            try realm.write {
+                lec.myLecture = flag
+            }
             return true
         }
         catch { return false }
     }
-
-
-
+    
+    
+    func deleteAllWithCampusId(campus: Int) -> Bool {
+        do {
+            let campus = Config.getCampusId()
+            let realm = try self.realm ?? Realm()
+            let lecture = realm.objects(Lecture).filter{
+                if campus != $0.campus_id { return false }
+                return true
+            }
+            try realm.write {
+                realm.delete(lecture)
+            }
+            
+            return true
+        }
+        catch { return false }
+        
+    }
+    
+    
     //データの削除
     func deleteAllRecord<T :Object>(results :Results<T>) -> Bool {
         do {
@@ -146,5 +202,5 @@ class RealmData {
         }
         catch { return false }
     }
-
+    
 }

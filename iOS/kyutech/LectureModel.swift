@@ -38,8 +38,14 @@ class LectureModel: NSObject {
         let campus = Config.getCampusId()
         self.reqestLectures(campus) { (lectures) -> () in
             if lectures.count <= 0 { return }
-            //TODO: 全削除してから登録しなおさんといかんクネ？=========================================
+            //TODO: 全部消す前にmylec=trueだけを退避して、idと紐付ける
+            var reFlagArray: [String] = []
+            for arr in RealmData.sharedInstance.getMylectureWithCampusMylec() ?? [] {
+                reFlagArray.append(arr.id)
+            }
+            RealmData.sharedInstance.deleteAllWithCampusId(campus)
             RealmData.sharedInstance.save(lectures)
+            RealmData.sharedInstance.reFlag(reFlagArray)
             self.setsyllabusData(lectures)
             self.setMylectureData(lectures)
             
@@ -88,6 +94,7 @@ class LectureModel: NSObject {
     
     private func mylectureAnal(arr: [Lecture]) -> [Lecture]{
         let term = NSUserDefaults.standardUserDefaults().integerForKey(Config.userDefault.term)
+        let campus = Config.getCampusId()
         var res: [Lecture] = []
         for_i: for index in 0..<( LectureModel.HOL_NUM + 1 ) * ( LectureModel.VAR_NUM + 1 ) {
             let week = weekWithTapIndex(index)
@@ -95,13 +102,15 @@ class LectureModel: NSObject {
             if index == 0 || week == 0 || time == 0 { res.append(Lecture()); continue }
             let weekTime = weekTimeWithTapIndex(index)
             for lec in arr {
-                for lecTerm in lec.term.componentsSeparatedByString(",") {
-                    if String(term) == lecTerm {
-                        if lec.myLecture == true {//&& lec.weekTime == weekTime {
-                            for val in lec.weekTime.componentsSeparatedByString(",") {
-                                if val == weekTime {
-                                    res.append(lec)
-                                    continue for_i
+                if lec.campus_id == campus {
+                    for lecTerm in lec.term.componentsSeparatedByString(",") {
+                        if String(term) == lecTerm {
+                            if lec.myLecture == true {//&& lec.weekTime == weekTime {
+                                for val in lec.weekTime.componentsSeparatedByString(",") {
+                                    if val == weekTime {
+                                        res.append(lec)
+                                        continue for_i
+                                    }
                                 }
                             }
                         }

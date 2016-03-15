@@ -48,6 +48,7 @@ struct CAMPUS {
         default: return nil
         }
     }
+    
 }
 
 enum REQUIRED: Int {
