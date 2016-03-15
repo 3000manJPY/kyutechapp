@@ -72,90 +72,29 @@ class RealmData {
         }
         catch { return nil }
     }
-    
-    func getMylectureWithWeekTimeTermCampus(weekTime: String, term: String) -> [Lecture]?{
-        do {
-            let campus = Config.getCampusId()
-            let realm = try self.realm ?? Realm()
-            let lecture = realm.objects(Lecture).filter{
-                if campus != $0.campus_id { return false }
-                for val in $0.weekTime.componentsSeparatedByString(",") {
-                    if val == weekTime {
-                        for item in $0.term.componentsSeparatedByString(",") {
-                            if item == term {
-                                return true
-                            }
-                        }
-                    }
-                }
-                return false
-            }
-            return lecture
-        }
-        catch { return nil }
-    }
-    
-    func getMylectureWithTermCampus(term: String) -> [Lecture]?{
-        do {
-            let campus = Config.getCampusId()
-            let realm = try self.realm ?? Realm()
-            let lecture = realm.objects(Lecture).filter{
-                if campus != $0.campus_id { return false }
-                for item in $0.term.componentsSeparatedByString(",") {
-                    if item == term {
-                        return true
-                    }
-                }
-                return false
-            }
-            return lecture
-        }
-        catch { return nil }
-    }
-    
-    func getMylectureWithCampusMylec() -> [Lecture]?{
-        do {
-            let campus = Config.getCampusId()
-            let realm = try self.realm ?? Realm()
-            let lecture = realm.objects(Lecture).filter{
-                if $0.myLecture == true && campus == $0.campus_id {
-                    return true
-                }
-                return false
-            }
-            return lecture
-        }
-        catch { return nil }
-    }
-    
-    func reFlag(arr: [String]) -> Bool {
-        do{
-            let campus = Config.getCampusId()
-            let realm = try self.realm ?? Realm()
-            for lecture in realm.objects(Lecture){
-                for lec in arr {
-                    if campus == lecture.campus_id && lec == lecture.id {
-                        try realm.write {
-                            lecture.myLecture = true
-                        }
-                    }
-                }
-            }
-            return true
-        }
-        catch { return false }
 
-    }
-    
-    func changeMylecture(lec: Lecture, flag: Bool) -> Bool{
+    func changeMylecture(lec: Lecture, flag: Bool) {
         do{
             let realm = try self.realm ?? Realm()
             try realm.write {
                 lec.myLecture = flag
             }
-            return true
+            return
         }
-        catch { return false }
+        catch { return }
+    }
+    
+    func changeMylectures(arr: [Lecture], flag: Bool) {
+        do{
+            let realm = try self.realm ?? Realm()
+            try realm.write {
+                for lec in arr {
+                    lec.myLecture = flag
+                }
+            }
+            return
+        }
+        catch { return }
     }
     
     

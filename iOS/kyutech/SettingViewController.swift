@@ -135,6 +135,10 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         case 4: cell.textLabel?.text = "九工大ホームページ";     break
         case 5: cell = self.setHPName(cell);                  break
         case 6: cell = self.setSyrabusName(cell);             break
+        case 7: cell.textLabel?.text = "九工大moodle";         break
+        case 8: cell.textLabel?.text = "LiveCampus";          break
+        case 9: cell.textLabel?.text = "キャンパスカレンダー";    break
+        case 10: cell.textLabel?.text = "時間割pdf";           break
         default:
             break
         }
@@ -142,7 +146,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
+        return 11
     }
     
 }
