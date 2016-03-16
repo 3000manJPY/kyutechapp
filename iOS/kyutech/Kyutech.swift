@@ -8,22 +8,37 @@
 
 import UIKit
 
+protocol KyutechDelagate {
+    func changeCampus(notification: NSNotification?)
+    func setReceiveObserver()
+}
+
 struct CAMPUS {
     static let count = 3
+    static let parentHP = "http://www.kyutech.ac.jp/"
     struct iizuka {
         static let rawValue = "1"
         static let name = "飯塚キャンパス"
         static let val  = 1
+        static let hp = "http://www.iizuka.kyutech.ac.jp/"
+        static let themeColor = UIColor.colorWith255(61, green: 184, blue: 235)
+        static let topImage = UIImage(named: "top_image")
     }
     struct tobata {
         static let rawValue = "0"
         static let name = "戸畑キャンパス"
         static let val  = 0
+        static let hp = "http://www.tobata.kyutech.ac.jp/"
+        static let themeColor = UIColor.colorWith255(226, green: 94, blue: 157)
+        static let topImage = UIImage(named: "tobata")
     }
     struct wakamatsu {
         static let rawValue = "2"
         static let name = "若松キャンパス"
         static let val  = 2
+        static let hp = "http://www.lsse.kyutech.ac.jp/"
+        static let themeColor = UIColor.colorWith255(170, green: 204, blue: 3)
+        static let topImage = UIImage(named: "wakamatsu")
     }
     static func geyNameById(val: String) -> String? {
         switch val {
@@ -33,6 +48,7 @@ struct CAMPUS {
         default: return nil
         }
     }
+    
 }
 
 enum REQUIRED: Int {

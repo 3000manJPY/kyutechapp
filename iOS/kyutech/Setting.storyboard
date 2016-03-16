@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ufR-5c-HND">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ufR-5c-HND">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--設定-->
         <scene sceneID="nHD-Pn-DPW">
             <objects>
-                <viewController id="hcR-aD-tAC" sceneMemberID="viewController">
+                <viewController id="hcR-aD-tAC" customClass="SettingViewController" customModule="kyutech" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="28b-Ht-v2v"/>
                         <viewControllerLayoutGuide type="bottom" id="oik-et-1gG"/>
@@ -16,18 +16,90 @@
                     <view key="view" contentMode="scaleToFill" id="ZP4-nG-8SH">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9S6-IL-j79" customClass="SettingTableView" customModule="kyutech" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="H7q-QM-TvJ">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="H7q-QM-TvJ" id="OMf-8z-L1R">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="hcR-aD-tAC" id="TgC-3Y-zGn"/>
+                                    <outlet property="delegate" destination="hcR-aD-tAC" id="TUo-am-K2f"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="oik-et-1gG" firstAttribute="top" secondItem="9S6-IL-j79" secondAttribute="bottom" id="3Bj-by-qFS"/>
+                            <constraint firstItem="9S6-IL-j79" firstAttribute="top" secondItem="28b-Ht-v2v" secondAttribute="bottom" constant="-64" id="5Su-4j-VIZ"/>
+                            <constraint firstItem="9S6-IL-j79" firstAttribute="leading" secondItem="ZP4-nG-8SH" secondAttribute="leading" id="iI8-SA-SFP"/>
+                            <constraint firstAttribute="trailing" secondItem="9S6-IL-j79" secondAttribute="trailing" id="y3p-uc-mog"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="R0T-aq-OYb"/>
+                    <navigationItem key="navigationItem" title="設定" id="R0T-aq-OYb"/>
+                    <connections>
+                        <outlet property="tableView" destination="9S6-IL-j79" id="nDs-De-WKn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5kO-72-Hhv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1347" y="436"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Theme Change View Controller-->
+        <scene sceneID="OGD-V2-1Ll">
+            <objects>
+                <viewController storyboardIdentifier="ThemeChangeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xNW-Dh-tTl" customClass="ThemeChangeViewController" customModule="kyutech" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NzR-YR-i7M"/>
+                        <viewControllerLayoutGuide type="bottom" id="0sR-cw-3sh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BVL-W2-mA6">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="F0b-T4-iNn">
+                                <rect key="frame" x="275" y="275" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Dkx-fj-sZ9"/>
+                                    <constraint firstAttribute="width" constant="50" id="cN6-vs-Dxu"/>
+                                </constraints>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="キャンパスを切り替えています" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rna-yl-NPG">
+                                <rect key="frame" x="181" y="339" width="238" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="238" id="LBX-qs-0Gr"/>
+                                    <constraint firstAttribute="height" constant="21" id="RbT-ld-8Za"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.064324629934210523" alpha="0.75174197635135132" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="F0b-T4-iNn" firstAttribute="centerY" secondItem="BVL-W2-mA6" secondAttribute="centerY" id="3NK-El-CC7"/>
+                            <constraint firstItem="Rna-yl-NPG" firstAttribute="centerX" secondItem="BVL-W2-mA6" secondAttribute="centerX" id="D1U-Ls-AjA"/>
+                            <constraint firstItem="F0b-T4-iNn" firstAttribute="centerX" secondItem="BVL-W2-mA6" secondAttribute="centerX" id="hw0-dB-PvR"/>
+                            <constraint firstItem="Rna-yl-NPG" firstAttribute="top" secondItem="F0b-T4-iNn" secondAttribute="bottom" constant="14" id="rf5-e7-fzf"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uiA-w1-wpN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2061" y="443"/>
+        </scene>
+        <!--Base Navigation Controller-->
         <scene sceneID="tJT-Yp-Dwr">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ufR-5c-HND" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ufR-5c-HND" customClass="BaseNavigationController" customModule="kyutech" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="safari-button" id="WfS-m4-3rW">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>

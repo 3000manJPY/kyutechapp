@@ -22,15 +22,17 @@ class NoticeViewController: UIViewController {
     
     var detailVC: NoticeDetailViewController?
     
+    var isCahngeCampus = false
     override func viewDidLoad() {
         super.viewDidLoad()
-        setDelegate()
+        self.setDelegate()
         self.shContentView.shcontentTableViewInit(self.noticeTableView)
         self.navigationController?.navigationBarHidden = true
         
         (self.categories, self.departments, self.orders) = MenuModel.sharedInstance.getMenuArrays()
         self.shContentView.setContentItem()
         self.noticeArray = NoticeModel.sharedInstance.notices
+        self.setReceiveObserver()
         
         }
     
@@ -38,7 +40,17 @@ class NoticeViewController: UIViewController {
         super.viewWillAppear(animated)
         NoticeModel.sharedInstance.addObserver(self, forKeyPath: "notices", options: [.New, .Old], context: nil)
         MenuModel.sharedInstance.addObserver(self, forKeyPath: "menus", options: [.New, .Old], context: nil)
+        
+        //これは、キャンパスが変わった時だけ呼ばれればいいのでNotifとかがいいかも
+        self.shContentView.setContentItem()
+        
+        
         self.setRepo()
+        
+        if self.isCahngeCampus {
+           NoticeModel.sharedInstance.updateDate()
+        }
+        
     }
     //googleAnariticsを設定
     func setRepo(){
@@ -77,11 +89,11 @@ class NoticeViewController: UIViewController {
                 if menu.menu == .department { depa.append(menu) }
                 if menu.menu == .order && menu.check == true { order = menu }
             }
-                //カテゴリーフィルターする
-                NoticeModel.sharedInstance.filterCategory(cate)
-                //ジャンルフィルターする
-                NoticeModel.sharedInstance.filterDetartment(depa)
-                 NoticeModel.sharedInstance.sortData(order)
+            //カテゴリーフィルターする
+            NoticeModel.sharedInstance.filterCategory(cate)
+            //ジャンルフィルターする
+            NoticeModel.sharedInstance.filterDetartment(depa)
+            NoticeModel.sharedInstance.sortData(order)
             
         }
     }
@@ -116,5 +128,17 @@ extension NoticeViewController: SHContentTableViewdelegate /*, slidedelegate*/{
     func tapRightItem(sender: AnyObject) { NoticeModel.sharedInstance.updateDate() }
     func tapLeftItem(sender: AnyObject) { self.frostedViewController.presentMenuViewController() }
     func tapViewTop() { self.tapStatusBar(nil) }
+}
+
+
+extension NoticeViewController: KyutechDelagate {
+    func setReceiveObserver() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeCampus:", name: Config.notification.changeCampus, object: nil)
+        
+    }
+    
+    func changeCampus(notification: NSNotification?) {
+        self.isCahngeCampus = true
+    }
 }
 

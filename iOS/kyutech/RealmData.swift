@@ -37,7 +37,7 @@ class RealmData {
     let realm :Realm?
     
     
-     //データの保存
+    //データの保存
     
     func save<T :Object>(data: T) -> Bool {
         do {
@@ -72,56 +72,51 @@ class RealmData {
         }
         catch { return nil }
     }
-    
-    func getMylectureWithWeekTimeTerm(weekTime: String, term: String) -> [Lecture]?{
-        do {
-            let realm = try self.realm ?? Realm()
-            let lecture = realm.objects(Lecture).filter{
-                for val in $0.weekTime.componentsSeparatedByString(",") {
-                    if val == weekTime {
-                        for item in $0.term.componentsSeparatedByString(",") {
-                            if item == term {
-                                return true
-                            }
-                        }
-                    }
-                }
-                return false
-            }
-            return lecture
-        }
-        catch { return nil }
-    }
-   
-    func getMylectureWithTerm(term: String) -> [Lecture]?{
-        do {
-            let realm = try self.realm ?? Realm()
-            let lecture = realm.objects(Lecture).filter{
-                for item in $0.term.componentsSeparatedByString(",") {
-                    if item == term {
-                        return true
-                    }
-                }
-                return false
-            }
-            return lecture
-        }
-        catch { return nil }
-    }
-    
-    func changeMylecture(lec: Lecture, flag: Bool) -> Bool{
+
+    func changeMylecture(lec: Lecture, flag: Bool) {
         do{
             let realm = try self.realm ?? Realm()
-                try realm.write {
+            try realm.write {
+                lec.myLecture = flag
+            }
+            return
+        }
+        catch { return }
+    }
+    
+    func changeMylectures(arr: [Lecture], flag: Bool) {
+        do{
+            let realm = try self.realm ?? Realm()
+            try realm.write {
+                for lec in arr {
                     lec.myLecture = flag
                 }
+            }
+            return
+        }
+        catch { return }
+    }
+    
+    
+    func deleteAllWithCampusId(campus: Int) -> Bool {
+        do {
+            let campus = Config.getCampusId()
+            let realm = try self.realm ?? Realm()
+            let lecture = realm.objects(Lecture).filter{
+                if campus != $0.campus_id { return false }
+                return true
+            }
+            try realm.write {
+                realm.delete(lecture)
+            }
+            
             return true
         }
         catch { return false }
+        
     }
-
-
-
+    
+    
     //データの削除
     func deleteAllRecord<T :Object>(results :Results<T>) -> Bool {
         do {
@@ -146,5 +141,5 @@ class RealmData {
         }
         catch { return false }
     }
-
+    
 }

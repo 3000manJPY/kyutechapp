@@ -32,11 +32,13 @@ class NoticeModel: NSObject {
         self.updateDate()
     }
     
+    
     func updateDate(){
-        self.reqestNotices(CAMPUS.iizuka.val) { (notices) -> () in
+        let campus = Config.getCampusId()
+        self.reqestNotices(campus) { (notices) -> () in
             self.notices  = notices
             self.original = notices
-            MenuModel.sharedInstance.setMenuArray(MenuModel.sharedInstance.menus)
+//            MenuModel.sharedInstance.setMenuArray(MenuModel.sharedInstance.menus)
         }
     }
 

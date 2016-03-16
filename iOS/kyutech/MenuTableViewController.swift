@@ -24,13 +24,25 @@ enum SECTION: Int {
 
 class MenuTableViewController: UIViewController {
     @IBOutlet weak var menuTableView: MenuTableView!
+    var isCahngeCampus = false
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setReceiveObserver()
         
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.setRepo()
+        
+        if self.isCahngeCampus {
+            MenuModel.sharedInstance.updateMenuArray()
+            self.menuTableView.updateMenu()
+            self.menuTableView.reloadData()
+            self.isCahngeCampus = false
+        }
+//
+        //テーマカラー更新のために
+        
         MenuModel.sharedInstance.addObserver(self, forKeyPath: "menus", options: [.New, .Old], context: nil)
     }
     override func viewWillDisappear(animated: Bool) {
@@ -46,6 +58,7 @@ class MenuTableViewController: UIViewController {
 //        let builder = GAIDictionaryBuilder.createScreenView()
 //        tracker.send(builder.build() as [NSObject : AnyObject])
     }
+    
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if(keyPath == "menus"){
             if let arr = change?["new"] as? [Sort] {
@@ -89,6 +102,17 @@ extension MenuTableViewController: UITableViewDelegate, UITableViewDataSource {
     func isAllNoCheck(arr: [Sort]) -> Bool {
         for menu in arr { if menu.check { return false } }
         return true
+    }
+}
+
+extension MenuTableViewController: KyutechDelagate {
+    func setReceiveObserver() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeCampus:", name: Config.notification.changeCampus, object: nil)
+
+    }
+    
+    func changeCampus(notification: NSNotification?) {
+        self.isCahngeCampus = true
     }
 }
 

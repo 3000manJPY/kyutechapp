@@ -9,6 +9,9 @@
 import UIKit
 
 struct Config {
+    static let padHP = "https://www.planningdev.com"
+    static let about = ""
+    static let notice = ""
     
     
     #if DEVELOP
@@ -20,19 +23,49 @@ struct Config {
     static let maxConnections = 10
     
     struct notification {
-        static let a = "12341234"
-        static let key = "ABCD"
+        static let changeCampus = "com.planningdev.kyutechapp.change.campus"
     }
     struct userDefault {
         static let term = "com.planningdev.kyutechapp.term"
-        static let updateLecture = "com.planningdev.kyutechapp.lecture.update"
+        static let campus = "com.planningdev.kyutechapp.campus"
+        struct lecture {
+            static let iizuka =     "com.planningdev.kyutechapp.lecture.iizuka"
+            static let wakamatsu =  "com.planningdev.kyutechapp.lecture.wakamatsu"
+            static let tobata =     "com.planningdev.kyutechapp.lecture.tobata"
+        }
         static func isUpdateLectureTime() -> String {
-            if let val = NSUserDefaults.standardUserDefaults().objectForKey(Config.userDefault.updateLecture) {
+            let key = Config.userDefault.getLectureKey()
+            if let val = NSUserDefaults.standardUserDefaults().objectForKey(key) {
                 return String(val)
             }
             return ""
         }
+        
+        static func getLectureKey() -> String {
+            let campus = Config.getCampusId()
+            switch campus {
+            case CAMPUS.tobata.val:    return Config.userDefault.lecture.tobata
+            case CAMPUS.wakamatsu.val: return Config.userDefault.lecture.wakamatsu
+            case CAMPUS.iizuka.val:    return Config.userDefault.lecture.iizuka
+            default: return ""
+            }
+            
+        }
     
+    }
+    
+    static func getCampusId() -> Int {
+        return NSUserDefaults.standardUserDefaults().integerForKey(Config.userDefault.campus)
+    }
+    
+    static func getThemeColor() -> UIColor {
+        let campus = Config.getCampusId()
+        switch campus {
+        case CAMPUS.tobata.val: return CAMPUS.tobata.themeColor
+        case CAMPUS.iizuka.val: return CAMPUS.iizuka.themeColor
+        case CAMPUS.wakamatsu.val: return CAMPUS.wakamatsu.themeColor
+        default: return UIColor.blackColor()
+        }
     }
     
     static func plist(property:String)->String{

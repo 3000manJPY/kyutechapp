@@ -74,20 +74,22 @@ class SubjectTableViewController: UIViewController{
     func dataArrangement(){
         let termNum = NSUserDefaults.standardUserDefaults().integerForKey(Config.userDefault.term)
         self.subjectArray = []
+        let campus = Config.getCampusId()
         for_i: for (index,item) in self.syllabusArray.enumerate() {
-            for term in item.term.componentsSeparatedByString(",") {
-                if term == String(termNum) && item.weekTime != "" && item.weekTime != "0" && item.weekTime != "99" {
-                    if self.tapIndex == 0 {
-                        self.subjectArray.append((index,item))
-                        continue for_i
-                    }
-
-                    for subject in item.weekTime.componentsSeparatedByString(",") {
-                        if subject == LectureModel.sharedInstance.weekTimeWithTapIndex(self.tapIndex) {
+            if campus == item.campus_id {
+                for term in item.term.componentsSeparatedByString(",") {
+                    if term == String(termNum) && item.weekTime != "" && item.weekTime != "0" && item.weekTime != "99" {
+                        if self.tapIndex == 0 {
                             self.subjectArray.append((index,item))
+                            continue for_i
+                        }
+                        
+                        for subject in item.weekTime.componentsSeparatedByString(",") {
+                            if subject == LectureModel.sharedInstance.weekTimeWithTapIndex(self.tapIndex) {
+                                self.subjectArray.append((index,item))
+                            }
                         }
                     }
-                    
                 }
             }
         }
@@ -141,15 +143,20 @@ extension SubjectTableViewController: UITableViewDelegate,UITableViewDataSource 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return self.subjectArray.count }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+//        tableView.deselectRowAtIndexPath(indexPath, animated: ture)
         //===============================================
         let index   = self.subjectArray[indexPath.row].0
         let tapObj  = self.syllabusArray[index]
         let flag    = !tapObj.myLecture
-        self.deleteFlag(tapObj)
+        self.deleteFlag(tapObj)//こいつが重すぎ！！！！
         //選択された科目のフラグを変える
+//        
         RealmData.sharedInstance.changeMylecture(self.syllabusArray[index],flag: flag)
         LectureModel.sharedInstance.syllabusList = self.syllabusArray
-        self.updateLectureData()
+        LectureModel.sharedInstance.cacheLectures = self.syllabusArray
+        self.updateLectureData()//これもまあまあ重い
+        
 
     }
     //===============================================移植可能
@@ -165,18 +172,14 @@ extension SubjectTableViewController: UITableViewDelegate,UITableViewDataSource 
     //===============================================移植可能
     
     func changeMyLectureWithTerm(term: String){
-        guard let arr = RealmData.sharedInstance.getMylectureWithTerm(term) else{ return }
-        for item in arr {
-            RealmData.sharedInstance.changeMylecture(item, flag: false)
-        }
+        let arr = LectureModel.sharedInstance.getMylecture(term)
+        RealmData.sharedInstance.changeMylectures(arr, flag: false)
     }
     //===============================================移植可能
 
     func changeMyLectureWithWeekTimeTerm(weekTime: String, term: String){
-        guard let arr = RealmData.sharedInstance.getMylectureWithWeekTimeTerm(weekTime, term: term) else{ return }
-        for item in arr {
-            RealmData.sharedInstance.changeMylecture(item, flag: false)
-        }
+        let arr = LectureModel.sharedInstance.getMylecture(term, weekTime: weekTime)
+        RealmData.sharedInstance.changeMylectures(arr, flag: false)
     }
     //===============================================移植可能
  

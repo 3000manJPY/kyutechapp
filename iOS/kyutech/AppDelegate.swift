@@ -69,6 +69,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func setAppearance(){
         UITableView.appearance().layoutMargins = UIEdgeInsetsZero
         UITableViewCell.appearance().layoutMargins = UIEdgeInsetsZero
+        
+        UITabBar.appearance().tintColor = UIColor.whiteColor()
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+        
     }
 
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {

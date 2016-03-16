@@ -32,6 +32,10 @@
 		2A4A6C0C1C663F4C00B4BD6F /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C0B1C663F4C00B4BD6F /* APIService.swift */; };
 		2A4A6C0F1C66557600B4BD6F /* Kyutech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C0E1C66557600B4BD6F /* Kyutech.swift */; };
 		2A4A6C121C66570700B4BD6F /* Alamofire+SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C111C66570700B4BD6F /* Alamofire+SwiftyJSON.swift */; };
+		2A50467C1C92E394008F55DE /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A50467B1C92E394008F55DE /* SettingViewController.swift */; };
+		2A50467D1C92E394008F55DE /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A50467B1C92E394008F55DE /* SettingViewController.swift */; };
+		2A5046801C93D913008F55DE /* SettingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A50467F1C93D913008F55DE /* SettingTableView.swift */; };
+		2A5046811C93D913008F55DE /* SettingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A50467F1C93D913008F55DE /* SettingTableView.swift */; };
 		2A5BB4911C7C157900F64A2D /* Access.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5BB4901C7C157900F64A2D /* Access.swift */; };
 		2A5BB4921C7C157900F64A2D /* Access.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5BB4901C7C157900F64A2D /* Access.swift */; };
 		2A5BB4941C7C158200F64A2D /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5BB4931C7C158200F64A2D /* Direction.swift */; };
@@ -64,6 +68,8 @@
 		2ABF85961C7C361B00B4998E /* AccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF85941C7C361B00B4998E /* AccessViewController.swift */; };
 		2ABF85991C7C36D300B4998E /* AccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF85981C7C36D300B4998E /* AccessView.swift */; };
 		2ABF859A1C7C36D300B4998E /* AccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF85981C7C36D300B4998E /* AccessView.swift */; };
+		2AC628381C94444E00B69C04 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC628371C94444E00B69C04 /* BaseNavigationController.swift */; };
+		2AC628391C94444E00B69C04 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC628371C94444E00B69C04 /* BaseNavigationController.swift */; };
 		2ADA7D631C6975730054A771 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2C332E1C62AF5F00676BA6 /* SplashViewController.swift */; };
 		2ADA7D641C6975730054A771 /* Kyutech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C0E1C66557600B4BD6F /* Kyutech.swift */; };
 		2ADA7D651C6975730054A771 /* NoticeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4A6C041C64F7BF00B4BD6F /* NoticeDetailViewController.swift */; };
@@ -183,6 +189,8 @@
 		2A4A6C0B1C663F4C00B4BD6F /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		2A4A6C0E1C66557600B4BD6F /* Kyutech.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Kyutech.swift; sourceTree = "<group>"; };
 		2A4A6C111C66570700B4BD6F /* Alamofire+SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Alamofire+SwiftyJSON.swift"; sourceTree = "<group>"; };
+		2A50467B1C92E394008F55DE /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		2A50467F1C93D913008F55DE /* SettingTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableView.swift; sourceTree = "<group>"; };
 		2A5BB4901C7C157900F64A2D /* Access.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Access.swift; sourceTree = "<group>"; };
 		2A5BB4931C7C158200F64A2D /* Direction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		2A5BB4961C7C158E00F64A2D /* TimeTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTable.swift; sourceTree = "<group>"; };
@@ -211,6 +219,7 @@
 		2A9A959E1C5D2421007BDA52 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		2ABF85941C7C361B00B4998E /* AccessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessViewController.swift; sourceTree = "<group>"; };
 		2ABF85981C7C36D300B4998E /* AccessView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessView.swift; sourceTree = "<group>"; };
+		2AC628371C94444E00B69C04 /* BaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		2ADA7D891C6975730054A771 /* kyutech-dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kyutech-dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ADA7D8B1C6977160054A771 /* kyutech-dev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "kyutech-dev.plist"; sourceTree = "<group>"; };
 		2ADA7D8E1C6A6BEE0054A771 /* MenuTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableView.swift; sourceTree = "<group>"; };
@@ -291,12 +300,12 @@
 			name = Splash;
 			sourceTree = "<group>";
 		};
-		2A4A6BED1C64EC9000B4BD6F /* TabBar */ = {
+		2A4A6BED1C64EC9000B4BD6F /* Main */ = {
 			isa = PBXGroup;
 			children = (
 				2A9A95561C5CBB84007BDA52 /* Main.storyboard */,
 			);
-			name = TabBar;
+			name = Main;
 			sourceTree = "<group>";
 		};
 		2A4A6BEE1C64ECA200B4BD6F /* Lecture */ = {
@@ -362,6 +371,22 @@
 				2A5BB4961C7C158E00F64A2D /* TimeTable.swift */,
 			);
 			name = Entity;
+			sourceTree = "<group>";
+		};
+		2A5046781C92DD95008F55DE /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				2A50467B1C92E394008F55DE /* SettingViewController.swift */,
+			);
+			name = Setting;
+			sourceTree = "<group>";
+		};
+		2A50467E1C93D8FE008F55DE /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				2A50467F1C93D913008F55DE /* SettingTableView.swift */,
+			);
+			name = Setting;
 			sourceTree = "<group>";
 		};
 		2A642D561C6FBB5A00098E99 /* Subject */ = {
@@ -468,6 +493,7 @@
 		2A9A95831C5CBCA5007BDA52 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2A50467E1C93D8FE008F55DE /* Setting */,
 				2ABF85971C7C36B500B4998E /* Access */,
 				2AEF74261C6BA43100C10205 /* Lecture */,
 				2AEF74251C6BA41E00C10205 /* Notice */,
@@ -491,11 +517,13 @@
 		2A9A95851C5CBCBA007BDA52 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				2AA6EDC91C9445E100353DAB /* Navigation */,
 				2ABF85931C7C35EB00B4998E /* Access */,
 				2AEF74211C6AD4DD00C10205 /* Lecture */,
 				2A4A6BFB1C64F48400B4BD6F /* Notice */,
 				2A4A6BF21C64ECEA00B4BD6F /* TabBar */,
 				2A9A95861C5CBCBB007BDA52 /* Splash */,
+				2A5046781C92DD95008F55DE /* Setting */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -523,7 +551,7 @@
 				2A4A6BF01C64ECA700B4BD6F /* Notice */,
 				2A4A6BEF1C64ECA500B4BD6F /* Access */,
 				2A4A6BEE1C64ECA200B4BD6F /* Lecture */,
-				2A4A6BED1C64EC9000B4BD6F /* TabBar */,
+				2A4A6BED1C64EC9000B4BD6F /* Main */,
 				2A4A6BEC1C64EC8300B4BD6F /* Splash */,
 			);
 			name = Layout;
@@ -554,6 +582,14 @@
 				2A7A7C431C69360D00BEE966 /* dev-api.plist */,
 			);
 			name = dev;
+			sourceTree = "<group>";
+		};
+		2AA6EDC91C9445E100353DAB /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				2AC628371C94444E00B69C04 /* BaseNavigationController.swift */,
+			);
+			name = Navigation;
 			sourceTree = "<group>";
 		};
 		2ABF85931C7C35EB00B4998E /* Access */ = {
@@ -970,14 +1006,17 @@
 				2A4A6C121C66570700B4BD6F /* Alamofire+SwiftyJSON.swift in Sources */,
 				2A4540571C6797A600B33393 /* RootNoticeViewController.swift in Sources */,
 				2A4A6C0C1C663F4C00B4BD6F /* APIService.swift in Sources */,
+				2AC628381C94444E00B69C04 /* BaseNavigationController.swift in Sources */,
 				2A38A2E41C8B62990050B18B /* LectureDetailView.swift in Sources */,
 				2A5D96A31C6A8D5900E1DF80 /* NoticeTableView.swift in Sources */,
 				2AEF74381C6BBD7400C10205 /* LectureCollectionViewCell.swift in Sources */,
 				2A5BB49A1C7C15AA00F64A2D /* AccessModel.swift in Sources */,
 				2AFFAFA31C6FCD7A00ACD168 /* SubjectTableViewCell.swift in Sources */,
+				2A5046801C93D913008F55DE /* SettingTableView.swift in Sources */,
 				2A38A2E11C8B59E40050B18B /* LectureDetailTableViewController.swift in Sources */,
 				2A8228301C6F959B00F3AB7B /* TermTableViewController.swift in Sources */,
 				2A45405D1C67A47C00B33393 /* CategoryModel.swift in Sources */,
+				2A50467C1C92E394008F55DE /* SettingViewController.swift in Sources */,
 				2ABF85951C7C361B00B4998E /* AccessViewController.swift in Sources */,
 				2A4A6C091C6623D800B4BD6F /* NoticeModel.swift in Sources */,
 			);
@@ -1030,14 +1069,17 @@
 				2ADA7D6D1C6975730054A771 /* Alamofire+SwiftyJSON.swift in Sources */,
 				2ADA7D6E1C6975730054A771 /* RootNoticeViewController.swift in Sources */,
 				2ADA7D6F1C6975730054A771 /* APIService.swift in Sources */,
+				2AC628391C94444E00B69C04 /* BaseNavigationController.swift in Sources */,
 				2A38A2E51C8B62990050B18B /* LectureDetailView.swift in Sources */,
 				2A5D96A41C6A8D5900E1DF80 /* NoticeTableView.swift in Sources */,
 				2AEF74391C6BBD7400C10205 /* LectureCollectionViewCell.swift in Sources */,
 				2A5BB49B1C7C15AA00F64A2D /* AccessModel.swift in Sources */,
 				2AFFAFA41C6FCD7A00ACD168 /* SubjectTableViewCell.swift in Sources */,
+				2A5046811C93D913008F55DE /* SettingTableView.swift in Sources */,
 				2A38A2E21C8B59E40050B18B /* LectureDetailTableViewController.swift in Sources */,
 				2A8228311C6F959B00F3AB7B /* TermTableViewController.swift in Sources */,
 				2ADA7D701C6975730054A771 /* CategoryModel.swift in Sources */,
+				2A50467D1C92E394008F55DE /* SettingViewController.swift in Sources */,
 				2ABF85961C7C361B00B4998E /* AccessViewController.swift in Sources */,
 				2ADA7D711C6975730054A771 /* NoticeModel.swift in Sources */,
 			);

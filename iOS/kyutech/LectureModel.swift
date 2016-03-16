@@ -16,6 +16,7 @@ class LectureModel: NSObject {
     static  let VAR_NUM = 6
     dynamic var myLectures   :[Lecture] = []
     dynamic var syllabusList :[Lecture] = []
+    var cacheLectures :[Lecture] = []
     private var requestState :RequestState = .None {
         willSet {
             switch  newValue {
@@ -29,19 +30,25 @@ class LectureModel: NSObject {
     
     private override init() {
         super.init()
+        
         self.settingData()
         self.setMylectureDataWithRealm()
         self.setSyllabusDataWithRealm()
     }
     
     func settingData(){
-        self.reqestLectures(CAMPUS.iizuka.val) { (lectures) -> () in
-            if lectures.count <= 0 { return }
-            //TODO: 全削除してから登録しなおさんといかんクネ？=========================================
-            RealmData.sharedInstance.save(lectures)
-            self.setsyllabusData(lectures)
-            self.setMylectureData(lectures)
+
+        if let v = RealmData.sharedInstance.getMyLectureData() {
+           self.cacheLectures = v
             
+            let campus = Config.getCampusId()
+            self.reqestLectures(campus) { (lectures) -> () in
+                if lectures.count <= 0 { return }
+                self.cacheLectures = self.reflag(lectures, campus: campus)
+                self.setsyllabusData(self.cacheLectures)
+                self.setMylectureData(self.cacheLectures)
+                
+            }
         }
     }
    
@@ -56,12 +63,12 @@ class LectureModel: NSObject {
     }
     
     private func setSyllabusDataWithRealm(){
-       guard let arr = RealmData.sharedInstance.getMyLectureData() else{ return }
+        let arr = self.cacheLectures
         self.setsyllabusData(arr)
     }
     
     func updateSyllabusDataWithRealm(){
-        guard let arr = RealmData.sharedInstance.getMyLectureData() else{ return }
+        let arr = self.cacheLectures
         LectureModel.sharedInstance.syllabusList = arr
     }
     
@@ -71,7 +78,7 @@ class LectureModel: NSObject {
     }
     
     private func setMylectureDataWithRealm(){
-        guard let arr = RealmData.sharedInstance.getMyLectureData() else{ return }
+        let arr = self.cacheLectures
         self.setMylectureData(arr)
     }
     
@@ -81,33 +88,34 @@ class LectureModel: NSObject {
     }
     
     func updateMylectureDataWithRealm(){
-        guard let arr = RealmData.sharedInstance.getMyLectureData() else{ return }
+        let arr = self.cacheLectures
         LectureModel.sharedInstance.myLectures = self.mylectureAnal(arr)
     }
     
     private func mylectureAnal(arr: [Lecture]) -> [Lecture]{
         let term = NSUserDefaults.standardUserDefaults().integerForKey(Config.userDefault.term)
+        let campus = Config.getCampusId()
+        var lec: [String:Lecture] = [:]
         var res: [Lecture] = []
-        for_i: for index in 0..<( LectureModel.HOL_NUM + 1 ) * ( LectureModel.VAR_NUM + 1 ) {
-            let week = weekWithTapIndex(index)
-            let time = periodWithTapIndex(index)
-            if index == 0 || week == 0 || time == 0 { res.append(Lecture()); continue }
-            let weekTime = weekTimeWithTapIndex(index)
-            for lec in arr {
-                for lecTerm in lec.term.componentsSeparatedByString(",") {
-                    if String(term) == lecTerm {
-                        if lec.myLecture == true {//&& lec.weekTime == weekTime {
-                            for val in lec.weekTime.componentsSeparatedByString(",") {
-                                if val == weekTime {
-                                    res.append(lec)
-                                    continue for_i
-                                }
-                            }
-                        }
-                    }
+        for_i: for val in arr {
+            if val.campus_id != campus || val.myLecture == false { continue for_i }
+            for termStr in val.term.componentsSeparatedByString(",") {
+                if String(term) != termStr { continue for_i }
+                for weekTimeStr in val.weekTime.componentsSeparatedByString(",") {
+                    guard let weekTime = Int(weekTimeStr) else { continue for_i }
+                    let week = weekTime / 10
+                    let time = weekTime % 10
+                    let index = (LectureModel.HOL_NUM + 1) * time + week
+                    lec["\(index)"] = val
                 }
             }
-           res.append(Lecture())
+        }
+        for index in 0..<( LectureModel.HOL_NUM + 1 ) * ( LectureModel.VAR_NUM + 1 ) {
+            guard let val = lec["\(index)"] else {
+                res.append(Lecture())
+                continue
+            }
+            res.append(val)
         }
         return res
     }
@@ -124,6 +132,49 @@ class LectureModel: NSObject {
     
     func periodWithTapIndex(tapIndex: Int) -> Int {
         return tapIndex / ( LectureModel.HOL_NUM + 1 )
+    }
+    
+    func reflag(arr: [Lecture], campus: Int) -> [Lecture] {
+        for new in arr {
+            for lec in self.cacheLectures {
+                if lec.campus_id != campus && lec.myLecture != false { continue }
+                if new.id == lec.id {
+                    new.myLecture = lec.myLecture
+                }
+            }
+        }
+        return arr
+    }
+    
+    func getMylecture(term: String, weekTime: String) -> [Lecture] {
+       let campus = Config.getCampusId()
+        let lec = self.cacheLectures.filter{
+            if campus != $0.campus_id { return false }
+            for val in $0.weekTime.componentsSeparatedByString(",") {
+                if val == weekTime {
+                    for item in $0.term.componentsSeparatedByString(",") {
+                        if item == term {
+                            return true
+                        }
+                    }
+                }
+            }
+            return false
+        }
+        return lec
+    }
+    func getMylecture(term: String ) -> [Lecture] {
+        let campus = Config.getCampusId()
+        let lec = self.cacheLectures.filter{
+            if campus != $0.campus_id { return false }
+            for item in $0.term.componentsSeparatedByString(",") {
+                if item == term {
+                    return true
+                }
+            }
+            return false
+        }
+        return lec
     }
 }
 
