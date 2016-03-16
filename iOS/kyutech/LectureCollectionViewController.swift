@@ -35,7 +35,11 @@ class LectureCollectionViewController: UIViewController {
         self.lecCollectionView.registerNib(UINib(nibName: "LectureCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "LectureCollectionViewCell")
         self.myLectureArray = LectureModel.sharedInstance.myLectures
        
-        let term = NSUserDefaults.standardUserDefaults().integerForKey(Config.userDefault.term)
+        var term = NSUserDefaults.standardUserDefaults().integerForKey(Config.userDefault.term)
+        if term == 0 {
+            term = 1
+            NSUserDefaults.standardUserDefaults().setInteger(term, forKey: Config.userDefault.term)
+        }
         self.setTermTitle(term)
         self.setReceiveObserver()
     }
