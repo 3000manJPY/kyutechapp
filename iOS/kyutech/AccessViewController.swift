@@ -52,12 +52,12 @@ class AccessViewController: UIViewController {
     func setSegment(){
         let item = ["JR","西鉄バス","スクールバス"]
         
-        let frame = self.segment.frame
-        self.segment.removeFromSuperview()
-        let newSegment = UISegmentedControl(items: item)
-        newSegment.frame = frame
-        newSegment.tintColor = UIColor.whiteColor()
-        self.accessHeaderView.addSubview(newSegment)
+//        let frame = self.segment.frame
+//        self.segment.removeFromSuperview()
+//        let newSegment = UISegmentedControl(items: item)
+//        newSegment.frame = frame
+//        newSegment.tintColor = UIColor.whiteColor()
+//        self.accessHeaderView.addSubview(newSegment)
 
     }
     
