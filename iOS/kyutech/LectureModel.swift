@@ -99,10 +99,10 @@ class LectureModel: NSObject {
         var res: [Lecture] = []
         for_i: for val in arr {
             if val.campus_id != campus || val.myLecture == false { continue for_i }
-            for termStr in val.term.componentsSeparatedByString(",") {
-                if String(term) != termStr { continue for_i }
-                for weekTimeStr in val.weekTime.componentsSeparatedByString(",") {
-                    guard let weekTime = Int(weekTimeStr) else { continue for_i }
+            term: for termStr in val.term.componentsSeparatedByString(",") {
+                if String(term) != termStr { continue term }
+                weekTime: for weekTimeStr in val.weekTime.componentsSeparatedByString(",") {
+                    guard let weekTime = Int(weekTimeStr) else { continue weekTime }
                     let week = weekTime / 10
                     let time = weekTime % 10
                     let index = (LectureModel.HOL_NUM + 1) * time + week
