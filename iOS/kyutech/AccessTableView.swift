@@ -8,6 +8,6 @@
 
 import UIKit
 
-class AccessView: UIView {
+class AccessTableView: UITableView {
     
 }
