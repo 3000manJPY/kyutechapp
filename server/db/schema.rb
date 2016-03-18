@@ -11,21 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224061607) do
+ActiveRecord::Schema.define(version: 20160316143050) do
 
   create_table "accesses", force: :cascade do |t|
-    t.string   "line_name",    limit: 255
-    t.string   "station_name", limit: 255
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.integer  "campus_id",    limit: 4
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "campus_stations", force: :cascade do |t|
+    t.integer  "campus_id",  limit: 4
+    t.integer  "station_id", limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  create_table "campuses", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "directions", force: :cascade do |t|
-    t.string   "direction_name", limit: 255
-    t.integer  "access_id",      limit: 4
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.string   "name",       limit: 255
+    t.integer  "station_id", limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "lectures", force: :cascade do |t|
@@ -50,6 +61,20 @@ ActiveRecord::Schema.define(version: 20160224061607) do
     t.text    "evaluation",  limit: 65535
     t.text    "book",        limit: 65535
     t.text    "preparation", limit: 65535
+  end
+
+  create_table "line_stations", force: :cascade do |t|
+    t.integer  "line_id",    limit: 4
+    t.integer  "station_id", limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  create_table "lines", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.integer  "access_id",  limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "notices", force: :cascade do |t|
@@ -83,12 +108,24 @@ ActiveRecord::Schema.define(version: 20160224061607) do
     t.datetime "updated_at",                   null: false
   end
 
-  create_table "time_tables", force: :cascade do |t|
+  create_table "patterns", force: :cascade do |t|
+    t.string   "name",         limit: 255
     t.integer  "direction_id", limit: 4
-    t.string   "pattern_name", limit: 255
-    t.string   "time",         limit: 255
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+  end
+
+  create_table "stations", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "timetables", force: :cascade do |t|
+    t.time     "time"
+    t.integer  "pattern_id", limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
 end
