@@ -8,13 +8,19 @@
 
 import UIKit
 
+protocol AccessPickerDelegate {
+    func resultIndex(index: Int, mode: AccessPickerMode)
+}
+
 class AccessPickerViewController: UIViewController {
     
     @IBOutlet weak var pickerView: UIPickerView!
-    
-    
+    var list:   [String] = []
+    var delegate:   AccessPickerDelegate?
+    var mode: AccessPickerMode!
     @IBAction func DoneTapd(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
+        self.delegate?.resultIndex(self.pickerView.selectedRowInComponent(0), mode: self.mode)
     }
     
 }
@@ -26,10 +32,10 @@ extension AccessPickerViewController: UIPickerViewDataSource, UIPickerViewDelega
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 10
+        return self.list.count
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return "asdfasf"
+        return self.list[row]
     }
 }

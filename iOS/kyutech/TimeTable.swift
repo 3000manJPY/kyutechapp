@@ -12,16 +12,18 @@ import Foundation
 import SwiftyJSON
 import SHUtil
 
-class TimeTable: Object {
+class Timetable: Object {
     dynamic var id: Int = 0
-    dynamic var patternName: String = ""
+    dynamic var name: String = ""
     dynamic var time: String = ""
-    dynamic var directionId: Int = 0
+            var originTime: NSData = NSData()
+    dynamic var patternId: Int = 0
     convenience init(json: SwiftyJSON.JSON) {
         self.init()
-        self.id = json["id"].intValue
-        self.patternName = json["pattern_name"].stringValue
-        self.time = json["time"].stringValue
+        self.id         = json["id"].intValue
+        self.patternId  = json["pattern_id"].intValue
+        self.name       = json["name"].stringValue
+        self.time       = "00:00"
     }
     
     override static func primaryKey() -> String? { return "id" }

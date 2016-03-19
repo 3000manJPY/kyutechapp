@@ -14,18 +14,18 @@ import SHUtil
 
 class Direction: Object {
     dynamic var id:             Int     = 0
-    dynamic var accessId:       Int     = 0
-    dynamic var directionName:  String  = ""
-            let timeTables              = List<TimeTable>()
+    dynamic var stationId:      Int     = 0
+    dynamic var name:  String  = ""
+            let patterns                = List<Pattern>()
     
     convenience init(json: SwiftyJSON.JSON) {
         self.init()
         self.id             = json["id"].intValue
-        self.accessId       = json["access_id"].intValue
-        self.directionName  = json["direction_name"].stringValue
+        self.stationId      = json["station_id"].intValue
+        self.name           = json["name"].stringValue
         
-        for timeTable in json["time_tables"].arrayValue {
-            self.timeTables.append(TimeTable(json: timeTable))
+        for pattern in json["patterns"].arrayValue {
+            self.patterns.append(Pattern(json: pattern))
         }
         
     }
