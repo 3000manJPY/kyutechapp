@@ -92,7 +92,7 @@ class AccessViewController: UIViewController {
            item.append(val.name)
         }
         self.segment.changeAllWithArray(item)
-        self.line = self.accesses[self.segment.selectedSegmentIndex].lines[0]
+        self.line = self.accesses.first?.lines.first
 
         self.fromValueChanged()
         
@@ -102,7 +102,7 @@ class AccessViewController: UIViewController {
         //それぞれ過去に見たやつをきおくしておくとべんりかも
         self.toIndex = 0
         self.fromIndex = 0
-        self.line = self.accesses[self.segment.selectedSegmentIndex].lines[0]
+        self.line = self.accesses[self.segment.selectedSegmentIndex].lines.first
         self.fromValueChanged()
         self.headerTaped()
         self.setPageMenuView()
@@ -110,11 +110,13 @@ class AccessViewController: UIViewController {
     }
     
     func fromValueChanged(){
+        if self.line?.stations.count <= 0 { return }
         self.station = self.line?.stations[self.fromIndex]
         self.toValueChanged()
     }
     
     func toValueChanged(){
+        if self.station?.directions.count <= 0 { return }
         self.direction = self.station?.directions[self.toIndex]
         
     }

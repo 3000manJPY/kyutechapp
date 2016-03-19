@@ -110,7 +110,6 @@
 		2ADA7D7F1C6975730054A771 /* Lecture.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4A6BDD1C64CEC600B4BD6F /* Lecture.storyboard */; };
 		2ADA7D801C6975730054A771 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4A6BD91C64C4F600B4BD6F /* Splash.storyboard */; };
 		2ADA7D851C6975730054A771 /* SHUtil.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2A4540491C67669300B33393 /* SHUtil.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2ADA7D8C1C6977160054A771 /* kyutech-dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2ADA7D8B1C6977160054A771 /* kyutech-dev.plist */; };
 		2ADA7D8D1C697AF10054A771 /* dev-api.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A7A7C431C69360D00BEE966 /* dev-api.plist */; };
 		2ADA7D8F1C6A6BEE0054A771 /* MenuTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA7D8E1C6A6BEE0054A771 /* MenuTableView.swift */; };
 		2ADA7D901C6A6BEE0054A771 /* MenuTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA7D8E1C6A6BEE0054A771 /* MenuTableView.swift */; };
@@ -863,7 +862,6 @@
 				2ADA7D761C6975730054A771 /* Access.storyboard in Resources */,
 				2ADA7D771C6975730054A771 /* NoticeDetail.storyboard in Resources */,
 				2ADA7D781C6975730054A771 /* api.plist in Resources */,
-				2ADA7D8C1C6977160054A771 /* kyutech-dev.plist in Resources */,
 				2ADA7D791C6975730054A771 /* LaunchScreen.storyboard in Resources */,
 				2ADA7D7A1C6975730054A771 /* Notice.storyboard in Resources */,
 				2AEF743B1C6BBD7400C10205 /* LectureCollectionViewCell.xib in Resources */,
@@ -1344,10 +1342,10 @@
 				CODE_SIGN_ENTITLEMENTS = kyutech/kyutech.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/SHUtil/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/Build/Products/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = "kyutech/kyutech-dev.plist";
@@ -1373,7 +1371,6 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/SHUtil/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/Build/Products/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = "kyutech/kyutech-dev.plist";

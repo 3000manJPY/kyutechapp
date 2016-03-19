@@ -36,7 +36,7 @@ class AccessModel: NSObject {
         let campus = Config.getCampusId()
         self.reqestAccesses(campus) { (accesses) -> () in
             AccessModel.sharedInstance.accesses = accesses
-            SHprint(accesses)
+//            SHprint(accesses)
         }
     }
     
