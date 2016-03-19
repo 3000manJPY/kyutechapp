@@ -22,6 +22,7 @@ struct CAMPUS {
         static let val  = 1
         static let hp = "http://www.iizuka.kyutech.ac.jp/"
         static let themeColor = UIColor.colorWith255(61, green: 184, blue: 235)
+        static let darkThemeColor = UIColor.colorWith255(51, green: 174, blue: 225)
         static let topImage = UIImage(named: "top_image")
     }
     struct tobata {
@@ -30,6 +31,7 @@ struct CAMPUS {
         static let val  = 0
         static let hp = "http://www.tobata.kyutech.ac.jp/"
         static let themeColor = UIColor.colorWith255(226, green: 94, blue: 157)
+        static let darkThemeColor = UIColor.colorWith255(216, green: 84, blue: 147)
         static let topImage = UIImage(named: "tobata")
     }
     struct wakamatsu {
@@ -38,6 +40,7 @@ struct CAMPUS {
         static let val  = 2
         static let hp = "http://www.lsse.kyutech.ac.jp/"
         static let themeColor = UIColor.colorWith255(170, green: 204, blue: 3)
+        static let darkThemeColor = UIColor.colorWith255(167, green: 201, blue: 0)
         static let topImage = UIImage(named: "wakamatsu")
     }
     static func geyNameById(val: String) -> String? {

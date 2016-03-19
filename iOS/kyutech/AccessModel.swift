@@ -9,7 +9,12 @@
 import UIKit
 import Alamofire
 import SHUtil
+import RealmSwift
 
+struct HourMinits {
+    var h: Int
+    var m: [Int]
+}
 
 class AccessModel: NSObject {
     class var sharedInstance: AccessModel { struct Singleton { static let instance: AccessModel = AccessModel() }; return Singleton.instance }
@@ -36,7 +41,6 @@ class AccessModel: NSObject {
         let campus = Config.getCampusId()
         self.reqestAccesses(campus) { (accesses) -> () in
             AccessModel.sharedInstance.accesses = accesses
-//            SHprint(accesses)
         }
     }
     
@@ -48,5 +52,21 @@ class AccessModel: NSObject {
             }) { (type, code) -> () in
                 self.requestState = .Error
         }
+    }
+    
+    //６時始まりの配列を返す
+    func get6StartTimetables(timetables: List<Timetable>) -> [HourMinits] {
+        var res: [HourMinits] = []
+        let sorted = timetables.sort { (lhs, rhs) in return lhs.hour == rhs.hour ? lhs.minit < rhs.minit : lhs.hour < rhs.hour }
+        for num in 0..<24 {
+            var hour = num + 6
+            if hour > 24 { hour -= 24 }
+            var obj = HourMinits.init(h: hour, m: [])
+            for val in sorted {
+                if val.hour == obj.h { obj.m.append(val.minit) }
+            }
+            res.append(obj)
+        }
+        return res
     }
 }

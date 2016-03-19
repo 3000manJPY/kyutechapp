@@ -71,19 +71,30 @@ class AccessViewController: UIViewController {
         guard let dir = self.direction else { return }
         for val in dir.patterns {
             guard let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("AccessTableViewController") as? AccessTableViewController else { break }
+            //=========Viewへ===================================
             let tt = val.timetables
             viewController.title = val.name
-            viewController.timetables = tt
+            viewController.timetables = AccessModel.sharedInstance.get6StartTimetables(tt)
             viewController.delegate = self
             vc.append(viewController)
+            //=========Viewへ===================================
+
         
         }
         guard let pagingMenuController = self.childViewControllers.first as? PagingMenuController else { return }
-        
+        //=========Viewへ===================================
+
         let options = PagingMenuOptions()
         options.menuHeight = 40
         options.menuDisplayMode = .SegmentedControl
+        options.backgroundColor = Config.getDarkThemeColor()
+        options.menuItemMode = .Underline(height: 2, color: UIColor.whiteColor(), horizontalPadding: 0, verticalPadding: 0)
+        options.textColor       = UIColor.lightGrayColor()
+        options.selectedTextColor = UIColor.whiteColor()
+        options.selectedBackgroundColor = Config.getDarkThemeColor()
         pagingMenuController.setup(viewControllers: vc, options: options)
+        //=========Viewへ===================================
+
     }
     
     func setSegment(){
@@ -153,6 +164,7 @@ class AccessViewController: UIViewController {
     }
         
     func openPickerView(list: [String], mode: AccessPickerMode){
+        //=========Viewへ===================================
         guard let popoverContent = self.storyboard?.instantiateViewControllerWithIdentifier("AccessPickerViewController") as? AccessPickerViewController else { return }
         self.pickerVC = popoverContent
         self.pickerVC.delegate = self
@@ -161,13 +173,13 @@ class AccessViewController: UIViewController {
         self.pickerVC.modalTransitionStyle = .CoverVertical
         self.pickerVC.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext // 背景の透過の設定
         self.presentViewController(self.pickerVC, animated: true, completion: nil)
+        //=========Viewへ===================================
     }
 }
 
 
 extension AccessViewController: AccessPickerDelegate {
     func resultIndex(index: Int, mode: AccessPickerMode) {
-    
         if mode == .to {
             self.toIndex = index
             self.toValueChanged()
@@ -196,7 +208,7 @@ extension AccessViewController: AccessScrollViewDelegate {
     }
 }
 
-
+//=========Utilへ===================================
 extension UISegmentedControl {
     func changeAllWithArray(arr: [String]){
         self.removeAllSegments()
@@ -207,3 +219,4 @@ extension UISegmentedControl {
     }
     
 }
+//=========Utilへ==================================
