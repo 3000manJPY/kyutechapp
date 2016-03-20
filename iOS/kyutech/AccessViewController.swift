@@ -27,6 +27,8 @@ class AccessViewController: UIViewController {
     var toIndex     = 0
     
     var pickerVC:   AccessPickerViewController!
+    @IBOutlet weak var toLabel: UILabel!
+    @IBOutlet weak var fromLabel: UILabel!
     
     @IBOutlet weak var segment: UISegmentedControl!
     @IBOutlet weak var constHeaderView: NSLayoutConstraint!
@@ -34,9 +36,11 @@ class AccessViewController: UIViewController {
     
     @IBOutlet weak var basePageView: UIView!
     
+    var isCahngeCampus = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.setReceiveObserver()
         self.accesses = AccessModel.sharedInstance.accesses
 
     }
@@ -48,6 +52,12 @@ class AccessViewController: UIViewController {
         //
         //        let builder = GAIDictionaryBuilder.createScreenView()
         //        tracker.send(builder.build() as [NSObject : AnyObject])
+        
+        if self.isCahngeCampus {
+            AccessModel.sharedInstance.updateData()
+            self.isCahngeCampus = false
+            self.accessHeaderView.updateView()
+        }
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -116,20 +126,27 @@ class AccessViewController: UIViewController {
         self.line = self.accesses[self.segment.selectedSegmentIndex].lines.first
         self.fromValueChanged()
         self.headerTaped()
-        self.setPageMenuView()
+//        self.setPageMenuView()
 
     }
     
     func fromValueChanged(){
+        self.toIndex = 0
         if self.line?.stations.count <= 0 { return }
         self.station = self.line?.stations[self.fromIndex]
         self.toValueChanged()
+        let name = self.station?.name
+        self.fromLabel.text = name
     }
     
     func toValueChanged(){
+        
         if self.station?.directions.count <= 0 { return }
         self.direction = self.station?.directions[self.toIndex]
-        
+        let name = self.direction?.name
+        self.toLabel.text = name
+        self.setPageMenuView()
+
     }
     
     @IBAction func iconTaped(sender: AnyObject) {
@@ -170,6 +187,7 @@ class AccessViewController: UIViewController {
         self.pickerVC.delegate = self
         self.pickerVC.list = list
         self.pickerVC.mode = mode
+        self.pickerVC.selectIndex = mode == .from ? self.fromIndex : self.toIndex
         self.pickerVC.modalTransitionStyle = .CoverVertical
         self.pickerVC.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext // 背景の透過の設定
         self.presentViewController(self.pickerVC, animated: true, completion: nil)
@@ -179,11 +197,13 @@ class AccessViewController: UIViewController {
 
 
 extension AccessViewController: AccessPickerDelegate {
-    func resultIndex(index: Int, mode: AccessPickerMode) {
+    func resultObject(object: String ,index: Int, mode: AccessPickerMode) {
         if mode == .to {
             self.toIndex = index
             self.toValueChanged()
         }else if mode == .from {
+            //かわってないならなんもせんばい
+            if self.fromIndex == index { return }
            self.fromIndex = index
             self.fromValueChanged()
         }
@@ -220,3 +240,16 @@ extension UISegmentedControl {
     
 }
 //=========Utilへ==================================
+
+
+extension AccessViewController: KyutechDelagate {
+    func setReceiveObserver() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeCampus:", name: Config.notification.changeCampus, object: nil)
+        
+    }
+    
+    func changeCampus(notification: NSNotification?) {
+        self.isCahngeCampus = true
+    }
+}
+

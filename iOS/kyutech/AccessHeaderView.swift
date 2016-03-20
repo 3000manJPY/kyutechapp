@@ -12,6 +12,11 @@ import UIKit
 class AccessHeaderView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    
+        self.updateView()
+    }
+    
+    func updateView(){
         self.backgroundColor = Config.getThemeColor()
     }
     

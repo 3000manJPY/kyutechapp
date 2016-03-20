@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="UkE-Yh-pgL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2Nv-Kx-7Hr">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -233,19 +233,20 @@
                             <constraint firstItem="ca1-b2-TYc" firstAttribute="leading" secondItem="8Ql-g3-iT6" secondAttribute="leading" id="zL3-4j-QnK"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="bus" id="dbG-Zl-D91"/>
                     <navigationItem key="navigationItem" id="TxP-ct-Wsf"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="accessHeaderView" destination="ca1-b2-TYc" id="OyK-O5-FLJ"/>
                         <outlet property="basePageView" destination="Zoc-qH-ldI" id="YTi-Yc-VZQ"/>
                         <outlet property="constHeaderView" destination="A6L-7U-sJ7" id="ZyV-EV-JV3"/>
+                        <outlet property="fromLabel" destination="Rij-Q6-JIE" id="f0V-qq-757"/>
                         <outlet property="segment" destination="Rq4-qj-bPK" id="bB7-bh-vR5"/>
+                        <outlet property="toLabel" destination="T3E-sQ-Npg" id="gxV-zR-SV5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="try-J4-TkH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1357" y="411"/>
+            <point key="canvasLocation" x="2169" y="411"/>
         </scene>
         <!--Access Picker View Controller-->
         <scene sceneID="jGQ-gR-Waq">
@@ -316,7 +317,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Xl-Mc-stl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2106" y="406"/>
+            <point key="canvasLocation" x="2918" y="406"/>
         </scene>
         <!--Access Table View Controller-->
         <scene sceneID="TlO-cW-Es4">
@@ -445,6 +446,29 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l2V-RN-eUT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1357" y="1132.5"/>
+        </scene>
+        <!--Base Navigation Controller-->
+        <scene sceneID="Nm9-vt-Mnn">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="2Nv-Kx-7Hr" customClass="BaseNavigationController" customModule="kyutech" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="bus" id="dbG-Zl-D91"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="PJO-39-0cE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="jUB-tk-o3e">
+                        <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="UkE-Yh-pgL" kind="relationship" relationship="rootViewController" id="0UO-h2-IRh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bvB-OZ-Og2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1357" y="411"/>
         </scene>
     </scenes>
     <resources>

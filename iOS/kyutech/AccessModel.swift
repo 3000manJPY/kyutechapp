@@ -34,10 +34,10 @@ class AccessModel: NSObject {
     
     private override init() {
         super.init()
-        self.updateDate()
+        self.updateData()
     }
     
-    func updateDate(){
+    func updateData(){
         let campus = Config.getCampusId()
         self.reqestAccesses(campus) { (accesses) -> () in
             AccessModel.sharedInstance.accesses = accesses

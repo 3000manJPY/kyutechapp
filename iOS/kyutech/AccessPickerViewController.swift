@@ -9,7 +9,7 @@
 import UIKit
 
 protocol AccessPickerDelegate {
-    func resultIndex(index: Int, mode: AccessPickerMode)
+    func resultObject(object: String ,index: Int, mode: AccessPickerMode)
 }
 
 class AccessPickerViewController: UIViewController {
@@ -18,9 +18,17 @@ class AccessPickerViewController: UIViewController {
     var list:   [String] = []
     var delegate:   AccessPickerDelegate?
     var mode: AccessPickerMode!
+    var selectIndex = 0
     @IBAction func DoneTapd(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
-        self.delegate?.resultIndex(self.pickerView.selectedRowInComponent(0), mode: self.mode)
+        self.delegate?.resultObject(self.list[self.pickerView.selectedRowInComponent(0)] ,index: self.pickerView.selectedRowInComponent(0), mode: self.mode)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+//        [picker selectRow:0 inComponent:0 animated:YES];
+
+        self.pickerView.selectRow(self.selectIndex, inComponent: 0, animated: false)
     }
     
 }
