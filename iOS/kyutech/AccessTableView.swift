@@ -8,6 +8,8 @@
 
 import UIKit
 
-class AccessView: UIView {
-    
+class AccessTableView: UITableView {
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
 }

@@ -8,17 +8,46 @@
 
 import UIKit
 import SHUtil
+import PagingMenuController
+import RealmSwift
+
+enum AccessPickerMode :Int {
+    case from = 1
+    case to = 2
+}
 
 class AccessViewController: UIViewController {
     var accesses: [Access] = []
+    var line:       Line?
+    var station:    Station?
+    var pattern:    Pattern?
+    var direction:  Direction?
     
+    var fromIndex   = 0
+    var toIndex     = 0
+    
+    var pickerVC:   AccessPickerViewController!
+    @IBOutlet weak var toLabel: UILabel!
+    @IBOutlet weak var fromLabel: UILabel!
+    
+    @IBOutlet weak var segment: UISegmentedControl!
+    @IBOutlet weak var constHeaderView: NSLayoutConstraint!
+    @IBOutlet weak var constLineView: NSLayoutConstraint!
+    @IBOutlet weak var constLineTop: NSLayoutConstraint!
+    
+    @IBOutlet weak var constHeaderHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var accessHeaderView: AccessHeaderView!
+    
+    @IBOutlet weak var basePageView: UIView!
+    
+    var isCahngeCampus = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.setReceiveObserver()
         self.accesses = AccessModel.sharedInstance.accesses
-        
-    
+
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -28,6 +57,14 @@ class AccessViewController: UIViewController {
         //
         //        let builder = GAIDictionaryBuilder.createScreenView()
         //        tracker.send(builder.build() as [NSObject : AnyObject])
+        
+        if self.isCahngeCampus {
+            AccessModel.sharedInstance.updateData()
+            self.isCahngeCampus = false
+            self.accessHeaderView.updateView()
+        }
+        self.closeHeaderViewConst()
+        
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -39,10 +76,187 @@ class AccessViewController: UIViewController {
         if keyPath == "accesses" {
             guard let arr = change?["new"] as? [Access] else{ return }
             self.accesses = arr
-            
-            SHprint(self.accesses)
-//            self.lecCollectionView.reloadData()
+            self.setSegment()
+            self.setPageMenuView()
+ 
         }
          
     }
+    
+    func setPageMenuView(){
+        var vc: [UIViewController] = []
+        guard let dir = self.direction else { return }
+        for val in dir.patterns {
+            guard let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("AccessTableViewController") as? AccessTableViewController else { break }
+            //=========Viewへ===================================
+            let tt = val.timetables
+            viewController.title = val.name
+            viewController.timetables = AccessModel.sharedInstance.get6StartTimetables(tt)
+            viewController.delegate = self
+            vc.append(viewController)
+            //=========Viewへ===================================
+
+        
+        }
+        guard let pagingMenuController = self.childViewControllers.first as? PagingMenuController else { return }
+        //=========Viewへ===================================
+
+        let options = PagingMenuOptions()
+        options.menuHeight = 40
+        options.menuDisplayMode = .SegmentedControl
+        options.backgroundColor = Config.getDarkThemeColor()
+        options.menuItemMode = .Underline(height: 2, color: UIColor.whiteColor(), horizontalPadding: 0, verticalPadding: 0)
+        options.textColor       = UIColor.lightGrayColor()
+        options.selectedTextColor = UIColor.whiteColor()
+        options.selectedBackgroundColor = Config.getDarkThemeColor()
+        pagingMenuController.setup(viewControllers: vc, options: options)
+        //=========Viewへ===================================
+
+    }
+    
+    func setSegment(){
+        var item: [String] = []
+        for val in self.accesses {
+           item.append(val.name)
+        }
+        self.segment.changeAllWithArray(item)
+        self.line = self.accesses.first?.lines.first
+
+        self.fromValueChanged()
+        
+    }
+    
+    @IBAction func segmentValueChanged(sender: AnyObject) {
+        //それぞれ過去に見たやつをきおくしておくとべんりかも
+        self.toIndex = 0
+        self.fromIndex = 0
+        self.line = self.accesses[self.segment.selectedSegmentIndex].lines.first
+        self.fromValueChanged()
+        self.headerTaped()
+//        self.setPageMenuView()
+
+    }
+    
+    func fromValueChanged(){
+        self.toIndex = 0
+        if self.line?.stations.count <= 0 { return }
+        self.station = self.line?.stations[self.fromIndex]
+        self.toValueChanged()
+        let name = self.station?.name
+        self.fromLabel.text = name
+    }
+    
+    func toValueChanged(){
+        
+        if self.station?.directions.count <= 0 { return }
+        self.direction = self.station?.directions[self.toIndex]
+        let name = self.direction?.name
+        self.toLabel.text = name
+        self.setPageMenuView()
+
+    }
+    
+    @IBAction func iconTaped(sender: AnyObject) {
+        self.headerTaped()
+    }
+    
+    @IBAction func fromTaped(sender: AnyObject) {
+        self.headerTaped()
+        var item: [String] = []
+        guard let line = self.line else { return }
+        for val in line.stations {
+            item.append(val.name)
+        }
+        self.openPickerView(item, mode: .from )
+
+    }
+    
+    @IBAction func toTaped(sender: AnyObject) {
+        self.headerTaped()
+        var item: [String] = []
+        guard let station = self.station else { return }
+        for val in station.directions {
+            item.append(val.name)
+        }
+        self.openPickerView(item, mode: .to)
+        
+    }
+    
+    func headerTaped(){
+        self.openHeaderView()
+        self.view.layoutIfNeeded()
+    }
+        
+    func openPickerView(list: [String], mode: AccessPickerMode){
+        //=========Viewへ===================================
+        guard let popoverContent = self.storyboard?.instantiateViewControllerWithIdentifier("AccessPickerViewController") as? AccessPickerViewController else { return }
+        self.pickerVC = popoverContent
+        self.pickerVC.delegate = self
+        self.pickerVC.list = list
+        self.pickerVC.mode = mode
+        self.pickerVC.selectIndex = mode == .from ? self.fromIndex : self.toIndex
+        self.pickerVC.modalTransitionStyle = .CoverVertical
+        self.pickerVC.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext // 背景の透過の設定
+        self.presentViewController(self.pickerVC, animated: true, completion: nil)
+        //=========Viewへ===================================
+    }
 }
+
+
+extension AccessViewController: AccessPickerDelegate {
+    func resultObject(object: String ,index: Int, mode: AccessPickerMode) {
+        if mode == .to {
+            self.toIndex = index
+            self.toValueChanged()
+        }else if mode == .from {
+            //かわってないならなんもせんばい
+            if self.fromIndex == index { return }
+           self.fromIndex = index
+            self.fromValueChanged()
+        }
+    }
+}
+
+extension AccessViewController: AccessScrollViewDelegate {
+    func accessScrollViewWillBeginDragging(scrollView: UIScrollView){
+        self.closeHeaderView()
+ 
+    }
+    func accessScrollViewDidScroll(scrollView: UIScrollView){
+        let y = scrollView.contentOffset.y
+        if y <= -10 {
+            self.openHeaderView()
+            self.view.layoutIfNeeded()
+        }
+    }
+    func accessScrollViewWillBeginDecelerating(scrollView: UIScrollView){
+        self.closeHeaderView()
+ 
+    }
+}
+
+//=========Utilへ===================================
+extension UISegmentedControl {
+    func changeAllWithArray(arr: [String]){
+        self.removeAllSegments()
+        for str in arr {
+            self.insertSegmentWithTitle(str, atIndex: self.numberOfSegments, animated: false)
+        }
+        self.selectedSegmentIndex = 0
+    }
+    
+}
+//=========Utilへ==================================
+
+
+extension AccessViewController: KyutechDelagate {
+    func setReceiveObserver() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeCampus:", name: Config.notification.changeCampus, object: nil)
+        
+    }
+    
+    func changeCampus(notification: NSNotification?) {
+        self.isCahngeCampus = true
+    }
+}
+
