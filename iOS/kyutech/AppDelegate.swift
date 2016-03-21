@@ -30,9 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func realmMigration(){
         let config = Realm.Configuration(
-            schemaVersion: 3,
+            schemaVersion: 5,
             migrationBlock: { migration, oldSchemaVersion in
-                if (oldSchemaVersion < 3) {}
+                if (oldSchemaVersion < 5) {}
         })
         Realm.Configuration.defaultConfiguration = config
     }
@@ -82,7 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            guard let query = url.query else { return false }
             switch host {
             case "notice" :
-                let dict = url.parseGetArgments()
+                _ = url.parseGetArgments()
 //                NSNotificationCenter.defaultCenter().postNotificationName(Config.OPEN_NOTICE, object: nil, userInfo: dict)
                 break
             case "lectures" :break

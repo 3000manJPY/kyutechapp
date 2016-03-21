@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2A2C332F1C62AF5F00676BA6 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2C332E1C62AF5F00676BA6 /* SplashViewController.swift */; };
+		2A2E04DB1C9941AC00D7EA14 /* AccessPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2E04DA1C9941AC00D7EA14 /* AccessPickerViewController.swift */; };
+		2A2E04DC1C9941AC00D7EA14 /* AccessPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2E04DA1C9941AC00D7EA14 /* AccessPickerViewController.swift */; };
 		2A38A2E11C8B59E40050B18B /* LectureDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A38A2E01C8B59E40050B18B /* LectureDetailTableViewController.swift */; };
 		2A38A2E21C8B59E40050B18B /* LectureDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A38A2E01C8B59E40050B18B /* LectureDetailTableViewController.swift */; };
 		2A38A2E41C8B62990050B18B /* LectureDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A38A2E31C8B62990050B18B /* LectureDetailView.swift */; };
@@ -57,6 +59,16 @@
 		2A7A7C461C69361A00BEE966 /* api.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A7A7C451C69361A00BEE966 /* api.plist */; };
 		2A8228301C6F959B00F3AB7B /* TermTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A82282F1C6F959B00F3AB7B /* TermTableViewController.swift */; };
 		2A8228311C6F959B00F3AB7B /* TermTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A82282F1C6F959B00F3AB7B /* TermTableViewController.swift */; };
+		2A9522C71C9C84E900ED4191 /* Pattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9522C61C9C84E900ED4191 /* Pattern.swift */; };
+		2A9522C81C9C84E900ED4191 /* Pattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9522C61C9C84E900ED4191 /* Pattern.swift */; };
+		2A9522CA1C9C84F700ED4191 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9522C91C9C84F700ED4191 /* Line.swift */; };
+		2A9522CB1C9C84F700ED4191 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9522C91C9C84F700ED4191 /* Line.swift */; };
+		2A9522CD1C9C851300ED4191 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9522CC1C9C851300ED4191 /* Station.swift */; };
+		2A9522CE1C9C851300ED4191 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9522CC1C9C851300ED4191 /* Station.swift */; };
+		2A9522D01C9C8CCF00ED4191 /* AccessTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9522CF1C9C8CCF00ED4191 /* AccessTableViewController.swift */; };
+		2A9522D11C9C8CCF00ED4191 /* AccessTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9522CF1C9C8CCF00ED4191 /* AccessTableViewController.swift */; };
+		2A968D7A1C99334300C6A4F1 /* AccessHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A968D791C99334300C6A4F1 /* AccessHeaderView.swift */; };
+		2A968D7B1C99334300C6A4F1 /* AccessHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A968D791C99334300C6A4F1 /* AccessHeaderView.swift */; };
 		2A9A95531C5CBB84007BDA52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9A95521C5CBB84007BDA52 /* AppDelegate.swift */; };
 		2A9A95581C5CBB84007BDA52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A95561C5CBB84007BDA52 /* Main.storyboard */; };
 		2A9A955A1C5CBB84007BDA52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A9A95591C5CBB84007BDA52 /* Assets.xcassets */; };
@@ -66,8 +78,8 @@
 		2A9A959F1C5D2421007BDA52 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9A959E1C5D2421007BDA52 /* Config.swift */; };
 		2ABF85951C7C361B00B4998E /* AccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF85941C7C361B00B4998E /* AccessViewController.swift */; };
 		2ABF85961C7C361B00B4998E /* AccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF85941C7C361B00B4998E /* AccessViewController.swift */; };
-		2ABF85991C7C36D300B4998E /* AccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF85981C7C36D300B4998E /* AccessView.swift */; };
-		2ABF859A1C7C36D300B4998E /* AccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF85981C7C36D300B4998E /* AccessView.swift */; };
+		2ABF85991C7C36D300B4998E /* AccessTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF85981C7C36D300B4998E /* AccessTableView.swift */; };
+		2ABF859A1C7C36D300B4998E /* AccessTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF85981C7C36D300B4998E /* AccessTableView.swift */; };
 		2AC628381C94444E00B69C04 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC628371C94444E00B69C04 /* BaseNavigationController.swift */; };
 		2AC628391C94444E00B69C04 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC628371C94444E00B69C04 /* BaseNavigationController.swift */; };
 		2ADA7D631C6975730054A771 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2C332E1C62AF5F00676BA6 /* SplashViewController.swift */; };
@@ -98,7 +110,6 @@
 		2ADA7D7F1C6975730054A771 /* Lecture.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4A6BDD1C64CEC600B4BD6F /* Lecture.storyboard */; };
 		2ADA7D801C6975730054A771 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4A6BD91C64C4F600B4BD6F /* Splash.storyboard */; };
 		2ADA7D851C6975730054A771 /* SHUtil.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2A4540491C67669300B33393 /* SHUtil.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2ADA7D8C1C6977160054A771 /* kyutech-dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2ADA7D8B1C6977160054A771 /* kyutech-dev.plist */; };
 		2ADA7D8D1C697AF10054A771 /* dev-api.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A7A7C431C69360D00BEE966 /* dev-api.plist */; };
 		2ADA7D8F1C6A6BEE0054A771 /* MenuTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA7D8E1C6A6BEE0054A771 /* MenuTableView.swift */; };
 		2ADA7D901C6A6BEE0054A771 /* MenuTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA7D8E1C6A6BEE0054A771 /* MenuTableView.swift */; };
@@ -165,6 +176,7 @@
 
 /* Begin PBXFileReference section */
 		2A2C332E1C62AF5F00676BA6 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		2A2E04DA1C9941AC00D7EA14 /* AccessPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessPickerViewController.swift; sourceTree = "<group>"; };
 		2A38A2E01C8B59E40050B18B /* LectureDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LectureDetailTableViewController.swift; sourceTree = "<group>"; };
 		2A38A2E31C8B62990050B18B /* LectureDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LectureDetailView.swift; sourceTree = "<group>"; };
 		2A4540441C674F5700B33393 /* SHUtil.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SHUtil.framework; path = "SHUtil/build/Debug-iphoneos/SHUtil.framework"; sourceTree = "<group>"; };
@@ -203,6 +215,11 @@
 		2A7A7C431C69360D00BEE966 /* dev-api.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "dev-api.plist"; sourceTree = "<group>"; };
 		2A7A7C451C69361A00BEE966 /* api.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = api.plist; sourceTree = "<group>"; };
 		2A82282F1C6F959B00F3AB7B /* TermTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermTableViewController.swift; sourceTree = "<group>"; };
+		2A9522C61C9C84E900ED4191 /* Pattern.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pattern.swift; sourceTree = "<group>"; };
+		2A9522C91C9C84F700ED4191 /* Line.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
+		2A9522CC1C9C851300ED4191 /* Station.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
+		2A9522CF1C9C8CCF00ED4191 /* AccessTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessTableViewController.swift; sourceTree = "<group>"; };
+		2A968D791C99334300C6A4F1 /* AccessHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessHeaderView.swift; sourceTree = "<group>"; };
 		2A9A954F1C5CBB84007BDA52 /* kyutech.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kyutech.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A9A95521C5CBB84007BDA52 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2A9A95571C5CBB84007BDA52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -218,7 +235,7 @@
 		2A9A959C1C5D19D0007BDA52 /* kyutech.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = kyutech.entitlements; sourceTree = "<group>"; };
 		2A9A959E1C5D2421007BDA52 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		2ABF85941C7C361B00B4998E /* AccessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessViewController.swift; sourceTree = "<group>"; };
-		2ABF85981C7C36D300B4998E /* AccessView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessView.swift; sourceTree = "<group>"; };
+		2ABF85981C7C36D300B4998E /* AccessTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessTableView.swift; sourceTree = "<group>"; };
 		2AC628371C94444E00B69C04 /* BaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		2ADA7D891C6975730054A771 /* kyutech-dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kyutech-dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ADA7D8B1C6977160054A771 /* kyutech-dev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "kyutech-dev.plist"; sourceTree = "<group>"; };
@@ -367,6 +384,9 @@
 				2A4A6C011C64F73100B4BD6F /* Notice.swift */,
 				2AEF742D1C6BA5B700C10205 /* Lecture.swift */,
 				2A5BB4901C7C157900F64A2D /* Access.swift */,
+				2A9522C61C9C84E900ED4191 /* Pattern.swift */,
+				2A9522C91C9C84F700ED4191 /* Line.swift */,
+				2A9522CC1C9C851300ED4191 /* Station.swift */,
 				2A5BB4931C7C158200F64A2D /* Direction.swift */,
 				2A5BB4961C7C158E00F64A2D /* TimeTable.swift */,
 			);
@@ -596,6 +616,8 @@
 			isa = PBXGroup;
 			children = (
 				2ABF85941C7C361B00B4998E /* AccessViewController.swift */,
+				2A9522CF1C9C8CCF00ED4191 /* AccessTableViewController.swift */,
+				2A2E04DA1C9941AC00D7EA14 /* AccessPickerViewController.swift */,
 			);
 			name = Access;
 			sourceTree = "<group>";
@@ -603,7 +625,8 @@
 		2ABF85971C7C36B500B4998E /* Access */ = {
 			isa = PBXGroup;
 			children = (
-				2ABF85981C7C36D300B4998E /* AccessView.swift */,
+				2ABF85981C7C36D300B4998E /* AccessTableView.swift */,
+				2A968D791C99334300C6A4F1 /* AccessHeaderView.swift */,
 			);
 			name = Access;
 			sourceTree = "<group>";
@@ -839,7 +862,6 @@
 				2ADA7D761C6975730054A771 /* Access.storyboard in Resources */,
 				2ADA7D771C6975730054A771 /* NoticeDetail.storyboard in Resources */,
 				2ADA7D781C6975730054A771 /* api.plist in Resources */,
-				2ADA7D8C1C6977160054A771 /* kyutech-dev.plist in Resources */,
 				2ADA7D791C6975730054A771 /* LaunchScreen.storyboard in Resources */,
 				2ADA7D7A1C6975730054A771 /* Notice.storyboard in Resources */,
 				2AEF743B1C6BBD7400C10205 /* LectureCollectionViewCell.xib in Resources */,
@@ -980,6 +1002,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A642D581C6FBB7700098E99 /* SubjectTableViewController.swift in Sources */,
+				2A9522CD1C9C851300ED4191 /* Station.swift in Sources */,
 				2A5BB4971C7C158E00F64A2D /* TimeTable.swift in Sources */,
 				2AEF74311C6BA76200C10205 /* LectureModel.swift in Sources */,
 				2A2C332F1C62AF5F00676BA6 /* SplashViewController.swift in Sources */,
@@ -988,11 +1011,12 @@
 				2A4A6C0F1C66557600B4BD6F /* Kyutech.swift in Sources */,
 				2AEF74231C6AD53200C10205 /* LectureCollectionViewController.swift in Sources */,
 				2A4A6C051C64F7BF00B4BD6F /* NoticeDetailViewController.swift in Sources */,
+				2A9522CA1C9C84F700ED4191 /* Line.swift in Sources */,
 				2A5BB4941C7C158200F64A2D /* Direction.swift in Sources */,
 				2A5D96A01C6A7D7100E1DF80 /* NoticeView.swift in Sources */,
 				2A4A6BEA1C64D7FE00B4BD6F /* RootTabBarController.swift in Sources */,
 				2AEF742E1C6BA5B700C10205 /* Lecture.swift in Sources */,
-				2ABF85991C7C36D300B4998E /* AccessView.swift in Sources */,
+				2ABF85991C7C36D300B4998E /* AccessTableView.swift in Sources */,
 				2A9A95531C5CBB84007BDA52 /* AppDelegate.swift in Sources */,
 				2A4A6C021C64F73100B4BD6F /* Notice.swift in Sources */,
 				2A5BB4911C7C157900F64A2D /* Access.swift in Sources */,
@@ -1000,15 +1024,19 @@
 				2A4540541C67957000B33393 /* NoticeNavigationController.swift in Sources */,
 				2A9A959F1C5D2421007BDA52 /* Config.swift in Sources */,
 				2A45405A1C679C2800B33393 /* MenuTableViewController.swift in Sources */,
+				2A9522D01C9C8CCF00ED4191 /* AccessTableViewController.swift in Sources */,
 				2A4A6BFE1C64F49E00B4BD6F /* NoticeViewController.swift in Sources */,
+				2A2E04DB1C9941AC00D7EA14 /* AccessPickerViewController.swift in Sources */,
 				2AFFAFA81C7028DA00ACD168 /* SubjectTableView.swift in Sources */,
 				2A6A08671C6EBFF0004B1EC2 /* RealmData.swift in Sources */,
 				2A4A6C121C66570700B4BD6F /* Alamofire+SwiftyJSON.swift in Sources */,
 				2A4540571C6797A600B33393 /* RootNoticeViewController.swift in Sources */,
 				2A4A6C0C1C663F4C00B4BD6F /* APIService.swift in Sources */,
 				2AC628381C94444E00B69C04 /* BaseNavigationController.swift in Sources */,
+				2A968D7A1C99334300C6A4F1 /* AccessHeaderView.swift in Sources */,
 				2A38A2E41C8B62990050B18B /* LectureDetailView.swift in Sources */,
 				2A5D96A31C6A8D5900E1DF80 /* NoticeTableView.swift in Sources */,
+				2A9522C71C9C84E900ED4191 /* Pattern.swift in Sources */,
 				2AEF74381C6BBD7400C10205 /* LectureCollectionViewCell.swift in Sources */,
 				2A5BB49A1C7C15AA00F64A2D /* AccessModel.swift in Sources */,
 				2AFFAFA31C6FCD7A00ACD168 /* SubjectTableViewCell.swift in Sources */,
@@ -1043,6 +1071,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A642D591C6FBB7700098E99 /* SubjectTableViewController.swift in Sources */,
+				2A9522CE1C9C851300ED4191 /* Station.swift in Sources */,
 				2A5BB4981C7C158E00F64A2D /* TimeTable.swift in Sources */,
 				2AEF74321C6BA76200C10205 /* LectureModel.swift in Sources */,
 				2ADA7D631C6975730054A771 /* SplashViewController.swift in Sources */,
@@ -1051,11 +1080,12 @@
 				2ADA7D641C6975730054A771 /* Kyutech.swift in Sources */,
 				2AEF74241C6AD53200C10205 /* LectureCollectionViewController.swift in Sources */,
 				2ADA7D651C6975730054A771 /* NoticeDetailViewController.swift in Sources */,
+				2A9522CB1C9C84F700ED4191 /* Line.swift in Sources */,
 				2A5BB4951C7C158200F64A2D /* Direction.swift in Sources */,
 				2A5D96A11C6A7D7100E1DF80 /* NoticeView.swift in Sources */,
 				2ADA7D661C6975730054A771 /* RootTabBarController.swift in Sources */,
 				2AEF742F1C6BA5B700C10205 /* Lecture.swift in Sources */,
-				2ABF859A1C7C36D300B4998E /* AccessView.swift in Sources */,
+				2ABF859A1C7C36D300B4998E /* AccessTableView.swift in Sources */,
 				2ADA7D671C6975730054A771 /* AppDelegate.swift in Sources */,
 				2ADA7D681C6975730054A771 /* Notice.swift in Sources */,
 				2A5BB4921C7C157900F64A2D /* Access.swift in Sources */,
@@ -1063,15 +1093,19 @@
 				2ADA7D691C6975730054A771 /* NoticeNavigationController.swift in Sources */,
 				2ADA7D6A1C6975730054A771 /* Config.swift in Sources */,
 				2ADA7D6B1C6975730054A771 /* MenuTableViewController.swift in Sources */,
+				2A9522D11C9C8CCF00ED4191 /* AccessTableViewController.swift in Sources */,
 				2ADA7D6C1C6975730054A771 /* NoticeViewController.swift in Sources */,
+				2A2E04DC1C9941AC00D7EA14 /* AccessPickerViewController.swift in Sources */,
 				2AFFAFA91C7028DA00ACD168 /* SubjectTableView.swift in Sources */,
 				2A6A08681C6EBFF0004B1EC2 /* RealmData.swift in Sources */,
 				2ADA7D6D1C6975730054A771 /* Alamofire+SwiftyJSON.swift in Sources */,
 				2ADA7D6E1C6975730054A771 /* RootNoticeViewController.swift in Sources */,
 				2ADA7D6F1C6975730054A771 /* APIService.swift in Sources */,
 				2AC628391C94444E00B69C04 /* BaseNavigationController.swift in Sources */,
+				2A968D7B1C99334300C6A4F1 /* AccessHeaderView.swift in Sources */,
 				2A38A2E51C8B62990050B18B /* LectureDetailView.swift in Sources */,
 				2A5D96A41C6A8D5900E1DF80 /* NoticeTableView.swift in Sources */,
+				2A9522C81C9C84E900ED4191 /* Pattern.swift in Sources */,
 				2AEF74391C6BBD7400C10205 /* LectureCollectionViewCell.swift in Sources */,
 				2A5BB49B1C7C15AA00F64A2D /* AccessModel.swift in Sources */,
 				2AFFAFA41C6FCD7A00ACD168 /* SubjectTableViewCell.swift in Sources */,
@@ -1308,10 +1342,10 @@
 				CODE_SIGN_ENTITLEMENTS = kyutech/kyutech.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/SHUtil/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/Build/Products/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = "kyutech/kyutech-dev.plist";
@@ -1337,7 +1371,6 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/SHUtil/build/Debug-iphoneos",
 					"$(PROJECT_DIR)/Build/Products/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = "kyutech/kyutech-dev.plist";

@@ -1,10 +1,11 @@
 //
-//  Access.swift
+//  Line.swift
 //  kyutech
 //
-//  Created by shogo okamuro on 2/23/16.
+//  Created by shogo okamuro on 3/19/16.
 //  Copyright © 2016 shogo okamuro. All rights reserved.
 //
+
 
 import UIKit
 import RealmSwift
@@ -13,19 +14,23 @@ import SwiftyJSON
 import SHUtil
 
 
-class Access: Object {
+class Line: Object {
     dynamic var id:         Int     = 0
+    dynamic var accessId:   Int     = 0
     dynamic var name:       String  = ""
-            let lines               = List<Line>()
-
+    let stations            = List<Station>()
+    
     convenience init(json: SwiftyJSON.JSON) {
         self.init()
         self.id             = json["id"].intValue
+        self.accessId       = json["access_id"].intValue
         self.name           = json["name"].stringValue
-        for line in json["lines"].arrayValue {
-            self.lines.append(Line(json: line))
+        for station in json["stations"].arrayValue {
+            self.stations.append(Station(json: station))
         }
+        
+ 
     }
     
-        override static func primaryKey() -> String? { return "id" }
+    override static func primaryKey() -> String? { return "id" }
 }

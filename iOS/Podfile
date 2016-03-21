@@ -10,7 +10,8 @@ platform :ios, '8.0'
     pod 'Google/Analytics'
    
     pod 'SVProgressHUD'
-    pod 'PageMenu'
     pod 'TTTAttributedLabel'
     pod 'REFrostedViewController'
+
+    pod "PagingMenuController"
 

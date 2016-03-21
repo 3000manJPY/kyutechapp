@@ -68,6 +68,16 @@ struct Config {
         }
     }
     
+    static func getDarkThemeColor() -> UIColor {
+        let campus = Config.getCampusId()
+        switch campus {
+        case CAMPUS.tobata.val: return CAMPUS.tobata.darkThemeColor
+        case CAMPUS.iizuka.val: return CAMPUS.iizuka.darkThemeColor
+        case CAMPUS.wakamatsu.val: return CAMPUS.wakamatsu.darkThemeColor
+        default: return UIColor.blackColor()
+        }
+    }
+    
     static func plist(property:String)->String{
         let path = NSBundle.mainBundle().pathForResource(Config.plistPath, ofType: "plist")
         let dict = NSDictionary(contentsOfFile: path!)
