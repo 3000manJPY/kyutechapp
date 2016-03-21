@@ -32,6 +32,11 @@ class AccessViewController: UIViewController {
     
     @IBOutlet weak var segment: UISegmentedControl!
     @IBOutlet weak var constHeaderView: NSLayoutConstraint!
+    @IBOutlet weak var constLineView: NSLayoutConstraint!
+    @IBOutlet weak var constLineTop: NSLayoutConstraint!
+    
+    @IBOutlet weak var constHeaderHeight: NSLayoutConstraint!
+    
     @IBOutlet weak var accessHeaderView: AccessHeaderView!
     
     @IBOutlet weak var basePageView: UIView!
@@ -58,6 +63,8 @@ class AccessViewController: UIViewController {
             self.isCahngeCampus = false
             self.accessHeaderView.updateView()
         }
+        self.closeHeaderViewConst()
+        
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -176,7 +183,7 @@ class AccessViewController: UIViewController {
     }
     
     func headerTaped(){
-        self.openHeaderView(self.constHeaderView)
+        self.openHeaderView()
         self.view.layoutIfNeeded()
     }
         
@@ -212,18 +219,18 @@ extension AccessViewController: AccessPickerDelegate {
 
 extension AccessViewController: AccessScrollViewDelegate {
     func accessScrollViewWillBeginDragging(scrollView: UIScrollView){
-        self.closeHeaderView(self.constHeaderView)
+        self.closeHeaderView()
  
     }
     func accessScrollViewDidScroll(scrollView: UIScrollView){
         let y = scrollView.contentOffset.y
         if y <= -10 {
-            self.openHeaderView(self.constHeaderView)
+            self.openHeaderView()
             self.view.layoutIfNeeded()
         }
     }
     func accessScrollViewWillBeginDecelerating(scrollView: UIScrollView){
-        self.closeHeaderView(self.constHeaderView)
+        self.closeHeaderView()
  
     }
 }
