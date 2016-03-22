@@ -11,19 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160316143050) do
+ActiveRecord::Schema.define(version: 20160322000645) do
 
-  create_table "accesses", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
-  create_table "campus_stations", force: :cascade do |t|
-    t.integer  "campus_id",  limit: 4
-    t.integer  "station_id", limit: 4
+  create_table "access_campuses", force: :cascade do |t|
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+    t.integer  "access_id",  limit: 4
+    t.integer  "campus_id",  limit: 4
+  end
+
+  create_table "accesses", force: :cascade do |t|
+    t.string   "name",         limit: 255
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "genre_id",     limit: 4
+    t.integer  "station_id",   limit: 4
+    t.integer  "line_id",      limit: 4
+    t.integer  "direction_id", limit: 4
   end
 
   create_table "campuses", force: :cascade do |t|
@@ -34,7 +38,12 @@ ActiveRecord::Schema.define(version: 20160316143050) do
 
   create_table "directions", force: :cascade do |t|
     t.string   "name",       limit: 255
-    t.integer  "station_id", limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
@@ -63,16 +72,8 @@ ActiveRecord::Schema.define(version: 20160316143050) do
     t.text    "preparation", limit: 65535
   end
 
-  create_table "line_stations", force: :cascade do |t|
-    t.integer  "line_id",    limit: 4
-    t.integer  "station_id", limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-  end
-
   create_table "lines", force: :cascade do |t|
     t.string   "name",       limit: 255
-    t.integer  "access_id",  limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
@@ -109,10 +110,10 @@ ActiveRecord::Schema.define(version: 20160316143050) do
   end
 
   create_table "patterns", force: :cascade do |t|
-    t.string   "name",         limit: 255
-    t.integer  "direction_id", limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "access_id",  limit: 4
   end
 
   create_table "stations", force: :cascade do |t|

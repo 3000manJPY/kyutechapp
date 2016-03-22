@@ -1,9 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  campus_id: 1
-  station_id: 1
+  name: MyString
 
 two:
-  campus_id: 1
-  station_id: 1
+  name: MyString

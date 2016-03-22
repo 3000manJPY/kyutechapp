@@ -1,4 +1,4 @@
 class Campus < ActiveRecord::Base
-    has_many :campus_stations
-    has_many :stations, through: :campus_stations
+    has_many :access_campuses
+    has_many :accesses, through: :access_campuses
 end
