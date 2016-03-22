@@ -11,14 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160322001346) do
-
-  create_table "access_campuses", force: :cascade do |t|
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-    t.integer  "access_id",  limit: 4
-    t.integer  "campus_id",  limit: 4
-  end
+ActiveRecord::Schema.define(version: 20160322011817) do
 
   create_table "accesses", force: :cascade do |t|
     t.datetime "created_at",             null: false
@@ -27,12 +20,7 @@ ActiveRecord::Schema.define(version: 20160322001346) do
     t.integer  "station_id",   limit: 4
     t.integer  "line_id",      limit: 4
     t.integer  "direction_id", limit: 4
-  end
-
-  create_table "campuses", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "campus_id",    limit: 4
   end
 
   create_table "directions", force: :cascade do |t|
