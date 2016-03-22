@@ -1,6 +1,6 @@
-class CreateCampuses < ActiveRecord::Migration
+class CreateGenres < ActiveRecord::Migration
   def change
-    create_table :campuses do |t|
+    create_table :genres do |t|
       t.string :name
 
       t.timestamps null: false
