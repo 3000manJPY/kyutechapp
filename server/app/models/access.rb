@@ -1,6 +1,6 @@
 class Access < ActiveRecord::Base
     belongs_to :genre
-    belongs_to :tation
+    belongs_to :station
     belongs_to :line
     belongs_to :direction
 
