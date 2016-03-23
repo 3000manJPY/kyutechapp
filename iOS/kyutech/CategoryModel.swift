@@ -61,7 +61,7 @@ class MenuModel: NSObject {
         self.arr.append(Sort(id: 100, name: "全て", imagePath: "zen", menu: .category))
         self.arr.append(Sort(id: 99, name: "未分類", imagePath: "未", menu: .category))
         if campus == CAMPUS.iizuka.val {
-            self.arr.append(Sort(id: 0, name: "お知らせ", imagePath: "gaku", menu: .category))
+            self.arr.append(Sort(id: 15, name: "お知らせ", imagePath: "gaku", menu: .category))
             self.arr.append(Sort(id: 1, name: "奨学金", imagePath: "shou", menu: .category))
             self.arr.append(Sort(id: 2, name: "補講通知", imagePath: "ho", menu: .category))
             self.arr.append(Sort(id: 3, name: "休講通知", imagePath: "kyuu", menu: .category))
