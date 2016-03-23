@@ -17,12 +17,11 @@ enum AccessPickerMode :Int {
 }
 
 class AccessViewController: UIViewController {
-    var accesses: [Access] = []
-//    var line:       Line?
-    var station:    Station?
-    var pattern:    Pattern?
-    var direction:  Direction?
-    
+//    var accesses:    [Access] = []
+    var stations:    [Station] = []
+    var directions:  [Direction] = []
+    var genres:       [Genre] = []
+    var genreIndex  = 0
     var fromIndex   = 0
     var toIndex     = 0
     
@@ -41,12 +40,13 @@ class AccessViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setReceiveObserver()
-        self.accesses = AccessModel.sharedInstance.accesses
 
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        AccessModel.sharedInstance.addObserver(self, forKeyPath: "accesses", options: [.New, .Old], context: nil)
+        AccessModel.sharedInstance.addObserver(self, forKeyPath: "genres", options: [.New, .Old], context: nil)
+        AccessModel.sharedInstance.addObserver(self, forKeyPath: "stations", options: [.New, .Old], context: nil)
+        AccessModel.sharedInstance.addObserver(self, forKeyPath: "directions", options: [.New, .Old], context: nil)
         //        let tracker = GAI.sharedInstance().defaultTracker
         //        tracker.set(kGAIScreenName, value: NSStringFromClass(self.classForCoder))
         //
@@ -62,60 +62,70 @@ class AccessViewController: UIViewController {
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        AccessModel.sharedInstance.removeObserver(self, forKeyPath: "accesses")
+        AccessModel.sharedInstance.removeObserver(self, forKeyPath: "genres")
+        AccessModel.sharedInstance.removeObserver(self, forKeyPath: "stations")
+        AccessModel.sharedInstance.removeObserver(self, forKeyPath: "directions")
     }
 
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if keyPath == "accesses" {
-            guard let arr = change?["new"] as? [Access] else{ return }
-            self.accesses = arr
-            self.setSegment()
-            self.setPageMenuView()
+//            self.setSegment()
+//            self.setPageMenuView()
  
+        }else if keyPath == "genres" {
+            guard let arr = change?["new"] as? [Genre] else{ return }
+            AccessModel.sharedInstance.removeObserver(self, forKeyPath: "genres")
+            self.genres = arr
+            self.setSegment()
+        }else if keyPath == "stations" {
+            guard let arr = change?["new"] as? [Station] else{ return }
+            self.stations = arr
+            self.fromValueChanged()
+        }else if keyPath == "directions" {
+            guard let arr = change?["new"] as? [Direction] else{ return }
+            self.directions = arr
+            self.toValueChanged()
         }
          
     }
     
     func setPageMenuView(){
         var vc: [UIViewController] = []
-        guard let dir = self.direction else { return }
-        for val in dir.patterns {
-            guard let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("AccessTableViewController") as? AccessTableViewController else { break }
-            //=========Viewへ===================================
-            let tt = val.timetables
-            viewController.title = val.name
-            viewController.timetables = AccessModel.sharedInstance.get6StartTimetables(tt)
-            viewController.delegate = self
-            vc.append(viewController)
-            //=========Viewへ===================================
-
-        
-        }
-        guard let pagingMenuController = self.childViewControllers.first as? PagingMenuController else { return }
-        //=========Viewへ===================================
-
-        let options = PagingMenuOptions()
-        options.menuHeight = 40
-        options.menuDisplayMode = .SegmentedControl
-        options.backgroundColor = Config.getDarkThemeColor()
-        options.menuItemMode = .Underline(height: 2, color: UIColor.whiteColor(), horizontalPadding: 0, verticalPadding: 0)
-        options.textColor       = UIColor.lightGrayColor()
-        options.selectedTextColor = UIColor.whiteColor()
-        options.selectedBackgroundColor = Config.getDarkThemeColor()
-        pagingMenuController.setup(viewControllers: vc, options: options)
-        //=========Viewへ===================================
+//        guard let dir = self.direction else { return }
+//        for val in dir.patterns {
+//            guard let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("AccessTableViewController") as? AccessTableViewController else { break }
+//            //=========Viewへ===================================
+//            let tt = val.timetables
+//            viewController.title = val.name
+//            viewController.timetables = AccessModel.sharedInstance.get6StartTimetables(tt)
+//            viewController.delegate = self
+//            vc.append(viewController)
+//            //=========Viewへ===================================
+//
+//        
+//        }
+//        guard let pagingMenuController = self.childViewControllers.first as? PagingMenuController else { return }
+//        //=========Viewへ===================================
+//
+//        let options = PagingMenuOptions()
+//        options.menuHeight = 40
+//        options.menuDisplayMode = .SegmentedControl
+//        options.backgroundColor = Config.getDarkThemeColor()
+//        options.menuItemMode = .Underline(height: 2, color: UIColor.whiteColor(), horizontalPadding: 0, verticalPadding: 0)
+//        options.textColor       = UIColor.lightGrayColor()
+//        options.selectedTextColor = UIColor.whiteColor()
+//        options.selectedBackgroundColor = Config.getDarkThemeColor()
+//        pagingMenuController.setup(viewControllers: vc, options: options)
+//        //=========Viewへ===================================
 
     }
     
     func setSegment(){
         var item: [String] = []
-        for val in self.accesses {
+        for val in self.genres {
            item.append(val.name)
         }
         self.segment.changeAllWithArray(item)
-        self.line = self.accesses.first?.lines.first
-
-        self.fromValueChanged()
         
     }
     
@@ -123,29 +133,28 @@ class AccessViewController: UIViewController {
         //それぞれ過去に見たやつをきおくしておくとべんりかも
         self.toIndex = 0
         self.fromIndex = 0
-        self.line = self.accesses[self.segment.selectedSegmentIndex].lines.first
-        self.fromValueChanged()
+        self.genreIndex = self.segment.selectedSegmentIndex
         self.headerTaped()
-//        self.setPageMenuView()
+        AccessModel.sharedInstance.dataAnal(genreId: self.genreIndex, stationId: nil, directionId: nil)
 
     }
     
     func fromValueChanged(){
-        self.toIndex = 0
-        if self.line?.stations.count <= 0 { return }
-        self.station = self.line?.stations[self.fromIndex]
-        self.toValueChanged()
-        let name = self.station?.name
-        self.fromLabel.text = name
+//        self.toIndex = 0
+        if self.stations.count <= 0 { return }
+//        self.station = self.line?.stations[self.fromIndex]
+//        self.toValueChanged()
+//        let name = self.station?.name
+        self.fromLabel.text = self.stations[self.fromIndex].name
     }
     
     func toValueChanged(){
-        
-        if self.station?.directions.count <= 0 { return }
-        self.direction = self.station?.directions[self.toIndex]
-        let name = self.direction?.name
-        self.toLabel.text = name
-        self.setPageMenuView()
+//        
+        if self.directions.count <= 0 { return }
+//        self.direction = self.station?.directions[self.toIndex]
+//        let name = self.direction?.name
+        self.toLabel.text = self.directions[self.toIndex].name
+//        self.setPageMenuView()
 
     }
     
@@ -155,9 +164,9 @@ class AccessViewController: UIViewController {
     
     @IBAction func fromTaped(sender: AnyObject) {
         self.headerTaped()
+        if self.stations.count <= 0 { return }
         var item: [String] = []
-        guard let line = self.line else { return }
-        for val in line.stations {
+        for val in self.stations {
             item.append(val.name)
         }
         self.openPickerView(item, mode: .from )
@@ -166,9 +175,9 @@ class AccessViewController: UIViewController {
     
     @IBAction func toTaped(sender: AnyObject) {
         self.headerTaped()
+        if self.directions.count <= 0 { return }
         var item: [String] = []
-        guard let station = self.station else { return }
-        for val in station.directions {
+        for val in self.directions {
             item.append(val.name)
         }
         self.openPickerView(item, mode: .to)
@@ -200,14 +209,16 @@ extension AccessViewController: AccessPickerDelegate {
     func resultObject(object: String ,index: Int, mode: AccessPickerMode) {
         if mode == .to {
             self.toIndex = index
-            self.toValueChanged()
+//            self.toValueChanged()
         }else if mode == .from {
             //かわってないならなんもせんばい
             if self.fromIndex == index { return }
            self.fromIndex = index
-            self.fromValueChanged()
+//            self.fromValueChanged()
         }
+        AccessModel.sharedInstance.dataAnal(genreId: self.genreIndex, stationId: self.fromIndex, directionId: self.toIndex)
     }
+    
 }
 
 extension AccessViewController: AccessScrollViewDelegate {

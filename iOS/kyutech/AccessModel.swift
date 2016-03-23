@@ -19,7 +19,10 @@ struct HourMinits {
 class AccessModel: NSObject {
     class var sharedInstance: AccessModel { struct Singleton { static let instance: AccessModel = AccessModel() }; return Singleton.instance }
 
-    dynamic var accesses: [Access] = []
+    var accesses    :[Access] = []
+    dynamic var genres      :[Genre] = []
+    dynamic var stations    :[Station] = []
+    dynamic var directions  :[Direction] = []
     
     private var requestState :RequestState = .None {
         willSet {
@@ -40,7 +43,8 @@ class AccessModel: NSObject {
     func updateData(){
         let campus = Config.getCampusId()
         self.reqestAccesses(campus) { (accesses) -> () in
-            AccessModel.sharedInstance.accesses = accesses
+            self.accesses = accesses
+            self.dataAnal(genreId: nil, stationId: nil, directionId: nil)
         }
     }
     
@@ -52,6 +56,40 @@ class AccessModel: NSObject {
             }) { (type, code) -> () in
                 self.requestState = .Error
         }
+    }
+    
+    func dataAnal(genreId genreId:Int?, stationId:Int?, directionId:Int?){
+        var dicGenre: [Int:Genre] = [:] ,genres:[Genre] = []
+        var dicStation: [Int:Station] = [:], stations:[Station] = []
+        var dicDirection: [Int:Direction] = [:], directions:[Direction] = []
+        for access in self.accesses {
+            guard let genre = access.genre else{ continue }
+            if genreId == nil || genreId == genre.id {
+                dicGenre[genre.id] = genre
+            }else{
+                continue
+            }
+            guard let station = access.station else{ continue }
+            if stationId == nil || stationId == station.id {
+                dicStation[station.id] = station
+            }else{
+                continue
+            }
+            guard let direction = access.direction else{ continue }
+            if directionId == nil || directionId == direction.id {
+                dicDirection[direction.id] = direction
+            }else{
+                continue
+            }
+        }
+        for val in dicGenre     { genres.append(val.1) }
+        for val in dicStation   { stations.append(val.1) }
+        for val in dicDirection { directions.append(val.1) }
+        
+        AccessModel.sharedInstance.genres = genres
+        AccessModel.sharedInstance.stations = stations
+        AccessModel.sharedInstance.directions = directions
+        
     }
     
     //６時始まりの配列を返す

@@ -24,7 +24,9 @@ class Access: Object {
     convenience init(json: SwiftyJSON.JSON) {
         self.init()
         self.id             = json["id"].intValue
-        self.station        = Genre(json["station"])
+        self.genre        = Genre(json: json["genre"])
+        self.direction        = Direction(json: json["direction"])
+        self.station        = Station(json: json["station"])
         for pattern in json["patterns"].arrayValue {
             self.patterns.append(Pattern(json: pattern))
         }
