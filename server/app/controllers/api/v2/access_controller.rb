@@ -10,10 +10,10 @@ class Api::V2::AccessController < ApplicationController
         #
 
         if @campus_id == nil
-            render json: Access.all.to_json(:include => [:genre, :line, :station ,:direction, {:patterns => {:include => :timetables}}])
+            render json: Access.all.to_json(:include => [:genre, :station ,:direction, {:patterns => {:include => :timetables}}])
 
         else
-            render json: Access.all.where(campus_id: @campus_id).to_json(:include => [:genre, :line, :station ,:direction, {:patterns => {:include => :timetables}}])
+            render json: Access.all.where(campus_id: @campus_id).to_json(:include => [:genre, :station ,:direction, {:patterns => {:include => :timetables}}])
         end
     end
 

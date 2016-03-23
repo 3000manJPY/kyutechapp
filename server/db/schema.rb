@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160322011817) do
+ActiveRecord::Schema.define(version: 20160323105228) do
 
   create_table "accesses", force: :cascade do |t|
     t.datetime "created_at",             null: false
@@ -35,19 +35,20 @@ ActiveRecord::Schema.define(version: 20160322011817) do
     t.datetime "updated_at",             null: false
   end
 
-  create_table "lectures", force: :cascade do |t|
+  create_table "lectures", id: false, force: :cascade do |t|
+    t.integer "id",          limit: 8,     null: false
     t.integer "campus_id",   limit: 4
-    t.integer "sub_id",      limit: 8
-    t.string  "title",       limit: 255
-    t.string  "teacher",     limit: 255
+    t.integer "sub_id",      limit: 8,     null: false
+    t.string  "title",       limit: 255,   null: false
+    t.string  "teacher",     limit: 255,   null: false
     t.string  "year",        limit: 255
     t.string  "term",        limit: 255
     t.string  "week_time",   limit: 255
     t.integer "created_at",  limit: 8,     null: false
     t.integer "updated_at",  limit: 8,     null: false
     t.string  "room",        limit: 255
-    t.string  "title_en",    limit: 255
-    t.string  "class_num",   limit: 255
+    t.string  "title_en",    limit: 255,   null: false
+    t.string  "class_num",   limit: 255,   null: false
     t.integer "required",    limit: 4
     t.integer "credit",      limit: 4
     t.text    "purpose",     limit: 65535
@@ -59,18 +60,15 @@ ActiveRecord::Schema.define(version: 20160322011817) do
     t.text    "preparation", limit: 65535
   end
 
-  create_table "lines", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
+  add_index "lectures", ["id"], name: "id_UNIQUE", unique: true, using: :btree
 
-  create_table "notices", force: :cascade do |t|
-    t.string   "title",          limit: 255
+  create_table "notices", id: false, force: :cascade do |t|
+    t.integer  "id",             limit: 4,     null: false
+    t.string   "title",          limit: 255,   null: false
     t.text     "details",        limit: 65535
-    t.integer  "category_id",    limit: 4
-    t.integer  "department_id",  limit: 4
-    t.integer  "campus_id",      limit: 4
+    t.integer  "category_id",    limit: 4,     null: false
+    t.integer  "department_id",  limit: 4,     null: false
+    t.integer  "campus_id",      limit: 4,     null: false
     t.integer  "date",           limit: 4
     t.string   "period_time",    limit: 255
     t.string   "grade",          limit: 255
@@ -79,7 +77,7 @@ ActiveRecord::Schema.define(version: 20160322011817) do
     t.string   "teacher",        limit: 255
     t.string   "before_data",    limit: 255
     t.string   "after_data",     limit: 255
-    t.string   "web_url",        limit: 255
+    t.string   "web_url",        limit: 255,   null: false
     t.string   "note",           limit: 255
     t.string   "document1_name", limit: 255
     t.string   "document2_name", limit: 255
@@ -95,6 +93,8 @@ ActiveRecord::Schema.define(version: 20160322011817) do
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
   end
+
+  add_index "notices", ["id"], name: "id_UNIQUE", unique: true, using: :btree
 
   create_table "patterns", force: :cascade do |t|
     t.string   "name",       limit: 255
