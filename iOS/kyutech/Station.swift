@@ -17,19 +17,13 @@ import SHUtil
 class Station: Object {
     dynamic var id:         Int    = 0
     dynamic var name:       String = ""
-    let directions         = List<Direction>()
-    let lines              = List<Line>()
+    dynamic var accessId: Int = 0
     
     convenience init(json: SwiftyJSON.JSON) {
         self.init()
         self.id             = json["id"].intValue
         self.name           = json["name"].stringValue
-        for direction in json["directions"].arrayValue {
-            self.directions.append(Direction(json: direction))
-        }
-        for line in json["lines"].arrayValue {
-            self.lines.append(Line(json: line))
-        }
+        self.accessId       = json["access_id"].intValue
     }
     
     override static func primaryKey() -> String? { return "id" }

@@ -18,7 +18,7 @@ enum AccessPickerMode :Int {
 
 class AccessViewController: UIViewController {
     var accesses: [Access] = []
-    var line:       Line?
+//    var line:       Line?
     var station:    Station?
     var pattern:    Pattern?
     var direction:  Direction?
