@@ -18,12 +18,14 @@ class Station: Object {
     dynamic var id:         Int    = 0
     dynamic var name:       String = ""
     dynamic var accessId: Int = 0
+    var enablet = false
     
     convenience init(json: SwiftyJSON.JSON) {
         self.init()
         self.id             = json["id"].intValue
         self.name           = json["name"].stringValue
         self.accessId       = json["access_id"].intValue
+        
     }
     
     override static func primaryKey() -> String? { return "id" }

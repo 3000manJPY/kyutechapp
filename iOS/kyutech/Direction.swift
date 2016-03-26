@@ -16,13 +16,13 @@ class Direction: Object {
     dynamic var id:             Int     = 0
     dynamic var accessId:      Int     = 0
     dynamic var name:  String  = ""
-    
+    var enablet = false
     convenience init(json: SwiftyJSON.JSON) {
         self.init()
         self.id             = json["id"].intValue
         self.accessId      = json["access_id"].intValue
         self.name           = json["name"].stringValue
-        
+
     }
     
     override static func primaryKey() -> String? { return "id" }

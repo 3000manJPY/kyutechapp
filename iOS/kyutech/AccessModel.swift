@@ -18,11 +18,12 @@ struct HourMinits {
 
 class AccessModel: NSObject {
     class var sharedInstance: AccessModel { struct Singleton { static let instance: AccessModel = AccessModel() }; return Singleton.instance }
-
-    var accesses    :[Access] = []
+            var accesses    :[Access] = []
     dynamic var genres      :[Genre] = []
+            var firstGenre  :[Genre] = []
     dynamic var stations    :[Station] = []
     dynamic var directions  :[Direction] = []
+    dynamic var patterns    :[Pattern] = []
     
     private var requestState :RequestState = .None {
         willSet {
@@ -44,7 +45,7 @@ class AccessModel: NSObject {
         let campus = Config.getCampusId()
         self.reqestAccesses(campus) { (accesses) -> () in
             self.accesses = accesses
-            self.dataAnal(genreId: nil, stationId: nil, directionId: nil)
+            self.initDataAnal()
         }
     }
     
@@ -58,39 +59,94 @@ class AccessModel: NSObject {
         }
     }
     
-    func dataAnal(genreId genreId:Int?, stationId:Int?, directionId:Int?){
+    func  initDataAnal() {
+        self.updateDataAnal(genreId: nil, stationId: nil, directionId: nil)
+        AccessModel.sharedInstance.genres = self.firstGenre
+
+    }
+    
+    func updateDataAnal(genreId genreId:Int?, stationId:Int?, directionId:Int?){
         var dicGenre: [Int:Genre] = [:] ,genres:[Genre] = []
         var dicStation: [Int:Station] = [:], stations:[Station] = []
         var dicDirection: [Int:Direction] = [:], directions:[Direction] = []
+        var dicPattern: [Int:List<Pattern>] = [:], patterns:[Pattern] = []
+        
+        
+        
+        
         for access in self.accesses {
-            guard let genre = access.genre else{ continue }
-            if genreId == nil || genreId == genre.id {
-                dicGenre[genre.id] = genre
-            }else{
-                continue
+            guard let genre = access.genre ,let station = access.station ,let direction = access.direction else{ continue }
+            
+            station.enablet = false
+            direction.enablet = false
+            
+            if genreId != nil && genreId != genre.id { continue }
+            
+            if stationId != nil && stationId != station.id {
+                station.enablet = true
+                direction.enablet = true
             }
-            guard let station = access.station else{ continue }
-            if stationId == nil || stationId == station.id {
+            if directionId != nil && directionId != direction.id {
+                direction.enablet = true
+                station.enablet = true
+            }
+            
+            if stationId == nil && directionId != nil {
+                direction.enablet = false
+            }
+            
+            dicGenre[genre.id] = genre
+            
+            if dicStation[station.id]?.enablet == true {
+            }else{
                 dicStation[station.id] = station
-            }else{
-                continue
             }
-            guard let direction = access.direction else{ continue }
-            if directionId == nil || directionId == direction.id {
+            if dicDirection[direction.id]?.enablet == false {
+            }else{
                 dicDirection[direction.id] = direction
-            }else{
-                continue
             }
+            
+            
+            
+            if directionId != nil && stationId != nil && station.enablet == false && direction.enablet == false {
+                dicPattern[access.id] = access.patterns
+            }
+        
+            
+            
         }
         for val in dicGenre     { genres.append(val.1) }
         for val in dicStation   { stations.append(val.1) }
         for val in dicDirection { directions.append(val.1) }
+        for (index,val) in dicPattern.enumerate() {
+            
+            if index > 1 {
+                SHprint(dicPattern)
+                //error!!!!!!!!!!!!
+            }
+            
+            for pa in val.1 {
+                patterns.append(pa)
+            }
+        }
         
-        AccessModel.sharedInstance.genres = genres
-        AccessModel.sharedInstance.stations = stations
-        AccessModel.sharedInstance.directions = directions
+        self.firstGenre = genres.sort({ (lv, rv) -> Bool in
+            return lv.id < rv.id
+        })
+        AccessModel.sharedInstance.stations = stations.sort({ (lv, rv) -> Bool in
+            return lv.id < rv.id
+        })
+        AccessModel.sharedInstance.directions = directions.sort({ (lv, rv) -> Bool in
+            return lv.id < rv.id
+        })
         
+        if patterns.count > 0 {
+            AccessModel.sharedInstance.patterns = patterns.sort({ (lv, rv) -> Bool in
+                return lv.id < rv.id
+            })
+        }
     }
+    
     
     //６時始まりの配列を返す
     func get6StartTimetables(timetables: List<Timetable>) -> [HourMinits] {
