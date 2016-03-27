@@ -115,13 +115,18 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         switch indexPath.row {
-        case 0: self.changeCampusAlertController();     break
-        case 1: self.openSafariView(Config.padHP);      break
-        case 2: self.openSafariView(Config.padHP);      break
-        case 3: self.openSafariView(Config.padHP);      break
-        case 4: self.openSafariView(CAMPUS.parentHP);   break
-        case 5: self.openHP();                          break
-        default:                                        break
+        case 0: self.changeCampusAlertController();             break
+        case 1: self.openSafariView(Config.padHP);              break
+        case 2: self.openSafariView(Config.padHP);              break
+        case 3: self.openSafariView(Config.padHP);              break
+        case 4: self.openSafariView(CAMPUS.parentHP);           break
+        case 5: self.openHP();                                  break
+        case 6: self.openSafariView(CAMPUS.getSyllabusURL());   break
+        case 7: self.openSafariView(CAMPUS.getMoodleURL());     break
+        case 8: self.openSafariView(CAMPUS.getLiveCampusURL()); break
+//        case 9: self.openHP();                                  break
+//        case 10: self.openHP();                                 break
+        default:                                                break
         }
     }
     
@@ -137,8 +142,8 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         case 6: cell = self.setSyrabusName(cell);             break
         case 7: cell.textLabel?.text = "九工大moodle";         break
         case 8: cell.textLabel?.text = "LiveCampus";          break
-        case 9: cell.textLabel?.text = "キャンパスカレンダー";    break
-        case 10: cell.textLabel?.text = "時間割pdf";           break
+//        case 9: cell.textLabel?.text = "キャンパスカレンダー";    break
+//        case 10: cell.textLabel?.text = "時間割pdf";           break
         default:
             break
         }
@@ -146,7 +151,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 11
+        return 9
     }
     
 }
