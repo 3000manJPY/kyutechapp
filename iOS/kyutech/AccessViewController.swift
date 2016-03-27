@@ -133,6 +133,7 @@ class AccessViewController: UIViewController {
         if patterns.count <= 0 {
             guard let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("AccessTableViewController") as? AccessTableViewController else { return }
             viewController.title = "出発・方面を選択してください"
+            viewController.delegate = self
             viewController.timetables = AccessModel.sharedInstance.get6StartTimetables(List<Timetable>())
             
             vc.append(viewController)
