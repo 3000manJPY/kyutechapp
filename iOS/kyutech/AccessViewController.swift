@@ -62,6 +62,7 @@ class AccessViewController: UIViewController {
             AccessModel.sharedInstance.updateData()
             self.isCahngeCampus = false
             self.accessHeaderView.updateView()
+            self.setPageMenuView([])
         }
     }
     
@@ -269,6 +270,8 @@ class AccessViewController: UIViewController {
     }
     
     func openPickerView(list: [(String,Bool,Int?)], mode: AccessPickerMode){
+        
+        self.tabBarController?.allItemEnablet(false)
         //=========Viewへ===================================
         guard let popoverContent = self.storyboard?.instantiateViewControllerWithIdentifier("AccessPickerViewController") as? AccessPickerViewController else { return }
         self.pickerVC = popoverContent
@@ -292,6 +295,7 @@ class AccessViewController: UIViewController {
 extension AccessViewController: AccessPickerDelegate {
     func resultObject(object: (String, Bool, Int?), id: Int?, mode: AccessPickerMode) {
         
+        self.tabBarController?.allItemEnablet(true)
         if mode == .from {
             //かわってないならなんもせんばい
             if self.fromId == id { return }

@@ -24,6 +24,9 @@ struct Config {
     
     struct notification {
         static let changeCampus = Config.domain + ".change.campus"
+        
+        static let applicationDidEnterBackground = Config.domain + "applicationDidEnterBackground"
+        static let applicationWillEnterForeground = Config.domain + "applicationWillEnterForeground"
     }
     struct userDefault {
         static let term = Config.domain + ".term"

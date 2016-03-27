@@ -77,8 +77,11 @@ class LectureCollectionViewController: UIViewController {
         self.mode.togle()
         if self.mode == .Normal {
             self.allSelectBtn.enabled = false
+            self.tabBarController?.allItemEnablet(true)
+
         }else if self.mode == .Edit {
             self.allSelectBtn.enabled = true
+            self.tabBarController?.allItemEnablet(false)
         }
         self.lecCollectionView.reloadData()
     }
@@ -189,7 +192,16 @@ extension LectureCollectionViewController :UIPopoverPresentationControllerDelega
 
 extension LectureCollectionViewController: KyutechDelagate {
     func setReceiveObserver() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeCampus:", name: Config.notification.changeCampus, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LectureCollectionViewController.changeCampus(_:)), name: Config.notification.changeCampus, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LectureCollectionViewController.applicationDidEnterBackground(_:)), name: Config.notification.applicationDidEnterBackground, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LectureCollectionViewController.applicationWillEnterForeground(_:)), name: Config.notification.applicationWillEnterForeground, object: nil)
+    }
+    
+    func applicationDidEnterBackground(notification: NSNotification?) {
+        LectureModel.sharedInstance.saveCacheLectures()
+    }
+    
+    func applicationWillEnterForeground(notification: NSNotification?) {
         
     }
     

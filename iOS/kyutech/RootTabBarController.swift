@@ -40,6 +40,14 @@ extension UITabBarController {
     public func customAppearance(){
         self.tabBar.barTintColor = Config.getThemeColor()
     }
+    
+    func allItemEnablet(enablet:Bool) {
+        guard let items = self.tabBar.items else{ return }
+        for item in items{
+            item.enabled = enablet
+            
+        }
+    }
 
 }
 

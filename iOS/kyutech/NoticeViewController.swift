@@ -44,6 +44,8 @@ class NoticeViewController: UIViewController {
         //これは、キャンパスが変わった時だけ呼ばれればいいのでNotifとかがいいかも
         self.shContentView.setContentItem()
         
+        let nv = self.navigationController as? NoticeNavigationController
+        nv?.addGesture()
         
         self.setRepo()
         
@@ -66,6 +68,8 @@ class NoticeViewController: UIViewController {
     }
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
+        let nv = self.navigationController as? NoticeNavigationController
+        nv?.removeGesture()
         NoticeModel.sharedInstance.removeObserver(self, forKeyPath: "notices")
         MenuModel.sharedInstance.removeObserver(self, forKeyPath: "menus")
     }
@@ -133,7 +137,7 @@ extension NoticeViewController: SHContentTableViewdelegate /*, slidedelegate*/{
 
 extension NoticeViewController: KyutechDelagate {
     func setReceiveObserver() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeCampus:", name: Config.notification.changeCampus, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NoticeViewController.changeCampus(_:)), name: Config.notification.changeCampus, object: nil)
         
     }
     

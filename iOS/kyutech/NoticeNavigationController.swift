@@ -11,10 +11,24 @@ import SHUtil
 
 class NoticeNavigationController: BaseNavigationController {
 
+    var gesture: UIPanGestureRecognizer?
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: "panGestureRecognized:"))
+        self.gesture = UIPanGestureRecognizer(target: self, action: #selector(NoticeNavigationController.panGestureRecognized(_:)))
+    }
+    
+    func addGesture() {
+        if let g = self.gesture {
+            self.view.addGestureRecognizer(g)
+        }
+    }
+    
+    func removeGesture() {
+        
+        if let g = self.gesture {
+            self.view.removeGestureRecognizer(g)
+        }
     }
     internal func panGestureRecognized(sender: UIPanGestureRecognizer){
         self.view.endEditing(true)
