@@ -25,21 +25,22 @@ class AccessHeaderView: UIView {
 
 extension AccessViewController {
     
-    func closeHeaderView(const: NSLayoutConstraint){
+    func closeHeaderView(){
         UIView.animateWithDuration(0.3, // アニメーションの時間
             animations: {() -> Void  in
                 // アニメーションする処理
-                const.constant = -50
-                self.view.layoutIfNeeded()
-                
+                self.closeHeaderViewConst()
         })
     }
     
-    func openHeaderView(const: NSLayoutConstraint){
+    func openHeaderView(){
         UIView.animateWithDuration(0.3, // アニメーションの時間
             animations: {() -> Void  in
                 // アニメーションする処理
-                const.constant = 0
+                self.constHeaderView.constant = 0
+                self.constLineTop.constant = 8
+                self.constLineView.constant = 26
+                self.constHeaderHeight.constant = 180
                 self.view.layoutIfNeeded()
                 
         })
@@ -47,7 +48,13 @@ extension AccessViewController {
         
     }
     
-    
+    func closeHeaderViewConst(){
+        self.constHeaderView.constant = -50
+        self.constLineView.constant = 0
+        self.constLineTop.constant = 0
+        self.constHeaderHeight.constant = 140
+        self.view.layoutIfNeeded()
+    }
     
     
     
