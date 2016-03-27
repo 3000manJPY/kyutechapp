@@ -43,7 +43,7 @@ extension AccessTableViewController: UITableViewDelegate, UITableViewDataSource 
             let str = hm.m.count > num ? String(hm.m[num]) : ""
             let btn = stackView?.arrangedSubviews[num + 1] as? UIButton
             btn?.setTitle(str, forState: .Normal)
-            btn?.addTarget(self, action: "onClickButton:", forControlEvents: .TouchUpInside)
+            btn?.addTarget(self, action: #selector(AccessTableViewController.onClickButton(_:)), forControlEvents: .TouchUpInside)
         }
         return cell
     }

@@ -15,15 +15,20 @@ import SHUtil
 
 class Access: Object {
     dynamic var id:         Int     = 0
-    dynamic var name:       String  = ""
-            let lines               = List<Line>()
+    var station: Station?
+    var direction: Direction?
+    var genre: Genre?
+    let patterns = List<Pattern>()
+    
 
     convenience init(json: SwiftyJSON.JSON) {
         self.init()
         self.id             = json["id"].intValue
-        self.name           = json["name"].stringValue
-        for line in json["lines"].arrayValue {
-            self.lines.append(Line(json: line))
+        self.genre        = Genre(json: json["genre"])
+        self.direction        = Direction(json: json["direction"])
+        self.station        = Station(json: json["station"])
+        for pattern in json["patterns"].arrayValue {
+            self.patterns.append(Pattern(json: pattern))
         }
     }
     

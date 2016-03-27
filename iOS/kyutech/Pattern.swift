@@ -16,14 +16,14 @@ import SHUtil
 
 class Pattern: Object {
     dynamic var id:         Int    = 0
-    dynamic var directionId:Int    = 0
+    dynamic var accessId:Int    = 0
     dynamic var name:       String = ""
     let timetables         = List<Timetable>()
     
     convenience init(json: SwiftyJSON.JSON) {
         self.init()
         self.id             = json["id"].intValue
-        self.directionId    = json["direction_id"].intValue
+        self.accessId    = json["access_id"].intValue
         self.name           = json["name"].stringValue
         for timetable in json["timetables"].arrayValue {
             self.timetables.append(Timetable(json: timetable))
