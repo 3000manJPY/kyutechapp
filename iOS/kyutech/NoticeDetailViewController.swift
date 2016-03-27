@@ -12,6 +12,7 @@ class NoticeDetailViewController: UIViewController {
     
     @IBOutlet weak var tableConstY      : NSLayoutConstraint!
     @IBOutlet weak var customNaviBar    : UIView!
+    @IBOutlet weak var barTitleLabel: UILabel!
     var notice: Notice?
     @IBOutlet weak var detailTableView: NoticeDetailView!
     
@@ -23,13 +24,13 @@ class NoticeDetailViewController: UIViewController {
         self.setNavibar()
         self.setPropatyList()
         self.title = self.propatyList["カテゴリー"]
+        self.barTitleLabel.text = self.propatyList["カテゴリー"]
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.detailTableView.reloadData()
     }
     func setNavibar(){
         if let _ = self.navigationController {
             self.customNaviBar.hidden = true
-//            self.tableConstY.constant = -self.customNaviBar.bounds.height
         }else{
             self.customNaviBar.hidden = false
         }

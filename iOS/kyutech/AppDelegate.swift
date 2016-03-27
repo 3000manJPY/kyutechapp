@@ -84,8 +84,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            guard let query = url.query else { return false }
             switch host {
             case "notice" :
-                _ = url.parseGetArgments()
-//                NSNotificationCenter.defaultCenter().postNotificationName(Config.OPEN_NOTICE, object: nil, userInfo: dict)
+                var dict = url.parseGetArgments()
+                dict["id"] = "11"
+                NSNotificationCenter.defaultCenter().postNotificationName(Config.notification.notice.open, object: nil, userInfo: dict)
                 break
             case "lectures" :break
             case "access"   :break

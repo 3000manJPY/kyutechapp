@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="G6h-Vu-aus">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="G6h-Vu-aus">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--Notice Detail View Controller-->
@@ -27,16 +27,31 @@
                                             <constraint firstAttribute="width" constant="30" id="TbY-FM-wY6"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="43"/>
-                                        <state key="normal" title="×"/>
+                                        <state key="normal" title="×">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
                                         <connections>
                                             <action selector="close:" destination="G6h-Vu-aus" eventType="touchUpInside" id="yoA-aj-Sgb"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FB6-n9-sfy">
+                                        <rect key="frame" x="54" y="31" width="491" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="7a6-Qn-jLu"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.74992290296052633" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="FB6-n9-sfy" firstAttribute="top" secondItem="5Q8-Ea-eg2" secondAttribute="top" constant="31" id="50b-75-RGH"/>
                                     <constraint firstAttribute="height" constant="65" id="BdB-gb-BCU"/>
                                     <constraint firstItem="bV2-xw-DgZ" firstAttribute="leading" secondItem="5Q8-Ea-eg2" secondAttribute="leading" constant="16" id="F2p-7p-oJt"/>
+                                    <constraint firstItem="FB6-n9-sfy" firstAttribute="leading" secondItem="bV2-xw-DgZ" secondAttribute="trailing" constant="8" id="S3Q-An-T51"/>
+                                    <constraint firstItem="FB6-n9-sfy" firstAttribute="centerX" secondItem="5Q8-Ea-eg2" secondAttribute="centerX" id="d0k-4r-T7F"/>
+                                    <constraint firstAttribute="bottom" secondItem="FB6-n9-sfy" secondAttribute="bottom" constant="13" id="f6y-U5-csc"/>
                                     <constraint firstAttribute="bottom" secondItem="bV2-xw-DgZ" secondAttribute="bottom" constant="8" id="nWG-1k-Akw"/>
                                 </constraints>
                             </view>
@@ -86,6 +101,7 @@
                     </view>
                     <toolbarItems/>
                     <connections>
+                        <outlet property="barTitleLabel" destination="FB6-n9-sfy" id="M49-cj-ODm"/>
                         <outlet property="customNaviBar" destination="5Q8-Ea-eg2" id="43W-ly-V39"/>
                         <outlet property="detailTableView" destination="oN1-EW-RbE" id="qBd-5d-rO3"/>
                         <outlet property="tableConstY" destination="mfT-kC-tD8" id="S7t-Wn-4o5"/>

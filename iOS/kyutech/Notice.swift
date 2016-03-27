@@ -45,7 +45,6 @@ class Notice: Object {
     
     convenience init(json: SwiftyJSON.JSON) {
         self.init()//        super.init()
-        //        print(json)
         self.id         = json["id"].int64Value
         self.uid        = json["id"].int64Value
         self.title      = json["title"].stringValue

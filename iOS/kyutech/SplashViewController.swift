@@ -21,9 +21,9 @@ class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         motionEffect()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SplashViewController.openNotice(_:)),  name: Notif.notice.open, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SplashViewController.openLecture(_:)), name: Notif.lecture.open, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SplashViewController.openAccess(_:)),  name: Notif.access.open, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SplashViewController.openNotice(_:)),  name: Config.notification.notice.open, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SplashViewController.openLecture(_:)), name: Config.notification.lecture.open, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SplashViewController.openAccess(_:)),  name: Config.notification.access.open, object: nil)
         
 //        LectureModel.sharedInstance.updateDate()
     }
@@ -104,7 +104,7 @@ class SplashViewController: UIViewController {
     }
     func sendNotif() {
         if self.noticeOpen {
-            NSNotificationCenter.defaultCenter().postNotificationName(Notif.notice.open, object: nil, userInfo: self.notif)
+            NSNotificationCenter.defaultCenter().postNotificationName(Config.notification.notice.open, object: nil, userInfo: self.notif)
             self.noticeOpen = false
         }else if self.lectureOpen {
             

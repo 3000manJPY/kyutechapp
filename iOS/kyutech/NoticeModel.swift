@@ -91,4 +91,14 @@ class NoticeModel: NSObject {
                 self.requestState = .Error
         }
     }
+    
+    func reqestNotice(noticeId: String, campus: Int, completion: (Notice) -> ()){
+        if self.requestState == .Requesting { return }
+        APIService.reqestNotice(noticeId, campus: campus, completionHandler: { (notice) in
+            self.requestState = .None
+            completion(notice)
+        }) { (type, code) -> () in
+            self.requestState = .Error
+        }
+    }
 }
