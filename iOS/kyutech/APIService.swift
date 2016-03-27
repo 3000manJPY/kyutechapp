@@ -107,6 +107,22 @@ struct APIService {
             completionHandler(arr)
         })
     }
+    
+    static func reqestNotice(noticeId: String ,campus: Int,completionHandler: (Notice) -> (), errorHandler: (ErrorType?,Int) -> ()) -> () {
+        Alamofire.request(Router.GetNoticeWithNoticeId(noticeId: noticeId)).responseSwiftyJSON({(request,response,jsonData,error) in
+            guard let res = response else {
+                SHprint("error! no response")
+                return
+            }
+            if res.statusCode < 200 && res.statusCode >= 300 {
+                SHprint("error!! status => \(res.statusCode)")
+                return
+            }
+//            SHprint(jsonData)
+            completionHandler(Notice(json: jsonData))
+        })
+    }
+    
     static func reqestLectures(campus: Int,completionHandler: ([Lecture]) -> (), errorHandler: (ErrorType?,Int) -> ()) -> () {
         Alamofire.request(Router.GetLectureWithCampusId(campusId: String(campus))).responseSwiftyJSON({(request,response,jsonData,error) in
             guard let res = response else {

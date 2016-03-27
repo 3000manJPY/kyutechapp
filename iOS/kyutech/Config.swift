@@ -11,7 +11,7 @@ import UIKit
 struct Config {
     static let padHP = "https://www.planningdev.com"
     static let about = ""
-    static let notice = ""
+    static let appNotice = ""
     static let domain = "com.planningdev.kyutechapp"
     
     #if DEVELOP
@@ -27,6 +27,10 @@ struct Config {
         
         static let applicationDidEnterBackground = Config.domain + "applicationDidEnterBackground"
         static let applicationWillEnterForeground = Config.domain + "applicationWillEnterForeground"
+        
+        struct notice   { static let open = Config.domain + "notice.open" }
+        struct access   { static let open = Config.domain + "access.oepn" }
+        struct lecture  { static let open = Config.domain + "lecture.open" }
     }
     struct userDefault {
         static let term = Config.domain + ".term"
@@ -141,10 +145,5 @@ struct Config {
     }
 }
 
-struct Notif {
-    struct notice   { static let open = "NOTIFICATION_NOTICE_OPEN" }
-    struct access   { static let open = "NOTIFICATION_ACCESS_OPEN" }
-    struct lecture  { static let open = "NOTIFICATION_LECTURE_OPEN" }
-}
 
 
