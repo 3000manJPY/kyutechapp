@@ -193,6 +193,15 @@ extension LectureCollectionViewController :UIPopoverPresentationControllerDelega
 extension LectureCollectionViewController: KyutechDelagate {
     func setReceiveObserver() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LectureCollectionViewController.changeCampus(_:)), name: Config.notification.changeCampus, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LectureCollectionViewController.applicationDidEnterBackground(_:)), name: Config.notification.applicationDidEnterBackground, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LectureCollectionViewController.applicationWillEnterForeground(_:)), name: Config.notification.applicationWillEnterForeground, object: nil)
+    }
+    
+    func applicationDidEnterBackground(notification: NSNotification?) {
+        LectureModel.sharedInstance.saveCacheLectures()
+    }
+    
+    func applicationWillEnterForeground(notification: NSNotification?) {
         
     }
     

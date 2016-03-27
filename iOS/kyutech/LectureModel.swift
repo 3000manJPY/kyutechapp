@@ -176,5 +176,9 @@ class LectureModel: NSObject {
         }
         return lec
     }
+
+    func saveCacheLectures() -> Bool {
+        return RealmData.sharedInstance.save(self.cacheLectures)
+    }
 }
 
