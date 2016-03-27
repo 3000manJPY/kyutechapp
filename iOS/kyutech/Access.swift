@@ -20,7 +20,7 @@ class Access: Object {
     var genre: Genre?
     let patterns = List<Pattern>()
     
-
+    
     convenience init(json: SwiftyJSON.JSON) {
         self.init()
         self.id             = json["id"].intValue
@@ -32,5 +32,5 @@ class Access: Object {
         }
     }
     
-        override static func primaryKey() -> String? { return "id" }
+    override static func primaryKey() -> String? { return "id" }
 }

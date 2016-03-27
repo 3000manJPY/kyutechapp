@@ -26,10 +26,10 @@ class AccessPickerViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-//        [picker selectRow:0 inComponent:0 animated:YES];
-
+        //        [picker selectRow:0 inComponent:0 animated:YES];
         
-//        self.pickerView.selectRow(self.selectId ?? 0, inComponent: 0, animated: false)
+        
+        //        self.pickerView.selectRow(self.selectId ?? 0, inComponent: 0, animated: false)
     }
     
 }
@@ -44,14 +44,14 @@ extension AccessPickerViewController: UIPickerViewDataSource, UIPickerViewDelega
         return self.list.count
     }
     
-//    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-//        if self.list[row].1 {
-//            return self.list[row].0
-//        }else{
-//            return self.list[row].0
-//        }
-//    }
-
+    //    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    //        if self.list[row].1 {
+    //            return self.list[row].0
+    //        }else{
+    //            return self.list[row].0
+    //        }
+    //    }
+    
     func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView {
         let label = UILabel()
         label.text = self.list[row].0

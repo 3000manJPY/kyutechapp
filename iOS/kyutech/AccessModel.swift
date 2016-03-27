@@ -18,9 +18,9 @@ struct HourMinits {
 
 class AccessModel: NSObject {
     class var sharedInstance: AccessModel { struct Singleton { static let instance: AccessModel = AccessModel() }; return Singleton.instance }
-            var accesses    :[Access] = []
+    var accesses    :[Access] = []
     dynamic var genres      :[Genre] = []
-            var firstGenre  :[Genre] = []
+    var firstGenre  :[Genre] = []
     dynamic var stations    :[Station] = []
     dynamic var directions  :[Direction] = []
     dynamic var patterns    :[Pattern] = []
@@ -54,15 +54,15 @@ class AccessModel: NSObject {
         APIService.reqestAccesses(campus, completionHandler: { (accesses) -> () in
             self.requestState = .None
             completion(accesses)
-            }) { (type, code) -> () in
-                self.requestState = .Error
+        }) { (type, code) -> () in
+            self.requestState = .Error
         }
     }
     
     func  initDataAnal() {
         self.updateDataAnal(genreId: nil, stationId: nil, directionId: nil)
         AccessModel.sharedInstance.genres = self.firstGenre
-//        AccessModel.sharedInstance.updateDataAnal(genreId: self.firstGenre.first?.id, stationId: nil, directionId: nil)
+        //        AccessModel.sharedInstance.updateDataAnal(genreId: self.firstGenre.first?.id, stationId: nil, directionId: nil)
     }
     
     func  getPickerData() {
@@ -116,14 +116,14 @@ class AccessModel: NSObject {
         let genres = self.flatGenreDictionary(dicGenre)
         let patterns = self.flatPatternDictionary(dicPattern)
         
-//        if genreId != nil && stationId == nil && directionId == nil {
-//            self.firstSettings(genreId,genres: genres, stations: stations, directions: directions)
-//        }else{
-    
-            self.updateAccesses(genres, stations: stations, directions: directions, patterns: patterns)
-//
-//        }
-
+        //        if genreId != nil && stationId == nil && directionId == nil {
+        //            self.firstSettings(genreId,genres: genres, stations: stations, directions: directions)
+        //        }else{
+        
+        self.updateAccesses(genres, stations: stations, directions: directions, patterns: patterns)
+        //
+        //        }
+        
     }
     
     func flatGenreDictionary(dicGenre:[Int:Genre]) -> [Genre] {
@@ -175,16 +175,16 @@ class AccessModel: NSObject {
         
         
         self.updateAccesses(genres, stations: [stationFirst], directions: [directionFirst], patterns: self.flatPatternDictionary(dicPattern))
-
+        
     }
     
     func  updateAccesses(genres: [Genre], stations: [Station], directions: [Direction], patterns: [Pattern]){
         
-    
+        
         self.firstGenre = genres.sort({ (lv, rv) -> Bool in
             return lv.id < rv.id
         })
-    
+        
         AccessModel.sharedInstance.stations = stations.sort({ (lv, rv) -> Bool in
             return lv.id < rv.id
         })

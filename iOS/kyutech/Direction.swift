@@ -22,7 +22,7 @@ class Direction: Object {
         self.id             = json["id"].intValue
         self.accessId      = json["access_id"].intValue
         self.name           = json["name"].stringValue
-
+        
     }
     
     override static func primaryKey() -> String? { return "id" }
