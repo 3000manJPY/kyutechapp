@@ -133,7 +133,7 @@ extension NoticeViewController: SHContentTableViewdelegate /*, slidedelegate*/{
 
 extension NoticeViewController: KyutechDelagate {
     func setReceiveObserver() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeCampus:", name: Config.notification.changeCampus, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NoticeViewController.changeCampus(_:)), name: Config.notification.changeCampus, object: nil)
         
     }
     

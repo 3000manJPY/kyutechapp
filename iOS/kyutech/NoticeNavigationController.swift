@@ -14,7 +14,7 @@ class NoticeNavigationController: BaseNavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: "panGestureRecognized:"))
+        self.view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(NoticeNavigationController.panGestureRecognized(_:))))
     }
     internal func panGestureRecognized(sender: UIPanGestureRecognizer){
         self.view.endEditing(true)

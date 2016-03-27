@@ -107,7 +107,7 @@ extension MenuTableViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension MenuTableViewController: KyutechDelagate {
     func setReceiveObserver() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeCampus:", name: Config.notification.changeCampus, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MenuTableViewController.changeCampus(_:)), name: Config.notification.changeCampus, object: nil)
 
     }
     
