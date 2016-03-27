@@ -62,6 +62,7 @@ class AccessViewController: UIViewController {
             AccessModel.sharedInstance.updateData()
             self.isCahngeCampus = false
             self.accessHeaderView.updateView()
+            self.setPageMenuView([])
         }
     }
     
