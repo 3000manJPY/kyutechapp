@@ -24,6 +24,9 @@ struct CAMPUS {
         static let themeColor = UIColor.colorWith255(61, green: 184, blue: 235)
         static let darkThemeColor = UIColor.colorWith255(51, green: 174, blue: 225)
         static let topImage = UIImage(named: "top_image")
+        static let syllabusURL = "http://syllabus.jimu.kyutech.ac.jp/syllabus/"
+        static let moodleURL = "http://mi.el.kyutech.ac.jp/"
+        static let liveCampusURL = "https://virginia.jimu.kyutech.ac.jp/portal/sp/init.do?userDivision=2&locale=ja"
     }
     struct tobata {
         static let rawValue = "0"
@@ -33,6 +36,11 @@ struct CAMPUS {
         static let themeColor = UIColor.colorWith255(226, green: 94, blue: 157)
         static let darkThemeColor = UIColor.colorWith255(216, green: 84, blue: 147)
         static let topImage = UIImage(named: "tobata")
+        static let syllabusURL = "http://syllabus.jimu.kyutech.ac.jp/syllabus/"
+        static let moodleURL = "http://mt.el.kyutech.ac.jp/"
+        static let liveCampusURL = "https://virginia.jimu.kyutech.ac.jp/portal/sp/init.do?userDivision=2&locale=ja"
+
+
     }
     struct wakamatsu {
         static let rawValue = "2"
@@ -42,6 +50,11 @@ struct CAMPUS {
         static let themeColor = UIColor.colorWith255(170, green: 204, blue: 3)
         static let darkThemeColor = UIColor.colorWith255(167, green: 201, blue: 0)
         static let topImage = UIImage(named: "wakamatsu")
+        static let syllabusURL = "http://syllabus.jimu.kyutech.ac.jp/syllabus/"
+        static let moodleURL = "http://mt.el.kyutech.ac.jp/"
+        static let liveCampusURL = "https://virginia.jimu.kyutech.ac.jp/portal/sp/init.do?userDivision=2&locale=ja"
+
+
     }
     static func geyNameById(val: String) -> String? {
         switch val {
@@ -51,7 +64,36 @@ struct CAMPUS {
         default: return nil
         }
     }
+    static func getSyllabusURL() -> String {
+        let campus = Config.getCampusId()
+        switch campus {
+        case CAMPUS.tobata.val:     return CAMPUS.tobata.syllabusURL
+        case CAMPUS.iizuka.val:     return CAMPUS.iizuka.syllabusURL
+        case CAMPUS.wakamatsu.val:  return CAMPUS.wakamatsu.syllabusURL
+        default: return ""
+        }
+    }
     
+    static func getMoodleURL() -> String {
+        let campus = Config.getCampusId()
+        switch campus {
+        case CAMPUS.tobata.val:     return CAMPUS.tobata.moodleURL
+        case CAMPUS.iizuka.val:     return CAMPUS.iizuka.moodleURL
+        case CAMPUS.wakamatsu.val:  return CAMPUS.wakamatsu.moodleURL
+        default: return ""
+        }
+    }
+
+    static func getLiveCampusURL() -> String {
+        let campus = Config.getCampusId()
+        switch campus {
+        case CAMPUS.tobata.val:     return CAMPUS.tobata.liveCampusURL
+        case CAMPUS.iizuka.val:     return CAMPUS.iizuka.liveCampusURL
+        case CAMPUS.wakamatsu.val:  return CAMPUS.wakamatsu.liveCampusURL
+        default: return ""
+        }
+    }
+
 }
 
 enum REQUIRED: Int {
