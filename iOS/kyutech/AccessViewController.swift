@@ -36,14 +36,18 @@ class AccessViewController: UIViewController {
     @IBOutlet weak var basePageView: UIView!
     
     var isCahngeCampus = false
+    var isSegmentChanged = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setReceiveObserver()
+        self.setPageMenuView([])
 
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        SHprint("aaaa")
         AccessModel.sharedInstance.addObserver(self, forKeyPath: "genres", options: [.New, .Old], context: nil)
         AccessModel.sharedInstance.addObserver(self, forKeyPath: "stations", options: [.New, .Old], context: nil)
         AccessModel.sharedInstance.addObserver(self, forKeyPath: "directions", options: [.New, .Old], context: nil)
@@ -70,15 +74,41 @@ class AccessViewController: UIViewController {
     }
 
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if keyPath == "accesses" {
-//            self.setSegment()
-//            self.setPageMenuView()
- 
-        }else if keyPath == "genres" {
+        if keyPath == "genres" {
             guard let arr = change?["new"] as? [Genre] else{ return }
             self.genres = arr
             self.setSegment()
-            AccessModel.sharedInstance.updateDataAnal(genreId: self.genreId, stationId: nil, directionId: nil)
+            
+            var genreId: Int? = NSUserDefaults.standardUserDefaults().integerForKey(Config.userDefault.getAccessGenreKey())
+            var stationId: Int? = NSUserDefaults.standardUserDefaults().integerForKey(Config.userDefault.getAccessStationKey())
+            var directionId: Int? = NSUserDefaults.standardUserDefaults().integerForKey(Config.userDefault.getAccessDirectionKey())
+//            if genreId == 0 {
+                genreId = arr.first?.id
+//            }
+//            if stationId == 0 {
+                stationId = nil
+//            }
+//            if directionId == 0 {
+                directionId = nil
+//            }
+            
+            
+            
+            AccessModel.sharedInstance.updateDataAnal(genreId: genreId, stationId: stationId, directionId: directionId)
+            
+//            for (index,val) in self.genres.enumerate() {
+//                if val.id == genreId {
+//                    self.segment.selectedSegmentIndex = index
+//                    break
+//                }
+//            }
+//            
+//            let station = self.stations.filter{$0.id == stationId}
+//            self.fromLabel.text = station.first?.name
+//            
+//            let direction = self.directions.filter{$0.id == directionId}
+//            self.toLabel.text = direction.first?.name
+
         }else if keyPath == "stations" {
             guard let arr = change?["new"] as? [Station] else{ return }
             self.stations = arr
@@ -95,7 +125,19 @@ class AccessViewController: UIViewController {
     }
     
     func setPageMenuView(patterns: [Pattern]){
+        NSUserDefaults.standardUserDefaults().setInteger(self.genreId, forKey: Config.userDefault.getAccessGenreKey())
+        NSUserDefaults.standardUserDefaults().setInteger(self.fromId ?? 0, forKey: Config.userDefault.getAccessStationKey())
+        NSUserDefaults.standardUserDefaults().setInteger(self.toId ?? 0, forKey: Config.userDefault.getAccessDirectionKey())
+
         var vc: [UIViewController] = []
+        if patterns.count <= 0 {
+            guard let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("AccessTableViewController") as? AccessTableViewController else { return }
+            viewController.title = "出発・方面を選択してください"
+            viewController.timetables = AccessModel.sharedInstance.get6StartTimetables(List<Timetable>())
+
+            vc.append(viewController)
+ 
+        }
         for val in patterns {
             guard let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("AccessTableViewController") as? AccessTableViewController else { break }
             //=========Viewへ===================================
@@ -138,11 +180,11 @@ class AccessViewController: UIViewController {
         //それぞれ過去に見たやつをきおくしておくとべんりかも
         self.toId = nil
         self.fromId = nil
-//        self.genreId = self.segment.selectedSegmentIndex + 1
         self.genreId = self.genres[self.segment.selectedSegmentIndex].id
         self.headerTaped()
+        self.isSegmentChanged = true
         AccessModel.sharedInstance.updateDataAnal(genreId: self.genreId, stationId: nil, directionId: nil)
-
+        self.setPageMenuView([])
     }
     
     func fromValueChanged(){
@@ -153,11 +195,17 @@ class AccessViewController: UIViewController {
 //        self.toValueChanged()
 //        let name = self.station?.name
         if let id = self.fromId {
-            let s = self.stations.filter{$0.id == id}.first
-            self.fromLabel.text = s?.name
+            let station = self.stations.filter{$0.id == id}.first
+            self.fromLabel.text = station?.name
+
         }else{
             self.fromLabel.text = "(選択なし)"
-    
+//            let station = self.stations.first
+//            self.fromLabel.text = station?.name
+            
+//            self.fromId = station?.id
+            
+ 
         }
     }
     
@@ -172,10 +220,14 @@ class AccessViewController: UIViewController {
 //            }else{ return }
         
         if let id = self.toId {
-            let s = self.directions.filter{$0.id == id}.first
-            self.toLabel.text = s?.name
+            let direction = self.directions.filter{$0.id == id}.first
+            self.toLabel.text = direction?.name
         }else{
             self.toLabel.text = "(選択なし)"
+//            let direction = self.directions.first
+//            self.toLabel.text = direction?.name
+            
+//            self.toId = direction?.id
             
         }
 
@@ -237,7 +289,6 @@ class AccessViewController: UIViewController {
 
 
 extension AccessViewController: AccessPickerDelegate {
-//    func resultObject(object: (String,Bool,Int) ,id id: Int?, mode: AccessPickerMode) {
     func resultObject(object: (String, Bool, Int?), id: Int?, mode: AccessPickerMode) {
         
         if mode == .from {
@@ -293,7 +344,7 @@ extension UISegmentedControl {
 
 extension AccessViewController: KyutechDelagate {
     func setReceiveObserver() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeCampus:", name: Config.notification.changeCampus, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AccessViewController.changeCampus(_:)), name: Config.notification.changeCampus, object: nil)
         
     }
     

@@ -18,7 +18,6 @@ class Access: Object {
     var station: Station?
     var direction: Direction?
     var genre: Genre?
-    var isHidden = false
     let patterns = List<Pattern>()
     
 
