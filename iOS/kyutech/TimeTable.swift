@@ -17,7 +17,7 @@ class Timetable: Object {
     dynamic var name: String        = ""
     dynamic var hour: Int        = 0
     dynamic var minit:Int        = 0
-            var originTime: NSData  = NSData()
+    var originTime: NSData  = NSData()
     dynamic var patternId: Int      = 0
     
     convenience init(json: SwiftyJSON.JSON) {
@@ -30,7 +30,7 @@ class Timetable: Object {
     }
     
     override static func primaryKey() -> String? { return "id" }
-
+    
     func convertDateTimeFromString(str: String) -> (Int,Int) {
         let inputFormatter = NSDateFormatter()
         inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
