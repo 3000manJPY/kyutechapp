@@ -93,6 +93,10 @@ class SettingViewController: UIViewController {
         myAlert.addAction(iizuka)
         myAlert.addAction(wakamatsu)
         myAlert.addAction(cansel)
+       
+        //For ipad And Univarsal Device
+        myAlert.popoverPresentationController?.sourceView = self.view
+        myAlert.popoverPresentationController?.sourceRect = CGRect(x: (self.view.frame.width/2), y: (self.navigationController?.navigationBar.height ?? 0) + 50, width: 0, height: 0)
         
         self.presentViewController(myAlert, animated: true, completion: nil)
     }
@@ -116,8 +120,8 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         switch indexPath.row {
         case 0: self.changeCampusAlertController();             break
-        case 1: self.openSafariView(Config.padHP);              break
-        case 2: self.openSafariView(Config.padHP);              break
+//        case 1: self.openSafariView(Config.padHP);              break
+//        case 2: self.openSafariView(Config.padHP);              break
         case 3: self.openSafariView(Config.padHP);              break
         case 4: self.openSafariView(CAMPUS.parentHP);           break
         case 5: self.openHP();                                  break
@@ -125,7 +129,8 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         case 7: self.openSafariView(CAMPUS.getMoodleURL());     break
         case 8: self.openSafariView(CAMPUS.getLiveCampusURL()); break
 //        case 9: self.openHP();                                  break
-//        case 10: self.openHP();                                 break
+        case 10: self.openSafariView("https://docs.google.com/forms/d/1N6cuTy9G0gl5JY3IlnfJ3DSPlgJy3KCtcLyPxV0w_78/viewform");break
+        case 11: self.openSafariView("https://docs.google.com/forms/d/1zziEw5qbz_D5aeqQmdlhx1yX4uJZ2Gp7RR2-GaIaw80/viewform");break
         default:                                                break
         }
     }
@@ -142,6 +147,9 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         case 6: cell = self.setSyrabusName(cell);             break
         case 7: cell.textLabel?.text = "九工大moodle";         break
         case 8: cell.textLabel?.text = "LiveCampus";          break
+        case 9: cell.textLabel?.text = "利用規約";              break
+        case 10: cell.textLabel?.text = "アンケート";              break
+        case 11: cell.textLabel?.text = "ご意見・ご要望";              break
 //        case 9: cell.textLabel?.text = "キャンパスカレンダー";    break
 //        case 10: cell.textLabel?.text = "時間割pdf";           break
         default:
@@ -151,7 +159,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 9
+        return 12
     }
     
 }
