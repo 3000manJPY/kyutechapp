@@ -1,4 +1,7 @@
+# encoding: utf-8
+
 require 'slack'
+
 
 Slack.configure do |config|
       config.token = "xoxp-3241757266-3241855216-21904621733-5c5ec47d24"
@@ -7,9 +10,44 @@ end
 @CACHE_CALENDER_NAME = "com.planningdev.kyutechapp.busCalenderName"
 @CACHE_TIMETABLE_NAME = "com.planningdev.kyutechapp.busTimeTableName"
 @CACHE_NISHITETSU_INFO = "com.planningdev.kyutechapp.nishitetsu.info"
+@CACHE_KITAKYUSHU_INFO = "com.planningdev.kyutechapp.kitakyushu.info"
 
 namespace :cron_access do
     
+    namespace :kitakyushu do
+        desc "北九州市営バスのお知らせが更新されたらslackに通知する"
+        task :info_notif => :environment do
+            kitakyushu_url = "http://qbus.jp/time/default.htm"
+            charset = nil
+            html = open(kitakyushu_url) do |f|
+                charset = f.charset
+                 f.read
+            end
+            doc = Nokogiri::HTML.parse(html, nil, charset)
+
+            @dateStr = Rails.cache.read @CACHE_KITAKYUSHU_INFO
+            doc.xpath('//*[@id="contentbox"]/div[2]/dl').each_with_index  do |node,i|
+                date = node.xpath('dt').children.first.inner_text
+                if i == 0 
+                    @newdate = date
+                end
+                p @dateStr
+                p date
+                if date == @dateStr
+                    break
+                end
+                val = node.xpath('dd/text()').to_s.force_encoding("cp932").encode("UTF-8")
+                p val
+                if val.include?("若松") || val.include?("北九州") || val.include?("ひびきの") || val.include?("折尾") || val.include?("若松") || val.include?("九州工業")
+                   p val 
+                    text = "北九州市営バスがどこかを改正したみたいだhttp://qbus.jp/time/default.htm"
+                    slackNotif(text)
+                end
+            end
+            Rails.cache.write @CACHE_KITAKYUSHU_INFO,@newdate
+            
+        end 
+    end
     namespace :nishitetsu do
         desc "西鉄のお知らせが更新されたらslackに通知する"
         task :info_notif => :environment do
