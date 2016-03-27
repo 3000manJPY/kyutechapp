@@ -10,7 +10,12 @@ namespace :cron do
 
   @tweet_base_url = "https://kyutechapp.planningdev.com/api/v2/notices/redirect/"
   #データベース用ハッシュ
+  #
+  #お知らせはid = 15 に変更しました
+  #objに代入直前に変えてるからだいぶわかりずらいよ
   category = {"お知らせ"   => 0,
+              "おしらせ" => 15,
+#=================================
               "時間割・講義室変更" => 6,
               "休講通知"   => 3,
               "補講通知"   => 2,
@@ -25,10 +30,14 @@ namespace :cron do
               "重要なお知らせ" => 12,
               "ニュース"   => 13,
               "イベント"   => 14,
+#全てとおいうより未分類=============
               "全て"       => 99
+#バグりたくないからかえてない
+#アプリ側の解釈は未分類
+#==================================
               }
 
-  department = {"全て"     => 0,
+  department = {"全て"     => 99,
                 "学部"     => 1,
                 "大学院"   => 2,
                 "知能情報" => 3,
@@ -377,8 +386,8 @@ namespace :cron do
         # 各情報をGET
         @notice.title = get_varchar(detail_page,title_record(key))
         @notice.details = get_detail(detail_page,detail_record(key))
-        @notice.category_id = inx
-        @notice.department_id = get_departmentID(detail_page,department_record(key),key)[0]
+        @notice.category_id = inx == 0 ? 15 : inx
+        @notice.department_id = get_departmentID(detail_page,department_record(key),key)[0].to_i == 0 ? 99 : get_departmentID(detail_page,department_record(key),key)[0]
         @notice.campus_id = 1
         @notice.date = get_date(detail_page,key)
         @notice.period_time = get_varchar(detail_page,period_record(key))
@@ -524,7 +533,7 @@ namespace :cron do
       return unixtime
     end
  
-    url = 'http://www.tobata.kyutech.ac.jp/'
+    url = 'http://www.tobata.kyutech.ac.jp'
     charset = nil # 変数charsetにnilを代入 = 初期化かな
     html = open(url) do |f| # 変数htmlにopen文を代入し、UTLにアクセスし、そのURLを開く
       charset = f.charset # 文字種別を取得
@@ -535,10 +544,10 @@ namespace :cron do
     puts "戸畑"
     # 重要なお知らせ
     puts "重要なお知らせ"
-    doc.xpath('//*[@id="content-top"]/div[4]/div/div/div/div[1]/div').each do |node|
+    doc.xpath('//*[@id="block-views-news-list-block-1"]/div/div[1]/div').each do |node|
       @notice = Notice.new
-      @notice.title   = node.xpath('span[3]/a').inner_text
-      @notice.web_url = url + node.xpath('span[3]/a').attribute('href').value
+      @notice.title   = node.xpath('span/span[1]/a').inner_text
+      @notice.web_url = url + node.xpath('span/span[1]/a').attribute('href').value
       date = node.xpath('span[1]').inner_text.strip!
       @notice.date = get_unixtime(date)
       @notice.category_id = category["重要なお知らせ"]
@@ -556,16 +565,18 @@ namespace :cron do
     
     #EVENT
     puts "イベント"
-    doc.xpath('//*[@id="content-top"]/div[5]/div/div/div/div[1]/div').each do |node|
+    doc.xpath('//*[@id="block-views-event-list-block-1"]/div/div[1]/div').each do |node|
       @notice = Notice.new
-      @notice.title   = node.xpath('span[3]/a').inner_text
-      @notice.web_url = url + node.xpath('span[3]/a').attribute('href').value
-      date    = node.xpath('span[1]/span').inner_text
-      @notice.date = get_unixtime(date)
+      @notice.title   = node.xpath('span/span[1]/a').inner_text
+      @notice.web_url = url + node.xpath('span/span[1]/a').attribute('href').value
+      date = node.xpath('span[1]').inner_text.strip!
+      @notice.date = get_unixtime(date)    
+
       @notice.category_id = category["イベント"]
       @notice.department_id = department["全て"]
       @notice.campus_id = campus["戸畑"]
       @notice.regist_time = Time.now.to_i
+
       begin
         @notice.save
         puts "save succeed"
@@ -578,10 +589,10 @@ namespace :cron do
 
     #ニュース
     puts "ニュース"
-    doc.xpath('//*[@id="content-top"]/div[6]/div/div/div/div[1]/div').each do |node|
+    doc.xpath('//*[@id="block-views-commend-block-1"]/div/div[1]/div').each do |node|
       @notice = Notice.new
-      @notice.title   = node.xpath('div/a').inner_text
-      @notice.web_url = url + node.xpath('div/a').attribute('href').value
+      @notice.title   = node.xpath('div/span/a').inner_text
+      @notice.web_url = url + node.xpath('div/span/a').attribute('href').value
       @notice.category_id = category["ニュース"]
       @notice.department_id = department["全て"]
       @notice.campus_id = campus["戸畑"]
