@@ -13,6 +13,7 @@ import SafariServices
 class SettingViewController: UIViewController {
     
     @IBOutlet weak var tableView: SettingTableView!
+    var nextVC: AnyObject?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -117,6 +118,17 @@ class SettingViewController: UIViewController {
     func openTermOfService() {
         self.performSegueWithIdentifier("termOfService", sender: nil)
     }
+    
+    func openReleaseNote() {
+       self.performSegueWithIdentifier("releaseNote", sender: nil)
+        if let vc = self.nextVC as? ReleaseNoteWebViewController {
+            vc.urlString = Config.releaseNote
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        self.nextVC = sender?.destinationViewController as? ReleaseNoteWebViewController
+    }
 }
 
 extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
@@ -124,7 +136,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         switch indexPath.row {
         case 0: self.changeCampusAlertController();             break
-//        case 1: self.openSafariView(Config.padHP);              break
+        case 1: self.openReleaseNote();                          break
 //        case 2: self.openSafariView(Config.padHP);              break
         case 3: self.openSafariView(Config.padHP);              break
         case 4: self.openSafariView(CAMPUS.parentHP);           break
