@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'release_note/index'
+
   get 'info/index'
 
   resources :notices
