@@ -113,6 +113,10 @@ class SettingViewController: UIViewController {
         NSNotificationCenter.defaultCenter().postNotificationName(Config.notification.changeCampus, object: nil)
  
     }
+    
+    func openTermOfService() {
+        self.performSegueWithIdentifier("termOfService", sender: nil)
+    }
 }
 
 extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
@@ -128,7 +132,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         case 6: self.openSafariView(CAMPUS.getSyllabusURL());   break
         case 7: self.openSafariView(CAMPUS.getMoodleURL());     break
         case 8: self.openSafariView(CAMPUS.getLiveCampusURL()); break
-//        case 9: self.openHP();                                  break
+        case 9: self.openTermOfService();                       break
         case 10: self.openSafariView("https://docs.google.com/forms/d/1N6cuTy9G0gl5JY3IlnfJ3DSPlgJy3KCtcLyPxV0w_78/viewform");break
         case 11: self.openSafariView("https://docs.google.com/forms/d/1zziEw5qbz_D5aeqQmdlhx1yX4uJZ2Gp7RR2-GaIaw80/viewform");break
         default:                                                break
