@@ -166,7 +166,7 @@
         <scene sceneID="tJT-Yp-Dwr">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ufR-5c-HND" customClass="BaseNavigationController" customModule="kyutech" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="safari-button" id="WfS-m4-3rW">
+                    <tabBarItem key="tabBarItem" title="" image="setting" id="WfS-m4-3rW">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -186,6 +186,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="safari-button" width="30" height="30"/>
+        <image name="setting" width="42" height="42"/>
     </resources>
 </document>

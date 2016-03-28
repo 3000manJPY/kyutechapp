@@ -36,6 +36,7 @@ extension AccessViewController {
     }
     
     func openHeaderView(const: NSLayoutConstraint){
+        if self.genres.count <= 0 { return }
         UIView.animateWithDuration(0.3, // アニメーションの時間
             animations: {() -> Void  in
                 // アニメーションする処理

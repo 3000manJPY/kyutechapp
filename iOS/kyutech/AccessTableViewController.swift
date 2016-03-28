@@ -37,7 +37,7 @@ extension AccessTableViewController: UITableViewDelegate, UITableViewDataSource 
         let stackView = cell.viewWithTag(100) as? UIStackView
         let hour =      cell.viewWithTag(200) as? UILabel
         let hm = self.timetables[indexPath.row]
-        hour?.text = "\(hm.h)時"
+        hour?.text = "   \(hm.h)時"
         for num in 0..<5 {
             //TODO: 5個以上ならばstackViewにaddする必要がある
             let str = hm.m.count > num ? String(hm.m[num]) : ""
