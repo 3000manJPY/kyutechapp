@@ -1,0 +1,15 @@
+
+<ul>
+<%  @texts.each_with_index do |val,index|  %>
+    <li>
+	<a href="#"><%= @titles[index]  %><span class="st-arrow">Open or Close</span></a>
+	<div class="st-content">
+		<ul>
+		    <% val.each do |content|  %>
+                	<li><%= content %></li>
+		    <% end %>
+                </ul>
+         </div>
+    </li>
+<% end %>
+</ul>
