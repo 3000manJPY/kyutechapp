@@ -11,8 +11,9 @@ import UIKit
 struct Config {
     static let padHP = "https://www.planningdev.com"
     static let about = ""
-    static let appNotice = ""
     static let domain = "com.planningdev.kyutechapp"
+    static let host         = Config.plist("baseURL")
+    static let releaseNote = host + "/release_note/index"
     
     #if DEVELOP
     static let plistPath = "dev-api"

@@ -10,6 +10,8 @@
 		2A2C332F1C62AF5F00676BA6 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2C332E1C62AF5F00676BA6 /* SplashViewController.swift */; };
 		2A2E04DB1C9941AC00D7EA14 /* AccessPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2E04DA1C9941AC00D7EA14 /* AccessPickerViewController.swift */; };
 		2A2E04DC1C9941AC00D7EA14 /* AccessPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2E04DA1C9941AC00D7EA14 /* AccessPickerViewController.swift */; };
+		2A2EC6181CA9393B00644A65 /* ReleaseNoteWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2EC6171CA9393B00644A65 /* ReleaseNoteWebViewController.swift */; };
+		2A2EC6191CA9393B00644A65 /* ReleaseNoteWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2EC6171CA9393B00644A65 /* ReleaseNoteWebViewController.swift */; };
 		2A38A2E11C8B59E40050B18B /* LectureDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A38A2E01C8B59E40050B18B /* LectureDetailTableViewController.swift */; };
 		2A38A2E21C8B59E40050B18B /* LectureDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A38A2E01C8B59E40050B18B /* LectureDetailTableViewController.swift */; };
 		2A38A2E41C8B62990050B18B /* LectureDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A38A2E31C8B62990050B18B /* LectureDetailView.swift */; };
@@ -177,6 +179,7 @@
 /* Begin PBXFileReference section */
 		2A2C332E1C62AF5F00676BA6 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		2A2E04DA1C9941AC00D7EA14 /* AccessPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessPickerViewController.swift; sourceTree = "<group>"; };
+		2A2EC6171CA9393B00644A65 /* ReleaseNoteWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReleaseNoteWebViewController.swift; sourceTree = "<group>"; };
 		2A38A2E01C8B59E40050B18B /* LectureDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LectureDetailTableViewController.swift; sourceTree = "<group>"; };
 		2A38A2E31C8B62990050B18B /* LectureDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LectureDetailView.swift; sourceTree = "<group>"; };
 		2A4540441C674F5700B33393 /* SHUtil.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SHUtil.framework; path = "SHUtil/build/Debug-iphoneos/SHUtil.framework"; sourceTree = "<group>"; };
@@ -397,6 +400,7 @@
 			isa = PBXGroup;
 			children = (
 				2A50467B1C92E394008F55DE /* SettingViewController.swift */,
+				2A2EC6171CA9393B00644A65 /* ReleaseNoteWebViewController.swift */,
 			);
 			name = Setting;
 			sourceTree = "<group>";
@@ -1026,6 +1030,7 @@
 				2A9522D01C9C8CCF00ED4191 /* AccessTableViewController.swift in Sources */,
 				2A4A6BFE1C64F49E00B4BD6F /* NoticeViewController.swift in Sources */,
 				2A2E04DB1C9941AC00D7EA14 /* AccessPickerViewController.swift in Sources */,
+				2A2EC6181CA9393B00644A65 /* ReleaseNoteWebViewController.swift in Sources */,
 				2A5023771CA2BF990090C46B /* Genre.swift in Sources */,
 				2AFFAFA81C7028DA00ACD168 /* SubjectTableView.swift in Sources */,
 				2A6A08671C6EBFF0004B1EC2 /* RealmData.swift in Sources */,
@@ -1095,6 +1100,7 @@
 				2A9522D11C9C8CCF00ED4191 /* AccessTableViewController.swift in Sources */,
 				2ADA7D6C1C6975730054A771 /* NoticeViewController.swift in Sources */,
 				2A2E04DC1C9941AC00D7EA14 /* AccessPickerViewController.swift in Sources */,
+				2A2EC6191CA9393B00644A65 /* ReleaseNoteWebViewController.swift in Sources */,
 				2A5023781CA2BF990090C46B /* Genre.swift in Sources */,
 				2AFFAFA91C7028DA00ACD168 /* SubjectTableView.swift in Sources */,
 				2A6A08681C6EBFF0004B1EC2 /* RealmData.swift in Sources */,
