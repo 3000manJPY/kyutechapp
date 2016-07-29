@@ -422,7 +422,7 @@ namespace :cron do
 	    @save_obj = Notice.find_by(title: @notice.title, category_id: @notice.category_id, department_id: @notice.department_id, campus_id: @notice.campus_id, web_url: @notice.web_url)
 	    @tweet_url = @tweet_base_url + @save_obj.id.to_s
             Kyutech_bot.tweet_new(@notice.title, category.key(@notice.category_id),department.key(@notice.department_id), @notice.campus_id, @tweet_url)
-        rescue
+        rescue => e
             print "no save"
         end
         puts "---"
@@ -466,9 +466,10 @@ namespace :cron do
         @notice.save
         puts "save succeed"
 	@save_obj = Notice.find_by(title: @notice.title, category_id: @notice.category_id, department_id: @notice.department_id, campus_id: @notice.campus_id, web_url: @notice.web_url)
-	@tweet_url = @tweet_base_url + @save_obj.id
+	@tweet_url = @tweet_base_url + @save_obj.id.to_s
         Kyutech_bot.tweet_new(@notice.title, category.key(@notice.category_id), department.key(@notice.department_id), @notice.campus_id, @tweet_url)
-      rescue
+      rescue => e
+	p e
         puts "no save"
       end
     end
@@ -492,7 +493,7 @@ namespace :cron do
 	@tweet_url = @tweet_base_url + @save_obj.id
 
         Kyutech_bot.tweet_new(@notice.title, category.key(@notice.category_id), department.key(@notice.department_id), @notice.campus_id, @tweet_url)
-      rescue
+      rescue => e
         puts "no save"
       end
     end
@@ -516,7 +517,7 @@ namespace :cron do
 	@tweet_url = @tweet_base_url + @save_obj.id
 
         Kyutech_bot.tweet_new(@notice.title, category.key(@notice.category_id), department.key(@notice.department_id), @notice.campus_id, @tweet_url)
-      rescue
+      rescue => e
         puts "no save"
       end
     end

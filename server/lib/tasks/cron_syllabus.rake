@@ -111,7 +111,9 @@ namespace :cron_syllabus do
     #doc.xpath('/html/body/table[4]/tbody/tr/td/table/tbody/tr[1]/td[2]').each do |node|
     doc.xpath('/html/body/table[4]/tbody/tr/td/table/tbody').each do |node|
       @list = node.xpath('tr[5]/td[2]').text.gsub(/([\t| |\n|　]+)/,"")
-      @list.split(",").each_with_index do |week_time, cnt|
+      #@list.split(",").each_with_index do |week_time, cnt|
+      cnt = 0
+	week_time = weekTimeVal(@list)
         @lecture = Lecture.new
 
       #puts node.text.gsub(/([\t| |\n|?~@~@]+)/,"")
@@ -150,7 +152,7 @@ namespace :cron_syllabus do
           p @lecture
           puts "no save!!!!!!!!!!!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n\!!!!!!!!!!!!!!!!!!!"
         end
-      end
+    #  end
     end
 #    puts "=====================================\n\n\n\n"
     back()
@@ -383,5 +385,41 @@ namespace :cron_syllabus do
     
     cronBoot(@linkCount)
 
+  end
+
+  def weekTimeVal(val)
+    if val == "時間外"
+      return 99
+    end
+    @resval = []
+    val.split(",").each_with_index do |week_time, cnt|    
+      str = week_time.to_s
+      @numStr = weekNumber(str[0])
+      if @numStr.to_s == "99"
+        return 99
+      end
+      time_val = str[1].tr("０-９", "0-9")
+      if time_val == nil
+        return 99
+      end
+      @resval.push(@numStr.to_s + time_val.to_s)
+    end
+    return @resval.join(",")
+  end
+
+  def weekNumber(value)
+    if value == "月"
+      return "1"
+    elsif value == "火"
+      return "2"
+    elsif value == "水"
+      return "3"
+    elsif value == "木"
+      return "4"
+    elsif value == "金"
+      return "5"
+    else
+      return "99"
+    end
   end
 end
