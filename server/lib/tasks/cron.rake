@@ -58,14 +58,16 @@ namespace :cron do
   task :kit_i => :environment do
 
     #共通部分のURL
+    @timetable_update = "391"
+    @students_call = "393"
     url = 'https://db.jimu.kyutech.ac.jp/cgi-bin/cbdb/db.cgi?page=DBView&did='
     notice_url = {"お知らせ"     => "357",
                   "奨学金"       => "367",
                   "補講通知"     => "363",
                   "休講通知"     => "361",
                   "授業調整"     => "364",
-                  "学生呼出"     => "393",
-                  "時間割変更"   => "391",
+                  "学生呼出"     => @students_call,
+                  "時間割変更"   => @timetable_update,
                   "各種手続き"   => "373",
                   "集中講義"     => "379",
                   "留学支援"     => "372",
@@ -384,7 +386,13 @@ namespace :cron do
         detail_page = page.link_with(:href => detail_url[:href]).click    # 詳細ページへのリンクをクリック。リンク先のpage情報ゲット
         @notice = Notice.new
         # 各情報をGET
-        @notice.title = get_varchar(detail_page,title_record(key))
+        if value == @timetable_update
+          @notice.title = get_varchar(detail_page,subject_record)
+	elsif value == @students_call
+          @notice.title = get_varchar(detail_page,title_record(key)) + "・" + get_varchar(detail_page,["109"])
+	else
+          @notice.title = get_varchar(detail_page,title_record(key))
+	end
         @notice.details = get_detail(detail_page,detail_record(key))
         @notice.category_id = inx == 0 ? 15 : inx
         @notice.department_id = get_departmentID(detail_page,department_record(key),key)[0].to_i == 0 ? 99 : get_departmentID(detail_page,department_record(key),key)[0]
@@ -424,6 +432,7 @@ namespace :cron do
             Kyutech_bot.tweet_new(@notice.title, category.key(@notice.category_id),department.key(@notice.department_id), @notice.campus_id, @tweet_url)
         rescue => e
             print "no save"
+	    p e
         end
         puts "---"
 
